@@ -3,13 +3,12 @@ body {
   padding: 0;
   background: #151515 url("../images/bkg.png") 0 0;
   color: #eaeaea;
-  font: 16px;
+  font: 10px;
   line-height: 1.5;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
 }
 
 /* General & 'Reset' Stuff */
-
 .container {
   width: 90%;
   max-width: 600px;
@@ -39,8 +38,8 @@ header {
   background: rgba(0, 0, 0, 0.1);
   width: 100%;
   border-bottom: 1px dashed #b5e853;
-  padding: 20px 0;
-  margin: 0 0 40px 0;
+  padding: 10px 0;
+  margin: 0 0 20px 0;
 }
 
 header h1 {
@@ -79,6 +78,7 @@ header h2 {
 
 #main_content {
   width: 100%;
+  font-size: 14px;
   -webkit-font-smoothing: antialiased;
 }
 section img {
@@ -136,7 +136,7 @@ ul li {
 ul li:before {
   content: ">>";
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  font-size: 13px;
+  font-size: 10px;
   color: #b5e853;
   margin-left: -37px;
   margin-right: 21px;
@@ -153,7 +153,6 @@ pre {
   background: rgba(0, 0, 0, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 10px;
-  font-size: 14px;
   color: #b5e853;
   border-radius: 2px;
   -moz-border-radius: 2px;
