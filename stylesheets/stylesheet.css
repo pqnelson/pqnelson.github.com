@@ -52,6 +52,15 @@ blockquote {
     border-left: 1px solid #666;
 }
 
+/* chunk */
+.chunk {
+    counter-increment: chunks;
+}
+
+.chunk:before {
+    content: counter(chunks) ".";
+    font-weight: bold;
+}
 
 /* Clearfix */
 .cf:before, .cf:after {
