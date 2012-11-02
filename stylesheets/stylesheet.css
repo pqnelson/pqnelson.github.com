@@ -104,3 +104,10 @@ pre code, pre tt {
 .cf {
     zoom:1;
 }
+
+/* footer */
+footer {
+    border-top: 1px solid black;
+    margin-top: 5px;
+    padding-top: 5px;
+}
