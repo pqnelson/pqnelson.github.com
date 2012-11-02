@@ -32,7 +32,7 @@ body {
 .container {
     background-color: white;
     width: 90%;
-    max-width: 560px;
+    max-width: 570px;
     margin-left: auto ;
     margin-right: auto ;
     margin-bottom: 20px ;
@@ -61,6 +61,35 @@ blockquote {
     content: counter(chunks) ".";
     font-weight: bold;
 }
+
+/* code */
+code {
+    margin: 0px 2px;
+    padding: 0px 5px;
+    border: 1px solid rgb(234, 234, 234);
+    background-color: rgb(248, 248, 248);
+    border-radius: 3px 3px 3px 3px;
+}
+pre {
+    background-color: rgb(248, 248, 248);
+    border: 1px solid rgb(204, 204, 204);
+    /* font-size: 13px; */
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px;
+    border-radius: 3px 3px 3px 3px;
+    margin: 15px 0px;
+}
+pre code, pre tt {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+    border: medium none;
+}
+/* pre, code, tt { */
+/*     font-size: 12px; */
+/*     /\* font-family: Consolas,"Liberation Mono",Courier,monospace; *\/ */
+/* } */
 
 /* Clearfix */
 .cf:before, .cf:after {
