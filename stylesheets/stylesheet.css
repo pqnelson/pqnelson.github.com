@@ -1,4 +1,14 @@
 /* Links */
+details, details summary {
+    display: inline;
+    float: none;
+}
+details summary::-webkit-details-marker {
+    display: none;
+    float: none;
+}
+
+
 a {
     text-decoration: none ;
 }
@@ -109,5 +119,20 @@ pre code, pre tt {
 footer {
     border-top: 1px solid black;
     margin-top: 5px;
-    padding-top: 5px;
 }
+footer blockquote {
+    padding-left: 0px;
+    margin-left: 0px;
+    border-left: 0px solid white;
+    border-bottom: 1px solid black;
+    margin: 3px 0px;
+    padding: 5px 0px;
+    width: 100%;
+}
+
+/* table stuff */
+table#sql th, td {
+    padding: 0px 5px;
+}
+
+table.example > tr > th,table.example > tr > td,table.example > * > tr > th,table.example > * > tr > td{border:1px #aaa solid;padding:0.2em}

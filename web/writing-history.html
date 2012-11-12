@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/pygment_trac.css" media="screen" />
+    <title>Elements of Programming</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <header>
+	<h1>Writing History for the Web</h1>
+	November 12, 2012
+      </header>
+      <section id="main_content">
+<h2>Writing History?</h2>
+<p>
+I want to discuss some aspects of html5 for writing a history
+text. I will discuss aspects like user comments, footnotes, and
+"chunking" (an ambiguous term that I hope to clarify). 
+</p>
+<p>
+I <em>will not</em> discuss: how to do research, how to structure
+sentences, what grammar to use, what citation system should be
+used, what models or historiographical paradigm should be
+employed, etc. etc. etc.
+</p>
+<p>
+In principle, the same "tools" presented here could be applied to
+any field. I just chose history, since I'm reading
+Gibbon's <em>Decline and Fall</em>.
+</p>
+<h3>Chunking</h3>
+<p>
+When writing for the web, people don't like to sit down and study
+long paragraphs. (However, when reading on paper,
+they <em>love</em> reading paragraphs!)
+</p>
+<p>
+A different organization scheme is needed. In the 18th and 19th
+centuries, it seems that historians implicitly used an outline.
+</p>
+<p>
+"Chunking" is a term I use to describe mathematical writing which
+numbers each point made (see, e.g., Arthur Besse's writings). Why
+not use this with an outline structure?
+</p>
+<p>
+The lay reader in a hurry can read each item in the outline, and
+get the general idea of what is happening. The scholar can read
+the body of the chunk and learn about the evidence.
+</p>
+<p>
+What is an example? Consider the following snippet:
+</p>
+<blockquote>
+<p>
+<b>1.0. Overview.</b> "Afghanistan, particularly rural
+Afghanistan, provides an excellent example of a place where
+tribal and ethnic groups take primacy over the individual. As a
+result, any student of Afghan politics must become intimately
+familiar with such groups and their relationships with one
+another." 
+</p>
+<p>
+<b>The Social Context of Tribes and Ethnic Groups.</b>
+</p>
+<p>
+<b>1.1.</b> People's primary loyalty is to their own kin,
+village, tribe, or ethnic group, generally indicated by the
+Arabic protean term <em>qawm</em>. [...]
+</p>
+<p>
+<b>1.2. What is meant by ethnic identity?</b> "Following the work
+of Fredrik Barth, they are most commonly defined as social groups
+that meet four criteria: they are biologically replicating, share
+fundamental cultural values, constitute a field of communication
+and interaction, and are defined through self-definition and
+definition by others." 
+</p>
+</blockquote>
+<p>
+The html5 tags <code>&lt;details&gt;</code>
+and <code>&lt;summary&gt;</code> works well with the details and
+the "chunk header" (the bold text in my example).
+</p>
+<p>
+I would urge the author to use the summary when writing prose,
+and stick the evidence supporting it (citations, etc.) into
+the rest of the <code>&lt;details&gt;</code>.
+</p>
+<p>
+One caveat is that -- as of now -- only Chrome
+supports <code>&lt;details&gt;</code>. However, there is
+a <a href="https://github.com/manuelbieh/details-Polyfill">jQuery
+    workaround <tt>[github.com]</tt></a>.
+</p>
+<h2>User Comments</h2>
+<p>
+I got this idea while
+reading <a href="http://book.realworldhaskell.org/read/">Real
+    World Haskell</a>, that annotations and user comments should
+be made on each paragraph.
+</p>
+<p>
+This requires some technological know-how on the author's
+part. There are some libraries I can refer to
+(e.g., <a href="http://gitorious.org/stet">stet <tt>[gitorious.org]</tt></a>). 
+But the reader wishing to use this should understand how to use a
+database (e.g., MySQL).
+</p>
+<p>
+Now, how to do this? It's a bit tricky, since we need to keep
+track of paragraphs (and we don't want to lose comments or
+misplace them). 
+</p>
+<p>
+<a href="http://www.btbytes.com/bookmaker">Using <tt>[btbytes.com]</tt></a>
+the Mercurial book's system is easy, but requires quite a few
+packages (on Ubuntu): 
+</p>
+<pre>
+$ sudo apt-get install docbook
+$ sudo apt-get install graphviz
+$ sudo apt-get install inkscape
+$ sudo apt-get install docbook-xsl docbook-xml docbook-dsssl
+$ sudo apt-get install sqlite3
+$ sudo apt-get install libsqlite3-dev
+$ sudo apt-get install python-virtualenv python-dev
+</pre>
+<p>
+<a href="http://wookicentral.com/">Wooki</a> may be a lazier solution.
+</p>
+      </section>
+<footer>
+<blockquote>
+"History, which undertakes to record the transactions of the
+past, for the instruction of future ages, would ill deserve that
+honourable office if she condescended to plead the cause of
+tyrants, or to justify the maxims of persecution." &mdash; Edward
+Gibbon, <em>Decline and Fall</em> Chapter 16
+</blockquote>
+<a href="../index.html">Home</a>
+</footer>
+    </div>    
+  </body>
+</html>
