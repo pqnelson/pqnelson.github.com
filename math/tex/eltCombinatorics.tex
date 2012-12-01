@@ -1,0 +1,238 @@
+\M
+Probability amounts to calculate
+\begin{equation}
+\Pr(A)=\frac{\begin{pmatrix}\mbox{number of}\\
+\mbox{elements in $A$}
+  \end{pmatrix}}{|\sampleSpace|}.
+\end{equation}
+This is both a blessing and a curse: for we change probability into
+counting, yet counting can be difficult! We will review elements of
+combinatorics (``the art of counting'').
+
+\subsection{Permutations}
+\M
+Suppose we want to consider how many ways we can order $n$
+elements. What to do?
+
+We first say ``We have $n$ slots to fill with our $n$ elements.'' Then
+we pick some element, and note how many possible slots we may choose. We
+may pick any one of our $n$ slots. Then pick our second element, and we
+may place it in any of the remaining $(n-1)$ slots. We continue, and
+there are 
+\begin{equation}
+n(n-1)(n-2)(\cdots)(1)=n!
+\end{equation}
+different methods of ordering our $n$ elements. Thus there are $n!$
+different permutations.
+
+\N*{Convention:} We set $0!=1$.
+
+\M
+Factorial grows quite rapidly. For example
+\begin{subequations}
+\begin{align}
+3!&=6\\
+6!&=720\\
+12!&=479\,001\,600
+\end{align}
+\end{subequations}
+We may approximate it using \define{Stirling's Approximation}
+\begin{equation}
+n!\sim\sqrt{2\pi n}\left(\frac{n}{\E}\right)^{n}.
+\end{equation}
+We may derive this from the Gamma function
+\begin{equation}
+\Gamma(x)=\int^{\infty}_{0}t^{x-1}\E^{-t}\,\D t,\qquad\mbox{for
+}\Re(x)>0.
+\end{equation}
+We take $\Gamma(n+1)$ and integrate by parts $n$ times, we find
+\begin{equation}
+\Gamma(n+1)=n!
+\end{equation}
+for $n\in\NN$.
+
+Integrating $\Gamma(x+1)$ by parts merely once will give us the
+functional equation
+\begin{equation}
+\Gamma(x+1)=x\Gamma(x).
+\end{equation}
+Calculus students around the world prove everyday that
+\begin{equation}
+\Gamma(1/2)=\sqrt{\pi}
+\end{equation}
+without ever realizing it!
+
+\subsection{Sampling}
+\M
+Given some collection of elements (or a ``population''), we would like
+to pick a finite number of elements (a ``sample''). A population with
+$n$ elements $\{a_{1},\dots,a_{n}\}$, any \emph{ordered} arrangement of
+$r$ symbols $a_{j_{1}}$, \dots, $a_{j_r}$ is an \define{Ordered Sample
+  of Size $r$} drawn from the population. Note when $r=n$, an ordered
+sample is just a permutation of the population.
+
+\N*{Sampling with Replacement:}
+The elements are drawn from the entire population, so we may pick the
+same element twice (or more).
+
+\N*{Sampling Without Replacement:}
+Once we choose an element, we cannot pick it again. We reduce the
+possible choices, and hence more limited than sampling with replacement.
+
+\medbreak
+Choosing $r$ elements with replacement from a population of $n$ can be
+done in $n^{r}$ different ways. The proof is obvious: you have $r$
+choices, and each choice has $n$ possibilities. So there are 
+\begin{equation}
+\underbrace{n\cdot(\cdots)\cdot n}_{\text{$r$ times}} = n^{r}
+\end{equation}
+different ways to sample.
+
+How many different ways can we sample $r$ elements without replacement
+from a population with $n$ elements? 
+
+\M
+Since ordering matters, we have
+\begin{equation}
+n(n-1)(\cdots)\bigl(n-(r-1)\bigr)=(n)_{r}
+\end{equation}
+This defines the \define{Falling Factorial} $(n)_{r}$.
+
+How can we be certain about this? Well, for the first choice there are
+$n$ possibilities. The second has $(n-1)$ possibilities. The $k^{th}$
+has $(n-(k-1))$ possible choices. We then multiply these together to get
+the result.
+
+\N{Birthday Problem}
+How many people do we need in a room to make a favorable bet (i.e., a
+bet with probability of success greater than $1/2$) that 2 people in the
+room will have the same birthday?
+
+\N*{Solution:}
+Let $r$ be the number of people in the room, we want to find it. We will
+compute the probability of no repetition in our data (i.e., the
+probability no one in the room shares a birthday). The population, for
+this example, is the 365 days of the year. 
+
+Then
+\begin{equation}
+p_{r} = \frac{(365)_{r}}{365^{r}}
+\end{equation}
+describes the probability that no one shares a birthday. We want to find
+the smallest $r$ such that $p_{r}<0.5$. This can be done by exhaustion,
+we find
+\begin{equation}
+\begin{split}
+p_{23} &=
+\frac{36997978566217959340182499134166757044383351847256064}{75091883268515350125426207425223147563269805908203125}\\
+&\approx 0.49270276
+\end{split}
+\end{equation}
+So only make this bet when there are at least 23 people in the room!
+
+\subsection{Binomial Coefficients}
+\M
+How many samples of size $r$ exist in a population of $n$ elements,
+without regard to ordering? That is, how many ways can we choose $r$
+guys from $n$ elements? We count this using binomial coefficients
+\begin{equation}
+{n \choose r} = \frac{n!}{r!(n-r)!}
+\end{equation}
+and read it as ``$n$ choose $r$''. Why is this true? Great question: we
+have $(n)_r$ subpopulations, and $r!$ different orderings of each
+subpopulation, so we have
+\begin{equation}
+{n\choose r}=\frac{(n)_{r}}{r!}.
+\end{equation}
+But this is precisely what we have written!
+
+\N{Example}
+A deck of cards has 52 cards, a poker hand has 5 cards.
+How many different poker hands are there?
+
+\N*{Solution:}
+We see there are
+\begin{equation}
+{52\choose 5}=2\,598\,960
+\end{equation}
+different poker hands.
+
+\N{Example}
+Consider a random distribution of $r$ balls in $n$ urns. Find the
+probability $p_{k}$ that a specified cell contains exactly $k$ balls.
+
+\N*{Solution:}
+We want to find
+\begin{equation}
+p_{k} = \frac{\begin{pmatrix}
+    \mbox{Number of ways to}\\
+    \mbox{choose $k$ balls from}\\
+    \mbox{$r$ balls}
+  \end{pmatrix}
+\begin{pmatrix}
+  \mbox{number of ways to}\\
+  \mbox{put remaining $(r-k)$ balls}\\
+  \mbox{in $(n-1)$ cells}
+\end{pmatrix}}{\begin{pmatrix}\mbox{number of different}\\
+\mbox{ways placing $r$}\\
+\mbox{balls in $n$ cells}
+  \end{pmatrix}}
+\end{equation}
+There are $n^{r}$ different ways placing $r$ balls in $n$ cells. This
+gives us the denominator. We see that
+\begin{equation}
+\begin{pmatrix}
+    \mbox{Number of ways to}\\
+    \mbox{choose $k$ balls from}\\
+    \mbox{$r$ balls}
+  \end{pmatrix} = {r\choose k}
+\end{equation}
+and what of the remaining $(r-k)$ balls? They can be placed in the
+remaining cells in $(n-1)^{r-k}$ ways. Thus we plug this all back into
+our equation to find
+\begin{equation}
+\begin{split}
+p_{k}&=\frac{{r\choose k}(n-1)^{r-k}}{n^{r}}\\
+&={r\choose k}\frac{1}{n^{k}}\left(1-\frac{1}{n}\right)^{r-k}.
+\end{split}
+\end{equation}
+This is an example of the famous \emph{binomial distribution}, which
+we'll soon study.
+
+\N{Example}
+The US Senate has 100 Senators (a pair represents each state). If a
+committee is formed with 50 senators, then:
+
+(a) What's the probability a given state is represented?
+
+(b) What's the probability each state is represented?
+
+\N*{Solution}
+(a) Well, we first consider the \emph{negation} of this statement: what's
+the probability not every state is represented? There are
+\begin{equation}
+{98\choose 50} = d_{k}
+\end{equation}
+ways to choose the committee so some state is not represented. But there
+is 
+\begin{equation}
+{100\choose 50}=n_{k}
+\end{equation}
+different ways to choose the committee. Thus the probability a given state is
+not represented is
+\begin{equation}
+q = \frac{{98\choose50}}{{100\choose50}} = \frac{49}{198}\approx 0.24747\dots
+\end{equation}
+and hence the probability a given state is represented is
+\begin{equation}
+1-q = \frac{149}{198} \approx 0.7525\dots
+\end{equation}
+That concludes the first question.
+
+(b)
+We pick one senator from each state. We have two possibilities for each
+state, and 50 states, hence we have $2^{50}$ possibilities. Thus we have
+\begin{equation}
+p = \frac{2^{50}}{{100\choose 50}} \approx 1.11\times10^{-14}
+\end{equation}
+is the probability every state is represented.

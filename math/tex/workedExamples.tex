@@ -1,0 +1,412 @@
+\N{Overview. Tools}
+We will consider some examples, to solidify understanding of the
+concepts of probability.
+
+Note that one can get a good handle on approximating probability by
+taking $\sampleSpace$ and considering its elements as
+equi-probable, i.e., $\Pr(x)=1/N$ where $x\in\sampleSpace$ and
+$N=|\sampleSpace|$. Then any $A\subset\sampleSpace$ has probability
+$\Pr(A)=|A|/N$. This relieves the reader from determining the
+$\sigma$-algebra and the probability measure on it.
+
+There are three basic techniques we will use:
+\begin{enumerate}
+\item Combinatorics: there are $n!$ ways to permute $n$ objects, and
+  $\binom{n}{r}$ different ways to choose $r$ objects (without
+  replacement) from $n$ possible.
+\item Set theory: recall we can partition the sample space, and work
+  with the partitions for probability.
+\item Independence: don't forget independent events!
+\end{enumerate}
+
+\N{Example (Poker)}
+Every player is dealt 5 cards. For simplicity, suppose each player
+receives their 5 cards all at once. What is the probability that you,
+the first to receive cards, will get four-of-a-kind?
+
+\N*{Solution:}
+There are 52 cards in a deck, we partition it into the 13 sets of
+``kinds'' (that is, by rank). One approximate solution would suggest
+that the probability is
+\begin{equation}
+\Pr(K)\approx\frac{1}{\binom{13}{1}}=\frac{1}{13}\approx0.076923
+\end{equation}
+We can refine this slightly by considering the events. 
+
+Let $X$ be the first card drawn. We will consider strings of the form
+$XYNYN$ where $Y$ indicates the card is the same rank as $X$, $N$
+indicates a different rank. The desired events are
+\begin{equation}
+A=\{XNYYY,XYNYY,XYYNY,XYYYN\}
+\end{equation}
+These are, needless to say, independent events. The probabilities are
+\begin{equation}
+\Pr(XNYYY)=\frac{48\cdot3\cdot2\cdot1}{51\cdot50\cdot49\cdot48}=\frac{1}{20825},
+\end{equation}
+and since all five cards are dealt at once, the other probabilities are
+the same. So we have
+\begin{equation}
+\Pr(A)=\frac{1}{4165}\approx0.00024
+\end{equation}
+which is \emph{considerably worse} than our first approximation!
+
+\N*{Variations:} What if we have $n$ players, and each player is
+dealt only one card at a time until each player has 5 cards? What's the
+probability of obtaining a four-of-a-kind?
+
+What if we have $k$ decks? What's the probability getting
+four-of-a-kind?
+
+\N{Example}
+There are three cities: $A$, $B$, $C$. Two roads connect
+$A$ and $B$, and two roads connect $B$ and $C$. In Winter, each road has
+probability $p$ being closed due to snow. This probability is
+independent of other roads being closed. What is the probability there
+is an open road connecting $A$ to $C$?
+
+\N*{Solution:}
+Let $X$ be the event there is an open road connecting $A$ and $B$, $Y$
+be the event there is an open road connecting $B$ and $C$. Then we want
+to find $\Pr(X\cap Y)$. Luckily, these events are independent, so we
+have
+\begin{equation}
+\Pr(X\cap Y)=\Pr(X)\Pr(Y).
+\end{equation}
+The probability that there is an open road connecting $A$ and $B$ is
+simply 
+\begin{subequations}
+\begin{equation}
+\Pr(X)=1-\Pr(\comp{X})
+\end{equation}
+where $\comp{X}$ is the event both roads connecting $A$ and $B$ are
+closed. Since both roads being closed are independent of each other, we
+find
+\begin{equation}
+\Pr(\comp{X})=p^{2}
+\end{equation}
+and thus
+\begin{equation}
+\Pr(X)=1-p^{2}.
+\end{equation}
+\end{subequations}
+The probability for $Y$ is the same
+\begin{equation}
+\Pr(Y)=1-p^{2}.
+\end{equation}
+Thus the probability that some road is open is
+\begin{equation}
+\Pr(X\cap Y)=(1-p^{2})^{2}=1-2p^{2}+p^{4}.
+\end{equation}
+For example, if $p=0.5$, then $\Pr(X\cap Y)=0.5625$.
+
+\N*{Variations:} What if the probability that both roads (connecting two
+given cities) is closed becomes dependent on each other?
+
+What if we let there be $n$ cities: $A_1$, \dots, $A_n$, and
+``neighboring'' cities $A_{j-1}$, $A_j$ are connected by precisely 2
+roads. What is the probability there exists an open route (sequence of
+roads) connecting $A_1$ to $A_n$?
+
+What if we let each neighboring cities be connected by $k\in\NN$ roads?
+Or have $f(A_i,A_j)\in\NN_{0}$ roads connecting $A_i$ and $A_j$? That
+is, we have a completely general undirected graph, what's the
+probability that any two given cities are connected?
+
+\N{Example}
+A man is saving up to a buy a car. His banker advises the man to take up
+gambling. The man has $k$ units of money, but he needs $N$. So he goes
+to a casino, and plays a game with the following rules: the man flips a
+coin, if it's head the man gets 1 unit of money, and if it's tails the
+man pays 1 unit of money. What's the probability the man gets $N$ units
+of money?
+
+Assume it's a fair coin.
+
+\N*{Solution:}
+Let $B$ be the event the man goes bankrupt. Let $H$ be the event the
+first flip is a heads. We will write $\Pr_{k}$ to indicate that we are
+working with the condition the amount of money the man has is $k$ units.
+We use lemma \ref{lemma:conditionalProb} to write
+\begin{subequations}
+\begin{equation}
+\Pr_{k}(B)=\Pr_{k}(B|H)\Pr_{k}(H)+\Pr_{k}(B|\comp{H})\Pr_{k}(\comp{H})
+\end{equation}
+but we can note $\Pr_{*}(H)=\Pr_{*}(\comp{H})=1/2$, thus
+\begin{equation}
+\Pr_{k}(B)=\frac{\Pr_{k}(B|H)+\Pr_{k}(B|\comp{H})}{2}.
+\end{equation}
+Note that $\Pr_{k}(B|H)=\Pr_{k+1}(B)$ and
+$\Pr_{k}(B|\comp{H})=\Pr_{k-1}(B)$ allows us to write this as
+\begin{equation}
+\Pr_{k}(B)=\frac{\Pr_{k+1}(B)+\Pr_{k-1}(B)}{2}.
+\end{equation}
+Let $p_{k}=\Pr_{k}(B)$, then we have a recurrence relationship
+\begin{equation}\label{eq:ex2:recur}
+p_{k}=\frac{p_{k+1}+p_{k-1}}{2}
+\end{equation}
+\end{subequations}
+where $0<k<N$. Note that $p_{0}=1$ (if the man has no money, he's
+definitely bankrupt), and $p_{N}=0$ (the man stops when he has $N$
+units, and hence cannot go bankrupt).
+
+Let $q_{k}=p_{k}-p_{k-1}$. We claim
+\begin{equation}
+q_{k}=q_{k-1}.
+\end{equation}
+Subtract $(p_{k}+p_{k-1})/2$ from both sides of Eq \eqref{eq:ex2:recur}
+gives us
+\begin{subequations}
+\begin{equation}
+p_{k}-\frac{1}{2}(p_{k}+p_{k-1})=\frac{(p_{k+1}+p_{k})-p_{k}-p_{k-1}}{2}
+\end{equation}
+which reduces to
+\begin{equation}
+\frac{p_{k}-p_{k-1}}{2}=\frac{p_{k+1}-p_{k}}{2}
+\end{equation}
+or equivalently
+\begin{equation}
+\frac{q_{k}}{2}=\frac{q_{k+1}}{2}
+\end{equation}
+\end{subequations}
+which proves the claim.
+
+Thus $q_{k}=q_{1}$ for any $k$. But more importantly
+\begin{equation}
+p_{k}=q_{k}+q_{k-1}+\dots+q_{1}+p_{0}=kq_{1}+p_{0}.
+\end{equation}
+Thus we have, using our conditions $p_0=1$ and $p_N=0$
+\begin{equation}
+q=\frac{-1}{N},\quad\mbox{and}\quad
+p_{k}=1-\frac{k}{N}.
+\end{equation}
+What does that mean? As the price increases (i.e., as $N\to\infty$), the
+probability of bankruptcy $p_{k}\to1$.
+
+The moral of the story is, of course, avoid bankers.
+
+\N*{Variations:} What's the probability of bankruptcy if the man uses a
+biased coin? 
+
+
+\N{Example (Court)}
+The court investigates whether some event $X$ has happened. There are
+two witnesses, Tisias and Corax. Given some event, Tisias describes it
+reliably with probability $\tau$. Likewise, Corax is reliable with
+probability $\gamma$. Let $T$ be the event Tisias asserts $X$ happened,
+$C$ be the event Corax asserts $X$ happened. Assuming the events $C$ and
+$T$ are independent (i.e., no collusion between Tisias and Corax), and
+given both testify $X$ occurred, what is the probability that $X$ really
+did occur?
+
+\N*{Solution:}
+Let $\Pr(X)=x$. Then we note the reliability condition for Corax implies
+\begin{equation}
+\Pr(C|X)=\gamma,\quad\mbox{and}\quad\Pr(C|\comp{X})=1-\gamma.
+\end{equation}
+Then
+\begin{subequations}
+\begin{align}
+\Pr(C) &=\Pr(C|X)\Pr(X)+\Pr(C|\comp{X})\Pr(\comp{X})\\
+&= \gamma\cdot x+(1-\gamma)(1-x)\\
+&= 1 -\gamma-x+2\gamma x.
+\end{align}
+\end{subequations}
+A similar expression holds for $\Pr(T)$.
+
+Observe, we want to find
+\begin{equation}
+P(X|T\cap C)=???
+\end{equation}
+We need to find $\Pr(X\cap T\cap C)$ and $\Pr(T\cap C)$. Since $T$ and
+$C$ are independent (``no collusion''), we have
+\begin{equation}
+\Pr(T\cap C)=\Pr(T)\Pr(C)
+\end{equation}
+and similarly
+\begin{equation}
+\begin{split}
+\Pr(X\cap T\cap C)&=\Pr\bigl((X\cap T)\cap(X\cap C)\bigr)\\
+&=\Pr(X\cap T)\Pr(X\cap C).
+\end{split}
+\end{equation}
+which implies
+\begin{equation}
+\Pr(X|T\cap C)=\frac{\Pr(X\cap T)\Pr(X\cap
+C)}{\Pr(T)\Pr(C)}=\Pr(X|T)\Pr(X|C).
+\end{equation}
+Wonderful.
+
+We have to find $\Pr(X|C)$. We see
+\begin{subequations}
+\begin{equation}
+\Pr(X|C)=\frac{\Pr(X\cap C)}{\Pr(C)}
+\end{equation}
+by definition, and
+\begin{equation}
+\Pr(X\cap C)=\Pr(C|X)\Pr(X)=\gamma x.
+\end{equation}
+Thus we have
+\begin{equation}
+\Pr(X|C)=\frac{\gamma x}{1 -\gamma-x+2\gamma x}
+\end{equation}
+\end{subequations}
+which is one part of the puzzle. (A similar expression holds for Tisias.)
+
+We conclude by writing the entire probability out
+\begin{equation}
+\begin{split}
+\Pr(X|C\cap T)&=\Pr(X|C)\Pr(X|T)\\
+&=\frac{\gamma x}{1-\gamma-x+2\gamma x}\cdot\frac{\tau x}{1-\tau-x+2\tau x}
+\end{split}
+\end{equation}
+which is completely different than the expected solution!
+
+So, if $\gamma=\tau=9/10$ and $x=1/1000$, then
+\begin{equation}
+\Pr(X|C\cap T)=\left(\frac{9}{1017}\right)^{2}
+\approx 0.00007831466.
+\end{equation}
+But, on the other hand, the probability that Corax would say $X$ has
+happened would be
+\begin{equation}
+\Pr(C)=\frac{1017}{10^{4}} = 0.1017,
+\end{equation}
+which is astoundingly high.
+The moral of \emph{this} story is: don't go to court.
+
+\N*{Alternate Solution:}
+It would actually be easier to write up the $\sigma$-algebra. We will
+write the elements of the sample space as triples $(a,b,c)$ where $a$ is
+1 if $X$ occurs, 0 otherwise; $b$ is 1 if Tisias asserts $X$ occurred, 0
+otherwise; $c$ is 1 if Corax asserts $X$ has occurred, 0 otherwise. So
+$\sampleSpace={\ZZ_{2}}^{3}$. Then the relevant events are
+\begin{subequations}
+\begin{align}
+X&=\{(1,0,0),(1,0,1),(1,1,0),(1,1,1)\}\\
+C&=\{(0,0,1),(0,1,1),(1,0,1),(1,1,1)\}\\
+T&=\{(0,1,0),(0,1,1),(1,1,0),(1,1,1)\}.
+\end{align}
+\end{subequations}
+We find, moreover, that
+\begin{equation}
+\begin{split}
+\Pr(C)&=(1-x)\tau(1-\gamma)+(1-x)(1-\tau)(1-\gamma)+x(1-\tau)\gamma+x\tau\gamma\\
+&=\gamma
+\end{split}
+\end{equation}
+which we expect. We also find
+\begin{equation}
+\begin{split}
+\Pr(C\cap T)&=(1-x)(1-\gamma)(1-\tau)+x\gamma\tau\\
+&=1-x-\gamma-\tau+x\gamma+x\tau+\gamma\tau.
+\end{split}
+\end{equation}
+We then find
+\begin{equation}
+\Pr(X\cap T\cap C)=x\gamma\tau
+\end{equation}
+and thus
+\begin{equation}
+\Pr(X|C\cap T)=\frac{x\gamma\tau}{1-x-\gamma-\tau+x\gamma+x\tau+\gamma\tau}
+\end{equation}
+When we set $\gamma=\tau=9/10$ and $x=1/1000$ we find $\Pr(X|C\cap
+T)=81/1080$. Although slim, it's 75 times greater than if Tisias and
+Corax said nothing.
+
+%% \begin{rmk}[Faulty Assumption]
+%% We committed a sin, and hope the reader won't condemn us too badly: if
+%% the witnesses didn't collude, and if they really did see the event, then
+%% the probabilities aren't independent. That is $\Pr(C\cap
+%% T)\neq\Pr(C)\Pr(T)$. 
+%% \end{rmk}
+
+\N{Example}
+What's the probability that flipping a coin an infinite number of times
+will result in a heads ``sooner or later''?
+
+\N*{Solution:}
+We begin by considering the events
+\begin{equation}
+A_{1}=H,\quad A_{2}=TH,\quad A_{3}=TTH,
+\end{equation}
+etc. So $A_{n}$ has $n-1$ tails followed by a heads. Write $A$ for the
+event that a heads turns up ``sooner or later''. Then
+\begin{equation}
+\Pr(A)=\sum_{n=1}^{\infty}\Pr(A_{n}).
+\end{equation}
+We see that
+\begin{subequations}
+\begin{equation}
+\Pr(A_{1})=1/2,
+\end{equation}
+and
+\begin{equation}
+\Pr(A_{2})=1/4
+\end{equation}
+or more generally
+\begin{equation}
+\Pr(A_{n})=2^{-n}.
+\end{equation}
+\end{subequations}
+Thus we have
+\begin{equation}
+\Pr(A)=\sum^{\infty}_{n=1}2^{-n}=1.
+\end{equation}
+So the probability of eventually flipping a heads is 1.
+
+\N*{Alternate Solution:}
+Let $B_{n}$ be the event that we have no heads appear in the first $n$
+trials. Then
+\begin{equation}
+B_{1}\supset B_{2}\supset\dots
+\end{equation}
+So $B_{1}$ describes all events starting with 1 tails, $B_{2}$ all
+events starting with 2 tails (which necessarily must include all events
+starting with 1 tail), and so on.
+
+We use proposition \ref{prop:sequenceOfEvents}, let
+\begin{equation}
+B=\bigcap^{\infty}_{n=1}B_{n}
+\end{equation}
+then
+\begin{equation}
+\Pr(B)=\lim_{n\to\infty}\Pr(B_{n}).
+\end{equation}
+But
+\begin{equation}
+\Pr(B_{n})=2^{-n}
+\end{equation}
+implies
+\begin{equation}
+\Pr(B)=\lim_{n\to\infty}2^{-n}=0.
+\end{equation}
+So the probability a head \emph{won't} appear ``sooner or later'' is 0. 
+
+\N*{Sample Code}
+Here's a simple {\tt ANSI C} program which will simply flip a coin and print
+out the number of tails.
+
+\begin{Verbatim}[fontsize=\small]
+#include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+int main(void)
+{
+    int n;
+
+    // warm up the random number generator
+    srand(time(NULL));
+    for(n = 0; n < 100; n++) 
+        rand(); 
+
+    // flip the coin
+    n = 0;
+    while (rand() % 2 == 0) 
+        printf("Tail number %d\n",++n);
+
+    printf("There were %d tails.\n", n);
+
+    return 0;
+}
+\end{Verbatim}

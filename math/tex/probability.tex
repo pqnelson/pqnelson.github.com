@@ -1,0 +1,241 @@
+\M
+There are two interpretations to probability. Avoiding philosophical
+arguments, we suggest probability is a function $\Pr(-)$ that assigns to each
+event in our sample space $X\in\sampleSpace$ a number $\Pr(X)$ such that
+a bunch of axioms hold.
+
+\begin{rmk}
+The ``Objectivist'' interpretation suggests
+\begin{equation}\label{eq:objectivistProbability}
+\Pr(X) = \frac{\mbox{number of trials where $X$ is the
+    value}}{\mbox{total number of trials}} = \frac{N(X)}{N(\sampleSpace)}
+\end{equation}
+whereas Bayesian probability theorists suggest probability is really
+``belief'' that $X$ is the outcome of a trial. In either event, we can
+deduce a number of axioms from Equation
+\eqref{eq:objectivistProbability}.
+\end{rmk}
+
+\N{Probability}
+First we should note we cannot have more outcomes taking value $X$ than
+there are outcomes:
+\begin{equation}
+N(X)\leq N(\sampleSpace)
+\end{equation}
+Consequently, when we divide through both sides we get
+\begin{equation}
+\frac{N(X)}{N(\sampleSpace)}\leq 1.
+\end{equation}
+Similarly cannot have a ``negative number'' of events occur, so
+\begin{equation}
+0\leq N(X)
+\end{equation}
+for any $X$. Thus we see
+\begin{equation}
+0\leq\Pr(X)\leq 1\quad\mbox{for any }X\in\sampleSpace.
+\end{equation}
+This is one axiom.
+
+\begin{axiom}
+We have $\Pr(X)\in[0,1]$, i.e., $0\leq\Pr(X)\leq1$ for any
+$X\in\mathcal{F}$. 
+\end{axiom}
+
+Observe, we can deduce from this another specification. Namely,
+\begin{equation}
+\Pr(\sampleSpace)=\frac{N(\sampleSpace)}{N(\sampleSpace)}=1.
+\end{equation}
+Similar reasoning suggests
+\begin{equation}
+\Pr(\emptyset)=\frac{0}{N(\sampleSpace)}=0.
+\end{equation}
+These form another axiom.
+
+\begin{axiom}[Certainty Something Happens, Nothing Happens]
+We have $\Pr(\sampleSpace)=1$ and $\Pr(\emptyset)=0$.
+\end{axiom}
+
+When we consider events $X_{1}$, \dots, $X_{n}\in\mathcal{F}$ which are
+disjoint (so $X_{i}\cap X_{j}=\emptyset$ for $i\not=j$), what happens to
+the probability? We have
+\begin{equation*}
+\Pr\left(\bigcup_{i}X_{i}\right)=\sum_{i}\Pr(X_{i}).
+\end{equation*}
+Does this make sense? The intuition should be ``The probability that one
+of the $X_{i}$'s occur is the sum of the probability of each event''
+which makes sense if they're disjoint events (there's ``no
+overlap''). This gives us our last axiom:
+
+\begin{axiom}[Disjoint Events]
+If $X_{i}\in\mathcal{F}$ is a (possibly infinite) family of disjoint
+events, then 
+\begin{equation}
+\Pr\left(\bigcup_{i}X_{i}\right)=\sum_{i}\Pr(X_{i}).
+\end{equation}
+\end{axiom}
+
+
+\subsection{Examples}
+\N{Coin Tossing}
+We flip a coin once. The coin may be biased or fair. We take
+$\sampleSpace=\{\,H,T\,\}$ and
+$\mathcal{F}=\{\emptyset,H,T,\sampleSpace\}$. A possible probability
+measure\footnote{There are many different acceptable probability
+measures, if we are being honest. But this is the measure the reader
+probably has in mind.} 
+\[
+\Pr\colon\mathcal{F}\to[0,1]
+\] 
+given by
+\begin{equation}
+\Pr(H)=p,\quad\Pr(T)=1-p
+\end{equation}
+where $0\leq p\leq1$, and the ``obvious values'' $\Pr(\emptyset)=0$,
+$\Pr(\sampleSpace)=1$.  When $p=1/2$, then we call the coin ``fair'' or
+``unbiased.''
+
+\N{Dice}
+A six-sided die is thrown once. We have the possible outcomes be
+$\sampleSpace=\{\,1,2,3,4,5,6\,\}$ and
+$\mathcal{F}=\powerset(\sampleSpace)$ (where $\mathcal{P}(X)$ is the
+power set of $X$). The probability measure $\Pr$ is given by
+\begin{equation}
+\Pr(A) = \sum_{i\in A} p_{i}\quad\mbox{for any $A\subset\sampleSpace$}
+\end{equation}
+where $p_1$, \dots, $p_6$ are specified numbers in the unit interval
+$[0,1]$ whose sum is 1. Note that $p_k$ is the probability we roll a
+$k$. The die is ``fair'' if 
+\begin{equation}
+\Pr(A)=\frac{|A|}{6}\quad\mbox{for any $A\subset\sampleSpace$}
+\end{equation}
+where $|A|$ is the Cardinality of $A$.
+
+\N{Definition}
+A \define{Probability Space} consists of a sample space $\sampleSpace$
+equipped with its $\sigma$-algebra $\mathcal{F}$ and probability measure
+$\Pr\colon\mathcal{F}\to[0,1]$. 
+
+We will often simply state ``Given a probability space
+$(\sampleSpace, \mathcal{F},\Pr)$, \dots'' with the understanding what
+each component means.
+
+Note that a probability space represents one experiment. It's the
+outcomes (i.e., the sample space) equipped with the events (i.e., the
+$\sigma$-algebra $\mathcal{F}$) and a description of outcomes (i.e.,
+probability measure).
+
+\begin{lemma}\label{lemma:probSpaceProps}
+Given a probability space $(\sampleSpace, \mathcal{F},\Pr)$, and
+$A,B\in\mathcal{F}$, then the following hold:
+\begin{enumerate}
+\item\label{lemma:item:comp} For any $A\in\mathcal{F}$, we have $\Pr(\comp{A})=1-\Pr(A)$.
+\item\label{lemma:item:subset} If $A\subset B$, then $\Pr(B)=\Pr(A)+\Pr(B\setminus A)\geq\Pr(A)$.
+\item\label{lemma:item:union} $\Pr(A\cup B)=\Pr(A)+\Pr(B)-\Pr(A\cap B)$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\eqref{lemma:item:comp} We see that $\comp{A}\cup A=\sampleSpace$ and
+$\comp{A}\cap A=\emptyset$. So these are disjoint events, and by our
+axioms we have $\Pr(A\cup\comp{A})=\Pr(A)+\Pr(\comp{A})=1$. Thus
+$\Pr(\comp{A})=1-\Pr(A)$.
+
+\eqref{lemma:item:subset} We see that $A\cap(B\setminus A)=\emptyset$,
+which implies 
+\[
+\Pr\bigl(A\cup(B\setminus A)\bigr)=\Pr(A)+\Pr(B\setminus A). 
+\]
+But $A\cup(B\setminus A)=B$, which implies the result.
+
+\eqref{lemma:item:union} We see $A\cup B = A\cup(B\setminus A)$. Then
+\[
+\Pr(A\cup B)=\Pr(A)+\Pr(B\setminus A)
+\]
+since the right hand side is disjoint. We then note that
+\[
+B\setminus A = B\setminus (A\cap B)
+\]
+which allows us to write
+\begin{align*}
+\Pr(A\cup B)&=\Pr(A)+\Pr(B\setminus A)\\
+&=\Pr(A)+\Pr\bigl(B\setminus (A\cap B)\bigr)
+\end{align*}
+and using result \eqref{lemma:item:subset} we have
+\begin{equation}
+\Pr(A\cup B)=\Pr(A)+\Pr(B)-\Pr(A\cap B)
+\end{equation}
+as desired.
+\end{proof}
+
+\begin{lemma}
+For $A_{1},\dots,A_{n}$ events (not necessarily disjoint), we have
+\begin{equation}
+\begin{split}
+\Pr\left(\bigcup^{n}_{i=1}A_{i}\right)&=\sum_{i}\Pr(A_{i})-\sum_{i<j}\Pr(A_{i}\cap A_{j})\\
+&\quad+\sum_{i<j<k}\Pr(A_{i}\cap A_{j}\cap A_{k})+\dots\\
+&\quad+(-1)^{n+1}\Pr(A_{1}\cap\dots\cap A_{n}).
+\end{split}
+\end{equation}
+\end{lemma}
+\noindent Note this is a more general result than lemma \ref{lemma:probSpaceProps}'s.
+We prove it by induction.
+\begin{proof}
+\textbf{Base Case ($n=2$):} this is precisely
+lemma \ref{lemma:probSpaceProps}'s result.
+
+\textbf{Inductive Hypothesis:} assume this works for arbitrary $n$.
+
+\textbf{Inductive Case:} When we have $A_{1},\dots,A_{n},A_{n+1}$, we
+have
+\begin{equation}
+\Pr\left(\bigcup^{n+1}_{i=1}A_{i}\right)=\Pr\left(\bigcup^{n}_{i=1}A_{i}\cup
+A_{n+1}\right)
+\end{equation}
+Let $B=\bigcup^{n}_{i=1}A_{i}$, then we rewrite this equation as
+\begin{equation}
+\Pr\left(\bigcup^{n+1}_{i=1}A_{i}\right)=\Pr\left(B\cup A_{n+1}\right)
+\end{equation}
+which is \emph{precisely} the base case!
+\end{proof}
+
+\N{Proposition}\label{prop:sequenceOfEvents}%
+Let $A_{k}$ be a sequence of increasing events, i.e.,
+\begin{equation}
+A_{1}\subset A_{2}\subset A_{3}\subset\dots
+\end{equation}
+Let
+\begin{equation}
+A = \bigcup^{\infty}_{k=1}A_{k}=\lim_{k\to\infty}A_{k},
+\end{equation}
+then
+\begin{equation}
+\Pr(A)=\lim_{k\to\infty}\Pr(A_{k}).
+\end{equation}
+
+Similarly, if $B_{j}$ is a decreasing sequence of events, so
+$B_{1}\supset B_{2}\supset B_{3}\supset\dots$, then
+\begin{equation}
+B=\bigcap^{\infty}_{j=1}B_{j}=\lim_{j\to\infty}B_{j}
+\end{equation}
+satisfies
+\begin{equation}
+\Pr(B)=\lim_{j\to\infty}\Pr(B_{j}).
+\end{equation}
+
+\begin{proof}
+For the first statement, it's easy to see
+\begin{equation}
+\bigcup^{N}_{k=1}A_{k}\subset A_{N}
+\end{equation}
+We can take the limit as $N\to\infty$ on both sides to get the desired
+relation. We also see that
+\begin{equation}
+A_{1}\cup\bigcup^{N}_{k=2}(A_{k}\setminus
+A_{k-1})=\bigcup^{N}_{k=1}A_{k}.
+\end{equation}
+Thus we find
+\begin{equation}
+\Pr(A)=\Pr(A_{1})+\lim_{N\to\infty}\sum^{N}_{k=2}\Pr(A_{k})-\Pr(A_{k-1})=
+\lim_{N\to\infty}\Pr(A_{N}).
+\end{equation}
+Similar reasoning holds for the second statement.
+\end{proof}

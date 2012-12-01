@@ -1,0 +1,76 @@
+\M
+Suppose we have two events $X$ and $Y$. If $Y$ does not depend on $X$,
+we expect
+\begin{equation}\label{eq:firstAttemptIndependence}
+\Pr(Y|X)=\Pr(Y).
+\end{equation}
+Lets try to consider a slightly more general situation. If we multiply
+both sides of Eq \eqref{eq:firstAttemptIndependence} by $\Pr(X)$, we get
+\begin{equation}
+\begin{split}
+\Pr(Y|X)\Pr(X)&=\Pr(X\cap Y)\\
+&=\Pr(Y)\Pr(X)
+\end{split}
+\end{equation}
+which gives us the desired condition for ``independence.''
+
+\N{Definition}
+Let $X$, $Y$ be events. We call them \define{Independent Events} if and
+only if 
+\begin{equation}
+\Pr(X\cap Y)=\Pr(X)\Pr(Y).
+\end{equation}
+More generally, for a family of events $X_{i}$, they are independent iff
+\begin{equation}
+\Pr\left(\bigcap_{j}X_{j}\right)=\prod_{j}\Pr(X_{j})
+\end{equation}
+
+Why is this a good definition? If $X$ or $Y$ has probability zero, we
+avoid the risk of dividing by zero. This could not have been avoided
+using Eq \eqref{eq:firstAttemptIndependence}. But notice our condition
+for independence implies Eq \eqref{eq:firstAttemptIndependence}!
+
+\N*{Caution:} Do not make the rookie mistake thinking, for a family of
+events $X_{j}$, independence holds iff for each $i\neq j$ we have
+$\Pr(X_{i}\cap X_j)=\Pr(X_i)\Pr(X_j)$. This is \emph{pairwise
+independence}, and not necessarily the same as implying the family
+consists of independent events.
+
+\N{Example (Pairwise Independence Problems)}
+Suppose we have 
+\begin{equation}
+\sampleSpace = \{ abc,acb,cab,cba,cab,bca,bac,aaa,bbb,ccc \}
+\end{equation}
+and they are all equal probable outcomes. Let $A_{k}$ be the event the
+$k$th letter is $a$. 
+
+We claim $\{A_1,A_2,A_3\}$ is a family of pairwise independent
+events. Observe each $A_k$ has three events. For example,
+$A_1=\{abc,acb,aaa\}$. Then we see
+\begin{equation}
+\Pr(A_{i}\cap A_{j})=\Pr(aaa)=\frac{1}{9}
+\end{equation}
+and
+\begin{equation}
+\Pr(A_i)\Pr(A_j)=\frac{1}{3}\cdot\frac{1}{3}=\frac{1}{9}.
+\end{equation}
+Thus we see
+\begin{equation}
+\Pr(A_i\cap A_j)=\Pr(A_i)\Pr(A_j)
+\end{equation}
+for $i\neq j$. This is the definition of pair-wise independent.
+
+However, observe
+\begin{equation}
+\Pr(A_1\cap A_2\cap A_3)=\Pr(aaa)=\frac{1}{9}
+\end{equation}
+whereas
+\begin{equation}
+\Pr(A_1)\Pr(A_2)\Pr(A_3)=\frac{1}{27}.
+\end{equation}
+So we have
+\begin{equation}
+\Pr(A_1\cap A_2\cap A_3)\neq\Pr(A_1)\Pr(A_2)\Pr(A_3).
+\end{equation}
+That is to say, our family of pairwise-independent events is not a
+family of independent events!

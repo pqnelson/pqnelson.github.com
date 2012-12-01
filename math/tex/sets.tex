@@ -1,0 +1,112 @@
+\N{Overview}
+This section is just to establish the notation used for set theory.
+We use a ``naive set theory'', which --- for the author --- is really
+just ZF+GC. 
+
+\N{Global Choice}
+Recall we have quantifiers $\forall$ and $\exists$. We can also have a
+quantifier $\varepsilon$ which has the form
+\begin{equation}
+\varepsilon x : P(x)
+\end{equation}
+and it returns the object $x$ which satisfies the predicate $P(x)$, if
+one exists. If there is no such $x$ (e.g., $P(x)$ is a contradiction),
+then it returns an arbitrary object.
+
+This $\varepsilon$ operator is called the \define{Global Choice
+Operator}. 
+
+\N{Definition} A \define{Set} is a well-defined collection of ``stuff''
+without duplicates.
+
+\N{Definition}
+If $X$ is a set, and $x$ is an object, if $x$ lives in the collection
+$X$ we write $x\in X$ and call it a \define{Element} or \define{Member}
+of $X$. We will write sets using capital Latin letters unless otherwise
+indicates. If $y$ does not belong to $X$, we write $y\notin X$.
+
+Note \emph{any type of object} can belong to a set. For example, we can
+have a set of selected sets, the set of integers (usually denoted
+$\mathbb{Z}$), etc.
+
+\textsc{Caution}: It is illegal (``meaningless'') to write $X\in X$ or $X\notin X$. 
+
+\N{Example} The empty collection is a set, denoted $\emptyset$ and
+called the \define{Empty Set}. It is defined by the condition, for any
+$x$, we have $x\notin \emptyset$.
+
+\N{Example} 
+The collection of natural numbers $\NN=\{\,1,2,3,\dots\,\}$, the natural
+numbers with zero $\NN_{0}=\{\,0,1,2,3,\dots\,\}$. The integers
+$\ZZ=\{\dots,-1,0,1,\dots\,\}$. These are all sets.
+
+\N{Non-Example (Universe)}
+Consider $\mathcal{U}$ the well-defined collection of all sets. It is
+not a set, since it is illegal to write $\mathcal{U}\in\mathcal{U}$. No,
+the universe is usually something ``bigger'' than a set (it's
+a \emph{class}). We usually don't work with classes, and so we won't
+worry about them. But we'd like to note the collection of all sets
+$\mathcal{U}$ is called the \define{Universe}.
+
+\N{Definition}
+Let $X$ and $Y$ be sets. If every element $x\in X$ belongs to $Y$, and
+every $y\in Y$ belongs to $X$, then we say the two sets are
+\define{Equal} and write $X=Y$.
+
+\N{Definition}
+Let $X$ and $Y$ be sets. If every element $x\in X$ belongs to $Y$, then
+we write $X\subset Y$ and call $X$ a \define{Subset} of $Y$.
+
+\N{Theorem} We have $X=Y$ if and only if $X\subset Y$ and $Y\subset X$.
+
+\N{Definition}
+Let $Y$ be a set. A \define{Proper Subset} $X$ of $Y$ consists of a
+subset that is not equal to $Y$. That is: $X\subset Y$ and $X\neq Y$. We
+indicate proper subsets by writing $X\propersubset Y$.
+
+\N{Examples} Observe we have $\NN\propersubset\NN_{0}\propersubset\ZZ$.
+
+\N{Example} For any set $X$, we have $X\subset X$ but
+$X\not\propersubset X$.
+
+\N{Definition}
+Let $X$ be any set. Then the \define{Power Set} of $X$ is the collection
+$\powerset(X)$ of subsets $Y\subset X$. Note this implies
+$X\in\powerset(X)$. 
+
+\N{Proposition}
+Let $X$ be any set. Then $\emptyset\in\powerset(X)$ and
+$X\in\powerset(X)$.
+
+\N{Definition}
+An \define{Ordered Tuple} $(a,b)$ is a pair of mathematical objects $a$,
+$b$. The first slot $a$ is the first component (sometimes called
+the \emph{first coordinate}).
+
+We write $(a,b)=(x,y)$ if and only if $a=x$ and $b=y$.
+
+More generally, if we have $n$ objects, we can form the ordered
+$n$-tuple $(x_{1},\dots,x_{n})$. Again, equality is defined
+component-wise. 
+
+\N{Definition}
+Let $X$ and $Y$ be sets. Then their \define{Cartesian Product} is a set
+$X\times Y$ consisting of ordered pairs $(x,y)\in X\times Y$ where $x\in
+X$, $y\in Y$.
+
+Again, we can generalize this to the Cartesian product of any number of
+sets $X_1\times\dots\times X_n$ consisting of ordered $n$-tuples.
+
+\N{Definition}
+A \define{Function} $f\colon X\to Y$ associates to each $x\in X$
+precisely one $y\in Y$ usually denoted $y=f(x)$. 
+
+Sometimes mathematicians assert functions are sets. Well, a function $f$
+is a subset $f\subset X\times Y$ with the property for each $x\in X$, we
+have precisely one ordered pair $(x,y)\in f$.
+
+\N{Example}
+Let $X$ be any set.
+The identity function $\mathrm{id}\colon X\to X$ defined by
+$\mathrm{id}(x)=x$ is a function on $X$.
+

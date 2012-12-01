@@ -1,0 +1,145 @@
+\M
+We have introduced rudiments of probability theory, but lets consider
+situations when we use randomness in life. Consider this motivating
+example: flip a coin twice. The sample space is
+\begin{equation}
+\sampleSpace=\{\,HH,HT,TH,TT\,\}.
+\end{equation}
+You bet \$1. If you get $HH$, you get \$2 back; otherwise you lose. How
+do we describe this game?
+
+Why not introduce a function $W\colon\sampleSpace\to\RR$ defined by
+\begin{equation}
+W(HH)=2,\quad\mbox{and}\quad W(HT)=W(TH)=W(TT)=0.
+\end{equation}
+Can we do this? Why not! But what is this function? We call it a
+\define{Random Variable}.
+
+\N{Definition}
+Let $(\sampleSpace,\mathcal{F},\Pr)$ be a probability space. We define a
+\define{Random Variable} to be a function $W\colon\sampleSpace\to\RR$
+such that for each $x\in\RR$ we have the set
+\begin{equation}
+X = \{ \omega\in\sampleSpace : W(\omega)\leq x\}
+\end{equation}
+be an element of $\mathcal{F}$, or in symbols $X\in\mathcal{F}$. 
+
+\N{Example/Definition}
+Let $X$ be a random variable on $(\sampleSpace,\mathcal{F},\Pr)$. The
+\define{Distribution Function} of $X$ is the function
+\begin{equation}
+F\colon\RR\to[0,1]
+\end{equation}
+defined by
+\begin{equation}
+F(x)=\Pr(X\leq x)
+\end{equation}
+for $x\in\RR$.
+
+Note we use an abbreviation
+\begin{equation}
+\Pr(X\leq x)=\Pr(\{\omega\in\sampleSpace : X(\omega)\leq x\}).
+\end{equation}
+This is a subtle point, but an important one!
+
+\N{Example}
+Suppose we consider the situation flipping a coin twice, with the random
+variable
+\begin{equation}
+W(HH)=2,\quad\mbox{and}\quad W(HT)=W(TH)=W(TT)=0.
+\end{equation}
+What is the distribution of $W$?
+
+\N*{Solution:}
+We see that
+\begin{subequations}
+\begin{equation}
+\Pr(W\leq 1)=\frac{3}{4}
+\end{equation}
+and
+\begin{equation}
+\Pr(W\leq2)=1.
+\end{equation}
+\end{subequations}
+The latter makes intuitive sense since $W(\sampleSpace)=\{0,2\}$. 
+
+\N{Lemma}
+A distribution function $F$ for the random variable $X$ has the
+following properties: 
+\begin{enumerate}
+\item $\displaystyle\lim_{x\to-\infty}F(x)=0$
+\item $\displaystyle\lim_{x\to+\infty}F(x)=1$
+\item If $x<y$, then $F(x)\leq F(y)$
+\item We have $F$ be right-continuous, i.e., $F(x+h)\to F(x)$ as
+  $h\downarrow 0$.
+\end{enumerate}
+
+\begin{proof}
+We will prove each proposition.
+\begin{enumerate}
+\item Consider the sequence of sets $B_{n}=\{\omega\in\sampleSpace :
+  X(\omega)\leq-n\}$. We see then that $\dots\subset B_{n+1}\subset
+  B_{n}\subset\dots\subset B_{0}$ and obviously $\emptyset$ is the limit
+  of this sequence. We have
+\begin{equation}
+B=\bigcap^{\infty}_{n=0}B_{n}
+\end{equation}
+satisfy 
+\begin{equation}
+\Pr(B)=\lim_{n\to\infty}\Pr(B_{n}).
+\end{equation}
+Then we see $\Pr(B)=\Pr(\emptyset)=0$.
+\item The proof is similar, we just have $B_{0}\subset
+  B_{1}\subset\dots$ which has its limit be $\sampleSpace$. Thus
+  $\Pr(B)=\Pr(\sampleSpace)=1$. 
+\item We see that
+\begin{subequations}
+\begin{equation}
+F(x) = \Pr(A)
+\end{equation}
+where
+\begin{equation}
+A=\{\omega\in\sampleSpace : X(\omega)\leq x\}
+\end{equation}
+and similarly
+\begin{equation}
+F(y)=\Pr(B)
+\end{equation}
+where
+\begin{equation}
+A=\{\omega\in\sampleSpace : X(\omega)\leq y\}.
+\end{equation}
+We see, since $x<y$, that $A\subset B$. Moreover this implies
+\begin{equation}
+\Pr(A)\leq\Pr(B)
+\end{equation}
+\end{subequations}
+which proves the statement.
+\item Consider the sequence of sets
+\begin{subequations}
+\begin{equation}
+B(h) = \{\omega\in\sampleSpace : X(\omega)\leq x+h\}
+\end{equation}
+We want to prove as $h\downarrow0$ that
+$\Pr\bigl(B(h)\bigr)\to\Pr\bigl(B(0)\bigr)$. We see that, if we write 
+\begin{equation}
+\Delta(h)=B(h)\setminus B(0)
+\end{equation}
+then we have $B(0)$ and $\Delta(h)$ be disjoint. Thus
+\begin{equation}
+\Pr\bigl(B(0)\cup\Delta(h)\bigr)-\Pr\bigl(B(0)\bigr)=\Pr\bigl(\Delta(h)\bigr)
+\end{equation}
+by lemma \ref{lemma:probSpaceProps}. But look, for any sequence
+$h_{n}\to0$ as $n\to\infty$, write $\Delta_{n}=\Delta(h_{n})$, then we
+have a strictly decreasing sequence
+\begin{equation}
+\dots\subset\Delta_{n+1}\subset\Delta_{n}\subset\dots\subset\Delta_{0}.
+\end{equation}
+This has its limit be $\emptyset$, and again this implies
+\begin{equation}
+\lim_{n\to\infty}\Pr(\Delta_{n})=0
+\end{equation}
+which proves right-continuity. \qedhere
+\end{subequations}
+\end{enumerate}
+\end{proof}

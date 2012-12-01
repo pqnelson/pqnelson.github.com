@@ -1,0 +1,34 @@
+\subsubsection{Completeness}
+\N*{Caution:}
+For a ``first read'', this discussion of ``completeness'' may be
+skipped. It's only useful when dealing with $\sampleSpace$ that's
+infinitely large (something uncountably infinite like $[0,1]\subset\RR$).
+
+\M
+Probability is a special form of ``measure theory'', i.e., probability
+assigns some ``volume'' to an event. The ``volume'' is just the
+likelihood the event will occur, i.e., the ``volume'' is the event's
+probability. There are some subtle measure theoretic topics that needs
+to be discussed. Consequently, this bit on ``completeness'' can be
+skipped on the first read. But the motivation will be given, and should
+be read.
+
+\N{Motivation:}
+Suppose we have $\RR$ with a Lebesgue measure $\mu$. So $\mu(x)=0$ for
+any $x\in\RR$, the length of a point is zero. Then we can try to naively
+construct the product space $\RR^2$ with the measure
+$\mu^{2}(A\times B)=\mu(A)\mu(B)$. This has the merit that for any
+measurable $A\subset\RR$ we have
+\begin{equation}
+\mu^{2}(\{0\}\times A)=\mu(0)\mu(A)=0
+\end{equation}
+but only if $A$ is measurable. What if $A$ is not measurable? Well,
+we \emph{expect} the result to be the same: zero. But instead we get
+``This is an undefined question!''
+
+\M
+For probability, this is saying if we have a product probability space
+$\sampleSpace_1\times\sampleSpace_2$ and some event $A\times B$, when
+$A$ is a subset of a null event we expect $\Pr(A\times B)=0$. This is a
+technical condition that appears unclear,
+

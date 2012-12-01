@@ -1,0 +1,200 @@
+\M
+Suppose we have two events $A$, $B$. What's the probability, if $B$
+occurs, that $A$ will occur? These sort of conditional statements we're
+interested in, usually in scientific fields. What would the probability
+look like? Lets denote $\Pr(A|B)$ be the probability of $A$ given
+$B$. Then the probability of $A$ and $B$ happening would be
+\begin{equation}
+\Pr(A|B)\Pr(B)=\Pr(A\cap B).
+\end{equation}
+If we accept this, then
+\begin{equation}
+\Pr(A|B) = \frac{N(A\cap B)}{N(B)} = \frac{\Pr(A\cap B)}{\Pr(B)}
+\end{equation}
+where we implicitly divide both the numerator and denominator by
+$N(\sampleSpace)$ to get the fraction of probabilities.
+
+\N{Definition} If $\Pr(B)>0$, then the \define{Conditional Probability}
+that $A$ occurs given $B$ definitely occurs is defined as
+\begin{equation}
+\Pr(A|B)=\frac{\Pr(A\cap B)}{\Pr(B)}.
+\end{equation}
+
+\N{Example (Children)}
+Suppose a couple has two children. The sample space is
+\begin{equation}
+\sampleSpace=\{\,BB,BG,GB,GG\,\}
+\end{equation}
+where the each element of the sample space indicates what the children
+are (so $BG$ indicates the first is a boy, while the second is a
+girl). What's the probability, given one child is a boy, that both
+children are boys?
+
+\N*{Solution:} 
+Well, we see that the event one is a boy $X$ is really
+\begin{equation}
+X=\{\,BG,GB,BB\,\}
+\end{equation}
+We suppose for simplicity that the probability of each outcome in the
+sample space is equal, so
+\begin{equation}
+\Pr(GG)=\Pr(GB)=\Pr(BG)=\Pr(BB)=1/4.
+\end{equation}
+Thus we see
+\begin{equation}
+\begin{split}
+\Pr(BB|X)&=\frac{\Pr(BB\cap X)}{\Pr(X)}\\
+&=\frac{\Pr(BB)}{\Pr(X)}\\
+&=\frac{1/4}{3/4}=\frac{1}{3}.
+\end{split}
+\end{equation}
+Note this is contrary to popular intuition, which would vaguely suggest
+the solution is $1/4$. 
+
+\begin{lemma}\label{lemma:conditionalProb}
+Let $A$ and $B$ be events, $0<\Pr(B)<1$. Then
+\begin{equation}
+\Pr(A)=\Pr(A|B)\Pr(B)+\Pr(A|\comp{B})\Pr(\comp{B}).
+\end{equation}
+\end{lemma}
+The proof is direct.
+\begin{proof}
+We substitute the definition of conditional probability
+\begin{subequations}
+\begin{align}
+\Pr(A)&=\Pr(A|B)\Pr(B)+\Pr(A|\comp{B})\Pr(\comp{B})\\
+&=\frac{\Pr(A\cap B)}{\Pr(B)}\Pr(B)+\frac{\Pr(A\cap\comp{B})}{\Pr(\comp{B})}\Pr(\comp{B})\\
+&=\Pr(A\cap B)+\Pr(A\cap\comp{B})
+\end{align}
+But look, the events $A\cap B$ and $A\cap\comp{B}$ are disjoint. So we
+have
+\begin{equation}
+\Pr(A\cap B)+\Pr(A\cap\comp{B})=\Pr\bigl((A\cap
+B)\cup(A\cap\comp{B})\bigr).
+\end{equation}
+Look, this is quite simply
+\begin{equation}
+\Pr\bigl((A\cap
+B)\cup(A\cap\comp{B})\bigr)=\Pr(A)
+\end{equation}
+\end{subequations}
+precisely as desired.
+\end{proof}
+
+\begin{lemma}
+Let $B_{i}$ be a family of disjoint events such that
+\begin{equation}
+\bigcup_{i}B_{i}=\sampleSpace.
+\end{equation}
+Then
+\begin{equation}
+\Pr(A)=\sum_{i}\Pr(A|B_{i})\Pr(B_{i}).
+\end{equation}
+\end{lemma}
+The proof is similar to the previous lemma.
+\begin{proof}
+We begin by using the definition of conditional probability
+\begin{subequations}
+\begin{align}
+\sum_{i}\Pr(A|B_{i})\Pr(B_{i})&=\sum_{i}\frac{\Pr(A\cap B_{i})}{\Pr(B_{i})}\Pr(B_{i})\\
+&=\sum_{i}\Pr(A\cap B_{i}).
+\end{align}
+But look, the events $A\cap B_{i}$ are disjoint since $B_{i}$ is a
+family of \emph{disjoint} events. So we can write this as
+\begin{equation}
+\sum_{i}\Pr(A\cap B_{i})=\Pr\left(\bigcup_{i}A\cap B_{i}\right)
+\end{equation}
+Using set theoretic properties of set union and intersection, we can
+write this as
+\begin{equation}
+\Pr\left(\bigcup_{i}A\cap B_{i}\right)
+=\Pr\left(A\cap \bigcup_{i}B_{i}\right)
+\end{equation}
+By hypothesis, the union of all $B_{i}$ is the sample space, so we have
+\begin{equation}
+\Pr\left(A\cap \bigcup_{i}B_{i}\right)=\Pr(A\cap\sampleSpace)=\Pr(A)
+\end{equation}
+\end{subequations}
+precisely as desired.
+\end{proof}
+
+\N{Remark on Examples: Inheritance from Past}
+In probability, a lot of examples involve drawing items (e.g., colored
+balls, slips of paper, etc) from urns. This is because the Bernoulli
+family, who pioneered most of probability theory in 18th century France,
+were using then-contemporary situations. You would cast ballots in an
+urn, etc. Even today in France, the phrase ``going to vote'' is
+\emph{aller aux urnes}.
+
+\N{Example (Balls from Urn)}
+Given two urns, each containing colored balls. Urn I contains two white
+and three blue balls, urn II contains three white and four blue balls. A
+ball is drawn randomly from urn I and put into urn II, then a balled is
+picked at random from urn II and examined. What is the probability the
+examined ball is blue?
+
+\N*{Solution:} Really, this is two events going on. Event 1 is
+transferring a ball from urn I to urn II, and event 2 is the color of
+the ball drawn from urn II. 
+
+So, let $B$ be the event that a white ball is transferred from urn I to
+urn II. Then $\comp{B}$ is the event it's a blue ball transferred. The
+event $A$ is the examined ball is blue. So
+\begin{equation}
+\Pr(A)=\Pr(A|B)\Pr(B)+\Pr(A|\comp{B})\Pr(\comp{B})
+\end{equation}
+But look, we can start calculating some stuff out:
+\begin{equation}
+\Pr(B) = \frac{2}{5},\quad\mbox{and}\quad\Pr(\comp{B})=\frac{3}{5}.
+\end{equation}
+The conditional probabilities are easier to compute now:
+\begin{equation}
+\Pr(A|B)=\frac{4b}{4w+4b}=\frac{1}{2}
+\end{equation}
+where $w$ stands for ``white ball'', $b$ for ``blue ball'', and
+\begin{equation}
+\Pr(A|\comp{B})=\frac{5b}{3w+5b}=\frac{5}{8}.
+\end{equation}
+Thus we see
+\begin{subequations}
+\begin{align}
+\Pr(A)&=\Pr(A|B)\Pr(B)+\Pr(A|\comp{B})\Pr(\comp{B})\\
+&=\frac{1}{2}\cdot\frac{2}{5}+\frac{5}{8}\cdot\frac{3}{5}=\frac{23}{40}.
+\end{align}
+\end{subequations}
+
+\N{Example (Elbonian Widgets)}
+In the tiny country of Elbonia\footnote{A fictional country from the
+comic strip ``Dilbert.''}, there are two widget factories. But 20\%
+of the widgets produced by factory I are defective, whereas 5\% from
+factory II are defective. Factory I produces twice as many widgets as
+factory II. What's the probability a given Elbonian widget is
+satisfactory?
+
+\N*{Solution:}Let $A$ be the event the widget is satisfactory, and $B$
+the event it's from factory I. We see
+\begin{equation}
+\Pr(B)=\frac{2}{3}
+\end{equation}
+and so
+\begin{equation}
+\Pr(A)=\Pr(A|B)\Pr(B)+\Pr(A|\comp{B})\Pr(\comp{B}).
+\end{equation}
+The conditional probabilities are given, or at least easily deduced
+\begin{subequations}
+\begin{align}
+\Pr(A|B)&=1-\frac{1}{5}\\
+\Pr(A|\comp{B})&=1-\frac{1}{20}.
+\end{align}
+\end{subequations}
+We see then
+\begin{equation}
+\begin{split}
+\Pr(A)&=\frac{4}{5}\cdot\frac{2}{3}+\frac{19}{20}\cdot\frac{1}{3}\\
+&=\frac{51}{60}.
+\end{split}
+\end{equation}
+This concludes our example (roughly 5 out of 6 Elbonian widgets are
+satisfactory). 
+
+

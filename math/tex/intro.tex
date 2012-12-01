@@ -1,0 +1,121 @@
+\N{Definition} The set of all possible outcomes of an experiment is
+called the \define{Sample Space} and denoted
+$\sampleSpace$. An \define{Elementary Event} is an element of
+$\sampleSpace$, whereas a \define{Event} is a subset of $\sampleSpace$.
+
+\textsc{Caution:} We will abuse notation, and mix up the singleton
+$\{x\}$ with the element $x$. So $\{x\}$ is an elementary event, and
+usually just referred to as $x$.
+
+\N{Example} Flipping a coin has two results: heads $H$, tails $T$. The
+sample space is
+\begin{equation}
+\sampleSpace = \{\,H,T\,\}.
+\end{equation}
+What's an event? Well, lets consider a few:
+\begin{enumerate}
+\item We flip the coin and get a heads.
+\item We get either a heads or a tails.
+\item The outcome is both a heads and tails.
+\item The outcome is not a heads.
+\end{enumerate}
+Note that the first and last examples are elementary events, the others
+are not elementary.
+
+\N{Remark}
+This process ``flipping a coin'', is generalized in mathematics to any
+experiment with two outcomes: either heads or tails; the baby is either
+a boy or a girl; the cat is either dead or alive\footnote{When
+  observed!}. This experiment is called a \define{Bernoulli trial}, and
+it's the foundation of most (all?) of probability theory.
+
+\N{Example}
+Not all sample spaces are finite. For example, consider an experiment
+describing the decay of an unstable particle. How long does it take?
+Well, the sample space would be
+\begin{equation}
+\sampleSpace = \{x\in\RR : x\geq0\}.
+\end{equation}
+This is quite infinite!
+
+\N{Definition}
+We want to think of subsets of the sample space as \emph{events}. The
+sample space is a ``certain event'': something's \emph{definitely} going
+to happen. So now we want to define the ``collection of all events (of
+our sample space)''\dots{}but not every subset is an event! So we need
+some axioms/specifications.
+
+We define a \define{$\sigma$-Field} (or \emph{$\sigma$-Algebra})
+$\mathcal{F}$ to be the set of events of our sample space
+$\sampleSpace$. But that's not the end of the  story: we have a bunch of
+axioms to consider. 
+
+First, it seems sound to suggest for any pair of events $A$ and $B$
+(i.e., $A,B\in\mathcal{F}$), we
+can form new events ``$A$ and $B$'' as well as ``$A$ or $B$''. These
+correspond to the operations
+\begin{equation*}
+\mbox{$A$ and $B$}=A\cap B,\quad\mbox{and}\quad
+\mbox{$A$ or $B$}=A\cup B.
+\end{equation*}
+Good, well, so what?
+
+\begin{axiom}[Closed under pair-wise ``And'', ``Or''] 
+If $A,B\in\mathcal{F}$, then $A\cup B\in\mathcal{F}$ and $A\cap
+B\in\mathcal{F}$. 
+\end{axiom}
+
+Under a similar vein of reasoning, if we have an event
+$A\in\mathcal{F}$, then its complement $\comp{A}$ (read ``The event that
+$A$ does not occur'') should also be an event:
+$\comp{A}\in\mathcal{F}$. So, we have
+\begin{axiom}[Closed under complements]
+If $A\in\mathcal{F}$, then $\comp{A}\in\mathcal{F}$.
+\end{axiom}
+
+The last axiom is quite simple: nothing is an event. What's ``nothing''?
+The empty set:
+\begin{axiom}[Nothing is an event]
+We have $\emptyset\in\mathcal{F}$.
+\end{axiom}
+Is this really the last axiom? No, we weren't honest with our first
+axiom. We have something \emph{more}: we could have an infinite number
+of ``and'' (but not an infinite number of ``or'').
+\begin{axiom}
+If $A_{i}\in\mathcal{F}$, then $\displaystyle\bigcup_{i=1}^{\infty}A_{i}\in\mathcal{F}$
+\end{axiom}
+When is this useful? Suppose we want to flip a coin, and keep flipping
+until we get a heads. What's the sample space look like? Well, it'd be
+\begin{equation}
+\sampleSpace=\{\, H,TH, TTH, TTTH, \dots\,\}.
+\end{equation}
+The event that we flip the coin an even number of times is
+\begin{equation}
+E = \{\, TH, TTTH, TTTTTH, \dots\,\}.
+\end{equation}
+Unless we have this last axiom, we couldn't construct it!
+
+\N{Example} The smallest $\sigma$-algebra associated to any sample space
+$\sampleSpace$ is 
+\begin{equation}
+\mathcal{F}=\{\emptyset,\sampleSpace\}.
+\end{equation}
+It ``obviously'' satisfies the four axioms.
+
+\N{Example} The next smallest algebra associated to $\sampleSpace$ is,
+if $A$ is any subset of $\sampleSpace$, then
+\begin{equation}
+\mathcal{F}=\{\,\emptyset,A,\comp{A},\sampleSpace\,\}.
+\end{equation}
+Although a little trickier to show, it also satisfies the axioms.
+
+\N{Example} 
+When $\sampleSpace$ is finite\footnote{For \emph{infinite}
+sample spaces, things get tricky because we're really going to do
+``integration'' on our set. For the real numbers, for example, its
+powerset includes the natural numbers\dots but an integral over the
+natural numbers embedded in the reals is zero! We get strange results 
+like that: where things should have some probability, they instead
+have none.}, its powerset (the set of all subsets) of $\sampleSpace$ is
+a $\sigma$-algebra. This is the most common $\sigma$-algebra used when
+working with finite sample spaces. 

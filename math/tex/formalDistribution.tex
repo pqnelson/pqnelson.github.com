@@ -1,0 +1,650 @@
+\M
+Let $U$ be a vector space over $\CC$. A series of the form
+\begin{equation}
+\sum_{m,n\in\ZZ}a_{mn}z^{m}\omega^{n}
+\end{equation}
+where $a_{mn}\in U$ we call a \define{Formal Distribution} in the
+indeterminates $z,\omega$ taking values in $U$. THey form a vector space
+denoted $U[[z,z^{-1},\omega,\omega^{-1},\dots]]$. 
+
+\M
+Given a formal distribution (or more weakly, a formal Laurent polynomial)
+$a(z) = \sum a_{n}z^{n}$ we define its \define{Residue} by the usual
+formula
+\begin{equation}
+\Res[z]{a(z)} = a_{-1}.
+\end{equation}
+Since
+\begin{equation}
+\Res[z]{\partial a(z)}=0
+\end{equation}
+we have the usual integration by parts formula
+\begin{equation}
+\Res[z]{\partial a(z)b(z)}=-\Res[z]{a(z)\partial b(z)}
+\end{equation}
+where $\partial a(z)=\sum na_{n}z^{n-1}$.
+
+\M
+Let
+\begin{equation}
+\CC(z)=\CC[z,z^{-1}]
+\end{equation}
+bt the algebra of Laurent polynomials in $z$. We have a nondegenerate
+pairing
+\begin{equation}
+\<-,-\>\colon U[[z,z^{-1}]]\times\CC[z,z^{-1}]\to U
+\end{equation}
+defined by
+\begin{equation}
+\<f,\varphi\>=\Res[z]{f(z)\varphi(z)}
+\end{equation}
+Hence Laurent polynomials should be seen as ``test functions'' for the
+formal distributions.
+
+\M
+We introduce the most famous of distributions: the Dirac Delta
+function. We define it as
+\begin{equation}
+\delta(z-\omega)
+=z^{-1}\sum_{n\in\ZZ}(z/\omega)^{n}
+\end{equation}
+\begin{rmk}
+Kac has some confusing reasoning for $\partial^{k}\delta(z-\omega)$ that
+I don't quite follow. But using our given definition, it makes more sense.
+\end{rmk}
+
+\begin{xca}
+Prove $\delta(z-\omega)=\delta(\omega-z)$.
+\end{xca}
+\begin{xca}
+What is $\Res[z]{(z-\omega)^{n}}$?
+\end{xca}
+\begin{xca}
+Prove $\partial^{k}_{z}\delta(z-\omega)=(-\partial_{\omega})^{k}\delta(z-\omega)$.
+\end{xca}
+\begin{xca}\label{xca:deltaDerivative}%
+Prove $(z-\omega)\partial^{k+1}_{\omega}\delta(z-\omega)=\partial^{k}_{\omega}\delta(z-\omega)$.
+\end{xca}
+\begin{xca}\label{xca:usefulForCor3}%
+Prove $(z-\omega)^{k+1}\partial^{k}_{\omega}\delta(z-\omega)=0$.
+\end{xca}
+
+\N{Proposition}\label{prop:integrateDeltaFn}
+Let $f(z)\in U[[z,z^{-1}]]$ be any formal distribution, then
+\begin{equation}
+\Res[z]{f(z)\delta(z-\omega)}=f(\omega).
+\end{equation}
+
+
+\M
+When does a formal distribution
+\begin{equation}
+a(z,\omega)=\sum_{m,n\in\ZZ}a_{mn}z^{m}\omega^{n}
+\end{equation}
+has an expansion of the form
+\begin{equation}
+a(z,\omega)=\sum^{\infty}_{j=0}c^{j}(\omega)\partial^{j}_{\omega}\delta(z-\omega)?
+\end{equation}
+Well, multiplying both sides by $(z-\omega)^{n}$ and taking the reside,
+we find
+\begin{equation}
+c^{n}(\omega)=\Res[z]{a(z,\omega)\cdot(z-\omega)^{n}}
+\end{equation}
+Can we do this for any formal distribution? Not really. But we can
+construct a transformation $\pi$ such that
+\begin{equation}
+\pi
+a(z,\omega)=\sum^{\infty}_{j=0}\bigl[\Res[z]{a(z,\omega)\cdot(z-\omega)^{j}}\bigr]\partial^{j}_{\omega}(z-\omega).
+\end{equation}
+What is this transformation $\pi$?
+
+\begin{prop}
+The transformation $\pi$ is a projection (i.e., $\pi^{2}=\pi$). Moreover
+\begin{equation}
+\ker(\pi)=\{a(z,\omega)| a(z,\omega)=\sum_{m\in\NN,n\in\ZZ}a_{mn}z^{m}\omega^{n}\}.
+\end{equation}
+\end{prop}
+
+\begin{cor}
+Any formal distribution $a(z,\omega)$ may be represented uniquely as
+\begin{equation}
+a(z,\omega)=b(z,\omega) + \sum^{\infty}_{j=0}c^{j}(\omega)\partial^{j}_{\omega}\delta(z-\omega)
+\end{equation}
+where $b(z,\omega)\in\ker(\pi)$.
+\end{cor}
+\begin{cor}\label{cor:kerMultOp}
+Let $\mu_{N}$ be the multiplication operator by $(z-\omega)^{N}$. THen
+its nullspace in $U[[z,z^{-1},\omega,\omega^{-1}]]$ is
+\begin{equation}
+\ker(\mu_{N})=\sum^{N-1}_{j=0}\partial^{j}_{\omega}\delta(z-\omega)U[[\omega,\omega^{-1}]].
+\end{equation}
+Any element $a(z,\omega)\in\ker(\mu_N)$ is uniquely written of the form
+\begin{equation}
+a(z,\omega)=\sum^{N-1}_{j=0}c^{j}(\omega)\partial^{j}_{\omega}\delta(z-\omega)
+\end{equation}
+where $c^{j}(\omega)$ is the ``usual coefficients''.
+\end{cor}
+\begin{proof}
+By exercise \ref{xca:usefulForCor3}, we see
+\begin{equation}
+(z-\omega)^{j+1}\partial_{\omega}^{j}\delta(z-\omega)=0,
+\end{equation}
+proving $\partial_{\omega}^{j}\delta(z-\omega)$ lives in the
+nullspace. But observe multipying through by $c^{j}(\omega)$ changes
+\emph{nothing}. So $\partial_{\omega}^{j}\delta(z-\omega)$ acts like a
+basis for $\ker(\mu_N)$.
+\end{proof}
+\begin{rmk}
+The coefficients $c^{j}(\omega)$ are like Fourier coefficients.
+\end{rmk}
+\N*{Notation}
+Often formal distributions will be written as 
+\begin{equation}
+a(z)=\sum_{n\in\ZZ}a_{(n)}z^{-n-1}
+\end{equation}
+where
+\begin{equation}
+a_{(n)}=\Res[z]{a(z)z^{n}}.
+\end{equation}
+Using this notation, the expansion in Corollary \ref{cor:kerMultOp} is
+equivalent to 
+\begin{equation}
+a_{(m,j)}=\sum^{N-1}_{j=0}{m\choose j}c^{j}_{(m+n-j)}.
+\end{equation}
+
+\subsection{Locality}
+\M
+We are interested when $U$ is an associative superalgebra (i.e., a
+$\ZZ_2$-graded associative algebra). This happens when $V$ is a
+superlinear space, and we have
+\begin{equation}
+U=\End(V)
+\end{equation}
+We denote the superbracket as
+\begin{equation}
+\superb{a}{b}=ab-(-1)^{\alpha\beta}ba.
+\end{equation}
+where $\alpha=\deg(a)$, $\beta=\deg(b)$.
+
+\N{Definition}
+Two formal distributions $a(z)$, $b(z)$ with values in an associative
+superalgebra $U$ are called \define{Mutually Local} if in
+$U[[z,z^{-1},\omega,\omega^{-1}]]$ one has
+\begin{equation}
+(z-\omega)^N\superb{a(z)}{b(z)}=(z-\omega)^N\superb{b(z)}{a(z)}=0
+\end{equation}
+for $N\gg0$.
+
+NB: the parity of a formal distribution is the parity of all its
+coefficients.
+
+\begin{xca}
+Prove or find a counter-example: if $a(z)$, $b(\omega)$ are mutually
+local, then $\partial_{z}a(z)$ and $b(\omega)$ are mutually local.
+\end{xca}
+
+\M
+We introduce notation.
+Let
+\begin{equation}
+a(z)=\sum_{n\in\ZZ}a_{(n)}z^{-n-1},
+\end{equation}
+then we denote
+\begin{equation}
+a(z)_{-}=\sum_{n\geq0}a_{(n)}z^{-n-1},
+\quad\mbox{and}\quad
+a(z)_{+}=\sum_{n<0}a_{(n)}z^{-n-1}.
+\end{equation}
+This is not the only way to decompose $a(z)$ into ``positive'' and
+``negative'' parts, but it is the \emph{only} way which also satisfies
+\begin{equation}
+\bigl(\partial a(z)\bigr)_{\pm}=\partial\bigl(a(z)_{\pm}\bigr)
+\end{equation}
+
+Given formal distributions $a(z)$, $b(\omega)$, we define
+\begin{equation}
+\normOrd{a(z)b(\omega)} = a(z)_{+}b(\omega)+(-1)^{\alpha\beta}b(\omega)a(z)_{-},
+\end{equation}
+where $\alpha=\deg(a)$, $\beta=\deg(b)$. We borrow terminology from
+physicists, and call this the \define{Normal Ordering} of $a(z)b(\omega)$.
+
+\begin{xca}
+Is it true that $\normOrd{a(z)b(\omega)}=\normOrd{b(\omega)a(z)}$?
+\end{xca}
+\begin{xca}
+Prove
+$a(z)b(\omega)=\superb{a(z)_{-}}{b(\omega)}+\normOrd{a(z)b(\omega)}$.
+\end{xca}
+\begin{xca}
+Prove
+$(-1)^{\alpha\beta}b(\omega)a(z)=-\superb{a(z)_{+}}{b(\omega)}+\normOrd{a(z)b(\omega)}$.
+\end{xca}
+\begin{xca}
+Find $\Res[z]{\normOrd{a(z)b(\omega)}}$ and 
+$\Res[\omega]{\normOrd{a(z)b(\omega)}}$.
+\end{xca}
+
+\N{Theorem}
+Let $U$ be an associative super algebra.
+The following properties are equivalent
+\begin{enumerate}
+\item
+  $\displaystyle\superb{a(z)}{b(\omega)}=\sum^{N-1}_{j=0}c^{j}(\omega)\partial_{\omega}^{j}\delta(z-\omega)$
+  where $c^{j}(\omega)\in U[[\omega,\omega^{-1}]]$.
+\item
+\begin{align*}
+\superb{a(z)_{-}}{b(\omega)} &= \sum^{N-1}_{j=0}\bigl(i_{z\omega}(z-\omega)^{-j-1}\bigr)c^{j}(\omega)\\
+\superb{a(z)_{+}}{b(\omega)} &= \sum^{N-1}_{j=0}\bigl(i_{z\omega}(z-\omega)^{-j-1}\bigr)c^{j}(\omega)
+\end{align*}
+where $i_{z\omega}(z-\omega)^{j+1}=\sum_{m}z^{-m-1}{m\choose
+j}\omega^{m-j}$ and
+$\partial_{\omega}^{j}\delta(z-\omega)-i_{z\omega}(z-\omega)^{-j-1}=i_{\omega
+z}(z-\omega)^{-j-1}$.
+\item $\displaystyle
+a(z)b(\omega)=\left[\sum^{N-1}_{j=0}i_{z\omega}(z-\omega)^{-j-1}c^{j}(\omega)\right]+\normOrd{a(z)b(\omega)}$,
+and
+$\displaystyle
+(-1)^{\alpha\beta}b(\omega)a(z)=\left[\sum^{N-1}_{j=0}c^{j}(\omega)i_{\omega z}
+(z-\omega)^{-j-1}\right]+\normOrd{a(z)b(\omega)}$.
+\item $\displaystyle\superb{a_{(m)}}{b_{(n)}}=\sum^{N-1}_{j=0}{m\choose j}c^{j}_{(m+n-j)}$
+\item $\displaystyle\superb{a_{(m)}}{b(\omega)}=\sum_{j=0}{m\choose
+j}c^{j}(\omega)\omega^{m-j}$
+\item
+$\displaystyle\superb{a_{(m)}}{b_{(n)}}=\sum_{j=0}p_{j}(m)d^{j}_{m+n}$
+where $p_{j}(x)$ are some polynomial, $d^{j}_{m+n}\in U$.
+\item $a(z)b(\omega)=\left[i_{z\omega}(z-\omega)^{-N}\right]c(z,\omega)$
+and $(-1)^{\alpha\beta}b(\omega)a(z)=[i_{\omega z}(z-\omega)^{-N}]c(z,\omega)$
+for some formal distribution $c(z,\omega)$.
+\end{enumerate}
+
+\M
+Physicists abuse notation writing
+\begin{equation}
+\superb{a(z)}{b(\omega)}=\sum^{N-1}_{j=0}c^{j}(\omega)\partial_{\omega}^{j}\delta(z-\omega)
+\end{equation}
+instead of
+\begin{equation}
+\superb{a(z)}{b(\omega)}=\sum^{N-1}_{j=0}\frac{c^{j}(\omega)}{(z-\omega)^{j+1}}+\normOrd{a(z)b(\omega)}
+\end{equation}
+or often just the singular part
+\begin{equation}
+\superb{a(z)}{b(\omega)}\sim\sum^{N-1}_{j=0}\frac{c^{j}(\omega)}{(z-\omega)^{j+1}}.
+\end{equation}
+Either case is called the \define{Operator Product Expansion}\index{Operator Product Expansion}. The
+previous theorem tells us the singular part of the operator product
+expansion encodes the brackets between all the coefficients of mutually
+local formal distributions $a(z)$ and $b(\omega)$.
+
+\M
+We introduce (for each $n\in\NN$) the $n^{th}$ product
+$a(\omega)_{(n)}b(\omega)$ on the space of formal distributions by the
+formula
+\begin{equation}
+a(\omega)_{(n)}b(\omega)=\Res[z]{\superb{a(z)}{b(\omega)}(z-\omega)^{n}}
+\end{equation}
+Observe the operator product expansion becomes
+\begin{equation}
+a(z)b(\omega)=\sum^{N-1}_{j=0}\frac{a(\omega)_{(j)}b(\omega)}{(z-\omega)^{j+1}}+\normOrd{a(z)b(\omega)}.
+\end{equation}
+
+\N{Proposition} 
+(a) For any two formal distributions $a(\omega)$ and $b(\omega)$, and
+for any $n\in\NN$, we have
+\begin{equation}
+\partial a(\omega)_{(n)}b(\omega)=-na(\omega)_{(n-1)}b(\omega).
+\end{equation}
+Moreover $\partial$ is a derivation of all $n^{th}$ products.
+
+(b) For any mutually local formal distributions $a(\omega)$ and
+$b(\omega)$, and for any $n\in\NN$, we have
+\begin{equation}
+a(\omega)_{(n)}b(\omega)=(-1)^{\alpha\beta}\sum^{\infty}_{j=0}(-1)^{j+n+1}\partial^{j}\bigl(b(\omega)_{(n+j)}a(\omega)\bigr).
+\end{equation}
+
+(c) For any three formal distributions $a(\omega)$, $b(\omega)$ and
+$c(\omega)$, and for any $m,n\in\NN$, we have
+\begin{equation}
+\begin{split}
+a(\omega)_{(m)}\bigl(b(\omega)_{(n)}c(\omega)\bigr)
+&=\sum^{m}_{j=0}{m\choose j}\bigl(a(\omega)_{(j)}b(\omega)\bigr)_{(m+n-j)}c(\omega)\\
+&\quad+(-1)^{\alpha\beta}b(\omega)_{(n)}\bigl(a(\omega)_{(m)}c(\omega)\bigr).
+\end{split}
+\end{equation}
+
+\begin{proof}
+(a)
+We want to prove 
+\begin{equation}
+\partial a(\omega)_{(n)}b(\omega)=-na(\omega)_{(n)}\partial b(\omega).
+\end{equation}
+We see that the left hand side is equal to
+\begin{subequations}
+\begin{align}
+\partial a(\omega)_{(n)}b(\omega)
+&=\partial_{\omega}\Res[z]{\superb{a(z)}{b(\omega)}\cdot(z-\omega)^{n}}\\
+&=\Res[z]{\superb{a(z)}{\partial b(\omega)}\cdot(z-\omega)^{n}}
+-n\Res[z]{\superb{a(z)}{b(\omega)}\cdot(z-\omega)^{n-1}}\\
+&=a(\omega)_{(n)}\partial b(\omega)-na(\omega)_{(n-1)}b(\omega)\\
+&=a(\omega)_{(n)}\partial b(\omega)+\bigl(\partial
+a(\omega)_{(n)}\bigr)b(\omega)
+\end{align}
+\end{subequations}
+where the last step is just Leibniz's rule.
+
+(b) We have
+\begin{equation}
+a(\omega)_{(n)}b(\omega)
+= \Res[z]{\superb{a(z)}{b(\omega)}(z-\omega)^{n}}
+\end{equation}
+using the definition of the $n^{th}$ product. Using the definition of
+the super bracket we have
+\begin{equation}
+\Res[z]{\superb{a(z)}{b(\omega)}(z-\omega)^{n}}=-(-1)^{\alpha\beta}\Res[z]{\superb{a(\omega)}{a(z)}\cdot(z-\omega)^{n}}.
+\end{equation}
+Using corollary \ref{cor:kerMultOp} we have
+\begin{equation}
+\Res[z]{\superb{a(\omega)}{a(z)}\cdot(z-\omega)^{n}}
+=\Res[z]{\sum^{\infty}_{j=1}(-1)^{j}\partial_{\omega}^{j}\delta(z-\omega)b(z)_{(j)}a(z)(z-\omega)^{n-1}}.
+\end{equation}
+Exercise \ref{xca:deltaDerivative} and the definition of the $n^{th}$
+product gives us
+\begin{subequations}
+\begin{align}
+a(\omega)_{(n)}b(\omega)&=(-1)^{\alpha\beta}\Res[z]{\sum^{\infty}_{j=1}(-1)^{j+1}\partial_{\omega}^{j+1}\delta(z-\omega)b(z)_{(j)}a(z)}\\
+&=(-1)^{\alpha\beta}\Res[z]{\sum^{\infty}_{j=1}(-1)^{n+1}\partial_{z}^{j}\delta(z-\omega)b(z)_{(j+n)}a(z)}
+\end{align}
+\end{subequations}
+We integrate by parts and use proposition \ref{prop:integrateDeltaFn} to
+find
+\begin{subequations}
+\begin{align}
+a(\omega)_{(n)}b(\omega)
+&=(-1)^{\alpha\beta}\Res[z]{\sum^{\infty}_{j=1}(-1)^{j+1+n}\delta(z-\omega)\partial_{z}^{j}\bigl(b(z)_{(j+n)}a(z)\bigr)}\\
+&=(-1)^{\alpha\beta}\sum^{\infty}_{j=1}(-1)^{j+1+n}\partial^{j}\bigl(b(\omega)_{(j+n)}a(\omega)\bigr)
+\end{align}
+\end{subequations}
+which is what we wanted!
+
+(c) We recall the definition of the $n^{th}$ product, which tells us
+\begin{subequations}
+\begin{equation}
+a(\omega)_{(m)}\bigl(b(\omega)_{(n)}c(\omega)\bigr)
+=a(\omega)_{(m)}\Res[u]{\superb{b(u)}{c(\omega)}\cdot(u-\omega)^{n}}
+\end{equation}
+and applying it again
+\begin{equation}
+a(\omega)_{(m)}\bigl(b(\omega)_{(n)}c(\omega)\bigr)
+=\Res[z]{\Res[u]{\superb{a(z)}{\superb{b(u)}{c(\omega)}}(u-\omega)^{n}(z-\omega)^{m}}}.
+\end{equation}
+\end{subequations}
+Using the super-Jacobi super identity gives us
+\begin{multline}\label{eq:forPfOfPtCofWhackyProp}
+\Res[z]{\Res[u]{\superb{a(z)}{\superb{b(u)}{c(\omega)}}(u-\omega)^{n}(z-\omega)^{m}}}\\
+=\Res[z]{\Res[u]{\superb{\superb{a(z)}{b(u)}}{c(\omega)}(u-\omega)^{n}(z-\omega)^{m}}}\\
++(-1)^{\alpha\beta}\Res[z]{\Res[u]{\superb{b(u)}{\superb{a(z)}{c(\omega)}}(u-\omega)^{n}(z-\omega)^{m}}}
+\end{multline}
+Observe
+\begin{equation}
+\Res[z]{\Res[u]{
+}} = b(\omega)_{(n)}\bigl(a(\omega)_{(m)}c(\omega)\bigr)
+\end{equation}
+Combinatorics tells us
+\begin{equation}
+(z-\omega)^{m}(u-\omega)^{n}=\sum^{m}_{j=0}{m\choose j}(z-u)^{j}(u-\omega)^{m-j+n}.
+\end{equation}
+When we substitute this back into Eq \eqref{eq:forPfOfPtCofWhackyProp}
+and this proves (c).
+\end{proof}
+
+\begin{cor}
+(a) If $a(z)$ and $b(z)$ are formal distributions, then
+$\superb{a_{(n)}}{b(z)}=0$ if and only if $a(z)_{(n)}b(z)=0$.
+
+(b) If $a(z)$ is an odd formal distribution, then $a_{(n)}^{2}=0$ if and
+only if $\Res[z]{a(z)_{(n)}a(z)}=0$.
+
+(c) Let $\mathcal{A}$ be a space consisting of mutually local formal
+$U$-valued distributions in $\omega$ which is $\partial$-invariant and
+closed with respect to the $0^{th}$ product. Then with respect to the
+$0^{th}$ product, $\partial\mathcal{A}$ is a 2-sided ideal of
+$\mathcal{A}$, and $\mathcal{A}/\partial\mathcal{A}$ is a Lie
+superalgebra. Moreover the $0^{th}$ product defines on $\mathcal{A}$ the
+structure of a left $(\mathcal{A}/\partial\mathcal{A})$-module.
+\end{cor}
+
+\subsection{Taylor's Formula}
+
+\M
+Taylor's formula helps compute operator product expansions. We have some
+notation first: given some formal distribution 
+\begin{equation}
+a(z)=\sum_{n}a_{n}z^{n}
+\end{equation}
+we may construct a formal distribution in $z$ and $\omega$:
+\begin{equation}
+i_{z,\omega}a(z-\omega)\eqdef\sum_{n} a_{n}i_{z,\omega}(z-\omega)^{n}.
+\end{equation}
+Simplifying notation further, we consider the formal distribution
+$a(z-\omega)$ in $z$ and $\omega$ in the domain $|z|>|\omega|$.
+
+\begin{prop}[Taylor's Formula]
+Let $a(z)$ be a formal distriubtion. Then we have the following equality
+of formal distributions in $z$ and $\omega$ in the domain $|z|>|\omega|$
+\begin{equation}
+a(z+\omega)=\sum^{\infty}_{j=0}\partial_{z}^{j}a(z)\omega^{j}.
+\end{equation}
+\end{prop}
+\begin{proof}
+We have $a(z)=\sum a_{n}z^{n}$, then
+\begin{equation}
+\partial_{z}^{j}a(z)=\sum_{n}{n\choose j}a_{n}z^{n-j}.
+\end{equation}
+We plug $(z+\omega)$ into $a(-)$, first recalling the Binomial theorem states
+\begin{equation}
+(z+\omega)^{n}=\sum^{\infty}_{j=0}{n\choose j}z^{n-j}\omega^{j}
+\end{equation}
+thus we obtain the desired result.
+\end{proof}
+
+\begin{rmk}
+We see that $a(\omega)=\sum\partial^{j}a(z)(\omega-z)^{j}$, which proves
+another result (for free)!
+\end{rmk}
+
+\begin{thm}
+Let $a(z)$ be a formal distribution and $N$ be a non-negative
+integer. Then the following equality of formal distributions in $z$ and
+$\omega$ 
+\begin{equation}\label{Eq:thm:formalDistributionEquality}
+\partial_{\omega}^{N}\delta(z-\omega)a(z)=\partial_{\omega}^{N}\delta(z-\omega)\sum^{N}_{j=0}\partial^{j}a(\omega)(z-\omega)^{j}.
+\end{equation}
+\end{thm}
+\begin{proof}
+To prove this, we need to see how each side of
+Eq \eqref{Eq:thm:formalDistributionEquality} acts on an arbitrary
+Laurent polynomial $f(z)$.
+We see
+\begin{equation}
+\Res[z]{\partial_{z}^{N}\delta(z-\omega)a(z)f(z)}=\sum\partial^{j}a(\omega)\Res[z]{\partial_{z}^{N}\delta(z-\omega)\cdot(z-\omega)^{j}f(z)};
+\end{equation}
+integrate by parts $N$ times gives us
+\begin{equation}
+\Res[z]{\delta(z-\omega)\partial^{N}\bigl(a(z)f(z)\bigr)}
+=\sum\partial^{j}a(\omega)\Res[z]{\delta(z-\omega)\partial_{z}^{N}\bigl((z-\omega)^{j}f(z)\bigr)}
+\end{equation}
+which, using the Leibniz rule, is
+\begin{equation*}
+\partial^{N}\bigl(a(z)f(z)\bigr)=\sum\partial^{j}a(\omega){N\choose j}\partial^{N-j}f(\omega).\qedhere
+\end{equation*}
+\end{proof}
+
+\subsection{Current Algebras}
+\M
+Consider the oscillator algebra $\mathfrak{s}$. This is a Lie algebra
+with basis $\alpha_n$ ($n\in\ZZ$), $K$ with commutation relations
+\begin{equation}
+[\alpha_m,\alpha_n]=m\delta_{m,-n}K,\quad\mbox{and}\quad
+[K,\alpha_m]=0.
+\end{equation}
+Let $U=U(\mathfrak{s})$ be its universal enveloping algebra.
+
+\M
+Consider the formal distribution in $U$
+\begin{equation}
+\alpha(z)=\sum_{n\in\ZZ}\alpha_nz^{-n-1}.
+\end{equation}
+We find
+\begin{equation}
+[\alpha(z),\alpha(\omega)]=\partial_{\omega}\delta(z-\omega)K.
+\end{equation}
+This means $\alpha$ is local with respect to itself, with the operator
+product expansion
+\begin{equation}
+\alpha(z)\alpha(\omega)\sim\frac{K}{(z-\omega)^{2}}.
+\end{equation}
+The even formal distribution is called a \define{Free Boson}.
+
+\M
+Let $\mathscr{G}$ be a Lie superalgebra equipped with an invariant
+supersymmetric bilinear form $(-|-)$. ``Invariant'' means
+\begin{equation}
+(\superb{a}{b}|c)=(a|\superb{b}{c})
+\end{equation}
+for all $a,b,c\in\mathscr{G}$, and ``supersymmetric'' means
+\begin{equation}
+(a|b)=(-1)^{\alpha\beta}(b|a).
+\end{equation}
+The \define{Affinization} of $\mathscr{G}$ is the Lie superalgebra
+\begin{equation}
+\widehat{\mathscr{G}}=\CC[t,t^{-1}]\otimes_{\CC}\mathscr{G}+\CC[K]
+\end{equation}
+with a $\ZZ/2\ZZ$-grading extending that of $\mathscr{G}$ by
+\begin{equation}
+p(t)=p(K)=0
+\end{equation}
+and commutation relations
+\begin{equation}
+\begin{split}
+\superb{a_m}{b_n} &= \superb{a}{b}_{m+n}+m(a|b)\delta_{m,-n}K\\
+\superb{K}{\widehat{\mathscr{G}}}&=0.
+\end{split}
+\end{equation}
+We abbreviate $at^{m}=a\otimes t^{m}$ as $a_{m}$. Also note that
+$\mathscr{G}\otimes\CC[t,t^{-1}]$ is the loop algebra, and
+$\widehat{\mathscr{G}}$ its central extension.
+
+\M
+We introduce formal distributions with values in
+$U(\widehat{\mathscr{G}})$ which are \define{Currents}
+\begin{equation}
+a(z)=\sum_{n\in\ZZ}a_{n}z^{-n-1}
+\end{equation}
+for $a_{*}\in\mathscr{G}$. Then we find
+\begin{equation}
+\superb{a(z)}{b(\omega)} = 
+\delta(z-\omega)\superb{a}{b}(\omega) + \partial_{\omega}\delta(z-\omega)\cdot(a|b)\cdot{K}
+\end{equation}
+hence all the currents are mutually local with respect to the operator
+product expansion:
+\begin{equation}
+a(z)b(\omega)\sim\frac{\superb{a}{b}(\omega)}{z-\omega}+\frac{(a|b)K}{(z-\omega)^{2}}
+\end{equation}
+
+\M
+We generalize this process (or ``super-size'' it), obtaining
+a \define{Superaffinization}, which is a central extension of the super
+loop super-algebra:
+\begin{equation}
+\widehat{\mathscr{G}}_{\text{super}}=\CC[t,t^{-1},\theta]\otimes_{\CC}\mathscr{G}+\CC[K]
+\end{equation}
+where $\theta^2=0$ and $p(\theta)=1$, and the remaining operator product
+expansions are as follows: For $a\in\mathscr{G}$ we define
+the \define{Super-Current}
+\begin{equation}
+\bar{a}(z)=\sum_{n\in\ZZ}a_{n+1/2}z^{-n-1}
+\end{equation}
+where $a_{n+1/2}=t^{n}\theta\otimes a$. The super currents $\bar{a}(z)$
+are pair-wise local and also local with respect to the currents, and the
+remaining operator product expansions are
+\begin{equation}
+a(z)\bar{b}(\omega)\sim\frac{\overline{\superb{a}{b}}(\omega)}{z-\omega},
+\quad\mbox{and}\quad
+\bar{a}(z)\bar{b}(\omega)\sim\frac{(a|b)K}{z-\omega}.
+\end{equation}
+They form a subalgebra.
+
+\M
+Lets consider a different construction. Let $A$ be a superspace with a
+skew-supersymmetric bilinear form, i.e., 
+\begin{equation}
+(\varphi|\psi)=(-1)^{p(\varphi)}(\psi|\varphi)
+\end{equation}
+which implies $(\mbox{odd}|\mbox{even})=0$. The \define{Clifford
+Affinization} of $\bigl(A,(-|-)\bigr)$ is the Lie superalgebra
+\begin{equation}
+C_{A}=\CC[t,t^{-1}]\otimes_{\CC}A + \CC[K]
+\end{equation}
+with the commutation relations (letting $m,n\in\ZZ+1/2$ and
+$\varphi,\psi\in A$)
+\begin{equation}
+\superb{\varphi_{m}}{\psi_{n}}=(\varphi|\psi)\delta_{m,-n}K
+\end{equation}
+and
+\begin{equation}
+\superb{C_{A}}{K}=0
+\end{equation}
+where $\varphi_{m}=t^{m-1/2}\otimes\varphi$. The formal distribution 
+\begin{equation}
+\varphi(z)=\sum_{n\in\ZZ}\varphi_{n+1/2}z^{-n-1}
+\end{equation}
+are mutually local with respect to their operator product expansion
+\begin{equation}
+\varphi(z)\psi(\omega)\sim\frac{(\varphi|\psi)K}{(z-\omega)}.
+\end{equation}
+
+\N{Example}
+Let $A$ be the odd 1-dimensional superspace $\CC\varphi$ with bilinear
+form $(\varphi|\varphi)=1$. Let $K=1$. THen $C_{A}$ turns into the
+algebra
+\begin{equation}
+\varphi_{m}\varphi_{n}+\varphi_{n}\varphi_{m}=\delta_{m,-n}
+\end{equation}
+for $m,n\in\frac{1}{2}+\ZZ$. The (odd) formal distribution
+\begin{equation}
+\varphi(z)=\sum_{m\in\ZZ}\varphi_{m+1/2}z^{-m-1}
+\end{equation}
+is called a \define{Free Neutral Fermion}. Its operator product
+expansion is
+\begin{equation}
+\varphi(z)\varphi(\omega)\sim\frac{1}{z-\omega}.
+\end{equation}
+
+\N{Example}
+Let $A$ be the odd 2-dimensional superspace
+$\CC\varphi^{+}\oplus\CC\varphi^{-}$ with the supersymmetric bilinear
+form
+\begin{equation}
+(\varphi^{+}|\varphi^{-})=0,\quad\mbox{and}\quad
+(\varphi^{\pm}|\varphi^{\pm})=1.
+\end{equation}
+Again let $K=1$. Then we obtain the algebra
+\begin{equation}
+\varphi^{\pm}_{m}\varphi^{\mp}_{n}+\varphi^{\mp}_{n}\varphi^{\pm}_{m}=\delta_{m,-n}
+\end{equation}
+and
+\begin{equation}
+\varphi^{\pm}_{m}\varphi^{\pm}_{n}+\varphi^{\pm}_{n}\varphi^{\pm}_{m}=0.
+\end{equation}
+The odd formal distributions
+\begin{equation}
+\varphi^{\pm}(z)=\sum_{n\in\ZZ}\varphi^{\pm}_{n+1/2}z^{-n-1}
+\end{equation}
+are called \define{Charged Free Fermions} and their operator product
+expansion is
+\begin{equation}
+\varphi^{\pm}(z)\varphi^{\mp}(\omega)\sim\frac{1}{z-\omega}
+\end{equation}
+and
+\begin{equation}
+\varphi^{\pm}(z)\varphi^{\pm}(\omega)\sim0.
+\end{equation}

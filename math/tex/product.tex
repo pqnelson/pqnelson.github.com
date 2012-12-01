@@ -1,0 +1,56 @@
+\N{Proposition}
+Let $\mathcal{F}$, $\mathcal{G}$ be $\sigma$-algebras over
+$\sampleSpace$. Then $\mathcal{F}\cap\mathcal{G}$ is also a
+$\sigma$-algebra over $\sampleSpace$.
+
+More generally, if $\mathcal{F}_{i}$ is a family of $\sigma$-algebras
+over $\sampleSpace$, then
+\begin{equation}
+\bigcap_{i}\mathcal{F}_{i}=\widetilde{\mathcal{F}}
+\end{equation}
+is a $\sigma$-algebra over $\sampleSpace$.
+
+\N{Problem:}\label{chunk:product:problem}
+We claim that, if $\mathcal{F}$ and $\mathcal{G}$ are $\sigma$-algebras
+over $\sampleSpace$, then $\mathcal{F}\cup\mathcal{G}$ is \emph{not} a
+$\sigma$-algebra over $\sampleSpace$. No! 
+
+But we can \emph{uniquely extend} $\mathcal{F}\cup\mathcal{G}$ to a
+``smallest'' $\sigma$-algebra containing both $\mathcal{F}$ and
+$\mathcal{G}$ as subalgebras. What to do? We simply consider the
+collection
+\begin{equation}
+\{\mathcal{H}_{i} : \mathcal{F}\subset\mathcal{H}_{i},\quad\mbox{and}\quad
+\mathcal{G}\subset\mathcal{H}_{i}\}
+\end{equation}
+then we construct
+\begin{equation}
+\bigcap_{i}\mathcal{H}_{i}=\mathcal{H}.
+\end{equation}
+This is the smallest such $\sigma$-algebra containing both $\mathcal{F}$
+and $\mathcal{G}$.
+
+\M
+Recall we describe an experiment using a probability space. But what if
+we want to have a ``composite'' experiment? Say, flip a coin \emph{and}
+draw a card from a deck. How can we describe this experiment? Let us try
+to consider it!
+
+We want to combine $(\sampleSpace_1,\mathcal{F}_1,\Pr_1)$ and
+$(\sampleSpace_2,\mathcal{F}_2,\Pr_2)$. What to do?
+
+First lets construct the sample space. We expect, correctly, that
+\begin{equation}
+\sampleSpace=\sampleSpace_1\times\sampleSpace_2
+\end{equation}
+is our sample space. 
+
+Next the $\sigma$-algebra. This is more subtle, and requires some
+justification (given in our discussion of ``completeness''). The set
+$\mathcal{F}_1\times\mathcal{F}_2$ \emph{is not} a $\sigma$-algebra. But
+we can construct the smallest $\sigma$-algebra containing it! We use
+this ``smallest'' $\sigma$-algebra. We use the same process outlined in \S\ref{chunk:product:problem}.
+
+The probability measure is simply $\Pr_{12}(A_1\times
+A_2)=\Pr_1(A_1)\Pr_2(A_2)$, where $A_1\in\mathcal{F}_1$ and
+$A_2\in\mathcal{F}_2$. 
