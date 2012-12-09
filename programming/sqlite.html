@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -274,6 +275,9 @@ So lets add this trigger, then add a row, and see what the html
 output looks like:
 </p>
 <pre>
+alex@tomato:~/sqlite/bld$ # add the trigger
+alex@tomato:~/sqlite/bld$ sqlite3 test.db < mydate-trigger
+alex@tomato:~/sqlite/bld$ # add a new row to our database
 alex@tomato:~/sqlite/bld$ sqlite3 test.db "insert into t1 (data,num) 
 values ('new dummy string', 12);"
 alex@tomato:~/sqlite/bld$ sqlite3 -html test.db "select * from t1;"
