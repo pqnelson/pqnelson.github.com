@@ -199,82 +199,6 @@ given both testify $X$ occurred, what is the probability that $X$ really
 did occur?
 
 \N*{Solution:}
-Let $\Pr(X)=x$. Then we note the reliability condition for Corax implies
-\begin{equation}
-\Pr(C|X)=\gamma,\quad\mbox{and}\quad\Pr(C|\comp{X})=1-\gamma.
-\end{equation}
-Then
-\begin{subequations}
-\begin{align}
-\Pr(C) &=\Pr(C|X)\Pr(X)+\Pr(C|\comp{X})\Pr(\comp{X})\\
-&= \gamma\cdot x+(1-\gamma)(1-x)\\
-&= 1 -\gamma-x+2\gamma x.
-\end{align}
-\end{subequations}
-A similar expression holds for $\Pr(T)$.
-
-Observe, we want to find
-\begin{equation}
-P(X|T\cap C)=???
-\end{equation}
-We need to find $\Pr(X\cap T\cap C)$ and $\Pr(T\cap C)$. Since $T$ and
-$C$ are independent (``no collusion''), we have
-\begin{equation}
-\Pr(T\cap C)=\Pr(T)\Pr(C)
-\end{equation}
-and similarly
-\begin{equation}
-\begin{split}
-\Pr(X\cap T\cap C)&=\Pr\bigl((X\cap T)\cap(X\cap C)\bigr)\\
-&=\Pr(X\cap T)\Pr(X\cap C).
-\end{split}
-\end{equation}
-which implies
-\begin{equation}
-\Pr(X|T\cap C)=\frac{\Pr(X\cap T)\Pr(X\cap
-C)}{\Pr(T)\Pr(C)}=\Pr(X|T)\Pr(X|C).
-\end{equation}
-Wonderful.
-
-We have to find $\Pr(X|C)$. We see
-\begin{subequations}
-\begin{equation}
-\Pr(X|C)=\frac{\Pr(X\cap C)}{\Pr(C)}
-\end{equation}
-by definition, and
-\begin{equation}
-\Pr(X\cap C)=\Pr(C|X)\Pr(X)=\gamma x.
-\end{equation}
-Thus we have
-\begin{equation}
-\Pr(X|C)=\frac{\gamma x}{1 -\gamma-x+2\gamma x}
-\end{equation}
-\end{subequations}
-which is one part of the puzzle. (A similar expression holds for Tisias.)
-
-We conclude by writing the entire probability out
-\begin{equation}
-\begin{split}
-\Pr(X|C\cap T)&=\Pr(X|C)\Pr(X|T)\\
-&=\frac{\gamma x}{1-\gamma-x+2\gamma x}\cdot\frac{\tau x}{1-\tau-x+2\tau x}
-\end{split}
-\end{equation}
-which is completely different than the expected solution!
-
-So, if $\gamma=\tau=9/10$ and $x=1/1000$, then
-\begin{equation}
-\Pr(X|C\cap T)=\left(\frac{9}{1017}\right)^{2}
-\approx 0.00007831466.
-\end{equation}
-But, on the other hand, the probability that Corax would say $X$ has
-happened would be
-\begin{equation}
-\Pr(C)=\frac{1017}{10^{4}} = 0.1017,
-\end{equation}
-which is astoundingly high.
-The moral of \emph{this} story is: don't go to court.
-
-\N*{Alternate Solution:}
 It would actually be easier to write up the $\sigma$-algebra. We will
 write the elements of the sample space as triples $(a,b,c)$ where $a$ is
 1 if $X$ occurs, 0 otherwise; $b$ is 1 if Tisias asserts $X$ occurred, 0
@@ -312,6 +236,8 @@ and thus
 When we set $\gamma=\tau=9/10$ and $x=1/1000$ we find $\Pr(X|C\cap
 T)=81/1080$. Although slim, it's 75 times greater than if Tisias and
 Corax said nothing.
+
+The moral of \emph{this} story is: don't go to court.
 
 %% \begin{rmk}[Faulty Assumption]
 %% We committed a sin, and hope the reader won't condemn us too badly: if

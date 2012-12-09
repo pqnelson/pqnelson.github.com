@@ -1,0 +1,331 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/print.css" media="print" />
+    <title>Learning SQL through SQLite</title>
+</head>
+<body>
+<div class="container">
+<article>
+<header>
+<h1>Learning SQL through SQLite</h1>
+<p>
+Posted December 8, 2012.
+</p>
+</header>
+<section>
+<h2>Installing SQLite</h2>
+<p>
+I'll quickly review how to get the source code for SQLite, then
+compile it.
+</p>
+<h3>Getting the Sourcecode</h3>
+<p>
+So, I'm running Ubuntu, and I would like to study SQLite's source
+code. The first thing to do is open up a terminal, and install fossil:
+</p>
+<pre class="terminal">
+alex@tomato:~$ sudo apt-get install fossil
+[...]
+Processing triggers for man-db ...
+Setting up fossil (1:1.21-1) ...
+alex@tomato:~$
+</pre>
+<p>
+Now I need to actually get the source code! So I continue in my terminal:
+</p>
+<pre class="terminal">
+alex@tomato:~$ mkdir sqlite
+alex@tomato:~$ cd sqlite
+alex@tomato:~/sqlite$ fossil clone http://www.sqlite.org/src sqlite.fossil
+                Bytes      Cards  Artifacts     Deltas
+Sent:              53          1          0          0
+Received:     5000397      26688        298      13076
+[...]
+Sent:              57          1          0          0
+Received:     2343713        542        145        125
+Total network traffic: 1921 bytes sent, 37466683 bytes received
+Rebuilding repository meta-data...
+  100.0% complete...
+project-id: 2ab58778c2967968b94284e989e43dc11791f548
+server-id:  9f2fde890a7cbcabb0e4386b51937aaee736c072
+admin-user: alex (password is "******")
+alex@tomato:~/sqlite$
+</pre>
+<p>
+You should get something similar (but I starred out my admin
+password for security).
+</p>
+<p>
+This is <b>not</b> the source code...kinda. You can access it by
+running one last command:
+</p>
+<pre class="terminal">
+alex@tomato:~/sqlite$ fossil open sqlite.fossil
+...
+tool/warnings-clang.sh
+tool/warnings.sh
+tool/win/sqlite.vsix
+project-name: SQLite
+repository:   /home/alex/pqnelson/sqlite/sqlite.fossil
+local-root:   /home/alex/pqnelson/sqlite/
+project-code: 2ab58778c2967968b94284e989e43dc11791f548
+checkout:     8542e6180d4321d45b34f33e481658908ce1430d 2012-12-08 21:51:24 UTC
+parent:       2d5f37c99a9e5377409697f5392a1ca55970964e 2012-12-07 19:28:26 UTC
+merged-from:  cdbfa664839a409589ec7cebfc9111235d2f3b38 2012-12-08 21:36:26 UTC
+tags:         trunk
+comment:      Refactor collating-sequence handling as a fix for ticket
+              [71e333e7d2e642]. The Expr.pColl field is removed from the Expr
+              object. The COLLATE operator now becomes a separate instance of
+              Expr in the expression tree. The code generator looks up the
+              correct collating function as needed, rather than referring to
+              Expr.pColl. (user: drh)
+alex@tomato:~/sqlite$
+</pre>
+<p>
+Congratulations, you have the source code!
+</p>
+<h3>Building SQLite</h3>
+<p>
+Following the <code>README</code> instructions, this is quite simple:
+</p>
+<pre class="terminal">
+alex@tomato:~/sqlite$ mkdir bld
+alex@tomato:~/sqlite$ cd bld
+alex@tomato:~/sqlite/bld$ ../configure
+checking build system type... i686-pc-linux-gnu
+[...]
+config.status: executing libtool commands
+alex@tomato:~/sqlite/bld$ make
+[...]
+</pre>
+<p>
+Get a cup of coffee while SQLite compiles.
+</p>
+</section>
+<section>
+<h1>First Database</h1>
+<p>
+Continuing with our theme, lets create a database!
+</p>
+<pre class="terminal">
+alex@tomato:~/sqlite/bld$ sqlite3 test.db
+SQLite version 3.7.9 2011-11-01 00:52:41
+Enter ".help" for instructions
+Enter SQL statements terminated with a ";"
+sqlite&gt; .quit
+alex@tomato:~/sqlite/bld$ 
+</pre>
+<p>
+Note you can quit by
+typing <code>.q</code>, <code>.quit</code>, <code>.exit</code>. 
+</p>
+<h2>Relational Databases: Concept</h2>
+<p>
+A relational database consists of <b>"tables"</b>. A table
+consists of a collection of values organized into <b>"rows"</b>
+and <b>"tables"</b>.
+</p>
+<p>
+A <b>table "row"</b> is a single (implicitly) defined structured
+data item in a table.
+</p>
+<p>
+So the intuition we should have: a table is an "array"
+of <code>struct</code>s, which have the same fields yet different
+values.
+</p>
+<p>
+This is a critical property relational databases have: a single
+table has rows with the same columns (fields).
+</p>
+<p>
+A column must be a "simple" type (so, it cannot be a composite
+data structure).
+</p>
+<h2>Toy Database</h2>
+<p>
+Lets create a toy database. First we need to create a table,
+which we can do on the command line as:
+</p>
+<pre class="terminal">
+alex@tomato:~/sqlite/bld$ ./sqlite3 test.db "create table t1 
+(t1key INTEGER PRIMARY KEY,data TEXT,num double, timeEnter DATE);"
+</pre>
+<p>
+Observe the syntax <code><a href="http://www.sqlite.org/lang_createtable.html">create table</a> &lang;table-name&rang; (&lang;column-name&rang;
+&lang;type-name&rang;, ...);</code> which creates a table. Note
+we have the column identifier first, its type second.
+</p>
+<p>
+Observe the primary key <code>t1key</code>
+auto-increments. <b>DO NOT USE <code>INT</code> FOR THE PRIMARY
+KEY!!!</b> Using <code>INT</code> instead of <code>INTEGER</code>
+will lead to heartbreak, anguish, poverty, and woe...plus the
+primary key won't automatically increment. 
+</p>
+<p>
+We need to make <code>timeEnter</code> increment, either manually
+or with an update trigger. If we don't care about it, we will
+just skip this point until later on.
+</p>
+<p>
+Now we need to add some rows to our table:
+</p>
+<pre class="terminal">
+alex@tomato:~/sqlite/bld$ sqlite3 test.db "insert into t1 (data,num) values 
+('This is sample data',3);"
+alex@tomato:~/sqlite/bld$ sqlite3 test.db "insert into t1 (data,num) values 
+('Foobar sample data',6);"
+alex@tomato:~/sqlite/bld$ sqlite3 test.db "insert into t1 (data,num) values 
+('Even more sample data spam and eggs',9);"
+</pre>
+<p>
+The grammar for creating a row is, for us
+here, <code><a href="http://www.sqlite.org/lang_insert.html">insert into</a> &lang;table&rang;
+    (&lang;identifers&rang;) values (&lang;values&rang;);</code>
+Great, so what does the table look like?
+</p>
+<p>
+I can show you, running on the command line the following command
+to output html:
+</p>
+<pre class="terminal">
+alex@tomato:~/sqlite/bld$ sqlite3 -html test.db "select * from t1;"
+</pre>
+<p>
+So, we have the following table for <code>t1</code>:
+</p>
+<table cellpadding="2" rules="all" style="border: 1px solid gray; text-align: center;">
+<TR>
+  <TD>1</TD>
+  <TD>This is sample data</TD>
+  <TD>3.0</TD>
+  <TD></TD>
+</TR>
+<TR>
+  <TD>2</TD>
+  <TD>Foobar sample data</TD>
+  <TD>6.0</TD>
+  <TD></TD>
+</TR>
+<TR>
+  <TD>3</TD>
+  <TD>Even more sample data spam and eggs</TD>
+  <TD>9.0</TD>
+  <TD></TD>
+</TR>
+</table>
+<p>
+(If you ever forget what tables you have in your database, you
+can always run on the command line <code>sqlite3 test.db ".table"</code> 
+to print out the tables in your database!)
+</p>
+<h3>Triggers</h3>
+<p>
+Our first task should fix the time stamp issue. So we simply type
+on the command line
+</p>
+<pre>
+alex@tomato:~/sqlite/bld$ nano mydate-trigger
+</pre>
+Then enter the following for the trigger:
+<pre class="nano">
+<span class="bg">  GNU nano 2.2.6            File: mydate-trigger                      Modified  </span>
+
+-- **********
+-- Create a trigger for time entered
+-- Simply run as $ sqlite3 test.db < mydate-trigger
+-- **********
+CREATE TRIGGER insert_t1_timeEnter AFTER INSERT ON t1
+BEGIN
+  UPDATE t1 SET timeEnter = DATETIME('NOW') WHERE rowid = new.rowid;
+END;
+-- **********
+
+
+
+
+
+
+
+
+
+<span class="bg">^G</span> Get Help  <span class="bg">^O</span> WriteOut  <span class="bg">^R</span> Read File <span class="bg">^Y</span> Prev Page <span class="bg">^K</span> Cut Text  <span class="bg">^C</span> Cur Pos
+<span class="bg">^X</span> Exit      <span class="bg">^J</span> Justify   <span class="bg">^W</span> Where Is  <span class="bg">^V</span> Next Page <span class="bg">^U</span> UnCut Text<span class="bg">^T</span> To Spell
+</pre>
+<p>
+Note that the dashes <code>--</code> indicate the start of a comment
+which will be ignored.
+</p>
+<p>
+The <code><a href="http://www.sqlite.org/lang_createtrigger.html">CREATE TRIGGER</a>
+&lt;name&gt; ...</code> snippet can be started on three types of events:
+delete, insert, or update. We need to specify <code>AFTER</code>
+indicating this trigger is fired <em>after</em> a row is created
+(by default, it is triggered <em>before</em>, which would cause
+problems).
+</p>
+<p>
+So lets add this trigger, then add a row, and see what the html
+output looks like:
+</p>
+<pre>
+alex@tomato:~/sqlite/bld$ sqlite3 test.db "insert into t1 (data,num) 
+values ('new dummy string', 12);"
+alex@tomato:~/sqlite/bld$ sqlite3 -html test.db "select * from t1;"
+</pre>
+<p>
+Producing:
+</p>
+<table class="sql">
+<TR>
+  <TD>1</TD>
+  <TD>This is sample data</TD>
+  <TD>3.0</TD>
+  <TD></TD>
+</TR>
+<TR>
+  <TD>2</TD>
+  <TD>Foobar sample data</TD>
+  <TD>6.0</TD>
+  <TD></TD>
+</TR>
+<TR>
+  <TD>3</TD>
+  <TD>Even more sample data spam and eggs</TD>
+  <TD>9.0</TD>
+  <TD></TD>
+</TR>
+<TR>
+  <TD>4</TD>
+  <TD>new dummy string</TD>
+  <TD>12.0</TD>
+  <TD>2012-12-09 00:36:33</TD>
+</TR>
+</table>
+
+</section>
+<section id="further-reading">
+<h1>Further Reading</h1>
+<p>
+ZetCode's <a href="http://zetcode.com/databases/sqlitetutorial/">SQLite tutorial</a>.
+</p>
+<p>
+Squidoo's <a href="http://www.squidoo.com/sqlitetutorial">SQLite Tutorial</a>.
+</p>
+</section>
+<footer>
+  <blockquote>
+    "What we are destroying is nothing but houses of cards and we are clearing up the ground of language on which they stood."<br/>
+    &mdash; Ludwig Wittgenstein, <em>Philosophical Investigations</em> &sect;118
+  </blockquote>
+<a href="../index.html">Home</a>
+</footer>
+</article>
+</div>
+</body>
+</html>

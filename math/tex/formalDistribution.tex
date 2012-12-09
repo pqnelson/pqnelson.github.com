@@ -4,7 +4,7 @@ Let $U$ be a vector space over $\CC$. A series of the form
 \sum_{m,n\in\ZZ}a_{mn}z^{m}\omega^{n}
 \end{equation}
 where $a_{mn}\in U$ we call a \define{Formal Distribution} in the
-indeterminates $z,\omega$ taking values in $U$. THey form a vector space
+indeterminates $z,\omega$ taking values in $U$. They form a vector space
 denoted $U[[z,z^{-1},\omega,\omega^{-1},\dots]]$. 
 
 \M
@@ -29,7 +29,7 @@ Let
 \begin{equation}
 \CC(z)=\CC[z,z^{-1}]
 \end{equation}
-bt the algebra of Laurent polynomials in $z$. We have a nondegenerate
+be the algebra of Laurent polynomials in $z$. We have a non-degenerate
 pairing
 \begin{equation}
 \<-,-\>\colon U[[z,z^{-1}]]\times\CC[z,z^{-1}]\to U
@@ -113,7 +113,7 @@ a(z,\omega)=b(z,\omega) + \sum^{\infty}_{j=0}c^{j}(\omega)\partial^{j}_{\omega}\
 where $b(z,\omega)\in\ker(\pi)$.
 \end{cor}
 \begin{cor}\label{cor:kerMultOp}
-Let $\mu_{N}$ be the multiplication operator by $(z-\omega)^{N}$. THen
+Let $\mu_{N}$ be the multiplication operator by $(z-\omega)^{N}$. Then
 its nullspace in $U[[z,z^{-1},\omega,\omega^{-1}]]$ is
 \begin{equation}
 \ker(\mu_{N})=\sum^{N-1}_{j=0}\partial^{j}_{\omega}\delta(z-\omega)U[[\omega,\omega^{-1}]].
@@ -130,7 +130,7 @@ By exercise \ref{xca:usefulForCor3}, we see
 (z-\omega)^{j+1}\partial_{\omega}^{j}\delta(z-\omega)=0,
 \end{equation}
 proving $\partial_{\omega}^{j}\delta(z-\omega)$ lives in the
-nullspace. But observe multipying through by $c^{j}(\omega)$ changes
+nullspace. But observe multiplying through by $c^{j}(\omega)$ changes
 \emph{nothing}. So $\partial_{\omega}^{j}\delta(z-\omega)$ acts like a
 basis for $\ker(\mu_N)$.
 \end{proof}
@@ -154,13 +154,13 @@ a_{(m,j)}=\sum^{N-1}_{j=0}{m\choose j}c^{j}_{(m+n-j)}.
 
 \subsection{Locality}
 \M
-We are interested when $U$ is an associative superalgebra (i.e., a
+We are interested when $U$ is an associative super-algebra (i.e., a
 $\ZZ_2$-graded associative algebra). This happens when $V$ is a
-superlinear space, and we have
+super-linear space, and we have
 \begin{equation}
 U=\End(V)
 \end{equation}
-We denote the superbracket as
+We denote the super-bracket as
 \begin{equation}
 \superb{a}{b}=ab-(-1)^{\alpha\beta}ba.
 \end{equation}
@@ -168,7 +168,7 @@ where $\alpha=\deg(a)$, $\beta=\deg(b)$.
 
 \N{Definition}
 Two formal distributions $a(z)$, $b(z)$ with values in an associative
-superalgebra $U$ are called \define{Mutually Local} if in
+super-algebra $U$ are called \define{Mutually Local} if in
 $U[[z,z^{-1},\omega,\omega^{-1}]]$ one has
 \begin{equation}
 (z-\omega)^N\superb{a(z)}{b(z)}=(z-\omega)^N\superb{b(z)}{a(z)}=0
@@ -428,7 +428,7 @@ Simplifying notation further, we consider the formal distribution
 $a(z-\omega)$ in $z$ and $\omega$ in the domain $|z|>|\omega|$.
 
 \begin{prop}[Taylor's Formula]
-Let $a(z)$ be a formal distriubtion. Then we have the following equality
+Let $a(z)$ be a formal distribution. Then we have the following equality
 of formal distributions in $z$ and $\omega$ in the domain $|z|>|\omega|$
 \begin{equation}
 a(z+\omega)=\sum^{\infty}_{j=0}\partial_{z}^{j}a(z)\omega^{j}.
@@ -505,8 +505,8 @@ product expansion
 The even formal distribution is called a \define{Free Boson}.
 
 \M
-Let $\mathscr{G}$ be a Lie superalgebra equipped with an invariant
-supersymmetric bilinear form $(-|-)$. ``Invariant'' means
+Let $\mathscr{G}$ be a Lie super-algebra equipped with an invariant
+super-symmetric bilinear form $(-|-)$. ``Invariant'' means
 \begin{equation}
 (\superb{a}{b}|c)=(a|\superb{b}{c})
 \end{equation}
@@ -514,7 +514,7 @@ for all $a,b,c\in\mathscr{G}$, and ``supersymmetric'' means
 \begin{equation}
 (a|b)=(-1)^{\alpha\beta}(b|a).
 \end{equation}
-The \define{Affinization} of $\mathscr{G}$ is the Lie superalgebra
+The \define{Affinization} of $\mathscr{G}$ is the Lie super-algebra
 \begin{equation}
 \widehat{\mathscr{G}}=\CC[t,t^{-1}]\otimes_{\CC}\mathscr{G}+\CC[K]
 \end{equation}
@@ -574,13 +574,13 @@ a(z)\bar{b}(\omega)\sim\frac{\overline{\superb{a}{b}}(\omega)}{z-\omega},
 They form a subalgebra.
 
 \M
-Lets consider a different construction. Let $A$ be a superspace with a
+Lets consider a different construction. Let $A$ be a super-space with a
 skew-supersymmetric bilinear form, i.e., 
 \begin{equation}
 (\varphi|\psi)=(-1)^{p(\varphi)}(\psi|\varphi)
 \end{equation}
 which implies $(\mbox{odd}|\mbox{even})=0$. The \define{Clifford
-Affinization} of $\bigl(A,(-|-)\bigr)$ is the Lie superalgebra
+Affinization} of $\bigl(A,(-|-)\bigr)$ is the Lie super-algebra
 \begin{equation}
 C_{A}=\CC[t,t^{-1}]\otimes_{\CC}A + \CC[K]
 \end{equation}
@@ -603,7 +603,7 @@ are mutually local with respect to their operator product expansion
 \end{equation}
 
 \N{Example}
-Let $A$ be the odd 1-dimensional superspace $\CC\varphi$ with bilinear
+Let $A$ be the odd 1-dimensional super-space $\CC\varphi$ with bilinear
 form $(\varphi|\varphi)=1$. Let $K=1$. THen $C_{A}$ turns into the
 algebra
 \begin{equation}
@@ -620,7 +620,7 @@ expansion is
 \end{equation}
 
 \N{Example}
-Let $A$ be the odd 2-dimensional superspace
+Let $A$ be the odd 2-dimensional super-space
 $\CC\varphi^{+}\oplus\CC\varphi^{-}$ with the supersymmetric bilinear
 form
 \begin{equation}

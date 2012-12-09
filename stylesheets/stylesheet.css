@@ -96,6 +96,10 @@ pre code, pre tt {
     background-color: transparent;
     border: medium none;
 }
+pre.nano span.bg {
+    background-color: black;
+    color: white;
+}
 /* pre, code, tt { */
 /*     font-size: 12px; */
 /*     /\* font-family: Consolas,"Liberation Mono",Courier,monospace; *\/ */
@@ -133,6 +137,13 @@ footer blockquote {
 /* table stuff */
 table#sql th, td {
     padding: 0px 5px;
+}
+
+table.sql {
+    border-collapse: collapse;
+}
+table.sql tr td, th {
+    border: 1px solid gray;
 }
 
 table.example > tr > th,table.example > tr > td,table.example > * > tr > th,table.example > * > tr > td{border:1px #aaa solid;padding:0.2em}
