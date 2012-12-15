@@ -34,15 +34,14 @@ header {
 body {
     padding: 0px; 
     margin: 0px;
-    font-family: Georgia;
+    font-family: Georgia, Times, "Times New Roman", serif;
     overflow: none;
 }
 
 /* General & 'Reset' Stuff */
 .container {
     background-color: white;
-    width: 90%;
-    max-width: 570px;
+    width: 60%;
     margin-left: auto ;
     margin-right: auto ;
     margin-bottom: 20px ;
@@ -73,17 +72,18 @@ blockquote {
 }
 
 /* code */
+code, tt, pre {
+    font-size: 12px;
+    font-family: Monaco, monospace; 
+}
 code {
-    margin: 0px 2px;
-    padding: 0px 5px;
-    border: 1px solid rgb(234, 234, 234);
-    background-color: rgb(248, 248, 248);
-    border-radius: 3px 3px 3px 3px;
+    border: 1px solid #ddd;
+    background-color: #eef;
+    padding: 0 .2em;
 }
 pre {
-    background-color: rgb(248, 248, 248);
-    border: 1px solid rgb(204, 204, 204);
-    /* font-size: 13px; */
+    background-color: #eef;
+    border: 1px solid #ddd;
     line-height: 19px;
     overflow: auto;
     padding: 6px;
@@ -95,6 +95,13 @@ pre code, pre tt {
     padding: 0px;
     background-color: transparent;
     border: medium none;
+}
+pre.nano, pre.term, pre.terminal {
+    width: 80ex;
+}
+pre.term, pre.terminal {
+    background-color: black;
+    color: white;
 }
 pre.nano span.bg {
     background-color: black;

@@ -230,7 +230,7 @@ to print out the tables in your database!)
 Our first task should fix the time stamp issue. So we simply type
 on the command line
 </p>
-<pre>
+<pre class="terminal">
 alex@tomato:~/sqlite/bld$ nano mydate-trigger
 </pre>
 Then enter the following for the trigger:
@@ -274,7 +274,7 @@ problems).
 So lets add this trigger, then add a row, and see what the html
 output looks like:
 </p>
-<pre>
+<pre class="terminal">
 alex@tomato:~/sqlite/bld$ # add the trigger
 alex@tomato:~/sqlite/bld$ sqlite3 test.db < mydate-trigger
 alex@tomato:~/sqlite/bld$ # add a new row to our database
@@ -313,6 +313,61 @@ Producing:
 </table>
 
 </section>
+<aside>
+<h3>Importance of Schema</h3>
+<p>
+So what happens when we try to add something to our database that
+doesn't fit into a table? For example:
+</p>
+<pre class="terminal">
+alex@tomato:~/sqlite/bld$ sqlite3 test.db "insert into t1 (data,num) values (12,
+ 'foo', 'bar', 'spam', 12);"
+Error: 5 values for 2 columns
+alex@tomato:~/sqlite/bld$ sqlite3 test.db "insert into t1 (data,num) values (12,
+ 'foo');"
+alex@tomato:~/sqlite/bld$ sqlite3 -html test.db "select * from t1;"
+</pre>
+<p>
+The rendered html output is:
+</p>
+<table class="sql">
+<TR>
+  <TD>1</TD>
+  <TD>This is sample data</TD>
+  <TD>3.0</TD>
+  <TD></TD>
+</TR>
+<TR>
+  <TD>2</TD>
+  <TD>Foobar sample data</TD>
+  <TD>6.0</TD>
+  <TD></TD>
+</TR>
+<TR>
+  <TD>3</TD>
+  <TD>Even more sample data spam and eggs</TD>
+  <TD>9.0</TD>
+  <TD></TD>
+</TR>
+<TR>
+  <TD>4</TD>
+  <TD>This is a new dummy string, lets see what happens</TD>
+  <TD>12.0</TD>
+  <TD>2012-12-09 00:36:33</TD>
+</TR>
+<TR>
+  <TD>5</TD>
+  <TD>12</TD>
+  <TD>foo</TD>
+  <TD>2012-12-15 19:34:04</TD>
+</TR>
+</table>
+<p>
+Woah, why did this happen? Simple: it's because <a href="http://stackoverflow.com/a/2761573">there are no data types in SQL</a>, so there's no type checking.
+The moral of the story is: <b>you must typecheck before you enter
+data willy-nilly!</b>
+</p>
+</aside>
 <section id="further-reading">
 <h1>Further Reading</h1>
 <p>
@@ -320,6 +375,9 @@ ZetCode's <a href="http://zetcode.com/databases/sqlitetutorial/">SQLite tutorial
 </p>
 <p>
 Squidoo's <a href="http://www.squidoo.com/sqlitetutorial">SQLite Tutorial</a>.
+</p>
+<p>
+<a href="http://sql.learncodethehardway.org/">Learn SQL the Hard Way</a> (alpha status).
 </p>
 </section>
 <footer>
