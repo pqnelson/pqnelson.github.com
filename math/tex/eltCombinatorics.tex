@@ -103,6 +103,11 @@ $n$ possibilities. The second has $(n-1)$ possibilities. The $k^{th}$
 has $(n-(k-1))$ possible choices. We then multiply these together to get
 the result.
 
+\N{Theorem}
+For a population with $n>1$ elements and a prescribed sample size $r\leq n$,
+there exists $n^{r}$ different samples with replacement, and $(n)_{r}$
+samples without replacement.
+
 \N{Birthday Problem}
 How many people do we need in a room to make a favorable bet (i.e., a
 bet with probability of success greater than $1/2$) that 2 people in the
@@ -130,21 +135,62 @@ p_{23} &=
 \end{equation}
 So only make this bet when there are at least 23 people in the room!
 
+%%%%%%%%%%
+
 \subsection{Binomial Coefficients}
 \M
 How many samples of size $r$ exist in a population of $n$ elements,
 without regard to ordering? That is, how many ways can we choose $r$
 guys from $n$ elements? We count this using binomial coefficients
 \begin{equation}
-{n \choose r} = \frac{n!}{r!(n-r)!}
+\binom{n}{r} = \frac{n!}{r!(n-r)!}
 \end{equation}
 and read it as ``$n$ choose $r$''. Why is this true? Great question: we
 have $(n)_r$ subpopulations, and $r!$ different orderings of each
 subpopulation, so we have
 \begin{equation}
-{n\choose r}=\frac{(n)_{r}}{r!}.
+\binom{n}{r}=\frac{(n)_{r}}{r!}.
 \end{equation}
 But this is precisely what we have written!
+
+\N*{Convention}
+If $k\geq n$, then
+\begin{equation}
+\binom{n}{k}=0.
+\end{equation}
+
+\N{Theorem}
+A population with $n$ elements has $\binom{n}{r}$ different
+subpopulations of size $r\leq n$.
+
+\N{Theorem (Properties of the Binomial Coefficients)}
+Let $0\leq k\leq n$. Then
+\begin{enumerate}
+\item $\displaystyle\binom{n}{0}=\binom{n}{n}=1$
+\item\label{thm:binom:prop:symmetry} $\displaystyle\binom{n}{k}=\binom{n}{n-k}$
+\item Pascal's triangle $\displaystyle\binom{n}{k}+\binom{n}{k+1}=\binom{n+1}{k+1}$
+\end{enumerate}
+
+\begin{cor}
+Let $n,k\in\NN$, then
+\begin{equation}
+\binom{n}{-k}=0.
+\end{equation}
+\end{cor}
+\begin{proof}
+By statement \ref{thm:binom:prop:symmetry} of the previous theorem, we
+have
+\begin{equation}
+\binom{n}{-k}=\binom{n}{n+k}
+\end{equation}
+Since $k>0$, our convention implies that
+\begin{equation}
+\binom{n}{n+k}=0
+\end{equation}
+as desired.
+\end{proof}
+
+
 
 \N{Example}
 A deck of cards has 52 cards, a poker hand has 5 cards.
@@ -153,7 +199,7 @@ How many different poker hands are there?
 \N*{Solution:}
 We see there are
 \begin{equation}
-{52\choose 5}=2\,598\,960
+\binom{52}{5}=2\,598\,960
 \end{equation}
 different poker hands.
 
@@ -185,15 +231,15 @@ gives us the denominator. We see that
     \mbox{Number of ways to}\\
     \mbox{choose $k$ balls from}\\
     \mbox{$r$ balls}
-  \end{pmatrix} = {r\choose k}
+  \end{pmatrix} = \binom{r}{k}
 \end{equation}
 and what of the remaining $(r-k)$ balls? They can be placed in the
 remaining cells in $(n-1)^{r-k}$ ways. Thus we plug this all back into
 our equation to find
 \begin{equation}
 \begin{split}
-p_{k}&=\frac{{r\choose k}(n-1)^{r-k}}{n^{r}}\\
-&={r\choose k}\frac{1}{n^{k}}\left(1-\frac{1}{n}\right)^{r-k}.
+p_{k}&=\frac{\displaystyle\binom{r}{k}(n-1)^{r-k}}{n^{r}}\\
+&=\binom{r}{k}\frac{1}{n^{k}}\left(1-\frac{1}{n}\right)^{r-k}.
 \end{split}
 \end{equation}
 This is an example of the famous \emph{binomial distribution}, which
@@ -211,17 +257,17 @@ committee is formed with 50 senators, then:
 (a) Well, we first consider the \emph{negation} of this statement: what's
 the probability not every state is represented? There are
 \begin{equation}
-{98\choose 50} = d_{k}
+\binom{98}{50} = d_{k}
 \end{equation}
 ways to choose the committee so some state is not represented. But there
 is 
 \begin{equation}
-{100\choose 50}=n_{k}
+\binom{100}{50}=n_{k}
 \end{equation}
 different ways to choose the committee. Thus the probability a given state is
 not represented is
 \begin{equation}
-q = \frac{{98\choose50}}{{100\choose50}} = \frac{49}{198}\approx 0.24747\dots
+q = \frac{\displaystyle\binom{98}{50}}{\displaystyle\binom{100}{50}} = \frac{49}{198}\approx 0.24747\dots
 \end{equation}
 and hence the probability a given state is represented is
 \begin{equation}
@@ -233,6 +279,148 @@ That concludes the first question.
 We pick one senator from each state. We have two possibilities for each
 state, and 50 states, hence we have $2^{50}$ possibilities. Thus we have
 \begin{equation}
-p = \frac{2^{50}}{{100\choose 50}} \approx 1.11\times10^{-14}
+p = \frac{2^{50}}{\displaystyle\binom{100}{50}} \approx 1.11\times10^{-14}
 \end{equation}
 is the probability every state is represented.
+
+
+\subsection{Multinomial Coefficient}
+\M
+Suppose we have a population with $n$ elements. How many different ways
+can we partition the population into subpopulations with $k_1$
+members, \dots, $k_m$ members?
+
+\begin{xca}
+Prove that $k_1+\dots+k_m=n$.
+\end{xca}
+
+We have the following number of such partitions:
+\begin{equation}
+\binom{n}{k_1,\dots,k_m} = (k_1,\dots,k_m)! = \frac{(k_1+\dots+k_m)!}{k_1!(\dots)k_m!}
+\end{equation}
+These quantities are called \define{Multinomial Coefficients}.
+The notation varies according to the text. 
+
+\subsection{Hat Check Problem}
+\N{Problem Statement}
+At a restaurant, $n$ people check their hats.
+The hat checker completely loses track of who owns which hat, and begins
+handing the hats randomly to the owners. What's the probability no one
+receives their hat back?
+
+\M
+We really want to consider the permutations
+\begin{equation}
+\sigma = \begin{pmatrix} 1 & 2 & 3 & \dots & n\\
+a_1 & a_2 & a_3 & \dots & a_N
+\end{pmatrix}
+\end{equation}
+such that there are \emph{no fixed points} (i.e., $a_{k}\neq k$ for
+every $k$).
+
+\N{Solution}
+Let $A_{i}$ be the event the $i^{th}$ element is fixed. Then 
+\begin{equation}
+A_1\cup A_2\cup\dots A_n = \begin{pmatrix}\mbox{event there exists}\\
+\mbox{at least one}\\
+\mbox{fixed point}
+\end{pmatrix}
+\end{equation}
+then
+\begin{equation}
+\Pr(\mbox{no fixed pt}) = 1-\Pr(A_1\cup A_2\cup\dots A_n).
+\end{equation}
+We just have to compute $\Pr(A_1\cup A_2\cup\dots A_n)$. What to do? Use
+inclusion-exclusion!
+
+\M So we consider the event $A_{i}$. The permutation would look like
+\begin{equation}
+\begin{pmatrix}
+1 & 2 & 3 & \dots & i & \dots & n\\
+  &   &   & \dots & i & \dots &  \\
+\end{pmatrix}
+\end{equation}
+where the blank entries are arbitrary (we don't care where they go). How
+many different such permutations are there? Well, it's as though we
+permute the $(n-1)$ elements other than $i$, so there are $(n-1)!$ such
+permutations. The probability of this event is then
+\begin{equation}
+\Pr(A_{i}) = \frac{(n-1)!}{n!} = \frac{1}{n}.
+\end{equation}
+There are $n$ such events (since we can let $i=1,\dots,n$). Thus
+\begin{equation}
+\sum^{n}_{i=1}\Pr(A_{i}) = n\cdot\frac{1}{n}=1.
+\end{equation}
+Wonderful.
+
+\M Consider the event $A_i\cap A_j$, which has the permutation
+\begin{equation}
+\begin{pmatrix}
+1 & 2 & \dots & i & \dots & j & \dots & n\\
+  &   & \dots & i & \dots & j & \dots &  \\
+\end{pmatrix}
+\end{equation}
+How many such permutations are there? Well, we fix two points while
+permuting the others, so there are $(n-2)!$ such permutations. Thus the
+probability is
+\begin{equation}
+\Pr(A_{i}\cap A_{j}) = \frac{(n-2)!}{n!}=\frac{1}{n(n-1)}
+\end{equation}
+How many such ``fix two point'' events are there? It's simply
+\begin{equation}
+\binom{n}{2}=\frac{n(n-1)}{2}
+\end{equation}
+thus
+\begin{equation}
+\sum_{1\leq i<j\leq n} \Pr(A_{i}\cap A_{j})
+= \frac{n(n-1)}{2}\cdot\frac{1}{n(n-1)}=\frac{1}{2}.
+\end{equation}
+This will be our second term.
+
+\M Consider the event $A_i\cap A_j\cap A_k$. We see
+\begin{equation}
+\Pr(A_i\cap A_j\cap A_k) = \frac{(n-3)!}{n!}=\frac{1}{n(n-1)(n-2)}.
+\end{equation}
+There are $\binom{n}{3}$ such terms. Thus
+\begin{equation}
+\sum_{1\leq i<j<k\leq n}\Pr(A_i\cap A_j\cap A_k)=\frac{1}{3!}
+\end{equation}
+and inductively we find
+\begin{equation}
+\Pr(A_1\cap\dots\cap A_n)=\frac{1}{n!}
+\end{equation}
+Thus
+\begin{equation}
+\Pr(\mbox{no fixed pt}) = \frac{1}{2}
+- \frac{1}{3!}+\frac{1}{4!}+\dots+\frac{(-1)^{n}}{n!}
+\end{equation}
+We should note the Taylor series for $\E^{x}$ is
+\begin{equation}
+\E^{x}=1+x+\frac{x^{2}}{2!}+\dots+\frac{x^{n}}{n!}+\dots
+\end{equation}
+so
+\begin{equation}
+\E^{-1}=1-1+\frac{(-1)^{2}}{2!}+\dots+\frac{(-1)^{n}}{n!}+\dots
+\end{equation}
+implies
+\begin{equation}
+\Pr(\mbox{no fixed pt})\to\E^{-1}
+\end{equation}
+as $n\to\infty$.
+
+We will construct a table, let $p_{n}$ be the probability there are no
+fixed points among permutations of $n$ elements. Then:
+\begin{equation}
+\begin{split}
+p_2 &= \frac{1}{2} \approx 0.5\\
+p_3 &= \frac{1}{3} \approx 0.33333334\\
+p_4 &= \frac{3}{8} \approx 0.375\\
+p_5 &= \frac{11}{30} \approx 0.36666667\\
+p_6 &= \frac{53}{144} \approx 0.36805555\\ 
+p_7 &= \frac{103}{280} \approx 0.36785713\\ 
+p_8 &= \frac{2119}{5760} \approx 0.36788195\\ 
+p_9 &= \frac{16687}{45360} \approx 0.36787918
+\end{split}
+\end{equation}
+We should note that $1/\E\approx 0.36787944117144233$, so we are getting
+a decent approximation with $n=8$ (five digits!).

@@ -29,7 +29,7 @@ Let
 \begin{equation}
 \CC(z)=\CC[z,z^{-1}]
 \end{equation}
-be the algebra of Laurent polynomials in $z$. We have a non-degenerate
+bt the algebra of Laurent polynomials in $z$. We have a nondegenerate
 pairing
 \begin{equation}
 \<-,-\>\colon U[[z,z^{-1}]]\times\CC[z,z^{-1}]\to U
@@ -113,7 +113,7 @@ a(z,\omega)=b(z,\omega) + \sum^{\infty}_{j=0}c^{j}(\omega)\partial^{j}_{\omega}\
 where $b(z,\omega)\in\ker(\pi)$.
 \end{cor}
 \begin{cor}\label{cor:kerMultOp}
-Let $\mu_{N}$ be the multiplication operator by $(z-\omega)^{N}$. Then
+Let $\mu_{N}$ be the multiplication operator by $(z-\omega)^{N}$. THen
 its nullspace in $U[[z,z^{-1},\omega,\omega^{-1}]]$ is
 \begin{equation}
 \ker(\mu_{N})=\sum^{N-1}_{j=0}\partial^{j}_{\omega}\delta(z-\omega)U[[\omega,\omega^{-1}]].
@@ -130,7 +130,7 @@ By exercise \ref{xca:usefulForCor3}, we see
 (z-\omega)^{j+1}\partial_{\omega}^{j}\delta(z-\omega)=0,
 \end{equation}
 proving $\partial_{\omega}^{j}\delta(z-\omega)$ lives in the
-nullspace. But observe multiplying through by $c^{j}(\omega)$ changes
+nullspace. But observe multipying through by $c^{j}(\omega)$ changes
 \emph{nothing}. So $\partial_{\omega}^{j}\delta(z-\omega)$ acts like a
 basis for $\ker(\mu_N)$.
 \end{proof}
@@ -149,18 +149,18 @@ a_{(n)}=\Res[z]{a(z)z^{n}}.
 Using this notation, the expansion in Corollary \ref{cor:kerMultOp} is
 equivalent to 
 \begin{equation}
-a_{(m,j)}=\sum^{N-1}_{j=0}{m\choose j}c^{j}_{(m+n-j)}.
+a_{(m,j)}=\sum^{N-1}_{j=0}\binom{m}{j}c^{j}_{(m+n-j)}.
 \end{equation}
 
 \subsection{Locality}
 \M
-We are interested when $U$ is an associative super-algebra (i.e., a
+We are interested when $U$ is an associative superalgebra (i.e., a
 $\ZZ_2$-graded associative algebra). This happens when $V$ is a
-super-linear space, and we have
+superlinear space, and we have
 \begin{equation}
 U=\End(V)
 \end{equation}
-We denote the super-bracket as
+We denote the superbracket as
 \begin{equation}
 \superb{a}{b}=ab-(-1)^{\alpha\beta}ba.
 \end{equation}
@@ -168,7 +168,7 @@ where $\alpha=\deg(a)$, $\beta=\deg(b)$.
 
 \N{Definition}
 Two formal distributions $a(z)$, $b(z)$ with values in an associative
-super-algebra $U$ are called \define{Mutually Local} if in
+superalgebra $U$ are called \define{Mutually Local} if in
 $U[[z,z^{-1},\omega,\omega^{-1}]]$ one has
 \begin{equation}
 (z-\omega)^N\superb{a(z)}{b(z)}=(z-\omega)^N\superb{b(z)}{a(z)}=0
@@ -236,8 +236,7 @@ The following properties are equivalent
 \superb{a(z)_{-}}{b(\omega)} &= \sum^{N-1}_{j=0}\bigl(i_{z\omega}(z-\omega)^{-j-1}\bigr)c^{j}(\omega)\\
 \superb{a(z)_{+}}{b(\omega)} &= \sum^{N-1}_{j=0}\bigl(i_{z\omega}(z-\omega)^{-j-1}\bigr)c^{j}(\omega)
 \end{align*}
-where $i_{z\omega}(z-\omega)^{j+1}=\sum_{m}z^{-m-1}{m\choose
-j}\omega^{m-j}$ and
+where $i_{z\omega}(z-\omega)^{j+1}=\sum_{m}z^{-m-1}\binom{m}{j}\omega^{m-j}$ and
 $\partial_{\omega}^{j}\delta(z-\omega)-i_{z\omega}(z-\omega)^{-j-1}=i_{\omega
 z}(z-\omega)^{-j-1}$.
 \item $\displaystyle
@@ -246,9 +245,8 @@ and
 $\displaystyle
 (-1)^{\alpha\beta}b(\omega)a(z)=\left[\sum^{N-1}_{j=0}c^{j}(\omega)i_{\omega z}
 (z-\omega)^{-j-1}\right]+\normOrd{a(z)b(\omega)}$.
-\item $\displaystyle\superb{a_{(m)}}{b_{(n)}}=\sum^{N-1}_{j=0}{m\choose j}c^{j}_{(m+n-j)}$
-\item $\displaystyle\superb{a_{(m)}}{b(\omega)}=\sum_{j=0}{m\choose
-j}c^{j}(\omega)\omega^{m-j}$
+\item $\displaystyle\superb{a_{(m)}}{b_{(n)}}=\sum^{N-1}_{j=0}\binom{m}{j}c^{j}_{(m+n-j)}$
+\item $\displaystyle\superb{a_{(m)}}{b(\omega)}=\sum_{j=0}\binom{m}{j}c^{j}(\omega)\omega^{m-j}$
 \item
 $\displaystyle\superb{a_{(m)}}{b_{(n)}}=\sum_{j=0}p_{j}(m)d^{j}_{m+n}$
 where $p_{j}(x)$ are some polynomial, $d^{j}_{m+n}\in U$.
@@ -306,7 +304,7 @@ $c(\omega)$, and for any $m,n\in\NN$, we have
 \begin{equation}
 \begin{split}
 a(\omega)_{(m)}\bigl(b(\omega)_{(n)}c(\omega)\bigr)
-&=\sum^{m}_{j=0}{m\choose j}\bigl(a(\omega)_{(j)}b(\omega)\bigr)_{(m+n-j)}c(\omega)\\
+&=\sum^{m}_{j=0}\binom{m}{j}\bigl(a(\omega)_{(j)}b(\omega)\bigr)_{(m+n-j)}c(\omega)\\
 &\quad+(-1)^{\alpha\beta}b(\omega)_{(n)}\bigl(a(\omega)_{(m)}c(\omega)\bigr).
 \end{split}
 \end{equation}
@@ -390,7 +388,7 @@ Observe
 \end{equation}
 Combinatorics tells us
 \begin{equation}
-(z-\omega)^{m}(u-\omega)^{n}=\sum^{m}_{j=0}{m\choose j}(z-u)^{j}(u-\omega)^{m-j+n}.
+(z-\omega)^{m}(u-\omega)^{n}=\sum^{m}_{j=0}\binom{m}{j}(z-u)^{j}(u-\omega)^{m-j+n}.
 \end{equation}
 When we substitute this back into Eq \eqref{eq:forPfOfPtCofWhackyProp}
 and this proves (c).
@@ -428,7 +426,7 @@ Simplifying notation further, we consider the formal distribution
 $a(z-\omega)$ in $z$ and $\omega$ in the domain $|z|>|\omega|$.
 
 \begin{prop}[Taylor's Formula]
-Let $a(z)$ be a formal distribution. Then we have the following equality
+Let $a(z)$ be a formal distriubtion. Then we have the following equality
 of formal distributions in $z$ and $\omega$ in the domain $|z|>|\omega|$
 \begin{equation}
 a(z+\omega)=\sum^{\infty}_{j=0}\partial_{z}^{j}a(z)\omega^{j}.
@@ -437,11 +435,11 @@ a(z+\omega)=\sum^{\infty}_{j=0}\partial_{z}^{j}a(z)\omega^{j}.
 \begin{proof}
 We have $a(z)=\sum a_{n}z^{n}$, then
 \begin{equation}
-\partial_{z}^{j}a(z)=\sum_{n}{n\choose j}a_{n}z^{n-j}.
+\partial_{z}^{j}a(z)=\sum_{n}\binom{n}{j}a_{n}z^{n-j}.
 \end{equation}
 We plug $(z+\omega)$ into $a(-)$, first recalling the Binomial theorem states
 \begin{equation}
-(z+\omega)^{n}=\sum^{\infty}_{j=0}{n\choose j}z^{n-j}\omega^{j}
+(z+\omega)^{n}=\sum^{\infty}_{j=0}\binom{n}{j}z^{n-j}\omega^{j}
 \end{equation}
 thus we obtain the desired result.
 \end{proof}
@@ -474,7 +472,7 @@ integrate by parts $N$ times gives us
 \end{equation}
 which, using the Leibniz rule, is
 \begin{equation*}
-\partial^{N}\bigl(a(z)f(z)\bigr)=\sum\partial^{j}a(\omega){N\choose j}\partial^{N-j}f(\omega).\qedhere
+\partial^{N}\bigl(a(z)f(z)\bigr)=\sum\partial^{j}a(\omega)\binom{N}{j}\partial^{N-j}f(\omega).\qedhere
 \end{equation*}
 \end{proof}
 
@@ -505,8 +503,8 @@ product expansion
 The even formal distribution is called a \define{Free Boson}.
 
 \M
-Let $\mathscr{G}$ be a Lie super-algebra equipped with an invariant
-super-symmetric bilinear form $(-|-)$. ``Invariant'' means
+Let $\mathscr{G}$ be a Lie superalgebra equipped with an invariant
+supersymmetric bilinear form $(-|-)$. ``Invariant'' means
 \begin{equation}
 (\superb{a}{b}|c)=(a|\superb{b}{c})
 \end{equation}
@@ -514,7 +512,7 @@ for all $a,b,c\in\mathscr{G}$, and ``supersymmetric'' means
 \begin{equation}
 (a|b)=(-1)^{\alpha\beta}(b|a).
 \end{equation}
-The \define{Affinization} of $\mathscr{G}$ is the Lie super-algebra
+The \define{Affinization} of $\mathscr{G}$ is the Lie superalgebra
 \begin{equation}
 \widehat{\mathscr{G}}=\CC[t,t^{-1}]\otimes_{\CC}\mathscr{G}+\CC[K]
 \end{equation}
@@ -574,13 +572,13 @@ a(z)\bar{b}(\omega)\sim\frac{\overline{\superb{a}{b}}(\omega)}{z-\omega},
 They form a subalgebra.
 
 \M
-Lets consider a different construction. Let $A$ be a super-space with a
+Lets consider a different construction. Let $A$ be a superspace with a
 skew-supersymmetric bilinear form, i.e., 
 \begin{equation}
 (\varphi|\psi)=(-1)^{p(\varphi)}(\psi|\varphi)
 \end{equation}
 which implies $(\mbox{odd}|\mbox{even})=0$. The \define{Clifford
-Affinization} of $\bigl(A,(-|-)\bigr)$ is the Lie super-algebra
+Affinization} of $\bigl(A,(-|-)\bigr)$ is the Lie superalgebra
 \begin{equation}
 C_{A}=\CC[t,t^{-1}]\otimes_{\CC}A + \CC[K]
 \end{equation}
@@ -603,7 +601,7 @@ are mutually local with respect to their operator product expansion
 \end{equation}
 
 \N{Example}
-Let $A$ be the odd 1-dimensional super-space $\CC\varphi$ with bilinear
+Let $A$ be the odd 1-dimensional superspace $\CC\varphi$ with bilinear
 form $(\varphi|\varphi)=1$. Let $K=1$. THen $C_{A}$ turns into the
 algebra
 \begin{equation}
@@ -620,7 +618,7 @@ expansion is
 \end{equation}
 
 \N{Example}
-Let $A$ be the odd 2-dimensional super-space
+Let $A$ be the odd 2-dimensional superspace
 $\CC\varphi^{+}\oplus\CC\varphi^{-}$ with the supersymmetric bilinear
 form
 \begin{equation}
