@@ -7,6 +7,67 @@ where $a_{mn}\in U$ we call a \define{Formal Distribution} in the
 indeterminates $z,\omega$ taking values in $U$. They form a vector space
 denoted $U[[z,z^{-1},\omega,\omega^{-1},\dots]]$. 
 
+We also have the \define{Formal Polynomials}
+\begin{equation}
+U[z] = \{ a_{0}+a_{1}z+\dots+a_{n}z^{n} : a_{k}\in U\mbox{ for all }k\}
+\end{equation}
+which is contained in the space of \define{Formal Laurent Polynomials}
+\begin{equation}
+U(z) = U[z,z^{-1}] = \{ f(z)+g(z^{-1}) : f,g\in U[z]\}.
+\end{equation}
+We also have the space of \define{Formal Series}
+\begin{equation}
+U[[z]] = \{\sum^{\infty}_{n=0}a_{n}z^{n} : a_{n}\in U\mbox{ for all }n\}
+\end{equation}
+which differs from formal polynomials in that we have infinitely many nonzero
+coefficients, polynomials can only have finitely many terms and hence
+finitely many nonzero coefficients. Note formal polynomials are a subspace
+of the formal series. We also have the \define{Formal Laurent Series} denoted
+\begin{equation}
+U(\!(z)\!) = \{p(z^{-1})+f(z) : f\in U[[z]],\; p\in U[z^{-1}]\}
+\end{equation}
+which contains formal series as a subspace, and formal Laurent polynomials as a
+subspace. Note the space of formal distributions $U[[z,z^{-1}]]$ contains all of
+these as natural subspaces.
+
+\begin{xca}
+Prove or find a counter-example: $U[z]=U\otimes_{\CC}\CC[z]$.
+\end{xca}
+\begin{xca}
+Prove or find a counter-example: $U(z)=U\otimes_{\CC}\CC(z)$. 
+\end{xca}
+\begin{xca}
+Prove or find a counter-example $U\otimes\CC[[z,z^{-1}]]\neq U[[z,z^{-1}]]$.
+\end{xca}
+\begin{xca}
+Prove or find a counter-example: $U\otimes\CC[[z]]\neq U[[z]]$.
+\end{xca}
+\begin{xca}
+Is $\hom\bigl(U,U(\!(z)\!)\bigr)\subset U(\!(z)\!)$? Or does $\hom\bigl(U,U(\!(z)\!)\bigr)$ contain $U(\!(z)\!)$ as a subspace?
+\end{xca}
+\begin{xca}
+Does $\hom\bigl(U,U[[z,z^{-1}]]\bigr)$ contain $U(\!(z)\!)$ as a subspace?
+\end{xca}
+
+\N{Substitution}
+Let $a\in\CC$ be nonzero $a\neq 0$. If 
+\begin{equation}
+v(z)=v_{-k}z^{-k}+\dots+v_{-1}z^{-1}+v_{0}+v_{1}z+\dots+v_{n}z^{n}
+\end{equation}
+is some Laurent polynomial, then we set
+\begin{equation}
+v(a)=v_{-k}a^{-k}+\dots+v_{-1}a^{-1}+v_{0}+v_{1}a+\dots+v_{n}a^{n}.
+\end{equation}
+This allows us to define substitution without convergence issues. If we have
+$b(z)\in U[[z,z^{-1}]]$ be
+\begin{equation}
+b(z) = \sum_{n\in\ZZ}b_{n}z^{n}
+\end{equation}
+then we set
+\begin{equation}
+b(az)=\sum_{n\in\ZZ}a^{n}b_{n}z^{n}.
+\end{equation}
+
 \M
 Given a formal distribution (or more weakly, a formal Laurent polynomial)
 $a(z) = \sum a_{n}z^{n}$ we define its \define{Residue} by the usual
@@ -29,7 +90,7 @@ Let
 \begin{equation}
 \CC(z)=\CC[z,z^{-1}]
 \end{equation}
-bt the algebra of Laurent polynomials in $z$. We have a nondegenerate
+be the algebra of Laurent polynomials in $z$. We have a nondegenerate
 pairing
 \begin{equation}
 \<-,-\>\colon U[[z,z^{-1}]]\times\CC[z,z^{-1}]\to U
@@ -63,10 +124,39 @@ What is $\Res[z]{(z-\omega)^{n}}$?
 Prove $\partial^{k}_{z}\delta(z-\omega)=(-\partial_{\omega})^{k}\delta(z-\omega)$.
 \end{xca}
 \begin{xca}\label{xca:deltaDerivative}%
-Prove $(z-\omega)\partial^{k+1}_{\omega}\delta(z-\omega)=\partial^{k}_{\omega}\delta(z-\omega)$.
+Prove $$\frac{(z-\omega)}{(k+1)!}\partial^{k+1}_{\omega}\delta(z-\omega)=\partial^{k}_{\omega}\delta(z-\omega).$$
 \end{xca}
 \begin{xca}\label{xca:usefulForCor3}%
-Prove $(z-\omega)^{k+1}\partial^{k}_{\omega}\delta(z-\omega)=0$.
+Prove $$\frac{(z-\omega)^{k+1}}{k!}\partial^{k}_{\omega}\delta(z-\omega)=0.$$
+\end{xca}
+
+\M
+Consider the domain where $|\omega|<|z|$. Let $j\in\NN$, then we will 
+Taylor expand
+\begin{equation}\label{eq:taylorSeries:geometric}
+\begin{split}
+\frac{1}{(z-\omega)^{j+1}}&=z^{-j-1}-(j+1)z^{-j-2}\omega+\frac{(j+1)(j+2)}{2}z^{-j-3}\omega^{2}\\
+&\quad+\dots+(-1)^{n}z^{-j-1-n}\omega^{n}\frac{(j+1)(\dots)(j+n-1)}{n!}+\dots
+\end{split}
+\end{equation}
+When we examine Eq \eqref{eq:taylorSeries:geometric} we see it's a power series
+in $\omega$, i.e., it belongs to $\CC[[z,z^{-1},\omega]]$ and not 
+$\CC[[z,z^{-1},\omega,\omega^{-1}]]$. This is quite miraculous! When we want to 
+consider such guys $(z-\omega)^{-j-1}$ as a power series, we indicate this 
+writing
+\begin{equation}
+i_{z,\omega}(z-\omega)^{-j-1}=\sum^{\infty}_{m=0}c_{m}(z)\omega^{m}
+\end{equation}
+and likewise, if we want to consider the domain $|z|<|\omega|$, we write
+\begin{equation}
+i_{\omega,z}(z-\omega)^{-j-1}=\sum^{\infty}_{m=0}\widetilde{c}_{m}(\omega)z^{m}.
+\end{equation}
+\begin{xca}
+Prove 
+\begin{equation}
+\frac{1}{k!}\partial^{k}_{\omega}\delta(z-\omega)=i_{z,\omega}(z-\omega)^{-m-1}
+-i_{\omega,z}(z-\omega)^{-m-1}.
+\end{equation}
 \end{xca}
 
 \N{Proposition}\label{prop:integrateDeltaFn}
@@ -83,7 +173,7 @@ a(z,\omega)=\sum_{m,n\in\ZZ}a_{mn}z^{m}\omega^{n}
 \end{equation}
 has an expansion of the form
 \begin{equation}
-a(z,\omega)=\sum^{\infty}_{j=0}c^{j}(\omega)\partial^{j}_{\omega}\delta(z-\omega)?
+a(z,\omega)=\sum^{\infty}_{j=0}\frac{c^{j}(\omega)}{j!}\partial^{j}_{\omega}\delta(z-\omega)?
 \end{equation}
 Well, multiplying both sides by $(z-\omega)^{n}$ and taking the reside,
 we find
@@ -94,7 +184,7 @@ Can we do this for any formal distribution? Not really. But we can
 construct a transformation $\pi$ such that
 \begin{equation}
 \pi
-a(z,\omega)=\sum^{\infty}_{j=0}\bigl[\Res[z]{a(z,\omega)\cdot(z-\omega)^{j}}\bigr]\partial^{j}_{\omega}(z-\omega).
+a(z,\omega)=\sum^{\infty}_{j=0}\bigl[\Res[z]{a(z,\omega)\cdot(z-\omega)^{j}}\bigr]\frac{\partial^{j}_{\omega}}{j!}(z-\omega).
 \end{equation}
 What is this transformation $\pi$?
 
@@ -108,7 +198,7 @@ The transformation $\pi$ is a projection (i.e., $\pi^{2}=\pi$). Moreover
 \begin{cor}
 Any formal distribution $a(z,\omega)$ may be represented uniquely as
 \begin{equation}
-a(z,\omega)=b(z,\omega) + \sum^{\infty}_{j=0}c^{j}(\omega)\partial^{j}_{\omega}\delta(z-\omega)
+a(z,\omega)=b(z,\omega) + \sum^{\infty}_{j=0}\frac{c^{j}(\omega)}{j!}\partial^{j}_{\omega}\delta(z-\omega)
 \end{equation}
 where $b(z,\omega)\in\ker(\pi)$.
 \end{cor}
@@ -116,11 +206,11 @@ where $b(z,\omega)\in\ker(\pi)$.
 Let $\mu_{N}$ be the multiplication operator by $(z-\omega)^{N}$. THen
 its nullspace in $U[[z,z^{-1},\omega,\omega^{-1}]]$ is
 \begin{equation}
-\ker(\mu_{N})=\sum^{N-1}_{j=0}\partial^{j}_{\omega}\delta(z-\omega)U[[\omega,\omega^{-1}]].
+\ker(\mu_{N})=\sum^{N-1}_{j=0}\frac{\partial^{j}_{\omega}}{j!}\delta(z-\omega)U[[\omega,\omega^{-1}]].
 \end{equation}
 Any element $a(z,\omega)\in\ker(\mu_N)$ is uniquely written of the form
 \begin{equation}
-a(z,\omega)=\sum^{N-1}_{j=0}c^{j}(\omega)\partial^{j}_{\omega}\delta(z-\omega)
+a(z,\omega)=\sum^{N-1}_{j=0}\frac{c^{j}(\omega)}{j!}\partial^{j}_{\omega}\delta(z-\omega)
 \end{equation}
 where $c^{j}(\omega)$ is the ``usual coefficients''.
 \end{cor}
@@ -152,6 +242,7 @@ equivalent to
 a_{(m,j)}=\sum^{N-1}_{j=0}\binom{m}{j}c^{j}_{(m+n-j)}.
 \end{equation}
 
+%%%%%%%%%%
 \subsection{Locality}
 \M
 We are interested when $U$ is an associative superalgebra (i.e., a
@@ -224,12 +315,12 @@ Find $\Res[z]{\normOrd{a(z)b(\omega)}}$ and
 $\Res[\omega]{\normOrd{a(z)b(\omega)}}$.
 \end{xca}
 
-\N{Theorem}
+\N{Theorem}\label{thm:manyPropertiesForFormalDistributions}%
 Let $U$ be an associative super algebra.
 The following properties are equivalent
 \begin{enumerate}
 \item
-  $\displaystyle\superb{a(z)}{b(\omega)}=\sum^{N-1}_{j=0}c^{j}(\omega)\partial_{\omega}^{j}\delta(z-\omega)$
+  $\displaystyle\superb{a(z)}{b(\omega)}=\sum^{N-1}_{j=0}\frac{c^{j}(\omega)}{j!}\partial_{\omega}^{j}\delta(z-\omega)$
   where $c^{j}(\omega)\in U[[\omega,\omega^{-1}]]$.
 \item
 \begin{align*}
@@ -245,7 +336,7 @@ and
 $\displaystyle
 (-1)^{\alpha\beta}b(\omega)a(z)=\left[\sum^{N-1}_{j=0}c^{j}(\omega)i_{\omega z}
 (z-\omega)^{-j-1}\right]+\normOrd{a(z)b(\omega)}$.
-\item $\displaystyle\superb{a_{(m)}}{b_{(n)}}=\sum^{N-1}_{j=0}\binom{m}{j}c^{j}_{(m+n-j)}$
+\item\label{thm:manyPropertiesForFormalDistributions:prop:iv} $\displaystyle\superb{a_{(m)}}{b_{(n)}}=\sum^{N-1}_{j=0}\binom{m}{j}c^{j}_{(m+n-j)}$
 \item $\displaystyle\superb{a_{(m)}}{b(\omega)}=\sum_{j=0}\binom{m}{j}c^{j}(\omega)\omega^{m-j}$
 \item
 $\displaystyle\superb{a_{(m)}}{b_{(n)}}=\sum_{j=0}p_{j}(m)d^{j}_{m+n}$
@@ -262,18 +353,20 @@ Physicists abuse notation writing
 \end{equation}
 instead of
 \begin{equation}
-\superb{a(z)}{b(\omega)}=\sum^{N-1}_{j=0}\frac{c^{j}(\omega)}{(z-\omega)^{j+1}}+\normOrd{a(z)b(\omega)}
+\superb{a(z)}{b(\omega)}=\sum^{N-1}_{j=0}\frac{c^{j}(\omega)}{(z-\omega)^{j+1}}
++\normOrd{a(z)b(\omega)}
 \end{equation}
 or often just the singular part
 \begin{equation}
 \superb{a(z)}{b(\omega)}\sim\sum^{N-1}_{j=0}\frac{c^{j}(\omega)}{(z-\omega)^{j+1}}.
 \end{equation}
-Either case is called the \define{Operator Product Expansion}\index{Operator Product Expansion}. The
+Either case is called the \define{Operator Product Expansion}%
+\index{Operator Product Expansion}. The
 previous theorem tells us the singular part of the operator product
 expansion encodes the brackets between all the coefficients of mutually
 local formal distributions $a(z)$ and $b(\omega)$.
 
-\M
+\M\label{M:partialProduct}%
 We introduce (for each $n\in\NN$) the $n^{th}$ product
 $a(\omega)_{(n)}b(\omega)$ on the space of formal distributions by the
 formula
@@ -281,8 +374,10 @@ formula
 a(\omega)_{(n)}b(\omega)=\Res[z]{\superb{a(z)}{b(\omega)}(z-\omega)^{n}}
 \end{equation}
 Observe the operator product expansion becomes
-\begin{equation}
-a(z)b(\omega)=\sum^{N-1}_{j=0}\frac{a(\omega)_{(j)}b(\omega)}{(z-\omega)^{j+1}}+\normOrd{a(z)b(\omega)}.
+\begin{equation}\label{eq:OPEusingPartialProduct}
+a(z)b(\omega)
+=\sum^{N-1}_{j=0}\frac{a(\omega)_{(j)}b(\omega)}{(z-\omega)^{j+1}}
++\normOrd{a(z)b(\omega)}.
 \end{equation}
 
 \N{Proposition} 
@@ -296,7 +391,7 @@ Moreover $\partial$ is a derivation of all $n^{th}$ products.
 (b) For any mutually local formal distributions $a(\omega)$ and
 $b(\omega)$, and for any $n\in\NN$, we have
 \begin{equation}
-a(\omega)_{(n)}b(\omega)=(-1)^{\alpha\beta}\sum^{\infty}_{j=0}(-1)^{j+n+1}\partial^{j}\bigl(b(\omega)_{(n+j)}a(\omega)\bigr).
+a(\omega)_{(n)}b(\omega)=(-1)^{\alpha\beta}\sum^{\infty}_{j=0}(-1)^{j+n+1}\frac{\partial^{j}}{j!}\bigl(b(\omega)_{(n+j)}a(\omega)\bigr).
 \end{equation}
 
 (c) For any three formal distributions $a(\omega)$, $b(\omega)$ and
@@ -337,19 +432,23 @@ a(\omega)_{(n)}b(\omega)
 using the definition of the $n^{th}$ product. Using the definition of
 the super bracket we have
 \begin{equation}
-\Res[z]{\superb{a(z)}{b(\omega)}(z-\omega)^{n}}=-(-1)^{\alpha\beta}\Res[z]{\superb{a(\omega)}{a(z)}\cdot(z-\omega)^{n}}.
+\Res[z]{\superb{a(z)}{b(\omega)}(z-\omega)^{n}}
+=-(-1)^{\alpha\beta}\Res[z]{\superb{a(\omega)}{a(z)}\cdot(z-\omega)^{n}}.
 \end{equation}
 Using corollary \ref{cor:kerMultOp} we have
 \begin{equation}
 \Res[z]{\superb{a(\omega)}{a(z)}\cdot(z-\omega)^{n}}
-=\Res[z]{\sum^{\infty}_{j=1}(-1)^{j}\partial_{\omega}^{j}\delta(z-\omega)b(z)_{(j)}a(z)(z-\omega)^{n-1}}.
+=\Res[z]{\sum^{\infty}_{j=1}(-1)^{j}
+\frac{\partial_{\omega}^{j}}{j!}\delta(z-\omega)b(z)_{(j)}a(z)(z-\omega)^{n-1}}.
 \end{equation}
 Exercise \ref{xca:deltaDerivative} and the definition of the $n^{th}$
 product gives us
 \begin{subequations}
 \begin{align}
-a(\omega)_{(n)}b(\omega)&=(-1)^{\alpha\beta}\Res[z]{\sum^{\infty}_{j=1}(-1)^{j+1}\partial_{\omega}^{j+1}\delta(z-\omega)b(z)_{(j)}a(z)}\\
-&=(-1)^{\alpha\beta}\Res[z]{\sum^{\infty}_{j=1}(-1)^{n+1}\partial_{z}^{j}\delta(z-\omega)b(z)_{(j+n)}a(z)}
+a(\omega)_{(n)}b(\omega)&=(-1)^{\alpha\beta}
+\Res[z]{\sum^{\infty}_{j=1}(-1)^{j+1}\frac{\partial_{\omega}^{j+1}}{j!}\delta(z-\omega)b(z)_{(j)}a(z)}\\
+&=(-1)^{\alpha\beta}\Res[z]{\sum^{\infty}_{j=1}
+\frac{(-1)^{n+1}}{j!}\partial_{z}^{j}\delta(z-\omega)b(z)_{(j+n)}a(z)}
 \end{align}
 \end{subequations}
 We integrate by parts and use proposition \ref{prop:integrateDeltaFn} to
@@ -357,8 +456,9 @@ find
 \begin{subequations}
 \begin{align}
 a(\omega)_{(n)}b(\omega)
-&=(-1)^{\alpha\beta}\Res[z]{\sum^{\infty}_{j=1}(-1)^{j+1+n}\delta(z-\omega)\partial_{z}^{j}\bigl(b(z)_{(j+n)}a(z)\bigr)}\\
-&=(-1)^{\alpha\beta}\sum^{\infty}_{j=1}(-1)^{j+1+n}\partial^{j}\bigl(b(\omega)_{(j+n)}a(\omega)\bigr)
+&=(-1)^{\alpha\beta}\Res[z]{\sum^{\infty}_{j=1}\frac{(-1)^{j+1+n}}{j!}\delta(z-\omega)\partial_{z}^{j}\bigl(b(z)_{(j+n)}a(z)\bigr)}\\
+&=(-1)^{\alpha\beta}
+\sum^{\infty}_{j=1}\frac{(-1)^{j+1+n}}{j!}\partial^{j}\bigl(b(\omega)_{(j+n)}a(\omega)\bigr)
 \end{align}
 \end{subequations}
 which is what we wanted!
@@ -410,6 +510,7 @@ superalgebra. Moreover the $0^{th}$ product defines on $\mathcal{A}$ the
 structure of a left $(\mathcal{A}/\partial\mathcal{A})$-module.
 \end{cor}
 
+%%%%%%%%%%
 \subsection{Taylor's Formula}
 
 \M
@@ -429,13 +530,13 @@ $a(z-\omega)$ in $z$ and $\omega$ in the domain $|z|>|\omega|$.
 Let $a(z)$ be a formal distriubtion. Then we have the following equality
 of formal distributions in $z$ and $\omega$ in the domain $|z|>|\omega|$
 \begin{equation}
-a(z+\omega)=\sum^{\infty}_{j=0}\partial_{z}^{j}a(z)\omega^{j}.
+a(z+\omega)=\sum^{\infty}_{j=0}\frac{\partial_{z}^{j}}{j!}a(z)\omega^{j}.
 \end{equation}
 \end{prop}
 \begin{proof}
 We have $a(z)=\sum a_{n}z^{n}$, then
 \begin{equation}
-\partial_{z}^{j}a(z)=\sum_{n}\binom{n}{j}a_{n}z^{n-j}.
+\frac{\partial_{z}^{j}}{j!}a(z)=\sum_{n}\binom{n}{j}a_{n}z^{n-j}.
 \end{equation}
 We plug $(z+\omega)$ into $a(-)$, first recalling the Binomial theorem states
 \begin{equation}
@@ -445,7 +546,7 @@ thus we obtain the desired result.
 \end{proof}
 
 \begin{rmk}
-We see that $a(\omega)=\sum\partial^{j}a(z)(\omega-z)^{j}$, which proves
+We see that $a(\omega)=\sum\partial^{j}a(z)(\omega-z)^{j}/j!$, which proves
 another result (for free)!
 \end{rmk}
 
@@ -454,7 +555,9 @@ Let $a(z)$ be a formal distribution and $N$ be a non-negative
 integer. Then the following equality of formal distributions in $z$ and
 $\omega$ 
 \begin{equation}\label{Eq:thm:formalDistributionEquality}
-\partial_{\omega}^{N}\delta(z-\omega)a(z)=\partial_{\omega}^{N}\delta(z-\omega)\sum^{N}_{j=0}\partial^{j}a(\omega)(z-\omega)^{j}.
+\partial_{\omega}^{N}\delta(z-\omega)a(z)
+=\partial_{\omega}^{N}\delta(z-\omega)
+  \sum^{N}_{j=0}\frac{\partial^{j}}{j!}a(\omega)(z-\omega)^{j}.
 \end{equation}
 \end{thm}
 \begin{proof}
@@ -463,19 +566,23 @@ Eq \eqref{Eq:thm:formalDistributionEquality} acts on an arbitrary
 Laurent polynomial $f(z)$.
 We see
 \begin{equation}
-\Res[z]{\partial_{z}^{N}\delta(z-\omega)a(z)f(z)}=\sum\partial^{j}a(\omega)\Res[z]{\partial_{z}^{N}\delta(z-\omega)\cdot(z-\omega)^{j}f(z)};
+\Res[z]{\partial_{z}^{N}\delta(z-\omega)a(z)f(z)}=\sum\frac{\partial^{j}}{j!}
+a(\omega)\Res[z]{\partial_{z}^{N}\delta(z-\omega)\cdot(z-\omega)^{j}f(z)};
 \end{equation}
 integrate by parts $N$ times gives us
 \begin{equation}
 \Res[z]{\delta(z-\omega)\partial^{N}\bigl(a(z)f(z)\bigr)}
-=\sum\partial^{j}a(\omega)\Res[z]{\delta(z-\omega)\partial_{z}^{N}\bigl((z-\omega)^{j}f(z)\bigr)}
+=\sum\frac{\partial^{j}}{j!}a(\omega)\Res[z]{\delta(z-\omega)
+\partial_{z}^{N}\bigl((z-\omega)^{j}f(z)\bigr)}
 \end{equation}
 which, using the Leibniz rule, is
 \begin{equation*}
-\partial^{N}\bigl(a(z)f(z)\bigr)=\sum\partial^{j}a(\omega)\binom{N}{j}\partial^{N-j}f(\omega).\qedhere
+\partial^{N}\bigl(a(z)f(z)\bigr)
+=\sum\frac{\partial^{j}}{j!}a(\omega)\binom{N}{j}\partial^{N-j}f(\omega).\qedhere
 \end{equation*}
 \end{proof}
 
+%%%%%%%%%%
 \subsection{Current Algebras}
 \M
 Consider the oscillator algebra $\mathfrak{s}$. This is a Lie algebra
@@ -539,13 +646,16 @@ a(z)=\sum_{n\in\ZZ}a_{n}z^{-n-1}
 \end{equation}
 for $a_{*}\in\mathscr{G}$. Then we find
 \begin{equation}
-\superb{a(z)}{b(\omega)} = 
-\delta(z-\omega)\superb{a}{b}(\omega) + \partial_{\omega}\delta(z-\omega)\cdot(a|b)\cdot{K}
+\superb{a(z)}{b(\omega)} 
+= \delta(z-\omega)\superb{a}{b}(\omega) 
++ \partial_{\omega}\delta(z-\omega)\cdot(a|b)\cdot{K}
 \end{equation}
 hence all the currents are mutually local with respect to the operator
 product expansion:
 \begin{equation}
-a(z)b(\omega)\sim\frac{\superb{a}{b}(\omega)}{z-\omega}+\frac{(a|b)K}{(z-\omega)^{2}}
+a(z)b(\omega)
+\sim \frac{\superb{a}{b}(\omega)}{z-\omega}
++ \frac{(a|b)K}{(z-\omega)^{2}}
 \end{equation}
 
 \M
@@ -622,12 +732,13 @@ Let $A$ be the odd 2-dimensional superspace
 $\CC\varphi^{+}\oplus\CC\varphi^{-}$ with the supersymmetric bilinear
 form
 \begin{equation}
-(\varphi^{+}|\varphi^{-})=0,\quad\mbox{and}\quad
-(\varphi^{\pm}|\varphi^{\pm})=1.
+(\varphi^{+}|\varphi^{-})=1,\quad\mbox{and}\quad
+(\varphi^{\pm}|\varphi^{\pm})=0.
 \end{equation}
 Again let $K=1$. Then we obtain the algebra
 \begin{equation}
-\varphi^{\pm}_{m}\varphi^{\mp}_{n}+\varphi^{\mp}_{n}\varphi^{\pm}_{m}=\delta_{m,-n}
+\varphi^{\pm}_{m}\varphi^{\mp}_{n}+\varphi^{\mp}_{n}\varphi^{\pm}_{m}
+=\delta_{m,-n}
 \end{equation}
 and
 \begin{equation}
@@ -646,3 +757,197 @@ and
 \begin{equation}
 \varphi^{\pm}(z)\varphi^{\pm}(\omega)\sim0.
 \end{equation}
+
+%%%%%%%%%%
+\subsection{Conformal Weights and Virasoro Algebra}
+\M
+Let $H$ be a diagonalizable derivation of the algebra $U$, called a 
+\define{Hamiltonian}. Then $H$ acts on the space of formal distributions with 
+values in $U$ in ``the obvious way'' (i.e., coefficient-wise).
+
+\N{Definition}
+A formal distribution $a=a(z,\omega,\dots)$ is called an 
+\define{Eigendistribution} \textbf{for $H$ of} \define{Conformal Weight} 
+$\Delta\in\CC$ if and only if $a$ satisfies
+\begin{equation}
+(H-\Delta-z\partial_{z}-\omega\partial_{\omega}-\dots)a=0.
+\end{equation}
+
+\N{Proposition}
+We have the following properties of conformal weights: suppose $a$ and $b$ are
+eigendistributions of conformal weights $\Delta$, $\Delta'$ (respectively). Then:
+\begin{enumerate}
+\item $\partial_{z}a$ is an eigendistribution with conformal weight $\Delta+1$
+\item $\normOrd{a(z)b(\omega)}$ is an eigendistribution of conformal weight $\Delta+\Delta'$
+\item If $f$ is a homogeneous function of degree $j$, then $f\cdot a$ is an 
+eigendistribution of conformal weight $\Delta-j$.
+\end{enumerate}
+
+\N{Corollary}\label{cor:bookKeeping:OPE}
+If $a(z)$ and $b(z)$ are mutually local eigendistributions with conformal weights 
+$\Delta$ and $\Delta'$ (respectively), then their operator product expansion is
+\begin{equation}
+a(z)b(\omega)\sim\sum^{N-1}_{j=0}\frac{c_{j}(\omega)}{(z-\omega)^{j+1}}
+\end{equation}
+Its coefficients $c_{j}(\omega)$ are eigendistributions with weight 
+$\Delta+\Delta'-j-1$. 
+
+Or, in other words, if we denote the space of all formal distributions of 
+conformal weight $j$ as $\mathcal{D}^{j}$, then we have
+\begin{subequations}
+\begin{equation}
+\mathcal{D}^{j}_{(n)}\mathcal{D}^{k}\subset\mathcal{D}^{j+k-n-1}
+\end{equation}
+and
+\begin{equation}
+\partial\mathcal{D}^{j}\subset\mathcal{D}^{j+1}.
+\end{equation}
+\end{subequations}
+
+\M
+If $a(z)$ is an eigendistribution of conformal weight $\Delta$, we usually
+write it in the form (without parentheses around the indices):
+\begin{equation}
+a(z)=\sum_{n\in-\Delta+\ZZ}a_{n}z^{-n-\Delta}.
+\end{equation}
+The condition of $a(z)$ being an eigendistribution of weight $\Delta$ is then 
+equivalent to
+\begin{equation}
+Ha_{n}=-na_{n}
+\end{equation}
+We see the supercommutator of such guys (i.e., property 
+\ref{thm:manyPropertiesForFormalDistributions:prop:iv} of theorem 
+\ref{thm:manyPropertiesForFormalDistributions}) becomes
+\begin{equation}
+\superb{a_{m}}{b_{n}}=\sum^{N-1}_{j=0}\binom{m+\Delta-1}{j}c^{j}_{m+n}
+\end{equation}
+or equivalently
+\begin{equation}
+\superb{a_{m}}{b(z)} = \sum^{N-1}_{j=0}\binom{m+\Delta-1}{j}c^{j}(z)z^{m+\Delta-j-1}.
+\end{equation}
+
+\N{Example}
+Consider the algebra of currents $\widehat{\mathscr{G}}$ (resp., supercurrents 
+$\widehat{\mathscr{G}}_{\text{super}}$), the Hamiltonian $H=-t\partial_{t}$ 
+(resp., $H_{\text{super}}=-t\partial_{t}-\frac{1}{2}\theta\partial_{\theta}$), 
+we see that the currents $a(z)$ (resp., supercurrents $\bar{a}(z)$) have 
+conformal weight 1 (resp., $1/2$). 
+
+\M
+Note corollary \ref{cor:bookKeeping:OPE} gives us a useful book-keeping device
+when calculating operator product expansions. Most examples will have the 
+conformal weight live in $\frac{1}{2}\ZZ$, and will be zero if and only if the
+eigendistribution is a constant element commuting with all formal distributions
+of the theory.
+
+\M
+Consider a local even eigendistribution $L(z)$ of conformal weight $2$:
+\begin{equation}
+L(z)=\sum_{n\in\ZZ}L_{n}z^{-n-2}.
+\end{equation}
+As we have mentioned, it is natural to assume the operator product expansion
+takes the form
+\begin{equation}\label{eq:OPEforConformalWeightTwoEigendistribution}
+L(z)L(\omega)
+\sim \frac{\frac{1}{2}C}{(z-\omega)^{4}}
+   + \frac{a(\omega)}{(z-\omega)^{3}}
+   + \frac{2b(\omega)}{(z-\omega)^{2}}
+   + \frac{c(\omega)}{z-\omega},
+\end{equation}
+where $C$ is a constant formal distribution.
+
+\begin{thm}
+Let $L(z)$ be an even local distribution with the operator product expansion of
+the form described in Eq \eqref{eq:OPEforConformalWeightTwoEigendistribution}.
+Then
+\begin{enumerate}
+\item $a(\omega)=0$ and $c(\omega)=\partial b(\omega)$
+\item If additionally $\superb{C}{L(z)}=0$ and 
+\begin{equation}\label{eq:thm:hypothesis:superCommutator:OPEforWtTwo}
+\superb{L_{-1}}{L(z)}=\partial L(z),\quad
+\superb{L_{0}}{L(z)}=(z\partial+2)L(z),
+\end{equation}
+then Eq \eqref{eq:OPEforConformalWeightTwoEigendistribution} becomes
+\begin{equation}
+L(z)L(\omega)
+\sim\frac{\frac{1}{2}C}{(z-\omega)^{4}}+\frac{2L(\omega)}{(z-\omega)^{2}}+\frac{\partial L(\omega)}{(z-\omega)}
+\end{equation}
+or equivalently, we have the \define{Virasoro algebra} (letting $m,n\in\ZZ$)
+\begin{equation}
+\begin{split}
+\superb{L_{m}}{L_{n}}&=(m-n)L_{m+n}+\frac{m(m+1)(m-1)}{12}\delta_{m,-n}C\\
+\superb{C}{L_{m}}&=0.
+\end{split}
+\end{equation}
+\end{enumerate}
+\end{thm}
+\begin{proof}
+Note for (1) we want to show
+\begin{equation}
+L(z)L(\omega)\sim\frac{\frac{1}{2}C}{(z-\omega)^{4}}
++\partial_{\omega}\left(\frac{b(\omega)}{(z-\omega)}\right).
+\end{equation}
+We take Eq \eqref{eq:OPEforConformalWeightTwoEigendistribution}, exchange
+$z$ and $\omega$ to get
+\begin{equation}
+\begin{split}
+L(\omega)L(z)\sim&\frac{\frac{1}{2}C}{(z-\omega)^{4}}\\
+  &- \frac{a(z)}{(z-\omega)^{3}}\\
+  &+\frac{2b(z)}{(z-\omega)^{2}}\\
+  &-\frac{c(z)}{(z-\omega)}.
+\end{split}
+\end{equation}
+We then Taylor expand, recalling
+\begin{equation*}
+a(z)=\sum^{\infty}_{j=0}(z-\omega)^{j}\frac{\partial^{j}}{j!}a(\omega),
+\end{equation*}
+then we keep only the singular terms (since we're working with the OPE), so
+the Taylor expansion of the numerators gives us:
+\begin{equation}
+\begin{split}
+L(\omega)L(z)
+\sim\quad&\frac{\frac{1}{2}C}{(z-\omega)^{4}}\\
+&-\frac{1}{(z-\omega)^{3}}\left[a(\omega)+(z-\omega)\partial a(\omega)+(z-\omega)^{2}\partial^{2}a(\omega)\right]\\
+&+\frac{2}{(z-\omega)^{2}}\left[ b(\omega)+(z-\omega)\partial b(\omega)\right]\\
+&-\frac{c(\omega)}{(z-\omega)}
+\end{split}
+\end{equation}
+which must be equal to Eq \eqref{eq:OPEforConformalWeightTwoEigendistribution},
+so setting coefficients equal to equals we find
+\begin{equation}
+\begin{split}
+L(\omega)L(z)
+\sim\quad&\frac{\frac{1}{2}C}{(z-\omega)^{4}}\\
+&-\frac{a(\omega)}{(z-\omega)^{3}}+\frac{-\partial a(\omega) + 2b(\omega)}{(z-\omega)^{2}}\\
+&+\frac{2\partial b(\omega)-\partial^{2}a(\omega)-c(\omega)}{(z-\omega)}.
+\end{split}
+\end{equation}
+Locality implies this is equal to Eq \eqref{eq:OPEforConformalWeightTwoEigendistribution}.
+Setting the coefficients equal reveal
+\begin{equation}
+a(\omega)=-a(\omega),\quad\mbox{thus}\quad a(\omega)=0
+\end{equation}
+and
+\begin{equation}
+2\partial b(\omega)-\partial^{2}0-c(\omega)=c(\omega),\quad\mbox{thus}\quad
+c(\omega)=\partial b(\omega),
+\end{equation}
+which proves (1).
+
+The proof for (2), we recall \S\ref{M:partialProduct} that
+\begin{equation*}\tag{\ref{eq:OPEusingPartialProduct}$'$}
+a(z)b(\omega)\sim\sum^{N-1}_{j=0}\frac{a(\omega)_{(j)}b(\omega)}{(z-\omega)^{j+1}},
+\end{equation*}
+then by our previous result and hypothesis we have
+\begin{equation}
+\superb{L_{-1}}{L(z)}=\partial b(z),\quad\mbox{and}\quad
+\superb{L_{0}}{L(z)}=(z\partial+2)b(z).
+\end{equation}
+Hence Eq \eqref{eq:thm:hypothesis:superCommutator:OPEforWtTwo} implies 
+$b(z)=L(z)$. This proves the theorem.
+\end{proof}
+
+\begin{rmk}
+This sort of distribution we just described is called a 
+\define{Virasoro Formal Distribution with Central Charge $C$}.
+\end{rmk}

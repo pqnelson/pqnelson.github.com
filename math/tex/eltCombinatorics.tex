@@ -136,7 +136,6 @@ p_{23} &=
 So only make this bet when there are at least 23 people in the room!
 
 %%%%%%%%%%
-
 \subsection{Binomial Coefficients}
 \M
 How many samples of size $r$ exist in a population of $n$ elements,
@@ -163,7 +162,7 @@ If $k\geq n$, then
 A population with $n$ elements has $\binom{n}{r}$ different
 subpopulations of size $r\leq n$.
 
-\N{Theorem (Properties of the Binomial Coefficients)}
+\N{Theorem (Properties of the Binomial Coefficients)}\label{thm:propertiesOfBinomialCoefficients}
 Let $0\leq k\leq n$. Then
 \begin{enumerate}
 \item $\displaystyle\binom{n}{0}=\binom{n}{n}=1$
@@ -283,7 +282,7 @@ p = \frac{2^{50}}{\displaystyle\binom{100}{50}} \approx 1.11\times10^{-14}
 \end{equation}
 is the probability every state is represented.
 
-
+%%%%%%%%%%
 \subsection{Multinomial Coefficient}
 \M
 Suppose we have a population with $n$ elements. How many different ways
@@ -301,7 +300,8 @@ We have the following number of such partitions:
 These quantities are called \define{Multinomial Coefficients}.
 The notation varies according to the text. 
 
-\subsection{Hat Check Problem}
+%%%%%%%%%%
+\subsection{Hat Check Problem}\label{subsec:hatCheckProblem}
 \N{Problem Statement}
 At a restaurant, $n$ people check their hats.
 The hat checker completely loses track of who owns which hat, and begins
