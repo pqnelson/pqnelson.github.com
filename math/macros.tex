@@ -2,7 +2,8 @@
 \usepackage{amsthm,amsmath,amssymb}
 \usepackage{mathrsfs}
 \usepackage{fancyvrb}
-\usepackage[inner=1in,textwidth=30pc,top=1in]{geometry}
+\usepackage{marginnote}
+\usepackage[inner=1in,textwidth=30pc,top=1in,marginparwidth=10pc,marginparsep=1.5pc]{geometry}
 \usepackage[nottoc,numbib]{tocbibind}
 \usepackage[12hr,us]{datetime}
 \usepackage[final,colorlinks=true, 
@@ -17,6 +18,8 @@
 \usepackage[all]{hypcap}
 
 \author{Alex Nelson\footnote{This is a page from \url{http://code.google.com/p/notebk/}\hfil\break\indent\;\, Compiled:\enspace\today\ at \currenttime\ (PST)}\\\texttt{Email:\enspace\href{mailto:pqnelson@gmail.com}{pqnelson@gmail.com}}}
+
+\def\marginpar#1{\marginnote{\footnotesize\emph{#1}}}
 
 \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 % chunks

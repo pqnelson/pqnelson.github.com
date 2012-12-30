@@ -1,0 +1,96 @@
+\M
+The \define{Hypergeometric Distribution} occurs in situations like:
+\begin{quote}
+Suppose we have $N$ balls, of which $k$ are red and $N-k$ are blue. We
+draw a sample, without replacement, of $n$ balls. Let $X$ be the number
+of red balls drawn in our sample of size $n$. What's the probability
+$X=x$?
+\end{quote}
+We see
+\begin{equation}
+\Pr(X=x)=\frac{\begin{pmatrix}\mbox{number of different}\\
+\mbox{ways to choose}\\
+\mbox{$x$ red balls}
+\end{pmatrix}
+\begin{pmatrix}
+\mbox{number of different}\\
+\mbox{ways to choose}\\
+\mbox{$(n-x)$ blue balls}
+\end{pmatrix}}{\begin{pmatrix}\mbox{number of different}\\
+\mbox{samples drawn}
+  \end{pmatrix}}
+\end{equation}
+
+\N{Example}
+We have 1000 widgets, of which an unknown number $D$ has defects. A
+sample of 100 has 2 with defects. The \define{Maximum Likelihood Estimate}
+for $D$ is the number which gives the highest probability for obtaining
+the number of defectives observed in a sample. Find that value of $D$.
+
+\N*{Solution:}
+So we have $N=1000$ and instead of ``red balls'' we have ``defective
+Widgets'' $k=D$. The sample size is $n=100$. What's the value of $D$
+that makes the event most probable?
+
+Well, the distribution would be described by
+\begin{equation}
+\Pr(X=2)=\frac{\binom{D}{2}\binom{1000-D}{100-2}}{\binom{1000}{100}}
+\end{equation}
+which algebraically reduces to
+\begin{equation}
+\Pr(X=2)=\frac{D(D-1)}{2}\frac{1}{100\cdot999\cdot(\dots)\cdot(1000-(D-1))}
+\frac{900\cdot(\dots)\cdot(902-(D-1))}{1}\cdot100\cdot99.
+\end{equation}
+We can then write up a small C program which will write out a table for
+values of $D$ and the corresponding probability.
+\begin{Verbatim}[fontsize=\small]
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
+#define E 2.71828182845904523536028747135266249775724709369995L
+#define PI 3.14159265358979323846264338327950288L
+
+/* Stirling's approximation */
+double factorial(int n)
+{
+  double x = 1.0L*n;
+  return sqrt(2*PI*x)*pow(x/E,x);
+}
+
+/* return a*(a+1)*(...)*b */
+double prod(int a, int b)
+{
+  if(a>b) return prod(b,a);
+  int k;
+  double result;
+  result = 1.0;
+  for(k=a;k<=b;k++)
+    result = result*k;
+  return result;
+}
+
+int main(int argc, char *argv[])
+{
+  int D;
+  double c, v;
+  v = 0.0;
+  c = 990.0;
+  for(D=2; 35>D; D++)
+  {
+    v = c * (D*(D-1)*0.5) * prod(902-D+1,900)/prod(1000-D+1,1000);
+    printf("D=%d, Pr(X=2) = %f\n",D,v);
+  }
+
+  return EXIT_SUCCESS;
+}
+\end{Verbatim}
+A small snippet reveals:
+\begin{Verbatim}[fontsize=\footnotesize]
+D=19, Pr(X=2) = 0.028804
+D=20, Pr(X=2) = 0.028807
+D=21, Pr(X=2) = 0.028655
+D=22, Pr(X=2) = 0.028366
+D=23, Pr(X=2) = 0.027954
+\end{Verbatim}
+which implies $D=20$ is the value which has the most probable outcome.

@@ -1,0 +1,201 @@
+\N{Definition}
+Let $x\in\RR$ be any real number. We define $\intPart{x}$ to be the
+greatest integer smaller than $x$. So observe
+\begin{subequations}
+\begin{align}
+\intPart{3.1} &= 3\\
+\intPart{\pi} &= 3\\
+\intPart{-\E} &=-3
+\end{align}
+\end{subequations}
+We always will have
+\begin{equation}
+\intPart{x}\leq x.
+\end{equation}
+We now may define
+\begin{equation}
+\fracPart{x}=x-\intPart{x}=\mbox{fractional part of $x$}
+\end{equation}
+and observe $0\leq\fracPart{x}<1$.
+
+\begin{lemma}
+Suppose we have a sequence $\{c_{n}\}^{\infty}_{n=1}$ and for $x\geq1$
+we define a function
+\begin{equation}
+C(x) = \sum_{n\leq x}c_n,\quad\mbox{and}\quad C(0)=0.
+\end{equation}
+Let $f$ be a $C^{1}$ function, then
+\begin{equation}
+\sum_{n\leq x}c_{n}f(n) = C(x)f(x)-\int^{x}_{1}C(t)f'(t)\,\D t.
+\end{equation}
+\end{lemma}
+\begin{proof}
+This is a two-step proof. Step one notes
+\begin{subequations}
+\begin{equation}
+\sum_{n\leq x}C(n)\bigl(f(n+1)-f(n)\bigr) =
+C(x)f(\intPart{x})-\sum_{n\leq x}c_{n}f(n)
+\end{equation}
+but the left hand side is precisely
+\begin{equation}
+\sum_{n\leq x}C(n)\bigl(f(n+1)-f(n)\bigr) =
+\int^{\intPart{x}}_{1}C(t)f'(t)\,\D t.
+\end{equation}
+Thus we obtain
+\begin{equation}\label{eq:pf:partialSum:stepOne}
+\int^{\intPart{x}}_{1}C(t)f'(t)\,\D t=C(x)f(\intPart{x})-\sum_{n\leq x}c_{n}f(n).
+\end{equation}
+\end{subequations}
+That concludes the first step.
+
+The second step notes
+\begin{equation}\label{eq:pf:partialSum:stepTwo}
+\int^{x}_{\intPart{x}}C(t)f'(t)\,\D t=C(x)f(x)-C(x)f(\intPart{x}).
+\end{equation}
+This uncontroversial statement should be seen immediately by the
+fundamental theorem of calculus.
+
+We then add Eq \eqref{eq:pf:partialSum:stepOne} to Eq \eqref{eq:pf:partialSum:stepTwo}
+to find
+\begin{subequations}
+\begin{multline}
+\int^{x}_{\intPart{x}}C(t)f'(t)\,\D t
++\int^{\intPart{x}}_{1}C(t)f'(t)\,\D t\\
+=C(x)f(x)-C(x)f(\intPart{x})+C(x)f(\intPart{x})-\sum_{n\leq x}c_{n}f(n)
+\end{multline}
+which simplifies to
+\begin{equation}
+\int^{x}_{1}C(t)f'(t)\,\D t=C(x)f(x)+\sum_{n\leq x}c_{n}f(n)
+\end{equation}
+\end{subequations}
+precisely as desired.
+\end{proof}
+
+
+\N{Example (Harmonic Series)}
+We will apply our lemma to the harmonic series. How? Well, consider
+\begin{equation}
+H_{x}=\sum_{n\leq x}\frac{1}{n}
+\end{equation}
+which we consider the sequence $c_{n}=1$ and $f(t)=1/t$. Then note
+\begin{equation}
+C(x)=\sum_{n\leq x}1=\intPart{x}.
+\end{equation}
+Thus our lemma implies
+\begin{equation}
+H_{x} = \frac{\intPart{x}}{x}+\int^{x}_{1}\frac{\intPart{t}}{t^{2}}\,\D
+t.
+\end{equation}
+We will try to simplify this.
+
+First we should note that $x=\intPart{x}+\fracPart{x}$. Thus
+\begin{subequations}
+\begin{align}
+H_{x}&=\frac{x-\fracPart{x}}{x}+\int^{x}_{1}\frac{t-\fracPart{t}}{t^{2}}\D
+t\\
+&=\ln(x)+\left(1-\frac{\fracPart{x}}{x}\right)-\int^{x}_{1}\frac{\fracPart{t}}{t^{2}}\D t\\
+&=\ln(x)+\left(1-\int^{\infty}_{1}\frac{\fracPart{t}}{t^{2}}\D t\right)
++\int^{\infty}_{x}\frac{\fracPart{t}}{t^{2}}\D t-\frac{\fracPart{x}}{x}
+\end{align}
+\end{subequations}
+Let
+\begin{equation}
+\gamma=1-\int^{\infty}_{1}\frac{\fracPart{t}}{t^{2}}\D t
+\end{equation}
+then our expression simplifies to
+\begin{equation}
+H_{x} = \ln(x)+\gamma+\int^{\infty}_{x}\frac{\fracPart{t}}{t^{2}}\D
+t-\frac{\fracPart{x}}{x}.
+\end{equation}
+Wonderful.
+
+But does the integral term converge? We see
+\begin{subequations}
+\begin{align}
+\left|\int^{\infty}_{x}\frac{\fracPart{t}}{t^{2}}\D t\right|
+&\leq\int^{\infty}_{x}\frac{|\fracPart{t}|}{t^{2}}\D t\\
+&\leq\int^{\infty}_{x}\frac{1}{t^{2}}\D t = \frac{1}{x}.
+\end{align}
+\end{subequations}
+Moreover this implies
+\begin{equation}
+\int^{\infty}_{x}\frac{\fracPart{t}}{t^{2}}\D
+t-\frac{\fracPart{x}}{x}=\bigO(x^{-1}).
+\end{equation}
+So the expression for $H_{x}$ becomes
+\begin{equation}
+H_{x}=\ln(x)+\gamma+\bigO(x^{-1})
+\end{equation}
+but \emph{can we do better?}
+
+\M
+Lets try to figure out the next terms to order $\bigO(x^{-2})$. We will
+consider
+\begin{equation}
+\int^{\infty}_{x}\frac{\fracPart{t}}{t^{2}}\D t-\frac{\fracPart{x}}{x}
+=\int^{\infty}_{x}\frac{\fracPart{t}-\frac{1}{2}}{t^{2}}\D
+t+\frac{1}{2}\int^{\infty}_{x}\frac{\D t}{t^{2}}-\frac{\fracPart{x}}{x}
+\end{equation}
+which simplifies to
+\begin{equation}
+\int^{\infty}_{x}\frac{\fracPart{t}}{t^{2}}\D t-\frac{\fracPart{x}}{x}
+=\int^{\infty}_{x}\frac{\fracPart{t}-\frac{1}{2}}{t^{2}}\D t
++\frac{1}{2x}-\frac{\fracPart{x}}{x}.
+\end{equation}
+Now we make a claim!
+
+\N*{Claim} The integral $\displaystyle{\int^{\infty}_{x}\frac{\fracPart{t}-\frac{1}{2}}{t^{2}}\D t=\bigO(1/x^{2})}$.
+
+\begin{proof}
+We will integrate by parts, using
+\begin{equation}
+u=\frac{1}{t^{2}},\quad\mbox{and}\quad\D u=\frac{-2}{t^{3}}\D t
+\end{equation}
+and
+\begin{equation}
+\D v =\left(\frac{1}{2}-\fracPart{t}\right)\D t,\quad\mbox{and}\quad
+v = \int^{t}_{1}\left(\frac{1}{2}-\fracPart{u}\right)\D u.
+\end{equation}
+Thus the integral becomes
+\begin{multline}
+\lim_{R\to\infty}\int^{R}_{x}\frac{\fracPart{t}-\frac{1}{2}}{t^{2}}\D t\\
+=\left.\frac{1}{t^{2}}\int^{t}_{1}\left(\frac{1}{2}-\fracPart{u}\right)\D u\right|^{t=R}_{t=x}
++2\int^{R}_{x}\frac{1}{t^{3}}\int^{t}_{1}\left(\frac{1}{2}-\fracPart{u}\right)\D u
+\end{multline}
+We claim that
+\begin{equation}
+\begin{split}
+v &= \int^{[t]}_{1}
+\left(\frac{1}{2}-\fracPart{u}\right)\D u
++\int^{t}_{[t]}
+\left(\frac{1}{2}-\fracPart{u}\right)\D u\\
+&=0+\int^{t}_{[t]}
+\left(\frac{1}{2}-\fracPart{u}\right)\D u
+\end{split}
+\end{equation}
+How can we see this? Well, we should note for any integer $k$ that
+\begin{equation}
+\int^{k+1}_{k}\left(\frac{1}{2}-\fracPart{u}\right)\D u=0,
+\end{equation}
+since it's a sawtooth function. Thus
+\begin{equation}
+v\leq\int^{1}_{1/2}\left(\frac{1}{2}-\fracPart{u}\right)\D
+u=\frac{1}{4}.
+\end{equation}
+Our integral becomes
+\begin{equation}
+\begin{split}
+\lim_{R\to\infty}\int^{R}_{x}\frac{\fracPart{t}-\frac{1}{2}}{t^{2}}\D t
+&=\lim_{R\to\infty}\left.\frac{1}{t^{2}}\frac{1}{4}\right|^{t=R}_{t=x}
++2\int^{R}_{x}\frac{1}{t^{3}}\frac{1}{4}\D t\\
+&\sim\bigO(x^{-2}).
+\end{split}
+\end{equation}
+This proves the claim.
+\end{proof}
+Moreover, for any integer $n$, we see
+\begin{equation}
+\sum^{N}_{n=1}\frac{1}{n} = \ln(N)+\gamma+\frac{1}{2N}+\bigO(N^{-2}).
+\end{equation}
+This turns out to be a good \emph{asymptotic} approximation for harmonic
+numbers. 

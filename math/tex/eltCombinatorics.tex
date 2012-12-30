@@ -40,7 +40,7 @@ We may approximate it using \define{Stirling's Approximation}
 \begin{equation}
 n!\sim\sqrt{2\pi n}\left(\frac{n}{\E}\right)^{n}.
 \end{equation}
-We may derive this from the Gamma function
+We may derive this from the Gamma function\index{Gamma function}\index{$\Gamma(x)$}
 \begin{equation}
 \Gamma(x)=\int^{\infty}_{0}t^{x-1}\E^{-t}\,\D t,\qquad\mbox{for
 }\Re(x)>0.
@@ -170,13 +170,71 @@ Let $0\leq k\leq n$. Then
 \item Pascal's triangle $\displaystyle\binom{n}{k}+\binom{n}{k+1}=\binom{n+1}{k+1}$
 \end{enumerate}
 
+\begin{proof}
+(1) We see by definition that
+\begin{subequations}
+\begin{equation}
+\binom{n}{0}=\frac{n!}{(n-0)!0!}=\frac{n!}{n!}=1,
+\end{equation}
+and similarly
+\begin{equation}
+\binom{n}{n}=\frac{n!}{(n-n)!n!}=\frac{n!}{n!}=1.
+\end{equation}
+\end{subequations}
+That proves (1).
+
+(2) We see that
+\begin{subequations}
+\begin{equation}
+\binom{n}{k}=\frac{n!}{(n-k)!k!}
+\end{equation}
+and
+\begin{equation}
+\binom{n}{n-k}=\frac{n!}{\bigl(n-(n-k)\bigr)!(n-k)!}=\frac{n!}{k!(n-k)!}
+\end{equation}
+\end{subequations}
+Then setting equals to equals proves (2).
+
+(3) We recall the generating function for binomial coefficients is given by
+\begin{subequations}
+\begin{equation}
+(1+x)^{n}=\sum^{n}_{k=0}\binom{n}{k}x^{k},
+\end{equation}
+so
+\begin{equation}\label{eq:pf:pascalTriangle:eq1}
+(1+x)^{n+1}=\sum^{n+1}_{k=0}\binom{n+1}{k}x^{k}.
+\end{equation}
+But simple arithmetic also suggests
+\begin{equation}
+\begin{split}
+(1+x)^{n}(1+x)&=1\cdot\sum^{n}_{k=0}\binom{n}{k}x^{k}+x\sum^{n}_{k=0}\binom{n}{k}x^{k}\\
+&=\sum^{n}_{k=0}\binom{n}{k}x^{k}+\sum^{n}_{k=0}\binom{n}{k}x^{k+1}.
+\end{split}
+\end{equation}
+We can rewrite this as
+\begin{equation}\label{eq:pf:pascalTriangle:eq2}
+\begin{split}
+(1+x)^{n}(1+x)&=1+\sum^{n}_{k=1}\binom{n}{k}x^{k}+\sum^{n}_{k=1}\binom{n}{k-1}x^{k}+x^{n+1}\\
+&=1+\sum^{n}_{k=1}\left[\binom{n}{k}+\binom{n}{k-1}\right]x^{k}+x^{n+1}
+\end{split}
+\end{equation}
+and thus we conclude, setting Eq \eqref{eq:pf:pascalTriangle:eq1} equal
+to Eq \eqref{eq:pf:pascalTriangle:eq2}, the coefficients of powers of
+$x$ must be equal. Thus
+\begin{equation}
+\binom{n+1}{k}=\binom{n}{k}+\binom{n}{k-1},
+\end{equation}
+\end{subequations}
+which implies (3).
+\end{proof}
+
 \begin{cor}
 Let $n,k\in\NN$, then
 \begin{equation}
 \binom{n}{-k}=0.
 \end{equation}
 \end{cor}
-\begin{proof}
+\begin{proof}[Proof of Corollary]
 By statement \ref{thm:binom:prop:symmetry} of the previous theorem, we
 have
 \begin{equation}
@@ -189,7 +247,9 @@ Since $k>0$, our convention implies that
 as desired.
 \end{proof}
 
-
+\begin{xca}
+Prove $\binom{n}{0}+\binom{n}{1}+\dots+\binom{n}{n}=2^{n}$.
+\end{xca}
 
 \N{Example}
 A deck of cards has 52 cards, a poker hand has 5 cards.
@@ -202,6 +262,45 @@ We see there are
 \end{equation}
 different poker hands.
 
+\N{Example}
+The US Senate has 100 Senators (a pair represents each state). If a
+committee is formed with 50 senators, then:
+
+(a) What's the probability a given state is represented?
+
+(b) What's the probability each state is represented?
+
+\N*{Solution}
+(a) Well, we first consider the \emph{negation} of this statement: what's
+the probability not every state is represented? There are
+\begin{equation}
+\binom{98}{50} = d_{k}
+\end{equation}
+ways to choose the committee so some state is not represented. But there
+is 
+\begin{equation}
+\binom{100}{50}=n_{k}
+\end{equation}
+different ways to choose the committee. Thus the probability a given state is
+not represented is
+\begin{equation}
+q = \frac{\displaystyle\binom{98}{50}}{\displaystyle\binom{100}{50}} = \frac{49}{198}\approx 0.24747\dots
+\end{equation}
+and hence the probability a given state is represented is
+\begin{equation}
+1-q = \frac{149}{198} \approx 0.7525\dots
+\end{equation}
+That concludes the first question.
+
+(b)
+We pick one senator from each state. We have two possibilities for each
+state, and 50 states, hence we have $2^{50}$ possibilities. Thus we have
+\begin{equation}
+p = \frac{2^{50}}{\displaystyle\binom{100}{50}} \approx 1.11\times10^{-14}
+\end{equation}
+is the probability every state is represented.
+
+\subsubsection{Binomial Distribution}
 \N{Example}
 Consider a random distribution of $r$ balls in $n$ urns. Find the
 probability $p_{k}$ that a specified cell contains exactly $k$ balls.
@@ -241,46 +340,82 @@ p_{k}&=\frac{\displaystyle\binom{r}{k}(n-1)^{r-k}}{n^{r}}\\
 &=\binom{r}{k}\frac{1}{n^{k}}\left(1-\frac{1}{n}\right)^{r-k}.
 \end{split}
 \end{equation}
-This is an example of the famous \emph{binomial distribution}, which
+This is an example of the famous \emph{binomial distribution}\marginpar{Binomial Distribution}\index{Binomial Distribution}, which
 we'll soon study.
 
-\N{Example}
-The US Senate has 100 Senators (a pair represents each state). If a
-committee is formed with 50 senators, then:
+\M
+Suppose we toss a fair coin $n$ times. What's the probability we have
+$k$ heads? 
 
-(a) What's the probability a given state is represented?
+\N*{Solution:}
+The basic solution we will propose will look like
+\begin{equation}
+\Pr(\mbox{$k$ heads})=\begin{pmatrix}\mbox{number of}\\
+\mbox{combinations}
+\end{pmatrix}
+\begin{pmatrix}
+\mbox{probability of}\\
+\mbox{one heads}
+\end{pmatrix}^{k}
+\begin{pmatrix}
+\mbox{probability of}\\
+\mbox{one tails}
+\end{pmatrix}^{n-k}
+\end{equation}
+We have a subpopulation of $k$ heads in a population with $n$
+elements. So
+\begin{equation}
+\begin{pmatrix}\mbox{number of}\\
+\mbox{combinations}
+\end{pmatrix}=\binom{n}{k}
+\end{equation}
+and
+\begin{equation}
+\begin{pmatrix}
+\mbox{probability of}\\
+\mbox{one heads}
+\end{pmatrix}=
+\begin{pmatrix}
+\mbox{probability of}\\
+\mbox{one tails}
+\end{pmatrix}=\frac{1}{2}.
+\end{equation}
+More generally, we will write
+\begin{equation}
+p=\begin{pmatrix}
+\mbox{probability of}\\
+\mbox{one heads}
+\end{pmatrix},\quad\mbox{and}\quad (1-p)=\begin{pmatrix}
+\mbox{probability of}\\
+\mbox{one tails}
+\end{pmatrix}.
+\end{equation}
+So we conclude
+\begin{equation}
+\Pr(\mbox{$k$ heads})=\binom{n}{k}p^{k}(1-p)^{n-k}.
+\end{equation}
 
-(b) What's the probability each state is represented?
-
-\N*{Solution}
-(a) Well, we first consider the \emph{negation} of this statement: what's
-the probability not every state is represented? There are
+\N*{Solution 2:}
+Let $p$ be the probability of success (heads), and $q$ the probability
+of failure (tails), for one trial. Then we consider the Binomial
+expansion of 
 \begin{equation}
-\binom{98}{50} = d_{k}
+(p+q)^{n}=p^{n}+\dots+\binom{n}{k}p^{k}q^{n-k}+\dots+q^{n}.
 \end{equation}
-ways to choose the committee so some state is not represented. But there
-is 
+Each term represents one outcome, namely, the coefficient of $p^{k}$ is
+the outcome with $k$ successes. So
 \begin{equation}
-\binom{100}{50}=n_{k}
+\Pr(\mbox{$k$ heads})=\binom{n}{k}p^{k}q^{n-k}.
 \end{equation}
-different ways to choose the committee. Thus the probability a given state is
-not represented is
+Since the only outcomes are success or failure, we have
 \begin{equation}
-q = \frac{\displaystyle\binom{98}{50}}{\displaystyle\binom{100}{50}} = \frac{49}{198}\approx 0.24747\dots
+p+q=1,
 \end{equation}
-and hence the probability a given state is represented is
+which implies $q=1-p$ and ``something must happen''. Thus we conclude
 \begin{equation}
-1-q = \frac{149}{198} \approx 0.7525\dots
+\Pr(\mbox{$k$ heads})=\binom{n}{k}p^{k}(1-p)^{n-k}
 \end{equation}
-That concludes the first question.
-
-(b)
-We pick one senator from each state. We have two possibilities for each
-state, and 50 states, hence we have $2^{50}$ possibilities. Thus we have
-\begin{equation}
-p = \frac{2^{50}}{\displaystyle\binom{100}{50}} \approx 1.11\times10^{-14}
-\end{equation}
-is the probability every state is represented.
+recovering our previous solution.
 
 %%%%%%%%%%
 \subsection{Multinomial Coefficient}
