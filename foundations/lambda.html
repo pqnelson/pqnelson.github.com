@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/print.css" media="print" />
+    <title>Lambda Calculus and Foundations of Mathematics</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <header>
+	<h1>Lambda Calculus and Foundations of Mathematics</h1>
+	Published: March 17, 2013.
+      </header>
+      <section id="main_content">
+<h1>Lambda Calculus</h1>
+<p>
+Lambda calculus appears straightforward. I won't review it now. But I
+will give some examples to clarify my whacky notation!
+</p>
+<p>
+I will use the Lisp syntax for application of arguments:
+</p>
+<pre>
+((&lambda; x. x + x) 3) = 3 + 3 = 6.
+</pre>
+<p>
+<b>Goal:</b> I would like to know if we can form some sort of "lambda
+calculus foundations for mathematics", specifically if we can obtain
+something
+like <a href="matrix.cmi.ua.ac.be/the-empty-set-according-to-bourbaki">Bourbaki's set theory</a>.
+</p>
+<h3>Propositional Calculus: Church Booleans</h3>
+<p>
+Lambda calculus encodes propositional calculus. Consider:
+</p>
+<pre>
+TRUE := &lambda; x y. x
+FALSE := &lambda; x y. y
+AND := &lambda; m n. m n m
+OR := &lambda; m n. m m n
+NOT := &lambda; x. (x FALSE TRUE)
+</pre>
+<p>
+Observe for <code>(NOT TRUE) = ((&lambda; x y. x) FALSE TRUE) = ((&lambda; y. FALSE) TRUE) = FALSE</code>.
+</p>
+<blockquote>
+<p>
+<b>Exercise.</b> In mathematical logic, we have material implication be
+defined as:
+<pre>
+(IMPLIES x y) = 
+(NOT 
+  (AND
+    (NOT x)
+    y))
+</pre>
+What is it in terms of &lambda; calculus?
+</p>
+<p>
+<b>Exercise.</b> Prove or find a counter-example:
+<pre>
+IMPLIES := &lambda; m n. m n FALSE
+</pre>
+[Hint: What is <code>(IMPLIES FALSE TRUE)</code>? <code>(IMPLIES TRUE FALSE)</code>?]
+</p>
+</blockquote>
+<p>
+Inferences are precisely &beta;-reductions, and deduction becomes
+processing a huge &lambda; expression.
+</p>
+<p>
+<b>Problem:</b> How do we handle quantifiers for &lambda;-calculus?
+</p>
+<h3>Hilbert's Operator?</h3>
+<p>
+Hilbert invented an &epsilon; operator which behaves as:
+</p>
+<p style="margin-left: 2em;">
+&epsilon; x : P(x), or in English "Some x satisfying P(x)."
+</p>
+<p>
+It returns to us either (a) the <i>x</i> which makes a predicate true,
+or (b) any arbitrary value.
+</p>
+<p>
+In the language of &lambda;-calculus, we can express this as the fixed
+point for:
+</p>
+<pre>
+&lambda; x. ((P x) x FALSE)
+</pre>
+<p>
+We "cheat" and make the arbitrary object returned
+merely <code>FALSE</code>. 
+</p>
+<p>
+How do we find a fixed point in untyped &lambda; calculus? Using
+the <a href="http://en.wikipedia.org/wiki/Fixed-point_combinator">Fixed-point combinator <tt>[wikipedia.org]</tt></a>!
+</p>
+<p>
+So if this is more-or-less kosher, untyped &lambda;-calculus embeds
+predicate logic. This is too good to be true: what have I done wrong?
+</p>
+</section>
+</body>
+</html>
