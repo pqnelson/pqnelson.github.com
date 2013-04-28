@@ -17,31 +17,9 @@ a:hover {
     text-decoration: underline ;
 }
 
-
-section {
-    display: block;
-    margin: 0 0 20px 0;
-}
-
-header {
-    width: 100%;
-    border-bottom: 1px dashed #dddddd;
-    padding: 10px 0;
-    margin: 0 0 20px 0;
-}
-
-/* Body */
-body {
-    padding: 0px; 
-    margin: 0px;
-    font-family: Georgia, Times, "Times New Roman", serif;
-    overflow: none;
-}
-
-/* General & 'Reset' Stuff */
-.container {
+article {
     background-color: white;
-    width: 60%;
+    width: 39em;
     margin-left: auto ;
     margin-right: auto ;
     margin-bottom: 20px ;
@@ -56,26 +34,24 @@ body {
     box-shadow: 0 5px 5px #333333 ;
 }
 
+section {
+    display: block;
+    margin: 0 0 20px 0;
+}
+
+header {
+    width: 100%;
+    border-bottom: 1px dashed #dddddd;
+    padding: 10px 0;
+    margin: 0 0 20px 0;
+}
+
 blockquote {
     padding-left: 10px;
     border-left: 1px solid #666;
 }
 
-/* chunk */
-.chunk {
-    counter-increment: chunks;
-}
-
-.chunk:before {
-    content: counter(chunks) ".";
-    font-weight: bold;
-}
-
 /* code */
-code, tt, pre {
-    font-size: 12px;
-    font-family: Monaco, monospace; 
-}
 code {
     border: 1px solid #ddd;
     background-color: #eef;
@@ -98,19 +74,12 @@ pre code, pre tt {
 }
 pre.nano, pre.term, pre.terminal {
     width: 80ex;
+    white-space: pre-wrap;
 }
-pre.term, pre.terminal {
+pre.term, pre.terminal, pre.nano span.bg {
     background-color: black;
     color: white;
 }
-pre.nano span.bg {
-    background-color: black;
-    color: white;
-}
-/* pre, code, tt { */
-/*     font-size: 12px; */
-/*     /\* font-family: Consolas,"Liberation Mono",Courier,monospace; *\/ */
-/* } */
 
 /* Clearfix */
 .cf:before, .cf:after {

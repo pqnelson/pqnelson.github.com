@@ -5,13 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="../stylesheets/print.css" media="print" />
     <title>Lambda Calculus and Foundations of Mathematics</title>
   </head>
 
   <body>
 
-    <div class="container">
+    <article>
       <header>
 	<h1>Lambda Calculus and Foundations of Mathematics</h1>
 	Published: March 17, 2013.
@@ -49,6 +48,10 @@ NOT := &lambda; x. (x FALSE TRUE)
 Observe for <code>(NOT TRUE) = ((&lambda; x y. x) FALSE TRUE) = ((&lambda; y. FALSE) TRUE) = FALSE</code>.
 </p>
 <blockquote>
+<p>
+<b>Exercise.</b> Using De Morgan's Law, prove <code>(AND x y)</code> is
+equivalent to <code>(NOT (OR (NOT x) (NOT y)))</code>.
+</p>
 <p>
 <b>Exercise.</b> In mathematical logic, we have material implication be
 defined as:
@@ -107,5 +110,13 @@ So if this is more-or-less kosher, untyped &lambda;-calculus embeds
 predicate logic. This is too good to be true: what have I done wrong?
 </p>
 </section>
+<footer>
+<blockquote>
+"Don't <em>for heaven's sake</em>, be afraid of talking nonsense! But you must pay attention to your nonsense."<br/>
+    &mdash; Ludwig Wittgenstein, <em>Culture and Value</em> p. 56e
+</blockquote>
+<a href="../index.html">Home</a>
+</footer>
+</article>
 </body>
 </html>
