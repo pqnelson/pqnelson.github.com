@@ -124,3 +124,7 @@ table.sql tr td, th {
 }
 
 table.example > tr > th,table.example > tr > td,table.example > * > tr > th,table.example > * > tr > td{border:1px #aaa solid;padding:0.2em}
+
+math {
+    font: inherit;
+}
