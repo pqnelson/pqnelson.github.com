@@ -1,0 +1,23 @@
+<footer>
+{% if page.quote %}
+<blockquote>
+"{{page.quote}}"
+
+{% if page.quoteSource %}
+<br />
+&mdash; {{page.quoteSource}}
+{% endif %}
+</blockquote>
+{% endif %}
+
+{% if page.layout == "post" %}
+<a href="/">Home</a> &mdash;
+{% endif %}
+<span class="copyright">
+<a rel="license"
+   href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_US">(C)</a>
+   2013, 2014.
+</span>
+</footer>
+</body>
+</html>

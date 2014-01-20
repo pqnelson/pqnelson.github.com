@@ -1,0 +1,81 @@
+body {
+    font-family: Palatino, georgia, "times new roman", serif;
+    background-color: whitesmoke;
+    background-position: center -18em;
+    background-repeat: repeat-x; 
+}
+
+h1,h2,h3,h4 { 
+        line-height:1em; 
+        font-size:1.5em; 
+        font-weight: normal; 
+        clear: left;         
+        font-family: 'lucida grande', sans-serif; 
+}
+h1 { margin-bottom: 1em; }
+h2 {
+        font-size: 1.25em;
+        line-height: 1.5em;
+}
+h3 {
+    font-size: 100%;
+    font-weight:bold;
+}
+
+main {
+    background: white;
+    border: 1px solid #ccc;
+    line-height: 1.5em;
+    margin: 1.5em auto 1em auto;
+    max-width: 46em;
+    padding: 3em 3em 1.5em 3em;
+}
+
+blockquote {
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #666;
+}
+
+/* code */
+code {
+    border: 1px solid #ddd;
+    background-color: #eef;
+    padding: 0 .2em;
+}
+pre {
+    background-color: #eef;
+    border: 1px solid #ddd;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px;
+    border-radius: 3px 3px 3px 3px;
+    margin: 15px 0px;
+}
+pre code, pre tt {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+    border: medium none;
+}
+
+footer {
+    background: white;
+    border: 1px solid #ccc;
+    margin: 0.5em auto 3em auto;
+    max-width: 46em;
+    padding: 0.25em 3em 0.5em 3em;
+}
+footer blockquote {
+    padding-left: 0px;
+    margin-left: 0px;
+    border-left: 0px solid white;
+    border-bottom: 1px solid black;
+    margin: 3px 0px;
+    padding: 5px 0px;
+    width: 100%;
+}
+footer nav {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
