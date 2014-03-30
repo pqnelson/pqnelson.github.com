@@ -4,7 +4,6 @@ body {
     background-position: center -18em;
     background-repeat: repeat-x; 
 }
-
 h1,h2,h3,h4 { 
         line-height:1em; 
         font-size:1.5em; 
@@ -35,6 +34,11 @@ blockquote {
     margin-left: 10px;
     padding-left: 10px;
     border-left: 1px solid #666;
+}
+
+p img {
+    display: block;
+    margin: 0 auto;
 }
 
 /* code */
@@ -78,4 +82,19 @@ footer blockquote {
 footer nav {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+}
+
+/* tables */
+table {
+    border-collapse: collapse;
+    border-spacing: 0px;
+    margin: 15px 0px;
+}
+table tr {
+    border-top: 1px solid rgb(204, 204, 204);
+    background-color: rgb(255, 255, 255);
+}
+table td, table th {
+    border: 1px solid rgb(221, 221, 221);
+    padding: 6px 13px;
 }
