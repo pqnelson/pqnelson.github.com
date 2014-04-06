@@ -23,7 +23,7 @@ COM`.
 <ul>
   {% for post in site.posts %}
     <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>, posted {{ post.date | date:"%d %B %Y" }}
+      <a href="{{ post.url }}">{{ post.title }}</a>, posted {{ post.date | date:"%-d %B %Y" }}
     </li>
   {% endfor %}
 </ul>
