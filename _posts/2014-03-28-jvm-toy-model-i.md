@@ -75,15 +75,24 @@ tied up with these irrelevant subtleties.
 The bytecode basically amounts to a sequence of instructions.
 
 Each instruction, written as an S-expression, looks like
-`(op-code & args)` where there may be up to three operands. We have
-helper functions to access various parts of the instruction:
+`(op-code & args)` where there may be up to three operands. For example:
 
 ```clojure
-(defn third [coll]
-  (second (next coll)))
+(def toy-code '((iload 0)
+                (iconst 1)
+                (isub)
+                (ifeq 14)
+                (iload 0)
+                (iconst 1)
+                ...
+                (halt)))
+```
 
-(defn fourth [coll]
-  (third (next coll)))
+We have helper functions to access various parts of the instruction:
+
+```clojure
+(defn third [coll] (nth coll 2 nil))
+(defn fourth [coll] (nth coll 3 nil))
   
 ;; Instructions
 (def op-code first)
@@ -104,10 +113,22 @@ counter (or `pc`), (ii) the local variable table, (iii) the local stack, and
 (iv) the `program` or ordered list of instructions. (End of Definition)
 
 We represent this as a record `(defrecord Frame [pc locals stack program])`.
+And a frame for a toy program might look like:
 
-*Remark.* We will increase the number of components in a frame as we
-continue refining our toy models. For now, it suffices to think of it
-as "merely" these four components. (End of Remark)
+```clojure
+;; toy frame instance
+{:pc 2                ; program counter, which line of the program we're on
+ :locals {1 -32}      ; local variable dictionary
+ :stack [3 2 6]       ; the stack of values
+ :program '((ifeq 16) ; the bytecode as an s-expression
+            (iload 0)
+            (iconst 1)
+            (isub)
+            (ifeq 14)
+            (iload 0)
+            (iconst 1)
+            (halt))}
+```
 
 Specifically, a [program counter](http://en.wikipedia.org/wiki/Program_counter) 
 is a natural number that keeps track of the "next instruction" to
@@ -232,7 +253,7 @@ which takes a frame and executes the "next instruction". In pseudocode:
 Note we are a bit sloppy, because a valid program would look like:
 
 ```clojure
-(defconst *pi*
+(def *pi*
   '((iconst 0)   ;  0
     (istore 1)   ;  1  j = 0
     (iconst 1)   ;  2
@@ -264,7 +285,7 @@ We have to translate this to a frame, which we do:
 
 ```clojure
 (defn load-program [raw-code]
-  (make-frame 0 [] [] raw-code))
+  (make-frame 0 {} [] raw-code))
 ```
 
 The interpreter then interprets a frame, running `n` steps:
