@@ -5,7 +5,6 @@ published: true
 quote: "Logic, like grammar, appears in two different aspects or values. It is one thing for him who comes to it for the first time, but it is another thing for him who comes back to it from the sciences. He who begins the study of grammar finds in its forms and laws dry abstractions, arbitrary rules. On the other hand, he who has mastered a language and at the same time has a comparative knowledge of other languages, he alone can make contact with the spirit and culture of a people through the grammar of its language. Similarly, he who approaches this science at first finds in logic an isolated system of abstractions which, confined within itself, does not embrace within its scope the other knowledges and sciences."
 quoteSource: GWF Hegel, <em>Science of Logic</em> &sect;70
 ---
-# Propositional Logic
 
 **Introduction.**
 I will be starting a series on my endeavor to implement an automated theorem prover. In this article, we will implement an automated theorem prover for classical propositional logic. In the next article we will begin exploring first-order ("predicate") logic, again classical. 
