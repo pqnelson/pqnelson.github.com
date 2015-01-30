@@ -136,7 +136,7 @@ But the code is horribly inefficient. Next time, we will consider various differ
 1. Laurence Edward Day,
    "Implementing a Propositional Logic Theorem Prover in Haskell".
    Undergraduate dissertation (2010)
-   [http://www.cs.nott.ac.uk/~led/papers/led_bsc_dissertation.pdf](eprint)
+   [eprint](http://www.cs.nott.ac.uk/~led/papers/led_bsc_dissertation.pdf)
 2. John Harrison,
    *Handbook of Practical Logic and Automated Reasoning*.
    Cambridge University Press, 2009.
