@@ -16,9 +16,9 @@ All the code is available on [github](https://github.com/pqnelson/surak), checko
 **1. Overview of Propositional Logic.** 
 We have some [formula](http://en.wikipedia.org/wiki/Propositional_formula), built up from propositional variables and logical operators ("and", "or", "not", etc.). We have some [valuations](http://en.wikipedia.org/wiki/Valuation_%28logic%29), which evaluate the propositional formula as either true or false. (Think of a valuation as picking one particular row of a truth table.)
 
-A propositional formula is said to be a ["**Tautology**"]((http://en.wikipedia.org/wiki/Tautology_(logic))) or *Valid* if it is always true in every valuation (for example "*A* or not *A*", we have two possible valuations: (i) *A* is false, in which case the proposition evaluates to "false or true", i.e., true; (ii) *A* is true, in which case the proposition evaluates to "true or false", i.e., true).
+A propositional formula is said to be a ["**Tautology**"](http://en.wikipedia.org/wiki/Tautology_(logic)) or *Valid* if it is always true in every valuation (for example "*A* or not *A*", we have two possible valuations: (i) *A* is false, in which case the proposition evaluates to "false or true", i.e., true; (ii) *A* is true, in which case the proposition evaluates to "true or false", i.e., true).
 
-A propositional formula is said to be ["**Satisfiable**"]((http://en.wikipedia.org/wiki/Satisfiability)) if there is at least one valuation which makes it true.
+A propositional formula is said to be ["**Satisfiable**"](http://en.wikipedia.org/wiki/Satisfiability) if there is at least one valuation which makes it true.
 
 A propositional formula is said to be "**Unsatisfiable**" (or a *Contradiction*) if there are no valuations which make it true.
 
