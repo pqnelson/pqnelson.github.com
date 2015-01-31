@@ -109,7 +109,7 @@ onAllValuations subfn v ats = case ats of
           && (onAllValuations subfn (v' True) ps)
 ```
 
-Great, now we can begin asking if something is a tautology or not. That amounts to asking if `onAllValuations (eval fm)` is `True` for an arbitrary initial valuation (so why not pick `(\s -> False)`) on all the atoms in the formula.
+Great, now we can begin asking if something is a tautology or not. That amounts to asking if `onAllValuations (eval fm)` is `True` for an arbitrary initial valuation (so why not pick `(Const False)`?) on all the atoms in the formula.
 
 Unsatisfiability is simply the case the negation of a given formula is a tautology. Satisfiability is when a formula is not unsatisfiable.
 
