@@ -11,7 +11,7 @@ I will be starting a series on my endeavor to implement an automated theorem pro
 
 If the reader does not know propositional logic, I strongly urge the reader to consult Elliot Mendelson's *Introduction to Mathematical Logic* (or something similar) for details...because I will give a comical overview of the bare bones necessary to ask questions. No pretension of completeness here!
 
-All the code is available on [github](https://github.com/pqnelson/surak), checkout `v0.0.1` for the code relevant to this post.
+All the code is available on [github](https://github.com/pqnelson/surak), checkout `v0.0.2` for the code relevant to this post.
 
 **1. Overview of Propositional Logic.** 
 We have some [formula](http://en.wikipedia.org/wiki/Propositional_formula), built up from propositional variables and logical operators ("and", "or", "not", etc.). We have some [valuations](http://en.wikipedia.org/wiki/Valuation_%28logic%29), which evaluate the propositional formula as either true or false. (Think of a valuation as picking one particular row of a truth table.)
