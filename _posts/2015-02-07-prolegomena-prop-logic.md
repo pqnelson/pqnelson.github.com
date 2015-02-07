@@ -15,7 +15,8 @@ logic. Later I will write a sequel post for first-order logic.
 Logic, as a language, has three components:
 
 **1. Syntax.** The notation & syntax tree for a formula, so something
-   like `p ∧ ¬q` really is a tree that looks like:
+like `p ∧ ¬q` really is a tree that looks like:
+
 ```
   ∧
  / \
