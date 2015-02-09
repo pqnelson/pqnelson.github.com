@@ -295,7 +295,7 @@ formulas. For example *A*, *B* ⊢ *C*, *D* is true in a particular
 interpretation if *A* ∧ *B* implies *C* ∨ *D*.
 
 **WARNING:** The "⊢" symbol is called the "turnstile" symbol, and one
-reads the sequent "Γ ⊢ Δ" as "Γ proves/yields/entails Δ". Ones intuition
+reads the sequent "Γ ⊢ Δ" as "Γ proves/yields/entails Δ". One's intuition
 should say "Hey, Δ is provable from the premises Γ".
 (End of Warning)
 

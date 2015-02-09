@@ -202,7 +202,7 @@ We've got the moving parts for the automated theorem prover done. All
 that's left is to write a parser (not relevant at the moment), and
 perhaps some REPL-type code for interactive sessions.
 
-But the code is horribly inefficient. Next time, we will consider
+But the code is horribly inefficient. [Next time](http://pqnelson.github.io/2015/02/09/automated-thm-ii-normal-forms.html), we will consider
 various different canonical forms for the propositional formulas to
 increase performance.
 
