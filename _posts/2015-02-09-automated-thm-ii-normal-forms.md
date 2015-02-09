@@ -3,7 +3,7 @@ layout: post
 title: Automated Theorem Proving, Part 2 - Normal Forms
 published: true
 quote: "Nobody realizes that some people expend tremendous energy merely to be normal."
-quoteSource: Albert Camus, Notebook IV in <em>Notebooks: 1942-1951</em>
+quoteSource: Albert Camus, Notebook IV in <em>Notebooks, 1942-1951</em>
 ---
 
 # Introduction
