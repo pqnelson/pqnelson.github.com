@@ -612,3 +612,10 @@ to talk about is the Davis-Putnam method.
    In *Structures in Constructive Mathematics and Mathematical Logic,
    Part II* (A.O. Slisenko, ed.), Seminars in Mathematics. Steklov
    Mathematical institute, 1968. Pp. 115-125.
+5. Jon Freeman
+   [On Conjunctive Normal Form Satisfiability](http://repository.upenn.edu/cgi/viewcontent.cgi?article=1354&context=cis_reports),
+   Preprint (1991).
+6. Rainer Schuler,
+   "An algorithm for the satisfiability problem of formulas in conjunctive normal form".
+   *Journal of Algorithms* **54** 1 (2005) 40--44,
+   [paywalled](http://www.sciencedirect.com/science/article/pii/S0196677404000768)
