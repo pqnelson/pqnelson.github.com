@@ -128,8 +128,8 @@ toNNF' fm = case fm of
   Not (And p q)     -> Or (toNNF' (Not p)) (toNNF' (Not q))
   Not (Or p q)      -> And (toNNF' (Not p)) (toNNF' (Not q))
   Not (Implies p q) -> And (toNNF' p) (toNNF' (Not q))
-  Not (Iff p q)     -> Or (And (toNNF' p) (toNNF' q))
-                          (And (toNNF' (Not p)) (toNNF' (Not q)))
+  Not (Iff p q)     -> Or (And (toNNF' (Not p)) (toNNF' q))
+                          (And (toNNF' p) (toNNF' (Not q)))
   _                 -> fm
 
 toNNF :: Formula -> Formula
@@ -619,3 +619,6 @@ to talk about is the Davis-Putnam method.
    "An algorithm for the satisfiability problem of formulas in conjunctive normal form".
    *Journal of Algorithms* **54** 1 (2005) 40--44,
    [paywalled](http://www.sciencedirect.com/science/article/pii/S0196677404000768)
+7. Andrei Voronkov,
+   "DPLL".
+   Ch 5 of [Lecture Notes](http://voronkov.com/lics.cgi) on Logic and Modeling, 2014.
