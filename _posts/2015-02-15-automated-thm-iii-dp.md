@@ -596,7 +596,9 @@ calls it, to be consistent with the trail. If there are no undefined
 unit literals, then we're at the end of the trail.
 
 If we have some undefined literals, we can extend the trail with
-them. Subpropagation returns the updated clauses and trail.
+them. So why not extend the trail as far as possible? This is the task
+relegated to subpropagation. Indeed, subpropagation returns the updated
+clauses and trail.
 
 ```haskell
 -- | We keep track of the trail history in the @Map.Map Formula Formula@
@@ -614,7 +616,9 @@ unitSubpropagate (cls, m, trail) =
           in unitSubpropagate (cls', m', trail') --- recursion very important!!
 ```
 
-Now our unit propagation should take advantage of this subpropagation:
+Now our unit propagation ([recall](#unit-propagation) attempts to get
+rid of all "units", or single literals) should take advantage of this
+subpropagation:
 
 ```haskell
 -- | Unit propagation using the newfangled 'Trail'.
