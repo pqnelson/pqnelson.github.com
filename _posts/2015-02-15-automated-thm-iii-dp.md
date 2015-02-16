@@ -26,7 +26,7 @@ This time, we will figure out how to avoid this problem introducing
 "Definitional CNF" for the preprocessing step.
 
 Then we will introduce and discuss the Davis-Putnam algorithm. This
-corresponds to `v0.1.1` of the [code](https://github.com/pqnelson/surak).
+corresponds to `v0.1.2` of the [code](https://github.com/pqnelson/surak).
 
 # Definitional Conjunctive Normal Form
 
@@ -611,7 +611,7 @@ unitSubpropagate (cls, m, trail) =
      then (cls', m, trail)
      else let trail' = foldr (\l t -> (l, Deduced):t) trail newunits
               m' = foldr (\l mp -> Map.insert l l mp) m newunits
-          in (cls', m', trail')
+          in unitSubpropagate (cls', m', trail') --- recursion very important!!
 ```
 
 Now our unit propagation should take advantage of this subpropagation:
@@ -640,8 +640,7 @@ guess. This is simply:
 ```haskell
 backtrack :: [Trail] -> [Trail]
 backtrack ((_, Deduced):tt) = backtrack tt
-backtrack tt@((_, Guessed):_) = tt
-backtrack [] = []
+backtrack tt = tt
 ```
 
 But we also have to get all the literals unassigned to the trail, which
@@ -669,7 +668,7 @@ dpli cls trail =
            (p, Guessed):tt                        --- we guessed last
              -> dpli cls ((negate p, Deduced):tt) --- and guess again!
            _ -> False                             --- unless we can't
-     else case unassigned cls trail of --- otherwise
+     else case unassigned cls trail' of           --- otherwise
            [] -> True   --- it's satisfiable if there are no unassigned literals
            ps -> let (_, p) = Data.List.maximum
                               $ map (frequencies cls') ps
@@ -725,7 +724,7 @@ dplb cls trail =
                             (Set.image (negate . fst) declits)
              in dplb (conflict:cls) (Set.insert (negate p, Deduced) trail'')
            _ -> False
-     else case unassigned cls trail of             --- otherwise iterate
+     else case unassigned cls trail' of            --- otherwise iterate
            [] -> True                              --- exactly like we did
            ps -> let (_,p) = Data.List.maximum     --- before, recursively
                              $ map (frequencies cls') ps
