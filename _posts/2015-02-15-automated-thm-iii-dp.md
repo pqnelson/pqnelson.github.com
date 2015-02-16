@@ -763,6 +763,15 @@ things work &mdash; only in America!).
 
 # References
 
+- John Harrison,
+  *Handbook of Practical Logic and Automated Reasoning*.
+  Cambridge, 2009.
+- Andreas Nonnengart and Christoph Widenbach,
+  "Computing Small Clause Normal Form".
+  In *Handbook of Automated Reasoning*
+  (Alan Robinson and Andrei Voronkov, eds.),
+  Elsevier Science, 2001, pp 335-367
+  
 ## Definitional CNF
 - "Can someone please explain 3-CNF for me?"
   [Math.SX](http://math.stackexchange.com/q/56369)
