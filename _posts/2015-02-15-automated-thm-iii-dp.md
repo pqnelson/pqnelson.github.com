@@ -774,6 +774,10 @@ things work &mdash; only in America!).
   In *Handbook of Automated Reasoning*
   (Alan Robinson and Andrei Voronkov, eds.),
   Elsevier Science, 2001, pp 335-367
+- Donald Knuth,
+  *The Art of Computer Programming*.
+  Volume 4, [Fascicles 6A](http://www-cs-faculty.stanford.edu/~uno/fasc6a.ps.gz)
+  "A (Partial) Draft of Section 7.2.2.2: Satisfiability". (A "mere" 260 pages!)
   
 ## Definitional CNF
 - "Can someone please explain 3-CNF for me?"
