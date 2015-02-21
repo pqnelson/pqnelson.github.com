@@ -114,7 +114,7 @@ We should also note the symbols ≅ and ⊨ belong to the metalanguage. So
 they are not logical connectives, just relations between formulas. They
 therefore have the lowest precedence, since something like ¬*p* ∨ *q* ≅ *r*
 could only mean (¬*p* ∨ *q*) ≅ *r* since ¬*p* ∨ (*q* ≅ *r*) would make
-no sense --- (*q* ≅ *r*) is not a valid formula! (End of remark)
+no sense &mdash; (*q* ≅ *r*) is not a valid formula! (End of remark)
 
 ### Examples: Tautologies, Contradictions, Satisfiable Formulas
 
@@ -321,7 +321,7 @@ the ones desired.
 
 The rules of inference for sequent calculus are tricky, because they
 come in two forms "left" and "right" (depending on which side of the
-sequent's arrow Γ ⊢ Δ they act --- left acts on Γ, the right act on
+sequent's arrow Γ ⊢ Δ they act &mdash; left acts on Γ, the right act on
 Δ). We also have logical rules (handling connectives) and structural
 rules (which basically state the order of the premises do not matter). 
 

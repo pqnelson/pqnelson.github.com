@@ -4,6 +4,7 @@ quote: "A building is not finished when its foundation is laid; and just as litt
 quoteSource: GWF Hegel, &sect;12 <em>Phenomenology of Spirit</em> (1807)
 title: Automated Theorem Proving, The Davis Putnam Algorithm
 published: true
+tags: [logic, automated-theorem-proving, backtracking]
 ---
 
 # Introduction
@@ -127,7 +128,7 @@ updates the running formula to reflect this, and increments the index
 counter as needed.
 
 We have a brief aside on helper functions. One, `maybeRead`, gets a
-string and returns a `Maybe` gadget --- if something went wrong, it's
+string and returns a `Maybe` gadget &mdash; if something went wrong, it's
 `Nothing`; otherwise it's `Just [result]`. We use this to figure out the
 greatest variable index:
 
@@ -151,7 +152,7 @@ The subtle details of this function are not terribly important at the
 moment.
 
 Now, we use `mainCNF` to transform a `Formula` to definitional
-conjunctive normal form, *a la* set based representation. We slightly
+conjunctive normal form, *à la* set based representation. We slightly
 generalize the procedure to do this to let us pass in an arbitrary
 `(Trip->Trip)` function (why be constrained to one particular choice?).
 
@@ -746,7 +747,7 @@ get a formula in conjunctive normal form.
 Then we introduced the Davis-Putnam algorithm, which recursively
 transformed a set of clauses until we ended up with either (i) an empty
 list of clauses, or (ii) a contradictory clause appeared. In the former
-case, it terminated with `True` --- the given set of clauses *are*
+case, it terminated with `True` &mdash; the given set of clauses *are*
 satisfiable; whereas the latter case clearly resulted in `False`, the
 clauses are unsatisfiable.
 
