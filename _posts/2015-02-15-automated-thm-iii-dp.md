@@ -404,11 +404,11 @@ resolveOn :: Formula -> [[Formula]] -> [[Formula]]
 resolveOn p clauses =
   let p' = negate p
       (pos, notPos) = List.partition (elem p) clauses
-      (neg, S0) = List.partition (elem p') notPos
+      (neg, s0) = List.partition (elem p') notPos
       pos' = map (filter (/= p)) pos  --- the list of C[i]
       neg' = map (filter (/= p')) neg --- the list of D[j]
       res0 = [c `Set.union` d | c <- pos', d <- neg']
-  in Set.union S0 (filter (not . trivial) res0)
+  in Set.union s0 (filter (not . trivial) res0)
 ```
 
 We tried to be faithful to the notation used in our theorem.
