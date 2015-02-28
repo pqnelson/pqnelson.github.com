@@ -174,8 +174,8 @@ construct the `Formula` representation:
 
 ```haskell
 toDefCNF :: Formula -> Formula
-toDefCNF fm = foldlConj --- turn the list of clauses into a Formula
-              $ map foldrDisj --- turn the clauses into Formulas
+toDefCNF fm = foldlConj             --- turn the list of clauses into a Formula
+              $ map foldrDisj       --- turn the clauses into Formulas
               $ mkDefCNF mainCNF fm --- transform to set-based def CNF
 ```
 
@@ -193,7 +193,10 @@ And (And p
          (And q
               (Implies (Or r s)
                        t)))
---- why not just transform (Implies (Or r s) t) ?
+--- why not just transform (Implies (Or r s) t) ? That is, produce:
+--- And (toCNF (Iff p1 (Implies (Or r s) t)))
+---     (And (And p
+---               (And q p1)))
 ```
 
 We have some "pre-preprocessing" steps to avoid needlessly transforming
@@ -292,6 +295,27 @@ we can eliminate all instances of that literal and its negation without
 affecting satisfiability. This can be seen easily in CNF, and removing
 such literals preserves satisfiability. (End of Algorithm)
 
+**Example.** Consider the list of clauses
+`[Or a b, Or (Not a) c, Or (Not c) d, a]`. Look, the last entry is
+`a`, a unit clause. Hence we see for this formula to be satisfiable,
+we need `a` to be true.
+
+We then eliminate it from every other clause. Why? Because look, `Or T x`
+is equivalent to `x`. Then we can iterate this "unit propagation" and
+deduce that `x` must be true. Hence iterating unit propagation in our
+example, we have the following trace:
+
+```haskell
+    [Or a b, Or (Not a) c, Or (Not c) d, a]
+--- swap "T" for "a" and simplify in all but the unit clause
+    [     T,            c, Or (Not c) d, a]
+--- "c" is now a unit clause, substitute in "T" for "c" and simplify:
+    [     T,            c,            d, a]
+--- "d" is now a unit-clause, but we're left with unit clauses, so we're done
+```
+
+We see how satisfiability is preserved along the way. **(End of Example)**
+
 We can test for a unit clause quite simply:
 
 ```haskell
@@ -323,7 +347,7 @@ oneLiteralRule clauses = case find isUnitClause clauses of
 
 Too easy, right?
 
-### The Affirmitive-Negative Rule
+### The Affirmative-Negative Rule
 
 **Algorithm.** If any literal occurs either *only positively* or *only
 negatively*, then it can be removed without affecting
@@ -334,8 +358,8 @@ The implementation is another "follow your nose" approach
 ```haskell
 --- in src/DavisPutnam.hs
 
-affirmitiveNegativeRule :: [[Formula]] -> Maybe [[Formula]]
-affirmitiveNegativeRule clauses =
+affirmativeNegativeRule :: [[Formula]] -> Maybe [[Formula]]
+affirmativeNegativeRule clauses =
   let (neg', pos) = Data.List.partition negative (Set.unions clauses)
       neg = map negate neg'
       posOnly = Set.difference pos neg
@@ -441,7 +465,7 @@ resolutionRule clauses =
 
 We arrive at the center-piece of the Davis-Putnam algorithm, namely, the
 algorithm itself! What happens? Well, we first iteratively try unit
-propagation until it won't work, then we try the affirmitive-negative
+propagation until it won't work, then we try the affirmative-negative
 rule and recurse until it won't work. At last we use the resolution rule, 
 then recursion takes us back to step 1.
 
@@ -459,7 +483,7 @@ dp clauses =
   then False
   else case oneLiteralRule clauses of
         Just clauses' -> dp clauses'
-        Nothing -> case affirmitiveNegativeRule clauses of
+        Nothing -> case affirmativeNegativeRule clauses of
                     Just clauses' -> dp clauses'
                     Nothing -> dp(resolutionRule clauses)
 ```
@@ -481,7 +505,7 @@ Lo and behold, this turns out to be somewhat better than the naive approach!
 The DPLL algorithm modifies the resolution rule, opting for a "splitting
 rule" instead. What happens?
 
-Well, if neither unit propagation nor the affirmitive-negative rule can
+Well, if neither unit propagation nor the affirmative-negative rule can
 be applied, then some literal `p` is chosen. We then check if `Clauses
 ++ [p]` is satisfiable, or `Clauses ++ [(Not p)]` is satisfiable...by
 recursively using the DPLL algorithm on it.
@@ -509,7 +533,7 @@ dpll [] = True
 dpll clauses = if [] `elem` clauses then False else
                  case oneLiteralRule clauses of
                   Just clauses' -> dpll clauses'
-                  Nothing -> case affirmitiveNegativeRule clauses of
+                  Nothing -> case affirmativeNegativeRule clauses of
                     Just clauses' -> dpll clauses'
                     Nothing -> --- NEW STUFF FOR DPLL!!
                       let pvs = filter isPositive (Set.unions clauses)
@@ -636,7 +660,7 @@ just don't know it. (End of Caution, back to recklessness)
 
 The iterative DPLL then takes advantage of this backtracking unit
 propagator "in the obvious way". We actually don't need the
-affirmitive-negative rule, since backtracking handles things quite well.
+affirmative-negative rule, since backtracking handles things quite well.
 
 We have two helper functions, first when we get a **"Conflict"** or an
 unsatisfiable result, we can `backtrack` the trail until we last took a
@@ -807,3 +831,8 @@ things work &mdash; only in America!).
   "An efficient algorithm for unit-propagation".
   In *Proceedings of the Fourth International Symposium on Artificial Intelligence and Mathematics* (1996).
   [Eprint](http://www.cfdvs.iitb.ac.in/download/Docs/verification/papers/sat/original-papers/aim96.pdf)
+
+## Changelog
+Feb 27, 2015: Added some more explanation in the comments.
+
+Feb 15, 2015: Initial version.
