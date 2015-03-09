@@ -525,8 +525,12 @@ inadvertant artifact). But the DPLL algorithm is just what we had
 before, 
 
 ```haskell
+-- | Return all literals that occur in the formula, negated literals are
+-- transformed to be positive.
 getLiterals :: [[Formula]] -> [Formula]
-getLiterals clauses = let (pos,neg) = Data.List.Partition isPositive $ Set.unions clauses
+getLiterals clauses = let (pos,neg) = Data.List.partition isPositive
+                                      $ Set.unions clauses
+                      in Set.union pos (map negate neg)
 
 dpll :: [[Formula]] -> bool
 dpll [] = True
@@ -833,6 +837,8 @@ things work &mdash; only in America!).
   [Eprint](http://www.cfdvs.iitb.ac.in/download/Docs/verification/papers/sat/original-papers/aim96.pdf)
 
 ## Changelog
+Mar  8, 2015: Fixed typos.
+
 Feb 27, 2015: Added some more explanation in the comments.
 
 Feb 15, 2015: Initial version.
