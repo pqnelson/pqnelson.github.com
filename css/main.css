@@ -101,7 +101,7 @@ table td, table th {
 
 @media screen and (max-width: 480px) {
   body {
-    font-size:14px;
+    font-size:16px;
   }
   main {
     background: white;
@@ -112,15 +112,15 @@ table td, table th {
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 20px;
   }
 
   h2 {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   h3 {
-    font-size: 21px;
+    font-size: 18px;
   }
 
   h4 {
@@ -136,8 +136,6 @@ table td, table th {
   }
 
   code, pre {
-    min-width: 320px;
-    max-width: 480px;
-    font-size: 11px;
+    font-size: 12px;
   }
 }
