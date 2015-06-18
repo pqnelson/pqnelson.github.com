@@ -98,3 +98,46 @@ table td, table th {
     border: 1px solid rgb(221, 221, 221);
     padding: 6px 13px;
 }
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size:14px;
+  }
+  main {
+    background: white;
+  }
+
+  #downloads {
+    display: none;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 21px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 14px;
+  }
+
+  h6 {
+    font-size: 12px;
+  }
+
+  code, pre {
+    min-width: 320px;
+    max-width: 480px;
+    font-size: 11px;
+  }
+}
