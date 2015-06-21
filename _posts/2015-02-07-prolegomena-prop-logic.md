@@ -8,7 +8,7 @@ quoteSource: Ambrose Bierce, <em>The Devil's Dictionary</em> (1911)
 
 # Introduction
 
-I will basically review propositiona logic at lightning speeds, just to
+I will basically review propositional logic at lightning speeds, just to
 make certain I've discussed important aspects of propositional
 logic. Later I will write a sequel post for first-order logic.
 
@@ -46,7 +46,7 @@ Now, we are discussing a language (logic) in English. But English is
 also a language. We call English (our discussion of logic) a
 **"Metalanguage"** and logic the **"Object Language"**. (If we were
 learning Russian, and asked each other -- in English -- questions about
-pronounciation of Russian vocabulary, then English would be the
+pronunciation of Russian vocabulary, then English would be the
 metalanguage which facilitates our discussion of Russian, the object
 language.) 
 

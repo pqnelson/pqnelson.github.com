@@ -28,7 +28,7 @@ required learning quite a bit about the Java Virtual Machine.
 Studying the JVM is a fool's errand (OpenJDK's HotSpot has over 250,000
 lines of code and nearly 1500 C/C++ files), so I thought instead I would
 study a number of [toy models](http://en.wikipedia.org/wiki/Toy_model). 
-Each would buildoff the previous one, elaborating various aspects of the
+Each would build off the previous one, elaborating various aspects of the
 JVM's architecture.
 
 *Remark.* It turns out there's a vast literature on the subject of
@@ -67,7 +67,7 @@ set. So lets set up a minimal collection of stack functions:
 ### Structure of an "Instruction"
 
 The Java Virtual Machine "interprets" its own bytecode, which is
-remniscent of assembly. I should be careful and note the term
+reminiscent of assembly. I should be careful and note the term
 "interpret" is used poetically, not literally: the JVM actually compiles
 the bytecode to native code. Well, it's complicated, but lets not get
 tied up with these irrelevant subtleties.

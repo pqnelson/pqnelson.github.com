@@ -9,7 +9,7 @@ quoteSource: Wes Westrum, Aprocryphal
 **Abstract:** As a playground for statistical thinking, we examine
 baseball data. Very crude and basic statistical heuristics are
 introduced, the mean & standard deviation discussed, and the linear
-regression heuristically motivated. We make some embarrisngly wrong
+regression heuristically motivated. We make some embarrassingly wrong
 predictions.
 
 **Contents**
@@ -116,10 +116,10 @@ So, it's interesting:
 - the ratio of runs to hits is approximately roughly 50.26%,
 - an average of 8.92 runs per game,
 - 17.75 hits per game on average,
-- the ratio of homeruns to runs is approximately 20.15%,
+- the ratio of home runs to runs is approximately 20.15%,
 or 1/5,
-- whereas there is roughly 2 homerun per game on average (well,
-1.9759 homeruns per game, but still!).
+- whereas there is roughly 2 home run per game on average (well,
+1.9759 home runs per game, but still!).
 
 What do these statistics look like for the past 5 years or so?
 
@@ -188,8 +188,8 @@ sabermetrics.team> (homeruns-ratio t1 2014)
 0.21183139
 ```
 
-Homeruns per game fluctuating "a bit", runs per game "roughly steady",
-and the ratio of homeruns to runs "steady-ish".
+Home runs per game fluctuating "a bit", runs per game "roughly steady",
+and the ratio of home runs to runs "steady-ish".
 
 **Observations.** (1) We should probably formalize a notion of "fluctuating a
 bit", versus "steady-ish". In this manner, we can *rigorously* say "This
@@ -211,7 +211,7 @@ points to the mean:
 ![Standard deviation visualized]({{ site.url }}/assets/standard-dev.png)
 
 The average for the sum of the squares of the lengths of the red line
-segments *is* the variance, its squareroot is the standard
+segments *is* the variance, its square-root is the standard
 deviation. The labels on the *x*-axis just indicates which element of
 our list we're examining. *The average square-distance to the mean*, is
 our intuitive picture of the variance. (Hey, the average is used to
@@ -253,17 +253,17 @@ which requires a course on probability theory just to understand.
 Technically, this rule is not always justified. It's only when we have a
 *huge* amount of data, we can just suppose it's normally distributed.
 
-**Example.** Friday 20 June 2015, the Cincinatti Red Hots played the
-Miami Marlins — from our data over the past 10 years, we see Cincinatti
+**Example.** Friday 20 June 2015, the Cincinnati Red Hots played the
+Miami Marlins — from our data over the past 10 years, we see Cincinnati
 has an average of 4.467 runs per game with a standard deviation of
 0.376, whereas Miami has an average of 3.64 with a standard deviation of
 0.344. The game's
-[final score](http://mlb.mlb.com/mlb/gameday/index.jsp?gid=2015_06_19_miamlb_cinmlb_1&partnerId=LR_wrap#game=2015_06_19_miamlb_cinmlb_1,game_state=Wrapup,game_tab=wrap): Cincinatti 5, Miami 0.
+[final score](http://mlb.mlb.com/mlb/gameday/index.jsp?gid=2015_06_19_miamlb_cinmlb_1&partnerId=LR_wrap#game=2015_06_19_miamlb_cinmlb_1,game_state=Wrapup,game_tab=wrap): Cincinnati 5, Miami 0.
 
-What happened?! Well, this doesn't seem unreasonable for Cincinatti, but
+What happened?! Well, this doesn't seem unreasonable for Cincinnati, but
 for Miami...this is bizarre. If we use the data given, the probability
 Miami would score 0 runs is 1.8175&times;10<sup>-26</sup>. You are more
-likely to get strucky by lightning *and*
+likely to get struck by lightning *and*
 [win the Lottery](http://www.huffingtonpost.com/ronald-l-wasserstein/chances-of-winning-powerball-lottery_b_3288129.html)...then
 getting struck by lightning again, and winning the lottery once more for
 good measure.
@@ -303,7 +303,7 @@ We then find the `constant`, and coefficients `b0` and `b1` which
 minimize the standard error.
 
 **Problem: Collinearity.** One problem we have to consider is these
-inputs are not independent of each other. They are corrolated with each
+inputs are not independent of each other. They are correlated with each
 other, sometimes strongly. The technical term for such a phenomena is
 ["collinearity"](https://en.wikipedia.org/wiki/Multicollinearity). This
 is a problem we will have to address, or else use a different model.
@@ -311,7 +311,7 @@ is a problem we will have to address, or else use a different model.
 For us, we expect `b0` is the increase in predicted runs if on-base
 percentage increases while we hold slugging-percentage constant. But we
 cannot hold slugging-percentage constant as on-base percentage
-increases, because these two are corrolated with each other. So an
+increases, because these two are correlated with each other. So an
 increase in on-base percentage is usually accompanied by an increase in
 slugging percentage. This is the problem in a nutshell. (End of remark
 on collinearity)

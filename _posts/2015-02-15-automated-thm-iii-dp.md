@@ -520,8 +520,8 @@ frequencies clauses p = let m = length $ filter (elem p) clauses
                         in (m+n, p)
 ```
 
-We sort using `m+n` as the primary key, then lexographically on `p` (an
-inadvertant artifact). But the DPLL algorithm is just what we had
+We sort using `m+n` as the primary key, then lexicographically on `p` (an
+inadvertent artifact). But the DPLL algorithm is just what we had
 before, 
 
 ```haskell
