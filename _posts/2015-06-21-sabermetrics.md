@@ -389,7 +389,7 @@ is "Why?"
 First, our data is far too coarse-grained. We tried making predictions
 about the results of a *game* using *per-season* data. One step forward
 would be to use data better suited to our problem. We will (next time)
-use [Retrosheet](http://www.retrosheet.org)'s data, which has
+use [Retrosheet's data](http://www.retrosheet.org/game.html), which has
 play-by-play data for every game dating back to 1871.
 
 Second, our model may be too simple. As noted earlier, there was the
