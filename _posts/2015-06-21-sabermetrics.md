@@ -352,7 +352,9 @@ our first plan of attack against any problem.*
 ## Predictions
 
 I made a number of predictions for the games scheduled on 21 June 2015,
-lets see how this simple model performed...
+using **a simple linear regression** with the **on-base percentage** and
+**slugging percentage** as the input to generate the average number of
+runs per game. Lets see how this simple model performed...
 
 ### Tigers vs Yankees
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Prediction: .<a href="https://twitter.com/tigers_former">@tigers_former</a> 5 vs .<a href="https://twitter.com/Yankees">@Yankees</a> 4</p>&mdash; Alex Nelson (@anelson_unfold) <a href="https://twitter.com/anelson_unfold/status/612450953757786112">June 21, 2015</a></blockquote>
