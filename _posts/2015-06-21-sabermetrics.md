@@ -12,6 +12,9 @@ introduced, the mean & standard deviation discussed, and the linear
 regression heuristically motivated. We make some embarrassingly wrong
 predictions.
 
+We assume some familiarity with probability. Those who want to learn
+more about probability are free to read my [notes]({{ site.url }}/assets/probability.pdf).
+
 **Contents**
 
 - [Introduction](#introduction)
