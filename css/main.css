@@ -21,6 +21,19 @@ h3 {
     font-weight:bold;
 }
 
+h5 {
+    display: inline;
+    font-family: Palatino, georgia, "times new roman", serif;
+    font-weight:bold;
+    font-size: 100%;
+    margin: 0;
+    padding-right: 0.5em;
+}
+
+h5 + p {
+    display: inline;
+}
+
 main {
     background: white;
     border: 1px solid #ccc;
@@ -88,7 +101,7 @@ footer nav {
 table {
     border-collapse: collapse;
     border-spacing: 0px;
-    margin: 15px 0px;
+    margin: 15px auto;
 }
 table tr {
     border-top: 1px solid rgb(204, 204, 204);
@@ -127,13 +140,12 @@ table td, table th {
     font-size: 18px;
   }
 
-  h5 {
-    font-size: 14px;
-  }
-
-  h6 {
-    font-size: 12px;
-  }
+h5 {
+    display: inline;
+    font-family: Palatino, georgia, "times new roman", serif;
+    font-weight:bold;
+    font-size: 100%;
+}
 
   code, pre {
     font-size: 12px;
