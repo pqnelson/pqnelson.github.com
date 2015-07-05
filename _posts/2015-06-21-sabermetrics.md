@@ -126,70 +126,15 @@ or 1/5,
 
 What do these statistics look like for the past 5 years or so?
 
-```clojure
-sabermetrics.team> (def t1 (find-since 2005))
-#'sabermetrics.team/t1
-sabermetrics.team> (defn stats-per-year [teams year]
-                     (apply (partial merge-with +)
-                       (map #(select-keys % [:games-played :runs :homeruns])
-                            (filter #(= year (:year-id %)) teams))))
-#'sabermetrics.team/stats-per-year
-sabermetrics.team> (stats-per-year t1 2010)
-{:homeruns 4613, :runs 21308, :games-played 4860}
-sabermetrics.team> (stats-per-year t1 2011)
-{:homeruns 4552, :runs 20808, :games-played 4858}
-sabermetrics.team> (stats-per-year t1 2012)
-{:homeruns 4934, :runs 21017, :games-played 4860}
-sabermetrics.team> (stats-per-year t1 2013)
-{:homeruns 4661, :runs 20255, :games-played 4862}
-sabermetrics.team> (stats-per-year t1 2014)
-{:homeruns 4186, :runs 19761, :games-played 4860}
-sabermetrics.team> (defn runs-per-game [teams year]
-                     ((fn [{:keys [runs games-played]}]
-                        (float (/ runs (* 1/2 games-played))))
-                      (stats-per-year teams year)))
-#'sabermetrics.team/runs-per-game
-sabermetrics.team> (runs-per-game t1 2010)
-8.768724
-sabermetrics.team> (runs-per-game t1 2011)
-8.566488
-sabermetrics.team> (runs-per-game t1 2012)
-8.648972
-sabermetrics.team> (runs-per-game t1 2013)
-8.331963
-sabermetrics.team> (runs-per-game t1 2014)
-8.132099
-sabermetrics.team> (defn homeruns-per-game [teams year]
-                     ((fn [{:keys [homeruns games-played]}]
-                       (float (/ homeruns (* 1/2 games-played))))
-                     (stats-per-year teams year)))
-#'sabermetrics.team/homeruns-per-game
-sabermetrics.team> (homeruns-per-game t1 2010)
-1.8983539
-sabermetrics.team> (homeruns-per-game t1 2011)
-1.8740222
-sabermetrics.team> (homeruns-per-game t1 2012)
-2.0304527
-sabermetrics.team> (homeruns-per-game t1 2013)
-1.917318
-sabermetrics.team> (homeruns-per-game t1 2014)
-1.7226337
-sabermetrics.team> (defn homeruns-ratio [teams year]
-                     ((fn [{:keys [homeruns runs]}]
-                       (float (/ homeruns runs)))
-                     (stats-per-year teams year)))
-#'sabermetrics.team/homeruns-ratio
-sabermetrics.team> (homeruns-ratio t1 2010)
-0.21649146
-sabermetrics.team> (homeruns-ratio t1 2011)
-0.21876201
-sabermetrics.team> (homeruns-ratio t1 2012)
-0.23476234
-sabermetrics.team> (homeruns-ratio t1 2013)
-0.23011602
-sabermetrics.team> (homeruns-ratio t1 2014)
-0.21183139
-```
+We have the following table summary:
+
+| Year | Runs per Game | Homeruns Per Game | Homeruns to Runs Ratio |
+|------|---------------|-------------------|------------------------|
+| 2010 | 8.768724      | 1.8983539         | 0.21649146             |
+| 2011 | 8.566488      | 1.8740222         | 0.21876201             |
+| 2012 | 8.648972      | 2.0304527         | 0.23476234             |
+| 2013 | 8.331963      | 1.917318          | 0.23011602             |
+| 2014 | 8.132099      | 1.7226337         | 0.21183139             |
 
 Home runs per game fluctuating "a bit", runs per game "roughly steady",
 and the ratio of home runs to runs "steady-ish".
@@ -327,9 +272,16 @@ simple case where $y=a+bx$, where we have 1 input variable and 1 output
 variable, we have our raw data <span>$(x\_{j}, y\_{j})$</span>. We consider the
 distance from the predicted value <span>$\hat{y}\_j=a+bx\_j$</span> from the actual
 value <span>$y_{j}$</span>,
-<div>$$ RSS = \sum\_{j} (\hat{y}\_{j} - y\_{j})^{2}.$$</div>
-Minimizing this error would give the optimal fit.
+<div>$$ \mathrm{RSS} = \sum\_{j} (\hat{y}\_{j} - y\_{j})^{2}.$$</div>
+Minimizing this error would give the optimal fit. We can minimize the
+error *and* solve for the coefficients by solving the equations
+$$\frac{\partial\,\mathrm{RSS}}{\partial a}=0$$
+and
+$$\frac{\partial\,\mathrm{RSS}}{\partial b}=0.$$
+These 2 equations in 2 unknowns (the coefficients *a* and *b*) will give
+us the coefficients which minimizes the error.
 
+**Testing the Linear Regression Goodness of Fit.**
 We can actually *test* how good a fit we have. How? Well, supposing that
 this *residual error* <span>$\varepsilon\_{j}=\hat{y}\_{j}-y\_{j}$</span>
 is a normally distributed random variable. What does this mean? Well, if
@@ -342,7 +294,7 @@ actual value is from the predicted value:
 We can use this to rigorously test how well our linear regression fits
 the data. Sometimes we don't need testing, but this is only when it's so
 terrible that we need a better model...which is precisely the case *we*
-are in! (End of Discussion on Intuition)
+are in!
 
 **Dealing with Nonlinearity.** Suppose we wanted to try to consider some
 nonlinear factor, like the exponential of the team's weight in
@@ -394,13 +346,16 @@ is "Why?"
 First, our data is far too coarse-grained. We tried making predictions
 about the results of a *game* using *per-season* data. One step forward
 would be to use data better suited to our problem. We will (next time)
-use [Retrosheet's data](http://www.retrosheet.org/game.html), which has
+use [Retrosheet's data](http://www.retrosheet.org/game.htm), which has
 play-by-play data for every game dating back to 1871.
 
 Second, our model may be too simple. As noted earlier, there was the
 collinearity problem we never dealt with. But trying to figure out what
 combinations of data to use is rather taxing, especially when I don't
 know a lot about the subject.
+
+[Next time]({{ site.url }}/2015/07/05/bernoulli-batters-markov-coaches.html) we will
+model each play, and see if we can get better predictions.
 
 # References
 
@@ -415,6 +370,11 @@ know a lot about the subject.
 - Phil Birnbaum,
   [How to Find Raw Data](http://sabr.org/sabermetrics/data)
   chapter of [A Guide to Sabermetric Research](http://sabr.org/sabermetrics).
+
+#### Changelog
+
+- June 27, 2015: used table to display stats rather than raw REPL
+  output, explained how to find the coefficients for a linear regression.
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
