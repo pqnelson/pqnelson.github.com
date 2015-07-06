@@ -4,6 +4,7 @@ title: Bernoulli Batters, Markov Coaches — Modeling Games by Plays
 published: true
 quote: "Ninety percent of this game is half-mental."
 quoteSource: Yogi Berra, <i>What Time Is It? You Mean Now?</i> (2003)
+tags: [baseball, stats]
 ---
 
 **Abstract.** We review probability distributions related to discrete
@@ -757,17 +758,26 @@ The part everyone is waiting for, the predictions.
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Prediction: .<a href="https://twitter.com/Angels">@Angels</a> 3 vs .<a href="https://twitter.com/Rangers">@Rangers</a> 4 for today&#39;s game.</p>&mdash; Alex Nelson (@anelson_unfold) <a href="https://twitter.com/anelson_unfold/status/617777898376658944">July 5, 2015</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+The
+[final score](http://mlb.mlb.com/mlb/gameday/index.jsp?gid=2015_07_05_anamlb_texmlb_1&partnerId=LR_gameday#game=2015_07_05_anamlb_texmlb_1,game_state=Wrapup,game_tab=play-by-play)
+was Angels 12 - Rangers 6.
+
 <a name="oak-vs-sea" />
 ### Oakland A's vs Seattle Mariners
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Prediction: .<a href="https://twitter.com/Athletics">@Athletics</a> 4 vs .<a href="https://twitter.com/Mariners">@Mariners</a> 2 for today&#39;s game.</p>&mdash; Alex Nelson (@anelson_unfold) <a href="https://twitter.com/anelson_unfold/status/617779244794392577">July 5, 2015</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+The [final score](mlb_oakmlb_1&partnerId=LR_gameday#game=2015_07_05_seamlb_oakmlb_1,game_state=Wrapup,game_tab=play-by-play) was Oakland 1 - Mariners 2.
+
 <a name="lad-vs-met" />
 ### LA Dodgers vs NY Mets
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">.<a href="https://twitter.com/Dodgers">@Dodgers</a> 3 vs .<a href="https://twitter.com/Mets">@Mets</a> 3 for today&#39;s game, projected to have an extra inning which Dodgers will win due to home advantage.</p>&mdash; Alex Nelson (@anelson_unfold) <a href="https://twitter.com/anelson_unfold/status/617780656630689792">July 5, 2015</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+The [final score](http://mlb.mlb.com/mlb/gameday/index.jsp?gid=2015_07_05_nynmlb_lanmlb_1&partnerId=LR_gameday#game=2015_07_05_nynmlb_lanmlb_1,game_state=Wrapup,game_tab=play-by-play)
+New York Mets 8 - LA Dodgers 0.
 
 <a name="conclusion" />
 # Conclusion
@@ -784,6 +794,10 @@ earlier (e.g., take into account the pitcher, or organized the batters
 into an optimal batting order) or if we had more precise statistics
 (batting stats for away games, for home games, etc.). This requires
 another data source, however.
+
+The low hanging fruit for us: picking an optimal batting order. Now that
+we have a rudimentary Markov chain model, we can easily determine the
+optimal batting order. But that's the topic for another time.
 
 # References
 
