@@ -10,8 +10,10 @@
 </blockquote>
 {% endif %}
 
-{% if page.layout != "tagpage" %}
+{% if page.layout == "post" %}
 <a href="/">Home</a> &mdash;
+{% elsif page.layout == "wiki" %}
+<a href="..">Up</a> &mdash;
 {% endif %}
 <span class="copyright">
 <a rel="license"
