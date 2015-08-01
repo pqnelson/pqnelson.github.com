@@ -17,6 +17,9 @@ Instead of trying to write some self-contained [Bourbaki-esque](http://en.wikipe
 programming site, I'll just cover problems I'm currently facing in...whatever it
 is I do.
 
+I also have a [wiki](./wiki/) of random notes on math and
+science. They're mildly polished, but not presentable in papers.
+
 Send your angry emails to me at `PQNELSON AT GMAIL DOT REMOVE THIS DOT
 COM`. 
 
