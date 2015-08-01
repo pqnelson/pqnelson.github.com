@@ -1,0 +1,20 @@
+# dot -Tpng xor-ff.dot -o xor-ff.png
+
+digraph XORff {
+    overlap=false;
+    net [label=<<table border="0" cellpadding="0" cellborder="0"><tr><td>θ = 0.5</td></tr><tr><td><i>w</i><sub>1</sub>=0.6</td></tr><tr><td><i>w</i><sub>2</sub>=−0.2</td></tr></table>>];
+    x1 [label=<<i>x</i><SUB>1</SUB>>];
+    x2 [label=<<i>x</i><SUB>2</SUB>>];
+    h1 [label=<<table border="0" cellpadding="0" cellborder="0"><tr><td>θ = 0.5</td></tr><tr><td><i>w</i><sub>1</sub>=1</td></tr><tr><td><i>w</i><sub>2</sub>=1</td></tr></table>>];
+    h2 [label=<<table border="0" cellpadding="0" cellborder="0"><tr><td>θ = 1.5</td></tr><tr><td><i>w</i><sub>1</sub>=1</td></tr><tr><td><i>w</i><sub>2</sub>=1</td></tr></table>>];
+    output [style=invis];
+
+    x1 -> h1;
+    x1 -> h2;
+    x2 -> h1;
+    x2 -> h2;
+    h1 -> net;
+    h2 -> net;
+ 
+    net -> output;
+}

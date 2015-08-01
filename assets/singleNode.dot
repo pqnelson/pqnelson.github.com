@@ -1,0 +1,18 @@
+# dot -Tpng singleNode.dot -o singleNode.png
+
+digraph singleNode {
+    overlap=false;
+    net [label=<net<SUB><I>i</I></SUB> = ∑<I><SUB>j</SUB>w<SUB>ij</SUB>x<SUB>j</SUB></I>>];
+    x1 [label=<<i>x</i><SUB>1</SUB>>];
+    x2 [label=<<i>x</i><SUB>2</SUB>>];
+    xDots [label="..."];
+    xn [label=<<i>x</i><SUB><I>n</I></SUB>>];
+    output [shape=plaintext,label=<<i>f<sub>i</sub></i>(net<sub><i>i</i></sub>)>];
+
+    x1 -> net;
+    x2 -> net;
+    xDots -> net;
+    xn -> net;
+ 
+    net -> output;
+}

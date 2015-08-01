@@ -1,0 +1,32 @@
+# dot -Tpng ff-net.dot -o ff-net.png
+
+digraph ffNet {
+    overlap=false;
+    subgraph _1 {
+      rank = "same";
+      i1 [label=<<i>i</i><sub><i>p</i>,1</sub>>];
+      iDots1 [label=<...>];
+      hiddenJ [label=<<table border="0" cellpadding="0" cellborder="0"><tr><td><i>w</i><sup><i>h</i></sup><sub><i>ji</i></sub></td></tr><tr><td><i>θ</i><sup> <i>h</i></sup><sub><i>j</i></sub></td></tr><tr><td>net<sup><i>h</i></sup><sub><i>pj</i></sub></td></tr></table>>];
+      iDots2 [label=<...>];
+      i2 [label=<<i>i</i><sub><i>p</i>,<i>L</i></sub>>];
+    }
+    outJ [label=<<table border="0" cellpadding="0" cellborder="0"><tr><td><i>w</i><sup><i>o</i></sup><sub><i>kj</i></sub></td></tr><tr><td><i>θ</i><sup> <i>o</i></sup><sub><i>k</i></sub></td></tr><tr><td>net<sup><i>o</i></sup><sub><i>pj</i></sub></td></tr></table>>];
+    x1 [label=<<i>x</i><SUB><i>p</i>,1</SUB>>];
+    xDots [label=<...>];
+    x2 [label=<<i>x</i><SUB><i>p</i>,<i>N</i></SUB>>];
+
+
+    x1 -> hiddenJ;
+    xDots -> hiddenJ;
+    x2 -> hiddenJ;
+
+    i1 -> outJ;
+    iDots1 -> outJ;
+    hiddenJ -> outJ;
+    iDots2 -> outJ;
+    i2 -> outJ;
+
+    yHat [label=<<i>ŷ</i>>];
+
+    outJ -> yHat;
+}

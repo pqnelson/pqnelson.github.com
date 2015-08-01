@@ -1,0 +1,14 @@
+# dot -Tpng minsky-xor.dot -o minsky-xor.png
+
+digraph minskyXOR {
+    overlap=false;
+    net [label=<net = <i>w</i><sub>1</sub><i>x</i><sub>1</sub>+<i>w</i><sub>2</sub><i>x</i><sub>2</sub>>];
+    x1 [label=<<i>x</i><SUB>1</SUB>>];
+    x2 [label=<<i>x</i><SUB>2</SUB>>];
+    output [shape=plaintext,label=<<i>H</i>(net − θ)>];
+
+    x1 -> net;
+    x2 -> net;
+ 
+    net -> output;
+}
