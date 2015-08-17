@@ -372,37 +372,37 @@ I'll borrow the basic examples from
 [elsewhere](http://sbs-baseball.com/theory.txt).
 
 **Hitter Statistics.**
-Suppose we have a hitter, Joe Hitter, with the following statistics:
+Suppose we have a hitter, [Buck Bokai](http://en.memory-alpha.wikia.com/wiki/Buck_Bokai), with the following statistics:
 
-|            |   AB | Hits | 2B | 3B | HR | BB | K | AVG |
-|------------|------|------|----|----|----|----|---|-----|
-| Joe Hitter |  482 | 147  | 20 |  4 | 12 | 41 | 71| .305|
+|            |   AB | Hits | 2B  | 3B |  HR | BB  | K   | AVG  |
+|------------|------|------|-----|----|-----|-----|-----|------|
+| Buck Bokai | 3720 | 1087 | 251 | 48 | 174 | 441 | 631 | .292 |
 
-We have the plate appearances (PA) for Joe Hitter be PA = AB + BB
-= 523. If we wanted to be more precise, we would have included sacrifice
+We have the plate appearances (PA) for Bokai be PA = AB + BB
+= 4161. If we wanted to be more precise, we would have included sacrifice
 hits (SH + SB) and hit by pitch (HBP)...but these are normally small in
 comparison to at bats and balls. We can use these statistics to estimate
 the probabilities
 
 | Signal                 | Formula     | Statistic              |
 |------------------------|-------------|------------------------|
-| Probability of walk    | HBB = BB/PA | 0.078393884 |
-| Probability of Single  | H<sub>1</sub> = (Hits - (2B + 3B + HR))/PA | 0.21223709 |
-| Probability of Double  | H<sub>2</sub> = 2B/PA | 0.038240917 |
-| Probability of Triple  | H<sub>3</sub> = 3B/PA | 0.0076481835 |
-| Probability of Homerun | H<sub>4</sub> = HR/PA | 0.022944551 |
-| Combined Probability   | H<sub>comb</sub>      | 0.35946462  |
+| Probability of walk    | HBB = BB/PA | 0.10598414             |
+| Probability of Single  | H<sub>1</sub> = (Hits - (2B + 3B + HR))/PA | 0.14756069 |
+| Probability of Double  | H<sub>2</sub> = 2B/PA | 0.06032204   |
+| Probability of Triple  | H<sub>3</sub> = 3B/PA | 0.011535688  |
+| Probability of Homerun | H<sub>4</sub> = HR/PA | 0.04181687   |
+| Combined Probability   | H<sub>comb</sub>      | 0.36721942   |
 
 The probability of making an out would simply be
-1-0.35946462=0.64053535, ignoring rounding errors.
+1-0.36721942=0.63278055, ignoring rounding errors.
 
 **Pitcher Statistics.**
-Now suppose we have a pitcher, Jack Pitcher, with the following
+Now suppose we have a pitcher, [Eddie Newsom](http://en.memory-alpha.wikia.com/wiki/Eddie_Newsom), with the following
 statistics:
 
 |              |  [IP](https://en.wikipedia.org/wiki/Innings_pitched)  | Hits | HR | BB | [K](https://en.wikipedia.org/wiki/Strikeout)  |
 |--------------|------|------|----|----|----|
-| Jack Pitcher |  200 | 210  | 15 | 50 | 80 |
+| Eddie Nesom |  200 | 210  | 15 | 50 | 80 |
 
 So the pitcher threw 200 innings, which would be roughly 600 batters
 faced. We can be *more* precise, computing the batters faced as also
@@ -430,6 +430,16 @@ statistics. Using the 2014 team statistics, we find
 | Hit             | L<sub>h</sub> = H/LABF | 0.22308213  |
 | Homerun         | LHR = HR/LABF          | 0.022450337 |
 
+**Remark (Doubles and Triples).**
+We should, ideally, expand this table to include the number of doubles
+and triples. We can compute this using the number of doubles and triples
+from the batting table. With this data, we can approximate the number of
+doubles and triples our pitcher (in our case, Eddie Newsom) allowed by
+multiplying P<sub>h</sub> by the ratio of L2B/LABF (the total number of
+doubles allowed in the league, by the total number of batters faced in
+the leage) or L3B/LABF, respectively.
+(End of Remark)
+
 **Computing the Probability.**
 Now that we have all these statistics assembled, we can compute the
 probability the hitter will hit the ball. We multiply the action we're
@@ -440,7 +450,7 @@ the hitter hitting the ball. We have
 
 $$\Pr(H) = \frac{H\_{\text{comb}}(P\_{h}/L\_{h})}{H\_{\text{comb}}(P\_{h}/L\_{h})+(1-H\_{\text{comb}})(1-P\_{h})/(1-L\_{h})}$$
 
-Or Pr(H)=0.38704306, slightly higher than H<sub>comb</sub>. ("Does this
+Or Pr(H)=0.3950259, slightly higher than H<sub>comb</sub>. ("Does this
 make sense?" Well, the pitcher is slightly below average, so it stands
 to reason the batter would perform slightly better.) Observe the
 basic structure of the probability is
