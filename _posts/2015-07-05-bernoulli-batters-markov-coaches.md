@@ -4,7 +4,7 @@ title: Bernoulli Batters, Markov Coaches — Modeling Games by Plays
 published: true
 quote: "Ninety percent of this game is half-mental."
 quoteSource: Yogi Berra, <i>What Time Is It? You Mean Now?</i> (2003)
-tags: [baseball, stats]
+tags: [Baseball, Statistics]
 ---
 
 **Abstract.** We review probability distributions related to discrete

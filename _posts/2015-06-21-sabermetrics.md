@@ -4,6 +4,7 @@ title: Learning Satistics via Sabermetrics
 published: true
 quote: "Baseball is like church. Many attend, few understand."
 quoteSource: Wes Westrum, Aprocryphal
+tags: [Baseball, Statistics]
 ---
 
 **Abstract:** As a playground for statistical thinking, we examine

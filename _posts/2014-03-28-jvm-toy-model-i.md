@@ -4,6 +4,7 @@ title: Toy Model of the JVM, Part I
 published: true
 quote: "Truth...is much too complicated to allow anything but approximations."
 quoteSource: John von Neumann, "The Mathematician" (1947)
+tags: [Java Virtual Machine]
 ---
 
 **Contents**

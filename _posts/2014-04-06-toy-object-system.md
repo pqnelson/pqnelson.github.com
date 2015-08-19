@@ -4,6 +4,7 @@ title: Toy Object System
 published: true
 quote: "If the pros at Sun had had a chance to fix Java, the world would be a much more pleasant place. This is not secret knowledge. It’s just secret to this pop culture."
 quoteSource: Alan Kay, "A Conversation with Alan Kay" <a href="http://queue.acm.org/detail.cfm?id=1039523">ACM Queue</a> <strong>2</strong> no.9 (2004)
+tags: [Java Virtual Machine]
 ---
 
 <a name="introduction" />

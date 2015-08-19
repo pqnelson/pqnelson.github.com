@@ -4,7 +4,7 @@ title: An Introduction to Neural Networks
 published: true
 quote: "<b>Brain</b>, n. An apparatus with which we think we think."
 quoteSource:  Ambrose Bierce, <i>The Devil's Dictionary</i> (1911)
-tags: [baseball, stats]
+tags: [Baseball, Statistics]
 ---
 
 **Abstract.** We review neural networks, discussing the algorithms

@@ -4,7 +4,7 @@ quote: "A building is not finished when its foundation is laid; and just as litt
 quoteSource: GWF Hegel, &sect;12 <em>Phenomenology of Spirit</em> (1807)
 title: Automated Theorem Proving, The Davis Putnam Algorithm
 published: true
-tags: [logic, automated-theorem-proving, backtracking]
+tags: [Automated Theorem Prover, Logic, Backtracking]
 ---
 
 # Introduction

@@ -4,6 +4,7 @@ title: Oddball HTTP Requests in Compojure
 published: true
 quote: "To obey a rule, to make a report, to give an order, to play a game of chess, are <em>customs</em>."
 quoteSource: Ludwig Wittgenstein, <em>Philosophical Investigations</em> &sect;199
+tags: [REST]
 ---
 As a web-developer coding in Clojure, I want to use 
 [Compojure](https://github.com/weavejester/compojure) 

@@ -4,7 +4,7 @@ title: Lineups and Pitchers, Observations on Markov Chains
 published: true
 quote: "It's tough to make predictions, especially about the future."
 quoteSource:  Yogi Bera, Apocryphal
-tags: [baseball, stats]
+tags: [Baseball, Statistics]
 ---
 
 **Executive Summary.**

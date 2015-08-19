@@ -4,6 +4,7 @@ published: true
 title: Automated Theorem Proving, Prolegomena on Propositional Logic
 quote: "Logic: The art of thinking and reasoning in strict accordance with the limitations and incapacities of the human misunderstanding."
 quoteSource: Ambrose Bierce, <em>The Devil's Dictionary</em> (1911)
+tags: [Automated Theorem Prover, Logic]
 ---
 
 # Introduction
