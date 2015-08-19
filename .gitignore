@@ -1,1 +1,4 @@
 /_site/*
+
+# Do not include autosaves
+*~
