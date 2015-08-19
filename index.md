@@ -21,7 +21,9 @@ I also have a [wiki](./wiki/) of random notes on math and
 science. They're mildly polished, but not presentable in papers.
 
 Send your angry emails to me at `PQNELSON AT GMAIL DOT REMOVE THIS DOT
-COM`. 
+COM`.
+
+(See also the [posts by tags](/tags/).)
 
 <ul>
   {% for post in site.posts %}
