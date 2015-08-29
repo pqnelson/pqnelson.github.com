@@ -1,5 +1,5 @@
 body {
-    font-family: Palatino, georgia, "times new roman", serif;
+    font-family: Georgia,"Times New Roman",Times,serif;
     background-color: whitesmoke;
     background-position: center -18em;
     background-repeat: repeat-x; 
@@ -23,7 +23,7 @@ h3 {
 
 h5 {
     display: inline;
-    font-family: Palatino, georgia, "times new roman", serif;
+    font-family: Georgia,"Times New Roman",Times,serif;
     font-weight:bold;
     font-size: 100%;
     margin: 0;
@@ -142,7 +142,7 @@ table td, table th {
 
 h5 {
     display: inline;
-    font-family: Palatino, georgia, "times new roman", serif;
+    font-family: Georgia,"Times New Roman",Times,serif;
     font-weight:bold;
     font-size: 100%;
 }
