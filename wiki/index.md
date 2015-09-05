@@ -20,3 +20,4 @@ It turns out, the one-page summaries are good if they can be used as the
 basis for exercises.
 
 - [Supergravity](./sugra/)
+- [Quantum Field Theory](./qft/)
