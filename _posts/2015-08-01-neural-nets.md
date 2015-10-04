@@ -4,7 +4,7 @@ title: An Introduction to Neural Networks
 published: true
 quote: "<b>Brain</b>, n. An apparatus with which we think we think."
 quoteSource:  Ambrose Bierce, <i>The Devil's Dictionary</i> (1911)
-tags: [Baseball, Statistics]
+tags: [Neural Network, Statistics]
 ---
 
 **Abstract.** We review neural networks, discussing the algorithms
@@ -282,14 +282,14 @@ this...so I'm guessing it fell out of favor for a reason.
 <a name="algorithm" />
 ## Algorithm
 
-In pidgin C/Java/D/blub code, we have the following data structure for the layer
+In pidgin C/Java/D/[blub](http://www.paulgraham.com/avg.html) code, we have the following data structure for the layer
 
 ```c
 struct Layer {
-  double outputs[];          /* outputs for the given inputs */
-  double weights[][];        /* the connection array */
-  double errors[];           /* error terms for the layer */
-  double last_delta[][];     /* previous delta terms for the layer */
+    double outputs[];       /* outputs for the given inputs */
+    double weights[][];     /* the connection array */
+    double errors[];        /* error terms for the layer */
+    double last_delta[][];  /* previous delta terms for the layer */
 };
 ```
 
@@ -297,11 +297,11 @@ We can thus construct a network using this:
 
 ```c
 struct Network {
-  Layer *input_units;     /* The input layer */
-  Layer *output_units;    /* Output units */
-  Layer layers[];         /* dynamically sized layers */
-  double alpha;           /* momentum term */
-  double eta;             /* learning rate parameter */
+    Layer *input_units;   /* The input layer */
+    Layer *output_units;  /* Output units */
+    Layer layers[];       /* dynamically sized layers */
+    double alpha;         /* momentum term */
+    double eta;           /* learning rate parameter */
 };
 ```
 
@@ -313,11 +313,11 @@ about it...just bear with me.
 
 ```c
 void setInputs(Network *network, double input[]) {
-  double **network_inputs = &(network->input_units->outputs);
-  /* copy the input to the neural net's input layer */
-  for (int i=0; i<length(input); i++) {
-    network_inputs[i] = input[i];
-  }
+    double **network_inputs = &(network->input_units->outputs);
+    /* copy the input to the neural net's input layer */
+    for (int i=0; i<length(input); i++) {
+        network_inputs[i] = input[i];
+    }
 }
 ```
 
@@ -327,29 +327,29 @@ function *f* is abstracted out into its own `outputFunction()`.
 ```c
 /* for us, sigmoid */
 double outputFunction(double x) {
-  return 1.0/(1.0 + exp(-x));
+    return 1.0/(1.0 + exp(-x));
 }
 
 void propagateLayer(Layer *lower, Layer *upper) {
-  int i,j; /* iteration counts */
-  double sum;
-  double **connects;
-  double **inputs = &(lower->outputs);  /* locate the lower layer */
-  double **current = &(upper->outputs); /* locate the upper layer */
+    int i,j; /* iteration counts */
+    double sum;
+    double **connects;
+    double **inputs = &(lower->outputs);  /* locate the lower layer */
+    double **current = &(upper->outputs); /* locate the upper layer */
 
-  /* for each node in the output layer */
-  for(i=0; i<length(current); i++) {
-    /* reset the accumulator */
-    sum = 0;
-    /* locate the weight array */
-    connects = &(upper->weights[i]);
-    /* for each node in the input */
-    for (j=0; j<length(inputs); j++) {
-      /* accumulate the products */
-      sum = sum + inputs[j]*connects[j];
+    /* for each node in the output layer */
+    for(i=0; i<length(current); i++) {
+        /* reset the accumulator */
+        sum = 0;
+        /* locate the weight array */
+        connects = &(upper->weights[i]);
+        /* for each node in the input */
+        for (j=0; j<length(inputs); j++) {
+            /* accumulate the products */
+            sum = sum + inputs[j]*connects[j];
+        }
+        current[i] = outputFunction(sum);
     }
-    current[i] = outputFunction(sum);
-  }
 }
 ```
 
@@ -357,18 +357,18 @@ Now we can work with the entire network.
 
 ```c
 void propagateForward(Network *network) {
-  Layer *lower;
-  Layer *upper;
-  int i;
+    Layer *lower;
+    Layer *upper;
+    int i;
 
-  /* for each layers */
-  for(i = 0; i<length(network->layers); i++) {
-    /* locate the lower and upper layer */
-    lower = &(network->layers[i]);
-    upper = &(network->layers[i+1]);
-    /* propagate forward */
-    propagateLayer(lower,upper);
-  }
+    /* for each layers */
+    for(i = 0; i<length(network->layers); i++) {
+        /* locate the lower and upper layer */
+        lower = &(network->layers[i]);
+        upper = &(network->layers[i+1]);
+        /* propagate forward */
+        propagateLayer(lower,upper);
+    }
 }
 ```
 
@@ -377,13 +377,13 @@ array.
 
 ```c
 void getOutputs(Network *network, double outputs[]) {
-  double **network_outputs = &(network->output_units->outputs);
-  int i;
+    double **network_outputs = &(network->output_units->outputs);
+    int i;
 
-  /* copy the array over, element by element */
-  for(i=0; i<length(network_outputs); i++) {
-    outputs[i] = network_outputs[i];
-  }
+    /* copy the array over, element by element */
+    for(i=0; i<length(network_outputs); i++) {
+        outputs[i] = network_outputs[i];
+    }
 }
 ```
 
@@ -395,7 +395,7 @@ completeness.
 
 ```c
 double derivativeOutputFunction(double y) {
-  return y*(1.0-y);
+    return y*(1.0-y);
 }
 ```
 
@@ -404,13 +404,13 @@ layer.
 
 ```c
 void computeOutputError(Network *network, double target[]) {
-  double **errors = &(network->output_units->errors);
-  double **outputs = &(network->output_units->outputs);
-  int i;
+    double **errors = &(network->output_units->errors);
+    double **outputs = &(network->output_units->outputs);
+    int i;
   
-  for(i=0; i<length(outputs); i++) {
-    errors[i] = (target[i]-outputs[i])*derivativeOutputFunction(outputs[i]);
-  }
+    for(i=0; i<length(outputs); i++) {
+        errors[i] = (target[i]-outputs[i])*derivativeOutputFunction(outputs[i]);
+    }
 }
 ```
 
@@ -419,29 +419,29 @@ Now we write a routine to backpropagate to the hidden layer.
 ```c
 /* backpropagate errors from an upper layer to a lower layer */
 void backpropagateError(Layer *upper, Layer *lower) {
-  double **senders;   /* source errorrs */
-  double **receivers; /* receiving errors */
-  double **connects;  /* pointer to weight arrays */
-  double unit;        /* unit output value */
-  int i,j;
+    double **senders;   /* source errorrs */
+    double **receivers; /* receiving errors */
+    double **connects;  /* pointer to weight arrays */
+    double unit;        /* unit output value */
+    int i,j;
+    
+    senders = &(upper->errors);
+    receivers = &(lower->errors);
   
-  senders = &(upper->errors);
-  receivers = &(lower->errors);
-  
-  for(i=0; i<length(receivers); i++) {
-    /* initialize the accumulator */
-    receivers[i] = 0;
-    /* loop through the sending units */
-    for(j=0; j<length(senders); j++) {
-      /* get the weights for the given node */
-      connects = &(upper->weights[j]);
-      receivers[i] = receivers[i] + senders[j]*connects[i];
+    for(i=0; i<length(receivers); i++) {
+        /* initialize the accumulator */
+        receivers[i] = 0;
+        /* loop through the sending units */
+        for(j=0; j<length(senders); j++) {
+            /* get the weights for the given node */
+            connects = &(upper->weights[j]);
+            receivers[i] = receivers[i] + senders[j]*connects[i];
+        }
+        /* get the unit output */ 
+        unit = lower->outputs[i];
+        /* set the receiver */
+        receivers[i] = receivers[i] * derivativeOutputFunction(unit);
     }
-    /* get the unit output */ 
-    unit = lower->outputs[i];
-    /* set the receiver */
-    receivers[i] = receivers[i] * derivativeOutputFunction(unit);
-  }
 }
 ```
 
@@ -450,33 +450,33 @@ momentum and whatnot, iterating through all the layers.
 
 ```c
 void adjustWeights(Network *network) {
-  Layer *current;
-  double **inputs;
-  double **units;
-  double **weights;
-  double **delta;
-  double **error;
-  int i, j, k;xs
+    Layer *current;
+    double **inputs;
+    double **units;
+    double **weights;
+    double **delta;
+    double **error;
+    int i, j, k;xs
   
-  /* starting at first computed layer */
-  for(i=1; i<length(network->layers); i++) {
-    current = network->layers[i];
-    units = &(network->layers[i]->outputs);
-    inputs = &(network->layers[i-1]->outputs);
+    /* starting at first computed layer */
+    for(i=1; i<length(network->layers); i++) {
+        current = network->layers[i];
+        units = &(network->layers[i]->outputs);
+        inputs = &(network->layers[i-1]->outputs);
     
-    /* for each unit in the layer */
-    for(j=0; j<length(units); j++) {
-      weights = &(current->weights[j]); /* find input connections */
-      delta = &(current->delta[j]); /* find last delta */
-      error = &(network->layers[i]->errors);
+        /* for each unit in the layer */
+        for(j=0; j<length(units); j++) {
+            weights = &(current->weights[j]); /* find input connections */
+            delta = &(current->delta[j]); /* find last delta */
+            error = &(network->layers[i]->errors);
       
-      /* update the weights connecting that unit */
-      for(k=0; k<length(weights); k++) {
-        weights[k] = weights[k] + (inputs[k]*(network->eta)*error[k]); /* generalized delta */
-        weights[k] = weights[k] + ((network->alpha)*delta[k]); /* momentum term */
-      }
+            /* update the weights connecting that unit */
+            for(k=0; k<length(weights); k++) {
+                weights[k] = weights[k] + (inputs[k]*(network->eta)*error[k]); /* generalized delta */
+                weights[k] = weights[k] + ((network->alpha)*delta[k]); /* momentum term */
+            }
+        }
     }
-  } 
 }
 ```
 
@@ -487,14 +487,14 @@ predict.
 
 ```c
 double[] predict(Network *trained_network, double input[]) {
-  size_t output_length = length(trained_network->output_units->outputs);
-  double *outputs = new double[output_length];
-  
-  setInputs(trained_network, input);
-  propagateForward(trained_network);
-  getOutputs(trained_network, outputs);
-  
-  return outputs;
+    size_t output_length = length(trained_network->output_units->outputs);
+    double *outputs = new double[output_length];
+    
+    setInputs(trained_network, input);
+    propagateForward(trained_network);
+    getOutputs(trained_network, outputs);
+    
+    return outputs;
 }
 ```
 
@@ -507,18 +507,18 @@ component.
 
 ```c
 double error(Network *network, double inputs[][], double targets[][]) {
-  int i, j;
-  double outputs[];
-  double err = 0.0;
-  double term;
-  for(i=0; i<length(inputs); i++) {
-    outputs = predict(network, inputs[i]);
-    for(j=0; j<length(outputs); j++) {
-      double term = targets[i][j]-outputs[j];
-      error = error + term*term;
+    int i, j;
+    double outputs[];
+    double err = 0.0;
+    double term;
+    for(i=0; i<length(inputs); i++) {
+        outputs = predict(network, inputs[i]);
+        for(j=0; j<length(outputs); j++) {
+            double term = targets[i][j]-outputs[j];
+            error = error + term*term;
+        }
     }
-  }
-  return 0.5*err;
+    return 0.5*err;
 }
 ```
 
@@ -528,22 +528,26 @@ a network to train.
 
 ```c
 void train(Network *network, double inputs[][], double targets[][], double tol) {
-  int i, j;
-  do {
-    /* foreach training pair, train the network */
-    for(i=0; i<length(inputs); i++) {
-      setInputs(network, inputs[i]);
-      propagateForward(network);
-      /* determine the errors */
-      computeOutputError(network, targets[i]);
-      /* update the error values on all the layers */
-      for(j=length(network->layers)-1; j>0; j--) {
-        backpropagateError(network->layers[j], network->layers[j-1]);
-      }
-      /* modify the network */
-      adjustWeights(network);
-    }
-  } while (error(network, inputs, targets)>tol);
+    int i, j;
+    do {
+        /* foreach training pair, train the network */
+        for(i=0; i<length(inputs); i++) {
+            setInputs(network, inputs[i]);
+            propagateForward(network);
+            
+            /* determine the errors */
+            computeOutputError(network, targets[i]);
+            
+            /* update the error values on all the layers */
+            for(j=length(network->layers)-1; j>0; j--) {
+                backpropagateError(network->layers[j], network->layers[j-1]);
+            }
+            
+            /* modify the network */
+            adjustWeights(network);
+        }
+    /* until error is good enough */
+    } while (error(network, inputs, targets)>tol);
 }
 ```
 
