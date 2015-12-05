@@ -61,6 +61,7 @@ Well, we'll at least implement a predicate testing if a formula is a
 literal or not:
 
 ```haskell
+--- in src/Formula.hs
 isLiteral :: Formula -> Bool
 isLiteral (Atom _) = True
 isLiteral (Not (Atom _)) = True
@@ -76,6 +77,7 @@ So, we have a simplification procedure...well, a pair of procedures (to
 avoid infinite recursion).
 
 ```haskell
+--- in src/Formula.hs
 simplifyProp' :: Formula -> Formula
 simplifyProp' fm = case fm of
   Not F       -> T
@@ -110,6 +112,12 @@ simplifyProp fm = case fm of
   Iff p q     -> simplifyProp' (Iff (simplifyProp p) (simplifyProp q))
   _           -> fm
 ```
+
+**Exercise for the Reader.** Expand out the expressions:
+
+- `simplifyProp (Implies (Not (Atom "p")) False)`
+- `simplifyProp (Iff (Not (Not (Atom "q"))) (Atom "q"))`
+- `simplifyProp (Implies (And (Not (Atom "p")) (Implies (Atom "q") F)) (Or (Not (Or (Atom "p") (Atom "r"))) (Atom "q")))`. 
 
 ### Implementation
 
@@ -251,6 +259,9 @@ NenfFormula = Literal
 And we also use a tautology like `Iff (Not (Iff p q)) (Iff (Not p) q)`
 to help push negation down to the atom-level.
 
+**Exercise.** Write out a predicate `isNENF :: Formula -> Bool` which
+tests if the given formula is in NEN-form or not.
+
 ### Implementation
 
 Now, we have our implementation:
@@ -330,6 +341,9 @@ CnfFormula = Not (mapAtoms (\x -> Not (Atom x)) DnfFormula)
 
 We'd have to simplify it quite a bit.
 
+**Exercise.** Write some predicates `isDnfClause :: Formula -> Bool` and
+`isDnfFormula :: Formula -> Bool`.
+
 ### Helper Functions
 
 Unfortunately, we have a number of helper functions for converting a
@@ -371,9 +385,21 @@ allValuationsSatisfying p v (a:pvs) =
   ++ allValuationsSatisfying p ((a |-> True) v) pvs
 ```
 
-So, given a list of propositional variables, we want to conjoin literals
-formed from them (i.e., either the propositional variable or its
-negation) according to which satisfies the given valuation.
+We should note that we have tacitly used a helper function `|->` defined by:
+
+```haskell
+--- somewhere in formula.hs
+-- | This acts like a "hook", extending a function @f@ to @(p |-> y) f@
+-- which will map @p@ to @y@, and any other propositional variable @q@ to
+-- @f q@.
+(|->) :: PropVar -> a -> (PropVar -> a) -> PropVar -> a
+(|->) p y f p' = if p' == p then y else f p'
+```
+
+Meanwhile, back at the ranch, given a list of propositional variables,
+we want to conjoin literals formed from them (i.e., either the
+propositional variable or its negation) according to which satisfies the
+given valuation. 
 
 ```haskell
 -- | Given a list of propositional variables and a fixed valuation 'v', map

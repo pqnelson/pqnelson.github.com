@@ -164,8 +164,9 @@ mkDefCNF fn fm =
   let fm' = toNENF fm
       n = 1 + foldr (maxVarIndex "p_" . show) 0 (atoms fm')
       (fm'', defs, _) = fn (fm', Map.empty, n)
-      deflist = map (snd . snd)
-                    (Map.toList defs) --- set-based rep of definitions
+      --- recall dict entry is something like "(fm', (v, Iff v fm'))"
+      deflist = map (snd . snd) --- project out the definitions "Iff v fm'"
+                    (Map.toList defs) --- from all dictionary entries
   in Set.unions $ simpCNF fm'' : map simpCNF deflist
 ```
 

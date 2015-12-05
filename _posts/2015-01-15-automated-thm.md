@@ -96,6 +96,12 @@ would think the
 be best. But since that would distract us too much from the interesting
 problem, so we leave it as an exercise for the reader ;) (End of Remark)
 
+(Addendum: This actually embodies more truth about the structure of
+"real" theorem provers than I first realize. Usually there are multiple
+modules/standalone-programs which transform the problem. A syntactic
+reader/printer is one of these components. But we're interested in the
+_engine_ not the _paint job_.)
+
 **3. Valuations.**
 We need
 [valuations](http://en.wikipedia.org/wiki/Valuation_%28logic%29), that
