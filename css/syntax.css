@@ -5,6 +5,8 @@
 .highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
 .highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight a.c1 { color: #333399; text-decoration: none; }
+.highlight a.c1:hover { color: #aa0000; text-decoration: none; }
 .highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
 .highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
