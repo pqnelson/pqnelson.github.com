@@ -10,7 +10,9 @@
 </blockquote>
 {% endif %}
 
-{% if page.layout == "post" or page.layout == "alltags" %}
+{% if page.parentURL %}
+<a href={{page.parentURL}}>Up</a> &mdash;
+{% elsif page.layout == "post" or page.layout == "alltags" %}
 <a href="/">Home</a> &mdash;
 {% elsif page.layout == "wiki" %}
 <a href="../index.html">Up</a> &mdash;
