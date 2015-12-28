@@ -6,7 +6,7 @@ quote: "True education is a kind of never ending story — a matter of continual
 quoteSource: JRR Tolkien, Apocryphal
 category: Automath
 tags: [Automated Theorem Prover]
-permalink: /:categories/tutorial
+permalink: /automath/tutorial
 parentURL: /automath/
 ---
 
