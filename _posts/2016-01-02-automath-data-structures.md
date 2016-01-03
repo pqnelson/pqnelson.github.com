@@ -298,27 +298,27 @@ Lets give some examples of how this would look.
 
 <div class="highlight"><pre>  <span class="o">*</span> <span class="nv">l0</span>
   <span class="o">*</span> <span class="nv">l1</span>
-<span class="o">+</span> <span class="nv">p</span>
+<span class="o">+</span> <span class="nv">p</span> <span class="c"># open paragraph p</span>
   <span class="o">*</span> <span class="nv">l2</span>
   <span class="o">*</span> <span class="nv">l3</span>
-<span class="o">-</span> <span class="nv">p</span>
+<span class="o">-</span> <span class="nv">p</span> <span class="c"># close paragraph p</span>
   <span class="o">*</span> <span class="nv">l4</span>
 </pre></div>
 
 This would amount to the following situation:
 
 <img alt="Paragraphs as a linked list" src="{{ site.url }}/assets/auto-ds-par0.svg"
-style="max-width:547px;" />
+style="max-width:587px;" />
 
 But to make things worse, we can re-open paragraphs that have been
 previously closed. For example:
 
 <div class="highlight"><pre>  <span class="o">*</span> <span class="nv">l0</span>
   <span class="o">*</span> <span class="nv">l1</span>
-<span class="o">+</span> <span class="nv">p</span>
+<span class="o">+</span> <span class="nv">p</span> <span class="c"># open paragraph p</span>
   <span class="o">*</span> <span class="nv">l2</span>
   <span class="o">*</span> <span class="nv">l3</span>
-<span class="o">-</span> <span class="nv">p</span>
+<span class="o">-</span> <span class="nv">p</span> <span class="c"># close paragraph p</span>
   <span class="o">*</span> <span class="nv">l4</span>
   <span class="o">*</span> <span class="nv">l5</span>
 <span class="o">+*</span> <span class="nv">p</span> <span class="c"># reopen paragraph p</span>
