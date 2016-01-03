@@ -335,7 +335,28 @@ linkage in red):
 <img alt="Paragraphs as a linked list" src="{{ site.url }}/assets/auto-ds-par1.svg"
 style="max-width:1162px;" />
 
+**Paragraphs themselves form a linear list.**
+When we have multiple paragraphs in a row, something like
 
+<div class="highlight"><pre><span class="o">+</span> <span class="nv">p1</span>
+<span class="c"># ...</span>
+<span class="o">-</span> <span class="nv">p1</span>
+<span class="o">+</span> <span class="nv">p2</span>
+<span class="c"># ...</span>
+<span class="o">-</span> <span class="nv">p2</span>
+<span class="o">+</span> <span class="nv">p3</span>
+<span class="c"># ...</span>
+<span class="o">-</span> <span class="nv">p3</span>
+<span class="c"># etc.</span>
+</pre></div>
+
+We want to treat the paraph siblings `p1`, `p2`, etc., as all living in
+the same list or array. Why would this matter?
+
+We'd like to keep track of all the subparagraphs contained within a
+given paragraph. That's the real motivation for this feature. It makes
+tracking down a line or function or variable definition _easier_ (or
+even _possible_).
 
 # Concluding Remarks
 
