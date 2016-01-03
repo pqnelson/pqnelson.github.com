@@ -3,6 +3,7 @@ layout: wiki
 title: Supergravity
 published: true
 date: 2015-08-01
+parentURL: /wiki/
 ---
 
 Supergravity attempts to use the tools of supersymmetry in some form of

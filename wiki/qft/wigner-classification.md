@@ -3,6 +3,7 @@ layout: wiki
 title: Wigner Classification
 published: true
 date: 2015-08-29
+parentURL: /wiki/qft/
 ---
 
 This is a long-ish post (apologies), but it consists of several

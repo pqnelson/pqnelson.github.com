@@ -3,6 +3,7 @@ layout: wiki
 title: Quantum Field Theory
 published: true
 date: 2015-08-29
+parentURL: /wiki/
 ---
 
 Quantum Field theory is a framework for constructing quantum models of

@@ -3,6 +3,7 @@ layout: wiki
 title: Supergravity has no Purely Bosonic Solutions
 published: true
 date: 2015-08-01
+parentURL: /wiki/sugra/
 ---
 What this means is, in a sense, pure quantum general relativity
 *cannot* arise as a limit from quantum super gravity.

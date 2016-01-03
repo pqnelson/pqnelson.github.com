@@ -12,11 +12,8 @@
 
 {% if page.parentURL %}
 <a href={{page.parentURL}}>Up</a> &mdash;
-{% elsif page.layout == "post" or page.layout == "alltags" %}
-<a href="/">Home</a> &mdash;
-{% elsif page.layout == "wiki" %}
-<a href="../index.html">Up</a> &mdash;
 {% endif %}
+<a href="/">Home</a> &mdash;
 <span class="copyright">
 <a rel="license"
    href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_US">(C)</a>
