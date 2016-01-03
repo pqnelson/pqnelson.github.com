@@ -1,0 +1,18 @@
+digraph g {
+        graph [rankdir="LR"];
+        node [fontsize="16";
+              shape="record"];
+        "line0" [label = "<head>l0|<next>next|<nextInPar>nextInPar"];
+        "line1" [label = "<head>l1|<next>next|<nextInPar>nextInPar"];
+        "line2" [label = "<head>l2|<next>next|<nextInPar>nextInPar"];
+        "line3" [label = "<head>l3|<next>next|<nextInPar>nextInPar"];
+        "line4" [label = "<head>l4|<next>next|<nextInPar>nextInPar"];
+        "par0" [label = "<head>p|<firstLine>first line"];
+        "line0":next -> "line1":next;
+        "line1":next -> "line2":next;
+        "line2":next -> "line3":next;
+        "line3":next -> "line4":next;
+
+        "par0":firstLine -> "line2":nextInPar;
+        "line2":nextInPar -> "line3":nextInPar;
+}

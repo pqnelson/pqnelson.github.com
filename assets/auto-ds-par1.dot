@@ -1,0 +1,30 @@
+digraph g {
+        graph [rankdir="LR"];
+        node [fontsize="16";
+              shape="record"];
+        "line0" [label = "<head>l0|<next>next|<nextInPar>nextInPar"];
+        "line1" [label = "<head>l1|<next>next|<nextInPar>nextInPar"];
+        "line2" [label = "<head>l2|<next>next|<nextInPar>nextInPar"];
+        "line3" [label = "<head>l3|<next>next|<nextInPar>nextInPar"];
+        "line4" [label = "<head>l4|<next>next|<nextInPar>nextInPar"];
+        "line5" [label = "<head>l5|<next>next|<nextInPar>nextInPar"];
+        "line6" [label = "<head>l6|<next>next|<nextInPar>nextInPar"];
+        "line7" [label = "<head>l7|<next>next|<nextInPar>nextInPar"];
+        "line8" [label = "<head>l8|<next>next|<nextInPar>nextInPar"];
+        "line9" [label = "<head>l9|<next>next|<nextInPar>nextInPar"];
+        "par0" [shape=Mrecord, label = "<head>id: p|class: Paragraph|<firstLine>first line"];
+        "line0":next -> "line1":next;
+        "line1":next -> "line2":next;
+        "line2":next -> "line3":next;
+        "line3":next -> "line4":next;
+        "line4":next -> "line5":next;
+        "line5":next -> "line6":next;
+        "line6":next -> "line7":next;
+        "line7":next -> "line8":next;
+        "line8":next -> "line9":next;
+
+        "par0":firstLine -> "line2":nextInPar [color="red"];
+        "line2":nextInPar -> "line3":nextInPar [color="red"];
+        "line3":nextInPar -> "line6":nextInPar [color="red"];
+        "line6":nextInPar -> "line7":nextInPar [color="red"];
+}

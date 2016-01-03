@@ -26,6 +26,7 @@ then incorporate more and more features.
   - [Lambda Abstraction](#lambda-abstraction)
   - [Application](#application)
   - [Function Calls](#function-calls)
+- [Paragraphs](#paragraphs)
 
 # Lines
 
@@ -285,6 +286,56 @@ Expression call(Definition fun, Expression[] args) {
     }
 }
 ```
+
+# Paragraphs
+
+This is the last thing we need to discuss before calling it a day:
+paragraphs. They form a crude module system for Automath. We can have
+them nested arbitrarily deep, we can re-open them later on, and we
+expect it to behave like a running linear list of lines.
+
+Lets give some examples of how this would look.
+
+<div class="highlight"><pre>  <span class="o">*</span> <span class="nv">l0</span>
+  <span class="o">*</span> <span class="nv">l1</span>
+<span class="o">+</span> <span class="nv">p</span>
+  <span class="o">*</span> <span class="nv">l2</span>
+  <span class="o">*</span> <span class="nv">l3</span>
+<span class="o">-</span> <span class="nv">p</span>
+  <span class="o">*</span> <span class="nv">l4</span>
+</pre></div>
+
+This would amount to the following situation:
+
+<img alt="Paragraphs as a linked list" src="{{ site.url }}/assets/auto-ds-par0.svg"
+style="max-width:547px;" />
+
+But to make things worse, we can re-open paragraphs that have been
+previously closed. For example:
+
+<div class="highlight"><pre>  <span class="o">*</span> <span class="nv">l0</span>
+  <span class="o">*</span> <span class="nv">l1</span>
+<span class="o">+</span> <span class="nv">p</span>
+  <span class="o">*</span> <span class="nv">l2</span>
+  <span class="o">*</span> <span class="nv">l3</span>
+<span class="o">-</span> <span class="nv">p</span>
+  <span class="o">*</span> <span class="nv">l4</span>
+  <span class="o">*</span> <span class="nv">l5</span>
+<span class="o">+*</span> <span class="nv">p</span> <span class="c"># reopen paragraph p</span>
+  <span class="o">*</span> <span class="nv">l6</span>
+  <span class="o">*</span> <span class="nv">l7</span>
+<span class="o">-</span> <span class="nv">p</span> <span class="c"># close paragraph p again</span>
+  <span class="o">*</span> <span class="nv">l8</span>
+  <span class="o">*</span> <span class="nv">l9</span>
+</pre></div>
+
+Or graphically, we'd have the following situation (with the paragraph
+linkage in red):
+
+<img alt="Paragraphs as a linked list" src="{{ site.url }}/assets/auto-ds-par1.svg"
+style="max-width:1162px;" />
+
+
 
 # Concluding Remarks
 
