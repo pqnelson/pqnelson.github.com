@@ -51,12 +51,14 @@ Consider the following snippet:
 We need to keep track of what has already been defined, which could be
 done in a dictionary. The lines form a doubly linked list:
 
-![Lines form a doubly-linked list]({{ site.url }}/assets/auto-ds-lines1.svg)
+<img alt="Lines form a doubly-linked list" src="{{ site.url }}/assets/auto-ds-lines1.svg"
+style="max-width:242px;" />
 
 Alternatively, in a language like Go where this is seen as bad form, I
 suppose we could use an array instead:
 
-![Lines form an array]({{ site.url }}/assets/auto-ds-lines2.svg)
+<img alt="Lines form an array" src="{{ site.url }}/assets/auto-ds-lines2.svg"
+style="max-width:153px;" />
 
 The only problem with the array approach is, well, we don't know how
 many lines a file has _a priori_. And remember, a "line" isn't
@@ -83,7 +85,8 @@ We see line 2 introduces a variable (it's an _expander block_ line),
 which creates a new _stack_ of named parameters. For this particular
 snippet, we have the following data structure representation:
 
-![Context stack representation]({{ site.url }}/assets/auto-ds-lines3.svg)
+<img alt="Context stack representation" src="{{ site.url }}/assets/auto-ds-lines3.svg"
+style="max-width:356px;" />
 
 To see this stack structure more explicitly, consider the following
 snippet:
@@ -104,7 +107,8 @@ The `y.args` field determines the named parameters used in defining
 `eq : prop`. In a C/Blub language, this amounts to defining `prop
 eq(term x, term y)` function.
 
-![Context stack representation]({{ site.url }}/assets/auto-ds-lines4.svg)
+<img alt="Context stack representation" src="{{ site.url }}/assets/auto-ds-lines4.svg"
+style="max-width:407px;" />
 
 **Why keep this list structure?** We could simplify things if we copy
 the `args` into the function definition, and keep track of identifiers
