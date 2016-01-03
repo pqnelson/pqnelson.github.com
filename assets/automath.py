@@ -16,6 +16,7 @@ class AutomathLexer(RegexLexer):
         'root': [
             (r'\[\s*'+identifier+'\s*[\:,]\s*'+identifier+'\s*\]', Text),
             (r"[\*@]", Operator),
+            (r"^[+\-]", Operator),
             # Name.Class : Keyword.Pseudo := Name.Function
             (r''+identifier+ws+semi+ws+typeIdentifier+ws+assignment+ws+identifier,
              bygroups(Name.Class, Text, Operator, Text, Keyword.Pseudo, Text, Operator, Text, Name.Function)),
@@ -30,5 +31,5 @@ class AutomathLexer(RegexLexer):
         ],
     }
 
-code = "# The following snippet\n# >>> a *         [b:prop] imp : prop := PRIM\n# >>>   * [p:[z:term]prop] for : prop := PRIM\n# expands to:\na * b : prop := ---\nb * imp : prop := PRIM\n  * p : [z:term]prop := ---\np * for : prop := PRIM"
+code = "+ p1\n# ...\n- p1\n+ p2\n# ...\n- p2\n+ p3\n# ...\n- p3\n# etc."
 print highlight(code, AutomathLexer(), HtmlFormatter())
