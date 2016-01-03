@@ -1,0 +1,6 @@
+digraph g {
+        // graph [rankdir="LR"];
+        node [fontsize="16";
+              shape="record"];
+        "line0" [label = "prop|proof|term"];
+}

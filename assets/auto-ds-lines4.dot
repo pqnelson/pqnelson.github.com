@@ -1,0 +1,12 @@
+digraph g {
+        graph [rankdir="LR", center=true, margin=0.2, nodesep=1, ranksep=1];
+        node [fontsize="16",
+              shape="record", width=1, height=1, fixedsize=false];
+        "line0" [label = "<head>x|term|args: [x]|<context>context|<next>next"];
+        "line1" [label = "<head>y|term|args: [x,y]|<context>context|<next>next"];
+        "line2" [label = "<head>eq|prop|<context>context|<next>next"];
+        "line0":next -> "line1":head;
+        "line1":next -> "line2":head;
+        "line1":context -> "line0":head [style="dashed"];
+        "line2":context -> "line1":head [style="dashed"];
+}

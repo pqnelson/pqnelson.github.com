@@ -1,0 +1,13 @@
+digraph g {
+        graph [rankdir="LR"];
+        node [fontsize="16";
+              shape="record"];
+        "line0" [label = "<head>prop|<context>|<next>"];
+        "line1" [label = "<head>a|args: [a]|<context>|<next>"];
+        "line2" [label = "<head>proof|<context>context|<next>"];
+        "line3" [label = "<head>term|<context>|<next>"];
+        "line0":next -> "line1":head;
+        "line1":next -> "line2":head;
+        "line2":context -> "line1":head [style="dashed"];
+        "line2":next -> "line3":head;
+}

@@ -1,0 +1,12 @@
+digraph g {
+        graph [rankdir="LR"];
+        node [fontsize="16";
+              shape="record"];
+        "line0" [label = "<head>prop|<prev>prev|<next>next"];
+        "line1" [label = "<head>proof|<prev>prev|<next>next"];
+        "line2" [label = "<head>term|<prev>prev|<next>next"];
+        "line0":next -> "line1":head;
+        "line1":prev -> "line0":head [style="dashed"];
+        "line1":next -> "line2":head;
+        "line2":prev -> "line1":head [style="dashed"];
+}
