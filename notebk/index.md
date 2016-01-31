@@ -6,7 +6,9 @@ quote: "Last time, I asked: 'What does mathematics mean to you?' And some people
 quoteSource: Serge Lang, <i>The Beauty of Doing Mathematics</i> (1985)
 ---
 
-These are my notes on, well, random things.
+These are my notes on math and physics. The most popular note appears to
+be the one on Feynman diagrams, apparently no one bothers explaining the
+algoritm underpinning the calculations...
 
 ## Math
 
