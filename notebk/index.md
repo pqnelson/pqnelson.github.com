@@ -1,0 +1,22 @@
+---
+layout: post
+title: Notebook
+published: true
+quote: "Last time, I asked: 'What does mathematics mean to you?' And some people answered: 'The manipulation of numbers, the manipulation of structures.' And if I had asked what music means to you, would you have answered: 'The manipulation of notes?'"
+quoteSource: Serge Lang, <i>The Beauty of Doing Mathematics</i> (1985)
+---
+
+These are my notes on, well, random things.
+
+- [Notes on Lie Groups and Algebra]({{ site.url }}/assets/notebk/lieGroupsAndAlgebras.pdf), 91 pages, 
+  I took these notes from Albert Schwarz's lectures, any typos or errors
+  are mines.
+- [Homotopy Theory]({{ site.url }}/assets/notebk/homotopyTheory.pdf)
+  67 pages, notes taken during Albert Schwarz's lectures on algebraic
+  topology; errors are mine.
+- [Spontaneous Symmetry Breaking in Conformal Weyl Gravity]({{ site.url }}/assets/notebk/conformal.pdf),
+  9 pages, 
+  term paper for Steve Carlip's course on general relativity
+- [Notes on Feynman Diagrams]({{ site.url }}/assets/notebk/feynman.pdf),
+  32 pages, presents computing amplitudes from Feynman diagrams
+  algorithmically. 
