@@ -42,7 +42,7 @@ algoritm underpinning the calculations...
 - [Hamiltonian Field Theory]({{ site.url }}/assets/notebk/hamiltonianFieldTheory.pdf),
   5 pages, a brief note on the canonical formalism for fields. _Purely
   Classical considerations only!_
-- [Functional Methods in QFT]({{ site.url }}/assets/notebk/functional.pdf),
+- [Functional Methods in QFT]({{ site.url }}/assets/notebk/functionalQFT.pdf),
   25 pages, discusses "functional" approach to path integrals, and
   briefly how to determine Feynman rules.
 
