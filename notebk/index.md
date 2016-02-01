@@ -26,7 +26,10 @@ algoritm underpinning the calculations...
 - [Homotopy Theory]({{ site.url }}/assets/notebk/homotopyTheory.pdf),
   67 pages, notes taken during Albert Schwarz's lectures on algebraic
   topology; errors are mine.
-
+- [Applied Complex Analysis]({{ site.url }}/assets/notebk/appliedComplexAnalysis.pdf),
+  53 pages, notes taken during Dmitry Fuchs's lectures on advanced
+  complex analysis; errors are mine.
+  
 
 ## Physics
 
