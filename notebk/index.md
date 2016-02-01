@@ -45,4 +45,6 @@ algoritm underpinning the calculations...
 - [Functional Methods in QFT]({{ site.url }}/assets/notebk/functionalQFT.pdf),
   25 pages, discusses "functional" approach to path integrals, and
   briefly how to determine Feynman rules.
-
+- [Notes on General Relativity]({{ site.url }}/assets/notebk/GR.pdf),
+  82 pages, a rather "mathy" physics introduction to the
+  subject. (Includes exercises!)
