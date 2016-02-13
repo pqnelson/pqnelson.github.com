@@ -123,7 +123,7 @@ simplifyProp fm = case fm of
 
 We only really have to transform `Implies` and `Iff` type
 statements. But we have to do it recursively, to make sure we transform
-*all* such connectives.
+_all_ such connectives.
 
 ```haskell
 toNNF' :: Formula -> Formula
@@ -159,9 +159,9 @@ when transformed to negation normal form results in a tree with `~2^n`
 leaves. More precisely, there are a total of `A(n)` atoms which obeys
 the recursion relation `A(n) = 2*(1 + A(n-1))` with `A(2) = 4`.
 
-*Proof.* By induction.
+_Proof._ By induction.
 
-*Base Case.* For `n=2`, we have `Iff p q` expand into the tree
+_Base Case._ For `n=2`, we have `Iff p q` expand into the tree
 
 ```
                Or 
@@ -214,9 +214,9 @@ If we now substitute in `p3 = Iff p3 p4`, we see then that as a
 polynomial we have `2(p + 2(p2 + 2(p3 + p4)))`. Thus we get `2(1 + 2(1 +
 2(1 + 1))) = 2+2^2+2^4` atoms.
 
-*Inductive Hypothesis.* Suppose `A(n) = 2(1 + A(n-1))`.
+_Inductive Hypothesis._ Suppose `A(n) = 2(1 + A(n-1))`.
 
-*Inductive Case.* We have the syntax tree for `Iff q (Iff p1 (Iff ... pN))`
+_Inductive Case._ We have the syntax tree for `Iff q (Iff p1 (Iff ... pN))`
 look like:
 
 ```
@@ -289,7 +289,7 @@ toNENF = toNENF' . simplifyProp
 `or`'d together. (End of Definition)
 
 We can further restrict negation normal form by demanding we work with
-clauses. Or go even farther, insisting `Or`'s *only* occur in clauses,
+clauses. Or go even farther, insisting `Or`'s _only_ occur in clauses,
 then a generic formula would look like `(And Clause1 (And Clause2 (And
 ... ClauseN)))`.
 
@@ -301,7 +301,7 @@ What's so great about this?
 **Theorem.** A formula in conjunctive normal form is a tautology if and
 only if each clause is a tautology. (End of theorem)
 
-*Proof.* Obvious. Look, if any one of the clauses were not a tautology,
+_Proof._ Obvious. Look, if any one of the clauses were not a tautology,
 the formula couldn't be a tautology. And if the formula is a tautology,
 and it is of the form `(And p q)`, then `p` and `q` must be
 tautologies. Conjunctive normal form then says `p` is just `(Or L1 (Or
@@ -330,8 +330,8 @@ DnfFormula = DnfClause
            | Or DnfClause DnfClause
 ```
 
-We can related disjunctive normal form to conjunctive normal form *by
-negating one* and mapping all atoms to their dual (i.e., negate them too).
+We can related disjunctive normal form to conjunctive normal form 
+_by negating one_ and mapping all atoms to their dual (i.e., negate them too).
 
 So, in other words, pseudo-Haskell code:
 
@@ -625,26 +625,26 @@ to talk about is the Davis-Putnam method.
 
 # References
 1. Donald Knuth,
-   *The Art of Computer Programming*.
+   _The Art of Computer Programming_.
    Vol 4A, Addison-Wesley, 2014.
 2. John Harrison,
-   *Handbook of Practical Logic and Automated Reasoning*.
+   _Handbook of Practical Logic and Automated Reasoning_.
    Cambridge University Press, 2009.
 3. Anatoli Degtyarev and Andrei Voronkov,
    "Inverse Methods".
-   In *Handbook of Automated Reasoning* (Alan J.A. Robinson and Andrei
+   In _Handbook of Automated Reasoning_ (Alan J.A. Robinson and Andrei
    Voronkov,eds.) vol. 1, 2001. See pp. 203 et seq.
 4. G.S. Tseitsin,
    "On the complexity of derivation in propositional calculus".
-   In *Structures in Constructive Mathematics and Mathematical Logic,
-   Part II* (A.O. Slisenko, ed.), Seminars in Mathematics. Steklov
+   In _Structures in Constructive Mathematics and Mathematical Logic, Part II_
+   (A.O. Slisenko, ed.), Seminars in Mathematics. Steklov
    Mathematical institute, 1968. Pp. 115-125.
 5. Jon Freeman
    [On Conjunctive Normal Form Satisfiability](http://repository.upenn.edu/cgi/viewcontent.cgi?article=1354&context=cis_reports),
    Preprint (1991).
 6. Rainer Schuler,
    "An algorithm for the satisfiability problem of formulas in conjunctive normal form".
-   *Journal of Algorithms* **54** 1 (2005) 40--44,
+   _Journal of Algorithms_ **54** 1 (2005) 40--44,
    [paywalled](http://www.sciencedirect.com/science/article/pii/S0196677404000768)
 7. Andrei Voronkov,
    "DPLL".

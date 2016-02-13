@@ -8,6 +8,7 @@ tags: [Java Virtual Machine]
 ---
 
 <a name="introduction" />
+
 # Introduction
 
 We will implement a toy object system that has the same overall
@@ -35,13 +36,15 @@ my endless series "How does the JVM work?")
 * [Conclusion](#conclusion)
 * [References](#references)
 
-<a name="toy-object-system" />
+<a id="toy-object-system" />
+
 # Toy Object System
 
 The overall object system consists of closures, the objects are
 glorified hash-maps. Clojure allows us to do this quite elegantly.
 
 <a name="toy-creating-class" />
+
 ## Creating a Class
 
 We will declare classes with just their name so far. They are little
@@ -57,7 +60,8 @@ more than a closure.
   `(def ~class-name (declare-class '~class-name)))
 ```
 
-<a name="toy-creating-objects" /> 
+<a name="toy-creating-objects" />
+
 ## Creating Objects
 
 Since a class is a closure, an object likewise will be a closure. A
@@ -86,6 +90,7 @@ of these abstract definitions and concrete instances, see Stepanov and
 McJones' *Elements of Programming*.
 
 <a name="toy-objects-and-state" />
+
 ## Objects and State 
 
 We use objects to store state. Hence we introduce getter and setter
@@ -105,6 +110,7 @@ methods:
 ```
 
 <a name="toy-methods" />
+
 ## Methods
 
 Ultimately, we want to have something like
@@ -167,7 +173,8 @@ Likewise, method invocation becomes:
           (throw (RuntimeException. (str "Unable to find " command))))))))
 ```
 
-<a name="toy-adding-this" /> 
+<a name="toy-adding-this" />
+
 ### Adding "This" functionality
 
 We want to consider a method of the form
@@ -198,6 +205,7 @@ method invocation:
 ```
 
 <a name="toy-fields" />
+
 ## Fields
 
 An object keeps track of state, which we sort-of do...albeit in a hacked
@@ -278,8 +286,8 @@ field:
       )))
 ```
 
-
 <a name="toy-inheritance" />
+
 ## Inheritance
 
 We modify the class declaration to include a stack of superclasses.
@@ -333,7 +341,8 @@ superclass.
 Why do we do this? Because it emulates the structure of the low-level
 inheritance the JVM implements.
 
-<a name="toy-complicated-fields" /> 
+<a name="toy-complicated-fields" />
+
 ### Fields in Complicated Object Systems
 
 We will try to implement fields in an object system by changing the
@@ -402,6 +411,7 @@ after first checking through its fields.
 ```
 
 <a name="all-together" />
+
 # Toy Object System: All Together
 
 So combining everything together, we have:
@@ -509,6 +519,7 @@ So combining everything together, we have:
 ```
 
 <a name="conclusion" />
+
 # Conclusion
 
 We have implemented a toy object system which has the same overall
@@ -524,6 +535,7 @@ most one superclass". Right now, we just take the first class that the
 child class extends and run with it. An error should be thrown.
 
 <a name="references" />
+
 # References
 1. Alexander Stepanov, Paul McJones, *Elements of Programming*.
    Addison-Wesley Professional, 2009.

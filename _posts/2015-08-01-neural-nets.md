@@ -22,48 +22,50 @@ remarks about newfangled "recurrent neural networks".
   - [Algorithm](#algorithm)
 
 <a name="introduction" />
+
 # Introduction
 
 We will use pseudocode throughout this article when discussing neural
 networks, it will be pidgin code.
 
-*Warning:* We will use the term "perceptron" and "artificial neuron"
+_Warning:_ We will use the term "perceptron" and "artificial neuron"
 interchangeably. Some texts make a distinction, we will not. (End of Warning)
 
 <a name="basic-perceptron" />
+
 # Basic Perceptron
 
 **Inputs.** A perceptron takes several binary inputs (or more generally,
-numeric inputs) *x*<sub>1</sub>, *x*<sub>2</sub>, ..., and produces a
+numeric inputs) _x_<sub>1</sub>, _x_<sub>2</sub>, ..., and produces a
 single binary output.
 
 The first step is to combine these inputs into a net input:
 
 \begin{equation}
-\mathrm{net}\_{i} = \sum\_{j} w\_{ij}x\_{j}\tag{1}
+\mathrm{net}\_{i} = \sum_{j} w_{ij}x_{j}\tag{1}
 \end{equation}
 
-where *j* runs over all inputs to the perceptron.
+where _j_ runs over all inputs to the perceptron.
 
 **Activation Value.** We then convert the net input into an "Activation
 Value". We can write this as
 
 \begin{equation}
-a\_{i}(t) = F\_{i}(a\_{i}(t-1),\mathrm{net}\_{i}(t))\tag{2}
+a_{i}(t) = F_{i}(a_{i}(t-1),\mathrm{net}_{i}(t))\tag{2}
 \end{equation}
 
-for some function *F*<sub>*i*</sub>. Observe we can make the activation
-value at time *t* depend on the activation value at the prior
-step. Usually, we just take *a*<sub>*i*</sub>(*t*) = net<sub>*i*</sub>(*t*).
+for some function _F_<sub>_i_</sub>. Observe we can make the activation
+value at time _t_ depend on the activation value at the prior
+step. Usually, we just take _a_<sub>_i_</sub>(_t_) = net<sub>_i_</sub>(_t_).
 
 **Output Function.** We then determine the output value by applying an
-"output function": *x*<sub>*i*</sub> = *f*<sub>*i*</sub>(*a*<sub>*i*</sub>).
-We will take *a*<sub>*i*</sub>(*t*) = net<sub>*i*</sub>(*t*), so we will write
-*x*<sub>*i*</sub> = *f*<sub>*i*</sub>(net<sub>*i*</sub>).
+"output function": _x_<sub>_i_</sub> = _f_<sub>_i_</sub>(_a_<sub>_i_</sub>).
+We will take _a_<sub>_i_</sub>(_t_) = net<sub>_i_</sub>(_t_), so we will write
+_x_<sub>_i_</sub> = _f_<sub>_i_</sub>(net<sub>_i_</sub>).
 
 Usually, some
 [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function) is
-chosen for *f*, like the logistic function or arc-tanh. But you can pick
+chosen for _f_, like the logistic function or arc-tanh. But you can pick
 whatever function you want, just make sure it has a nice derivative
 (preferably one which can be written in terms of the original function,
 like the logistic function).
@@ -75,18 +77,19 @@ following diagram (viewed from top-to-bottom):
 ![Single perceptron visualized]({{ site.url }}/assets/singleNode.png)
 
 <a name="problems-with-xor" />
+
 ## Problems with XOR
 
 **Basic Idea.**
-Minsky and Papert's *Perceptrons* (1969) studied a simple neural
+Minsky and Papert's _Perceptrons_ (1969) studied a simple neural
 network model called "single-layer neural networks". They showed such a
 network was incapable of simulating an `xor` gate.
 
 **Single-Layer Neural Network Model.**
 Consider the
 [Heaviside step function](https://en.wikipedia.org/wiki/Heaviside_step_function)
-as our output function, i.e., *H*(*x*) = 1 if *x* is positive, and 0
-otherwise. More generally, we can consider *f*(*x*) = *H*(*x* - θ) for
+as our output function, i.e., _H_(_x_) = 1 if _x_ is positive, and 0
+otherwise. More generally, we can consider _f_(_x_) = _H_(_x_ - θ) for
 some "threshold value" θ.
 
 A single-layer neural network has precisely one layer. Since we want to
@@ -97,10 +100,10 @@ one node with two inputs, as doodled:
 
 **Classification of the Plane.**
 This may be written in terms of the net-input:
-*f*(*w*<sub>1</sub>*x*<sub>1</sub>+*w*<sub>2</sub>*x*<sub>2</sub>). This
-amounts to dividing the (*x*<sub>1</sub>, *x*<sub>2</sub>) plane into
+_f_(_w_<sub>1</sub>_x_<sub>1</sub>+_w_<sub>2</sub>_x_<sub>2</sub>). This
+amounts to dividing the (_x_<sub>1</sub>, _x_<sub>2</sub>) plane into
 two regions separated by the line θ =
-*w*<sub>1</sub>*x*<sub>1</sub>+*w*<sub>2</sub>*x*<sub>2</sub>.
+_w_<sub>1</sub>_x_<sub>1</sub>+_w_<sub>2</sub>_x_<sub>2</sub>.
 
 **Punchline.**
 The problem may now be stated thus: `xor` cannot be approximated by a
@@ -110,7 +113,7 @@ cannot use a single-layer neural network model for approximating an
 
 One solution is to say "Neural networks are useless". This was a popular
 opinion since 1969 until very recently. The other would be to say
-"*Single-layer networks* are useless, we need more layers!" To the best
+"_Single-layer networks_ are useless, we need more layers!" To the best
 of my knowledge, it was either the late '80s or early '90s when
 researchers decided having 3 layers was "good enough". This is the
 "feedforward neural network".
@@ -124,30 +127,37 @@ graph representation:
 
 
 Or, if you'd prefer, as a single function
+
 \begin{equation}
 f(x\_{1}, x\_{2})
 =H(0.6H(x\_{1}+x\_{2}-0.5)-0.2H(x\_{1}+x\_{2}-1.5)-0.5)
 \end{equation}
+
 The code for such a network is [available in Clojure](https://gist.github.com/pqnelson/10e832edffa22fbe1879).
 
 <a name="backpropagation" />
+
 # Backpropagation
 
 An immediate question we should ask ourselves is "How on Earth could
-anyone guess *that* as a solution to the `XOR` problem?!" It would be
+anyone guess _that_ as a solution to the `XOR` problem?!" It would be
 disingenious for me to say "Well, I am oh so smart, and I just &ndash; zap! &ndash;
 solved it." Even if true, such a solution won't scale well.
 
 <a name="high-level-description" />
+
 ## High-Level Description
+
 **Training.** First, we need some training set to "teach" our network
-what to look for. More precisely: We have a set of *P* vector pairs
+what to look for. More precisely: We have a set of _P_ vector pairs
 (**x**<sub>1</sub>, **y**<sub>1</sub>), ..., (**x**<sub><i>P</i></sub>,
 **y**<sub><i>P</i></sub>). These are examples of some mapping
 $\phi\colon\mathbb{R}^{N}\to\mathbb{R}^{M}$. We wish to approximate this
 as
+
 $$\widehat{\mathbf{y}}=\widetilde{\phi}(\mathbf{x})$$
-based on our training data (the *P* vector-pairs).
+
+based on our training data (the _P_ vector-pairs).
 
 The basic training algorithm may be summed up as:
 
@@ -164,39 +174,47 @@ describes the underlying mechanics of the so-called
 [delta rule](https://en.wikipedia.org/wiki/Delta_rule).
 
 **Step 1: Computing the Output.** For a single output node, we have the
-following diagram describing *N* inputs to *L* hidden nodes to a single output:
+following diagram describing _N_ inputs to _L_ hidden nodes to a single output:
 
 ![Computing a single output node]({{ site.url }}/assets/ff-net.png)
 
 Given an input vector **x**<sub><i>p</i></sub> =
-(*x*<sub><i>p</i>,1</sub>, ...,
-*x*<sub><i>p</i>,<i>N</i></sub>)<sup>t</sup>, the input layer
+(_x_<sub><i>p</i>,1</sub>, ...,
+_x_<sub><i>p</i>,<i>N</i></sub>)<sup>t</sup>, the input layer
 distributes the values to the hidden-layer. The net input to the
-*j*<sup>th</sup> hidden node is:
+_j_<sup>th</sup> hidden node is:
+
 \begin{equation}
-\mathrm{net}^{h}\_{pj} = \sum^{N}\_{i=1} w^{h}\_{ji}x\_{p,i}+\theta^{h}\_{j}
+\mathrm{net}^{h}\_{pj} = \sum^{N}\_{i=1} w^{h}\_{ji}x_{p,i}+\theta^{h}\_{j}
 \end{equation}
-where *w*<sup><i>h</i></sup><sub><i>ji</i></sub> is the weight on the
-conenction from the *i*<sup>th</sup> input layer, *θ* is the bias
+
+where _w_<sup><i>h</i></sup><sub><i>ji</i></sub> is the weight on the
+conenction from the _i_<sup>th</sup> input layer, _θ_ is the bias
 term. The superscript "h" reminds us this is for the hidden layer. We
 suppose the actiation of the node is its net input, the output for this
 node is then
+
 \begin{equation}
-i\_{pj} = f^{h}\_{j}(\mathrm{net}^{h}\_{pj}).
+i_{pj} = f^{h}\_{j}(\mathrm{net}^{h}\_{pj}).
 \end{equation}
+
 The equations for the output nodes are then:
+
 \begin{align}
-\mathrm{net}^{o}\_{pk} &= \sum^{L}\_{j=1}w^{o}\_{kj}i\_{pj} + \theta^{o}\_{k}\\\\
+\mathrm{net}^{o}\_{pk} &= \sum^{L}\_{j=1}w^{o}\_{kj}i_{pj} + \theta^{o}_{k}\\\\\\
 \widehat{y}\_{pk} &= f^{o}\_{k}(\mathrm{net}^{o}\_{pk})
 \end{align}
-where the *o* superscript reminds us this is the output layer.
+
+where the _o_ superscript reminds us this is the output layer.
 
 **Step 2: Determine Error.** The error for a single input is
+
 \begin{equation}
-\delta\_{p,k} = y\_{p,k} - \widehat{y}\_{p,k}
+\delta_{p,k} = y_{p,k} - \widehat{y}_{p,k}
 \end{equation}
-where the subscript *p* keeps track of which training vector we're
-working with, and the subscript *k* for which component of the vector
+
+where the subscript _p_ keeps track of which training vector we're
+working with, and the subscript _k_ for which component of the vector
 we're examining. We wish to minimize the error for all outputs, so we
 work with
 \begin{equation}
@@ -280,6 +298,7 @@ speeds up convergence, but I have not seen many people discussing
 this...so I'm guessing it fell out of favor for a reason.
 
 <a name="algorithm" />
+
 ## Algorithm
 
 In pidgin C/Java/D/[blub](http://www.paulgraham.com/avg.html) code, we have the following data structure for the layer
@@ -322,7 +341,7 @@ void setInputs(Network *network, double input[]) {
 ```
 
 We can easily propagate a single layer now. We assume that the output
-function *f* is abstracted out into its own `outputFunction()`.
+function _f_ is abstracted out into its own `outputFunction()`.
 
 ```c
 /* for us, sigmoid */
@@ -502,7 +521,7 @@ We have a helper function to compute the error of the network on some
 given list of training inputs and targets. I assume the indices for the
 double arrays are of the form `inputs[p]` gives the *p*<sup>th</sup>
 training vector's input (what we previously called
-**x**<sub><i>p</i></sub>), and `inputs[p][k]` gives its *k*<sup>th</sup>
+*_x_*<sub><i>p</i></sub>), and `inputs[p][k]` gives its *k*<sup>th</sup>
 component.
 
 ```c
@@ -578,12 +597,12 @@ results.
 ## Theory
 
 - John Hertz, Anders Krogh, and Richard G. Palmer,
-  *Introduction to the Theory of Neural Computation*.
+  _Introduction to the Theory of Neural Computation_.
   Addison-Wesley, 1991.
 
 ## Algorithms
 - James A. Freeman and David M. Skapura,
-  *Neural Networks: Algorithms, Applications, and Programming Techniques*.
+  _Neural Networks: Algorithms, Applications, and Programming Techniques_.
   Addison-Wesley, 1991.
 - Michael Nielsen, 
   [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/).

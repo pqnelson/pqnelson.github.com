@@ -34,6 +34,7 @@ Markov models, which lets us model games and make predictions.
 - [Conclusion](#conclusion)
 
 <a name="introduction"></a>
+
 # Introduction
 
 We will model baseball as a series of interactions between batters and
@@ -53,6 +54,7 @@ The code related to this post can be found on [github](https://github.com/pqnels
 (checkout version `v0.2.0`).
 
 <a name="bernoulli-and-geometric-distributions"></a>
+
 # Mathematics First: Bernoulli and Geometric Distributions
 
 ##### Puzzle 1.
@@ -99,7 +101,7 @@ left to right. So "HT" is "First I got a heads, then I got a tails". The
 history "THT" is "First a tails, then a heads, then a tails".
 (End of Notation)
 
-*Solution.*
+_Solution._
 We can draw a
 [probability tree](https://www.mathsisfun.com/data/probability-tree-diagrams.html),
 then find the paths describing the desired states. But that's hard to do
@@ -110,7 +112,7 @@ of each other. We are considering permutations of the string "HHHTT",
 since these are all the possible ways to get exactly 3 heads out of 5
 flips. How many ways can we permute this? We can
 [recall](https://en.wikipedia.org/wiki/Binomial_coefficient) the number
-of ways to choose *k* items from *n* possibilities is the binomial
+of ways to choose _k_ items from _n_ possibilities is the binomial
 coefficient. The permutations of "HHHTT" are precisely choosing 3 heads
 of 5 flips, or "5-choose-3".
 
@@ -125,16 +127,16 @@ $$P(\mbox{3 heads}|\mbox{5 flips}) = {5\choose3}p^{3}(1-p)^{2} = 10p^{3}(1-p)^{2
 This is the solution we sought. (End of puzzle)
 
 **Definition.**
-The probability described by flipping a varying number of *k* heads out
-of a fixed number of *n* flips with the probability *p* of getting a
-heads is the **"Binomial Distribution"**. Observe when *n* = 1, we
+The probability described by flipping a varying number of _k_ heads out
+of a fixed number of _n_ flips with the probability _p_ of getting a
+heads is the **"Binomial Distribution"**. Observe when _n_ = 1, we
 recover the Bernoulli distribution.
 
 ##### Puzzle 3.
-If our loaded coin has probability *p* of landing on heads, how many
+If our loaded coin has probability _p_ of landing on heads, how many
 times do we have to flip before we get a heads?
 
-*Solution.*
+_Solution._
 We have some self-similarity here, because each trial (coin flip) is
 independent of each other. So the first flip is either a heads (and
 we're done), or a tails (and we need to keep going). Generating the list
@@ -152,7 +154,7 @@ geometric series. This tells us
 
 $$ E(H) = -p\frac{\mathrm{d}}{\mathrm{d}p}\frac{1}{1-(1-p)} = \frac{1}{p}. $$
 
-The smaller the probability of getting a heads *p*, the longer it will
+The smaller the probability of getting a heads _p_, the longer it will
 take. This makes intuitive sense, and concludes the puzzle.
 (End of Puzzle)
 
@@ -161,43 +163,35 @@ The probability described by flipping a biased coin until we succeed is
 the **"Geometric Distribution"**.
 
 ##### Puzzle 4: Coupon Collector's Problem.
-Wheaties has a sport's card in their cereal box. If there are *n*
+Wheaties has a sport's card in their cereal box. If there are _n_
 different sports cards, how long will it take to collect all of them?
 
-*Sketch of Solution.*
+_Sketch of Solution._
 We need to rephrase the problem to take advantage of geometric
-distributions. The probability of getting a new coupon given *j* coupons
-is $p_{j+1} = (n-j)/n$, which *is* a geometric distribution. We can then
+distributions. The probability of getting a new coupon given _j_ coupons
+is $p_{j+1} = (n-j)/n$, which _is_ a geometric distribution. We can then
 take the sum of the expected number of trials to succeed in getting
-*j*=0, ..., *n* coupons.
+_j_=0, ..., _n_ coupons.
 (End of sketch)
 
 ##### Puzzle 5: Expected Number of Flips.
 Suppose we flip a coin until we get 3 tails. How many heads should we
-expect to flip? Assume the coin is heads with probability *p*.
+expect to flip? Assume the coin is heads with probability _p_.
 
 (This puzzle is important because, well, 3 tails and you're out. We can
 model a half-inning using this puzzle!)
 
-*Solution.* We see the probability of flipping *k* heads for this
+_Solution._ We see the probability of flipping _k_ heads for this
 situation would be
-$$
-\Pr(k) = {k+3\choose k}p^{k}(1-p)^{3}.
-$$
+<div>$$\Pr(k) = {k+3\choose k}p^{k}(1-p)^{3}.$$</div>
 The expected number of heads would simply be
-$$
-E[H] = \sum\_{k=0}k\Pr(k) = \sum\_{k=0}k{k+3\choose k}p^{k}(1-p)^{3}.
-$$
+<div>$$E[H] = \sum_{k=0}k\Pr(k) = \sum_{k=0}k{k+3\choose k}p^{k}(1-p)^{3}.$$</div>
 We can note
-$$
-\sum\_{k=0}k{k+3\choose k}p^{k}(1-p)^{3} = \frac{(1-p)^{3}p}{3!}\frac{\mathrm{d}^{4}}{\mathrm{d}p^{4}}\sum_{k=0}p^{k+3}
-$$
+<div>$$\sum_{k=0}k{k+3\choose k}p^{k}(1-p)^{3} = \frac{(1-p)^{3}p}{3!}\frac{\mathrm{d}^{4}}{\mathrm{d}p^{4}}\sum_{k=0}p^{k+3}$$</div>
 where the 3! in the denominator comes from the binomial
 coefficients. Using the geometric series, we find 
-$$
-E[H] = \frac{(1-p)^{3}p}{6}\frac{24}{(1-p)^{5}}=\frac{4p}{(1-p)^{2}}.
-$$
-If *p* = 0.3, for example, we would expect there to be about 2.44898
+<div>$$E[H] = \frac{(1-p)^{3}p}{6}\frac{24}{(1-p)^{5}}=\frac{4p}{(1-p)^{2}}.$$</div>
+If _p_ = 0.3, for example, we would expect there to be about 2.44898
 heads. (End of Puzzle)
 
 **Definition.**
@@ -215,6 +209,7 @@ distribution *is* in some appropriate sense.
 (End of Folklore)
 
 <a name="first-model"></a>
+
 # First Model: Ignore the Pitcher
 
 Suppose we wanted to model a half-inning, i.e., the period of an inning
@@ -223,8 +218,8 @@ batters to the plate until they receive 3 outs. What does this mean? We
 keep performing "trials" until we get "3 failures".
 
 **Lesson: Simplify.**
-One lesson we must emphasize for pure mathematicians is *for the first
-model, always make it simple.* Why not treat the batter hitting the ball
+One lesson we must emphasize for pure mathematicians is _for the first
+model, always make it simple._ Why not treat the batter hitting the ball
 as a coin flip? Intentionally ignore other factors, and just use some
 statistic which approximates "how often the batter hits the ball". We
 can successively refine this model.
@@ -235,12 +230,12 @@ can successively refine this model.
 safely) is independent of the pitcher. We also assume it is independent
 of the batter. It depends only on the team. (End of Simplification)
 
-This simplification is *wrong*, but helpful in simplifying a lot of
+This simplification is _wrong_, but helpful in simplifying a lot of
 calculations.
 
-Now, we will suppose the batter succeeds with probability *p*. How can
-we approximate *p*? One crude method is
-$$ p \approx \frac{(\mbox{Hits})+(\mbox{Walks})}{\mbox{Plate Appearances}}$$
+Now, we will suppose the batter succeeds with probability _p_. How can
+we approximate _p_? One crude method is
+<div>$$ p \approx \frac{(\mbox{Hits})+(\mbox{Walks})}{\mbox{Plate Appearances}}$$</div>
 For us, we will perform computations supposing $p=7/20$ (or 0.35).
 
 **Observation.**
@@ -249,6 +244,7 @@ exactly 560/169, but who's counting?).
 (End of Observation)
 
 <a name="scoring-a-run" />
+
 ## Scoring a Run
 
 We make a further approximation, based on Pankin's
@@ -268,7 +264,7 @@ we have the following aggressive behavior for runners:
 We can get arbitrarily technical, but this is good enough for now.
 
 ##### Example (Dummy Data).
-Lets consider the *fictional* probability for the following events:
+Lets consider the _fictional_ probability for the following events:
 
 | Event             | Probability | Pr(Event &#124; Success) |
 |-------------------|-------------|---------------------|
@@ -282,7 +278,7 @@ Lets consider the *fictional* probability for the following events:
 Observe when we add up the probabilities, we find the probabilities sum
 to 35% or 7/20, i.e., the probability of success. This is good, because
 it means the dummy data is consistent with our assumptions so far. Also
-observe, since one of these events *describes* a success, the
+observe, since one of these events _describes_ a success, the
 conditional probability Pr(Event | Success) = Pr(Event)/Pr(Success).
 (End of Sanity Check)
 
@@ -290,16 +286,16 @@ The problem statement now: given 3 successes (that's the expected number
 for our model), what's the expected number of runs scored?
 
 Although it sounds simple, this is not quite so. Why? Order matters: two
-singles followed by a triple *is not* the same as a triple followed by
+singles followed by a triple _is not_ the same as a triple followed by
 two singles. The first case results in 2 runs, the second case produces
 a single run.
 
 There are 5<sup>3</sup> = 125 different configurations, producing
 different outcomes. The [code](https://gist.github.com/0f2dd93099635802a05e) for producing the expected number of runs
 for a given sequence of plays is available online, but we'll produce a
-summary table for the case of *n* plays (we want *n* = 3, of course):
+summary table for the case of _n* plays (we want _n_ = 3, of course):
 
-| Number of Successful Plays *n* | Expected number of Runs |
+| Number of Successful Plays _n_ | Expected number of Runs |
 |---------------------|-------------------------|
 | 0 | 0 |
 | 1 | 0.057142857 |
@@ -328,10 +324,11 @@ But if we naively plug this into the program, we would get 1.17 runs per
 half-inning...still too large! We need to also observe the probability
 of success is now 31.5%, which means we'd expect 2.685279 successes per
 half-inning (which amounts to 0.87352395 runs per half-inning,
-or 7.86 runs per team in one game—still too large, but at least we're
+or 7.86 runs per team in one game&mdash;still too large, but at least we're
 approaching the average number of runs per game).
 
 <a name="inadequacies-of-ignorance" />
+
 ## Inadequacies of Ignorance
 We made a number of simplifying assumptions for this first model. But
 this model demonstrates the basic nuts and bolts of what lays
@@ -339,7 +336,7 @@ ahead. Improving prediction amounts to optimizing the computation for
 the probability of a play's success, and moreover the probability for
 each outcome.
 
-We never took into account anything *unique* about the batter. Put
+We never took into account anything _unique_ about the batter. Put
 another way, we assumed each batter was identical on a given team. So what?
 The number of hits per game would be the same, in this instance. To get
 a more realistic model, we need to modify the probability of success to
@@ -348,25 +345,29 @@ vary. Factors we could incorporate may include the
 pitcher's abilities, the individual batter's abilities, etc.
 
 As I said, refining this model amounts to making more accurate estimates
-of *p*, the probability of success when the batter's at plate. Just to
-stress again, the basic model where we *consider different histories,
+of _p_, the probability of success when the batter's at plate. Just to
+stress again, the basic model where we _consider different histories,
 the probability & runs scored for a given history, use the expected
-number of runs* underpins the entire approach. People call this method
+number of runs_ underpins the entire approach. People call this method
 the "Markov Chain" model.
 
 <a name="include-pitcher" /> 
+
 # Improving the Probability by Including the Pitcher
 
 So, our basic model is correct (an inning at least 3 coin flips), but the
 probability of success crucially depends on the pitcher. We can use a
 variation of the [Log5 model](https://en.wikipedia.org/wiki/Log5) to
 determine the probability of success from the characteristics of the
-hitter *and* the pitcher. More precisely, we use the [Odds Ratio method](https://en.wikipedia.org/wiki/Odds_ratio),
-which—to the best of my knowledge—Dan Levitt [first applied](http://www.baseballthinkfactory.org/btf/scholars/levitt/articles/batter_pitcher_matchup.htm)
-to baseball batting. (Of course, Bill James *invented* the Log5 method,
+hitter _and_ the pitcher. More precisely, we use the 
+[Odds Ratio method](https://en.wikipedia.org/wiki/Odds_ratio),
+which&mdash;to the best of my knowledge&mdash;Dan Levitt 
+[first applied](http://www.baseballthinkfactory.org/btf/scholars/levitt/articles/batter_pitcher_matchup.htm)
+to baseball batting. (Of course, Bill James _invented_ the Log5 method,
 but James applied it to whether a team would win a game.)
 
 <a name="basic-example" />
+
 # Basic Example
 I'll borrow the basic examples from
 [elsewhere](http://sbs-baseball.com/theory.txt).
@@ -405,7 +406,7 @@ statistics:
 | Eddie Nesom |  200 | 210  | 15 | 50 | 80 |
 
 So the pitcher threw 200 innings, which would be roughly 600 batters
-faced. We can be *more* precise, computing the batters faced as also
+faced. We can be _more_ precise, computing the batters faced as also
 including those on base as determined by the BB and "Hits"
 statistic. Then we may compute the probability for the following events
 
@@ -463,6 +464,7 @@ Does NOT Occur}\end{pmatrix}}$$
 This is a common and recurring form that we use to compute probabilities.
 
 <a name="markov-model" />
+
 # Markov Model
 
 We can use this to figure out the expected number of runs. As this is
@@ -494,7 +496,7 @@ When a player hits the ball, he or she "evolves" the state of the
 game. We can represent this "evolution" by a
 [transition matrix](https://en.wikipedia.org/wiki/Stochastic_matrix)
 whose entries $(T)\_{ij} = p\_{i,j}=\Pr(j|i)$ are the probabilities of
-evolving from state *i* to state *j*.
+evolving from state _i_ to state _j_.
 
 Computing the [geometric series](https://en.wikipedia.org/wiki/Neumann_series) $I+T+T^{2}+T^{3}+\dots$ for the
 transition matrix $T$ (and identity matrix $I$) amounts to computing
@@ -507,6 +509,7 @@ of the transition matrix $T$? How do we handle "each player has their
 own transition matrix"?
 
 <a name="basic-structure-of-transition-matrix" />
+
 ## Basic Structure of Transition Matrix
 
 So, we will consider the basic structure of the transition matrix. The
@@ -520,6 +523,7 @@ the remaining 24 are described by the ordered pair `(runners on base,
 number of outs)`.
 
 The transition matrix can be written in block form as
+
 $$
 T = \begin{pmatrix}
 A\_{0} & B\_{0} & C\_{0} & D\_{0}\\\\
@@ -528,10 +532,11 @@ A\_{0} & B\_{0} & C\_{0} & D\_{0}\\\\
 0      & 0      & 0      & 1
 \end{pmatrix}
 $$
+
 where the $A$, $B$, $C$ matrices are 8×8 block matrices, the $D$, $E$,
 $F$ are 8×1 column matrices.
 
-The $A$ blocks represent events which *do not* increase the number of
+The $A$ blocks represent events which _do not_ increase the number of
 outs, the $B$ blocks are events increasing the number of outs by one,
 the $C$ block describe events which increases the outs by 2, and the
 remaining blocks describe events which take us to the "absorption state"
@@ -544,13 +549,14 @@ column is for transitions to the state with 3 outs. So the
 $D_{0}$ vector is the probability to go from zero outs to 3 outs.
 
 **Simplification.** We assume that the batter's behaviour does not
-depend on the state of the game *except when making sacrifice
-bunts/hits*. Consequently, $A\_{0}=A\_{1}=A\_{2}$, and the $B$ matrices
-are similar except $B\_{1}$ takes into consideration the sacrifice
+depend on the state of the game _except when making sacrifice
+bunts/hits_. Consequently, $A_{0}=A_{1}=A_{2}$, and the $B$ matrices
+are similar except $B_{1}$ takes into consideration the sacrifice
 bunts/hits.
 (End of Simplification)
 
 We populate the $A$ matrix with the various probabilities:
+
 $$
 A = \left(\begin{smallmatrix}
 \Pr(HR) & \Pr(W)+\Pr(1B) & \Pr(2B) & \Pr(3B) & 0 & 0 & 0 & 0\\\\
@@ -563,6 +569,7 @@ A = \left(\begin{smallmatrix}
 \Pr(HR) & 0 & 0 & \Pr(3B) & \Pr(1B) & 0 & \Pr(2B) & \Pr(W)
 \end{smallmatrix}\right)
 $$
+
 Where Pr(1B)=(Number of Singles)/PA, etc. The only caveat here is, if we
 do use exotic figures like grounded into double play (GIDP) and
 sacrifice hits or bunts, then we need to modify PA to include them. For
@@ -591,6 +598,7 @@ transition matrix, too.
 (End of Remark)
 
 <a name="expected-number-of-runs" />
+
 ## Expected Number of Runs
 
 There appears to be two different schemes for computing the expected
@@ -599,6 +607,7 @@ we will divide our attention to examine the simple model, then the
 complicated one.
 
 <a name="simplified-version" />
+
 ### Simplified Version
 
 Following [Tesar](https://www.edsolio.com/media/2/265/files/Tesar_FinalDraft.pdf), we consider a half-inning. The first question we ask
@@ -610,6 +619,7 @@ We can use the idea of
 to estimate the number of batters that will come to the plate for a
 half-inning. We take the 24-by-24 submatrix of the transition matrix
 (eliminating the 25th column and 25th row):
+
 $$
 Q = \begin{pmatrix}
 A\_{0} & B\_{0} & C\_{0}\\\\
@@ -617,6 +627,7 @@ A\_{0} & B\_{0} & C\_{0}\\\\
 0      & 0      & A\_{2}\\\\
 \end{pmatrix}
 $$
+
 The "fundamental matrix" is $E=(I-Q)^{-1}$. If we know the state of the
 game corresponds to row $i$, then the expected number of batters to come
 to plate before the half-inning is over is $\sum\_{j}E\_{i,j}$.
@@ -628,7 +639,7 @@ to come to plate, we know the expected number of plays. We can compute
 the expected number of runs given the expected number of plays.
 
 Tesar's approach is simpler. Construct a vector $\vec{r}$ whose
-components are the probability in state *i* a single run will be
+components are the probability in state _i_ a single run will be
 scored. Given this, Tesar takes the fundamental matrix and transforms
 this vector to get the expected number of runs given the state of the
 game. Intuitively this makes sense: $E$ represents how many batters are
@@ -649,12 +660,13 @@ analysis.
 (End of discussion on Error)
 
 But, to quote Thucydides, "We bless your simplicity, but do not envy
-your folly." This model is *too* simple. While it works great for
+your folly." This model is _too_ simple. While it works great for
 estimating the average number of runs per game, it doesn't seem to
 adequately capture the situation we're interested in: who will win a
 given game, and what will the score be?
 
 <a name="complicated-version" />
+
 ### Complicated Version
 
 For simplicity, we will suppose our team has 9 batters with transition
@@ -672,12 +684,12 @@ taken modulo the number of players (i.e., it cycles through all the
 players).
 
 The state vector $u\_{n}$ gives us the probability distribution of
-states after *n* batters have come to the plate. Consequently, if we
+states after _n_ batters have come to the plate. Consequently, if we
 [add up its components](http://mathworld.wolfram.com/L1-Norm.html)
 $\\|u\_{n}\\|_{L^{1}}=1$ we get the probabilities must
 add up to unity.
 
-*Are we done yet?* No, we need to keep track of how many runs have
+_Are we done yet?_ No, we need to keep track of how many runs have
 occurred. What to do? Well, we could just keep track of it
 mentally. This would be tedious and impossible to automate.
 
@@ -691,17 +703,19 @@ component (of the given row) down appropriately one row. When 2 runs
 occur, we move the component down 2 rows.
 
 To be explicit, we write $T=P\_{0}+P\_{1}+P\_{2}+P\_{3}+P\_{4}$ where
-$P\_{j}$ is the components describing *j* runs have occurred. So
+$P\_{j}$ is the components describing _j_ runs have occurred. So
 $P\_{4}$ has nonzero components when the bases are loaded, and the
 batter hits a homerun. (Or, more rarely, if 4 errors have occurred.)
-For determining if *j* runs have occurred, we refer the reader to
+For determining if _j_ runs have occurred, we refer the reader to
 Appendix A of
 [Tesar](https://www.edsolio.com/media/2/265/files/Tesar_FinalDraft.pdf). 
 
 Then we have
+
 $$
-U\_{(n+1)}(\mbox{row }j) = \sum\_{k=0}^{4}U\_{(n)}(\mbox{row }j-k)P\_{k}
+U_{(n+1)}(\mbox{row }j) = \sum_{k=0}^{4}U_{(n)}(\mbox{row }j-k)P_{k}
 $$
+
 If $j-k<0$, we simply use the zero row vector.
 
 Iterating this "many times" (until the probability of 3 outs is, e.g.,
@@ -716,7 +730,7 @@ straightforward generalization: just use 9 times as many rows in these
 $U\_{(n)}$ matrices, right? Each inning consists of a 21-row submatrix,
 and once a 3-out state has been reached, "move" the contents to the
 start of the next inning (21 rows down, because we use the rows to keep
-track of the runs we *must* move the contents down proportionally). Keep
+track of the runs we _must_ move the contents down proportionally). Keep
 iterating until the probability there are 27 outs is at least 99.9%, and
 you've got the probability distribution for the runs per inning in the
 25th column of the resulting matrix.
@@ -729,17 +743,22 @@ team had more than 20 runs was when the Phillies defeated the Cubs 23-22
 in ten innings on May 17, 1979.
 
 ### Probability of Winning the Game
+
 So, for a given team, the 25th column in the last 21 rows forms a vector
 denoted $S(\mathrm{Team})$. The probability a team will win is given by
 the probabilities it scores more runs than the other team:
+
 $$
-\Pr(\mbox{Team 1 wins}) = \sum^{20}\_{i=1}S(\mbox{Team 1})\_{i}\sum^{i-1}\_{j=0}S(\mbox{Team 2})\_{j}
+\Pr(\mbox{Team 1 wins}) = \sum^{20}_{i=1}S(\mbox{Team 1})_{i}\sum^{i-1}_{j=0}S(\mbox{Team 2})_{j}
 $$
+
 The probability the game goes to overtime is given by the probability
 the two teams score the same number of runs
+
 $$
-\Pr(\mbox{Overtime}) = \sum^{20}\_{i=1}S(\mbox{Team 1})\_{i}S(\mbox{Team 2})\_{i}
+\Pr(\mbox{Overtime}) = \sum^{20}_{i=1}S(\mbox{Team 1})_{i}S(\mbox{Team 2})_{i}
 $$
+
 What to do about overtime?
 
 One solution is to ignore it as negligible. (Probably a good idea for a
@@ -747,22 +766,26 @@ One solution is to ignore it as negligible. (Probably a good idea for a
 extrapolate the runs scored in overtime, which then allows us to modify
 our equations to include an extra term for the case when the game goes
 to overtime:
+
 $$
 \Pr(\mbox{Team 1 Wins}) = \Pr\begin{pmatrix}\mbox{Team 1 Wins}\\\\
 \mbox{Without Overtime}\end{pmatrix}
 + \Pr(\mbox{Overtime})\Pr\begin{pmatrix}\mbox{Team 1 Wins}\\\\
 \mbox{The Extra Inning}\end{pmatrix}
 $$
+
 It turns out that it's just as quick to compute the extra inning's
 distribution, which we treat as just one inning from scratch. This is
 far from accurate, but it works.
 
 <a name="predictions" />
+
 # Predictions
 
 The part everyone is waiting for, the predictions.
 
 <a name="laa-vs-txr" />
+
 ### Anaheim Angels vs Texas Rangers
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Prediction: .<a href="https://twitter.com/Angels">@Angels</a> 3 vs .<a href="https://twitter.com/Rangers">@Rangers</a> 4 for today&#39;s game.</p>&mdash; Alex Nelson (@anelson_unfold) <a href="https://twitter.com/anelson_unfold/status/617777898376658944">July 5, 2015</a></blockquote>
@@ -773,6 +796,7 @@ The
 was Angels 12 - Rangers 6.
 
 <a name="oak-vs-sea" />
+
 ### Oakland A's vs Seattle Mariners
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Prediction: .<a href="https://twitter.com/Athletics">@Athletics</a> 4 vs .<a href="https://twitter.com/Mariners">@Mariners</a> 2 for today&#39;s game.</p>&mdash; Alex Nelson (@anelson_unfold) <a href="https://twitter.com/anelson_unfold/status/617779244794392577">July 5, 2015</a></blockquote>
@@ -781,6 +805,7 @@ was Angels 12 - Rangers 6.
 The [final score](mlb_oakmlb_1&partnerId=LR_gameday#game=2015_07_05_seamlb_oakmlb_1,game_state=Wrapup,game_tab=play-by-play) was Oakland 1 - Mariners 2.
 
 <a name="lad-vs-met" />
+
 ### LA Dodgers vs NY Mets
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">.<a href="https://twitter.com/Dodgers">@Dodgers</a> 3 vs .<a href="https://twitter.com/Mets">@Mets</a> 3 for today&#39;s game, projected to have an extra inning which Dodgers will win due to home advantage.</p>&mdash; Alex Nelson (@anelson_unfold) <a href="https://twitter.com/anelson_unfold/status/617780656630689792">July 5, 2015</a></blockquote>
@@ -790,6 +815,7 @@ The [final score](http://mlb.mlb.com/mlb/gameday/index.jsp?gid=2015_07_05_nynmlb
 New York Mets 8 - LA Dodgers 0.
 
 <a name="conclusion" />
+
 # Conclusion
 
 We discussed the basic idea behind the Bernoulli trial, applied the

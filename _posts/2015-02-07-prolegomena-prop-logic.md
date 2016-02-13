@@ -34,8 +34,8 @@ typically `True` or `False`.
 
 # Syntax
 
-We have some propositional variables *p*, *q*, etc. If a formula
-consists of a single propositional variable (e.g., the formula "*p*"),
+We have some propositional variables _p_, _q_, etc. If a formula
+consists of a single propositional variable (e.g., the formula "_p_"),
 then it is **"Atomic"**. We take `T` and `F` to be true and false, respectively.
 
 We also have some connectives like `¬` (not), `∧` (and), `∨` (or),
@@ -82,67 +82,67 @@ set of formulas is a function from its set of propositional symbols to
 An interpretation **"Satisfies"** a formula if the formula evaluates to
 1 under the interpretation.
 
-A set *S* of formulas is:
+A set _S_ of formulas is:
 
-1. **"Valid"** (or a *tautology*) if every interpretation for *S* satisfies every formula in *S*. (Every interpretation results in 1)
+1. **"Valid"** (or a *tautology*) if every interpretation for _S_ satisfies every formula in _S_. (Every interpretation results in 1)
 2. **"Satisfiable"** (or *consistent*) if there is some interpretation
-  for *S* which satisfies every formula. (At least one interpretation
+  for _S_ which satisfies every formula. (At least one interpretation
   results in 1)
 3. **"Unsatisfiable"** (or *inconsistent*) if it is not
    satisfiable. (Every interpretation results in 0)
 
-The set of formulas *S* then **"Entails"** *p* if every interpretation
-that satisfies all formulas of *S* also satisfies *p*; we write *S* ⊨ *p*.
+The set of formulas _S_ then **"Entails"** _p_ if every interpretation
+that satisfies all formulas of _S_ also satisfies _p_; we write _S_ ⊨ _p_.
 
-Formulas *p* and *q* are **"Equivalent"**, *p* ≅ *q*, if *p* ⊨ *q* and
-*q* ⊨ *p*. (End of Definitions)
+Formulas _p_ and _q_ are **"Equivalent"**, _p_ ≅ _q_, if _p_ ⊨ _q_ and
+_q_ ⊨ _p_. (End of Definitions)
 
-Observe *S* ⊨ *p* if and only if *S* ∪ {¬*p*} is inconsistent.
+Observe _S_ ⊨ _p_ if and only if _S_ ∪ {¬_p_} is inconsistent.
 
-Furthermore, if *S* is inconsistent, then *S* ⊨ *p* for any *p*. (You
+Furthermore, if _S_ is inconsistent, then _S_ ⊨ _p_ for any _p_. (You
 may hear people claim "We can deduce anything from a contradiction";
 well, this is an example of it.)
 
-We have ⊨ *p* (or perhaps technically {} ⊨ *p*) if and only if *p* is
-valid (or equivalently ¬*p* is inconsistent).
+We have ⊨ _p_ (or perhaps technically {} ⊨ _p_) if and only if _p_ is
+valid (or equivalently ¬_p_ is inconsistent).
 
 **Remark 1** (Notational Conventions)**.**
-When *S* consists of a single formula, we will write *p* ⊨ *q* instead
-of {*p*} ⊨ *q*. (End of Remark)
+When _S_ consists of a single formula, we will write _p_ ⊨ _q_ instead
+of {_p_} ⊨ _q_. (End of Remark)
 
 **Remark 2** (On ≅ and ⊨ symbols)**.**
 We should also note the symbols ≅ and ⊨ belong to the metalanguage. So
 they are not logical connectives, just relations between formulas. They
-therefore have the lowest precedence, since something like ¬*p* ∨ *q* ≅ *r*
-could only mean (¬*p* ∨ *q*) ≅ *r* since ¬*p* ∨ (*q* ≅ *r*) would make
-no sense &mdash; (*q* ≅ *r*) is not a valid formula! (End of remark)
+therefore have the lowest precedence, since something like ¬_p_ ∨ _q_ ≅ _r_
+could only mean (¬_p_ ∨ _q_) ≅ _r_ since ¬_p_ ∨ (_q_ ≅ _r_) would make
+no sense &mdash; (_q_ ≅ _r_) is not a valid formula! (End of remark)
 
 ### Examples: Tautologies, Contradictions, Satisfiable Formulas
 
-We have some propositions which are always true, e.g., ¬*p* ∨ *p*, *p* ⇒ *p*,
+We have some propositions which are always true, e.g., ¬_p_ ∨ _p_, _p_ ⇒ _p_,
 and so on. These are tautologies.
 
-In general, if *A* is a valid formula, then ¬*A* is unsatisfiable.
+In general, if _A_ is a valid formula, then ¬_A_ is unsatisfiable.
 
 If a formula is neither valid nor unsatisfiable, then it must be
 satisfiable.
 
 ## Equivalences
 
-We have *A* ⇔ *B* and *A* ≅ *B* be different kinds of assertions. The
-first, *A* ⇔ *B*, refers to one fixed interpretation, whereas the second 
-*A* ≅ *B* holds for all interpretations. But ⊨ *A* ⇔ *B* means precisely
-the same thing as *A* ≅ *B*. We stress *both are metalanguage statements*
-saying *A* ⇔ *B* is a tautology.
+We have _A_ ⇔ _B_ and _A_ ≅ _B_ be different kinds of assertions. The
+first, _A_ ⇔ _B_, refers to one fixed interpretation, whereas the second 
+_A_ ≅ _B_ holds for all interpretations. But ⊨ _A_ ⇔ _B_ means precisely
+the same thing as _A_ ≅ _B_. We stress *both are metalanguage statements*
+saying _A_ ⇔ _B_ is a tautology.
 
-Likewise *A* ⊨ *B* and *A* ⇒ *B* are different kinds of assertions,
-although ⊨ *A* ⇒ *B* and *A* ⊨ *B* mean the same thing. The formula
-*A* ⇒ *B* is a tautology if and only if *A* ⊨ *B*.
+Likewise _A_ ⊨ _B_ and _A_ ⇒ _B_ are different kinds of assertions,
+although ⊨ _A_ ⇒ _B_ and _A_ ⊨ _B_ mean the same thing. The formula
+_A_ ⇒ _B_ is a tautology if and only if _A_ ⊨ _B_.
 
 ### Adequacy
 
-So, every statement involving *n* propositional variables generates a
-corresponding Boolean-valued function of *n* arguments. The arguments
+So, every statement involving _n_ propositional variables generates a
+corresponding Boolean-valued function of _n_ arguments. The arguments
 and values of the function are `T` and `F`. Logically equivalent forms
 generate the same truth function (after all, they have the same truth
 table!).
@@ -155,23 +155,23 @@ the connectives ¬, ∧, and ∨.
 Basically, this says any formula in propositional calculus is equivalent
 to one constructed using ¬, ∧, and ∨.
 
-**Definition.** The set of connectives *S* is called **"Adequate"** if
-given any arbitrary formula *A*, we may form a logically equivalent
-formula using only the connectives from *S*. (End of Definition)
+**Definition.** The set of connectives _S_ is called **"Adequate"** if
+given any arbitrary formula _A_, we may form a logically equivalent
+formula using only the connectives from _S_. (End of Definition)
 
 **Example.** Bourbaki's system uses ¬ and ∨ as their basic connectives,
 from which they generate everything else. (End of Example)
 
 **Example.** Henry Sheffer's "A set of five independent postulates for
 Boolean algebras, with application to logical constants" (*Trans. of the
-AMS* **14** (1913) 481–488, JSTOR [1988701](http://www.jstor.org/stable/1988701)) showed that the connective *p* ↑ *q* defined as ¬ (*p* ∧ *q*)
+AMS* **14** (1913) 481–488, JSTOR [1988701](http://www.jstor.org/stable/1988701)) showed that the connective _p_ ↑ _q_ defined as ¬ (_p_ ∧ _q_)
 is an adequate connective. That is, we can reconstruct all others from
-it. We see ¬ *p* = *p* ↑ *p*, and *p* ∨ *q* = (*p* ↑ *p*) ↑ (*q* ↑ *q*),
+it. We see ¬ _p_ = _p_ ↑ _p_, and _p_ ∨ _q_ = (_p_ ↑ _p_) ↑ (_q_ ↑ _q_),
 and then we recover our proposition which proves this is adequate. (End
 of Example)
 
-**Exercise.** Sheffer also showed the connective *p* | *q* defined as
-¬ (*p* ∨ *q*) is an adequate connective. (Russell and Whitehead picked
+**Exercise.** Sheffer also showed the connective _p_ | _q_ defined as
+¬ (_p_ ∨ _q_) is an adequate connective. (Russell and Whitehead picked
 it up in their second edition of *Principia Mathematica*.) Show this is
 in fact an adequate connective. (End of Exercise)
 
@@ -200,27 +200,27 @@ the [Stanford Encyclopedia](http://plato.stanford.edu/entries/proof-theory-devel
 
 Hilbert systems provide rules for a minimal set of connectives. For
 example, implication only. The other connectives are not considered
-primitive, but are *defined* in terms of implication:
+primitive, but are _defined_ in terms of implication:
 
-- ¬*p* := *p* ⇒ `F`
-- *p* ∨ *q* := ¬*p* ⇒ *q*
-- *p* ∧ *q* := ¬(¬*p* ∨ ¬*q*)
+- ¬_p_ := _p_ ⇒ `F`
+- _p_ ∨ _q_ := ¬_p_ ⇒ _q_
+- _p_ ∧ _q_ := ¬(¬_p_ ∨ ¬_q_)
 
-Let *A*, *B*, *C* be arbitrary formulas. We have three axioms:
+Let _A_, _B_, _C_ be arbitrary formulas. We have three axioms:
 
-1. *A* ⇒ (*B* ⇒ *A*)
-2. (*A* ⇒ (*B* ⇒ *C*)) ⇒ ((*A* ⇒ *B*) ⇒ (*A* ⇒ *C*))
-3. ¬¬*A* ⇒ *A*
+1. _A_ ⇒ (_B_ ⇒ _A_)
+2. (_A_ ⇒ (_B_ ⇒ _C_)) ⇒ ((_A_ ⇒ _B_) ⇒ (_A_ ⇒ _C_))
+3. ¬¬_A_ ⇒ _A_
 
 (Well, these are axiom schemes, since we have to substitute a given
-formula for *A*...so these are describing *infinite sets of formulas*.)
+formula for _A_...so these are describing *infinite sets of formulas*.)
 
 We have a single rule of inference (above the vertical line, we write
 down the premises; below the vertical line, the conclusion):
 
-&nbsp;&nbsp;*A*<br />
-<u>*A* ⇒ *B*</u><br />
-*B*.
+&nbsp;&nbsp;_A_<br />
+<u>_A_ ⇒ _B_</u><br />
+_B_.
 
 This is the traditional *Modus Ponens* rule of inference. This rule of
 inference with our three axioms can prove all tautologies of classical
@@ -255,29 +255,29 @@ has three basic premises:
 3. Each connective is defined by *introduction* and *elimination* rules.
 
 So, for example, the introduction rule for ∧-introduction describes how
-to deduce *p* ∧ *q*:
+to deduce _p_ ∧ _q_:
 
-&nbsp;&nbsp;*p*&nbsp;&nbsp; <br />
-<u>&nbsp;&nbsp;*q*&nbsp;&nbsp;</u> <br />
-*p* ∧ *q*
+&nbsp;&nbsp;_p_&nbsp;&nbsp; <br />
+<u>&nbsp;&nbsp;_q_&nbsp;&nbsp;</u> <br />
+_p_ ∧ _q_
 
-The ∧-elimination rule tells us what we can deduce from *p* ∧ *q*, there
+The ∧-elimination rule tells us what we can deduce from _p_ ∧ _q_, there
 are two such rules:
 
-<u>*p* ∧ *q*</u><br />
-*p*
+<u>_p_ ∧ _q_</u><br />
+_p_
 
 And similarly
 
-<u>*p* ∧ *q*</u><br />
-*q*
+<u>_p_ ∧ _q_</u><br />
+_q_
 
-Observe, ⇒-elimination says what to deduce from *p* ⇒ *q*, which is just
-the usual *Modus Ponens*:
+Observe, ⇒-elimination says what to deduce from _p_ ⇒ _q_, which is just
+the usual _Modus Ponens_:
 
-&nbsp;&nbsp;&nbsp;&nbsp;*p* <br />
-<u>*p* ⇒ *q*</u><br />
-*q*
+&nbsp;&nbsp;&nbsp;&nbsp;_p_ <br />
+<u>_p_ ⇒ _q_</u><br />
+_q_
 
 In practice, this can get really messy really fast. I'll leave the
 reader to peruse Pfenning's notes and Daniel Laboreo's
@@ -292,8 +292,8 @@ are quite good, and recommended for the reader.
 
 A **"Sequent"** has the form Γ ⊢ Δ where Γ ("the antecedent") and Δ
 ("the consequent") are finite sets of
-formulas. For example *A*, *B* ⊢ *C*, *D* is true in a particular
-interpretation if *A* ∧ *B* implies *C* ∨ *D*.
+formulas. For example _A_, _B_ ⊢ _C_, _D_ is true in a particular
+interpretation if _A_ ∧ _B_ implies _C_ ∨ _D_.
 
 **WARNING:** The "⊢" symbol is called the "turnstile" symbol, and one
 reads the sequent "Γ ⊢ Δ" as "Γ proves/yields/entails Δ". One's intuition
@@ -301,10 +301,10 @@ should say "Hey, Δ is provable from the premises Γ".
 (End of Warning)
 
 A **"Basic Sequent"** is a sequent where the same formula appears "on
-both sides", e.g., *P*, *B* ⊢ *B*, *R*. The sequent is valid, since it's
-of the form *P* ∧ *B* ⊢ *B*.
+both sides", e.g., _p_, _B_ ⊢ _B_, _r_. The sequent is valid, since it's
+of the form _p_ ∧ _B_ ⊢ _B_.
 
-(Every basic sequent may be written as Γ ∪ {*A*} ⊢ Δ ∪ {*A*}, where *A*
+(Every basic sequent may be written as Γ ∪ {_A_} ⊢ Δ ∪ {_A_}, where _A_
 is the common formula, and Γ has no formula in common with Δ.)
 
 ### "Backwards" Reasoning
@@ -334,14 +334,14 @@ too much about structural rules for now.
 
 | Rule of Inference | Left Version | Right Version |
 |-------------------|--------------|---------------|
-| Negation          | <u>Γ ⊢ Δ, *A*</u><br />¬*A*, Γ ⊢ Δ  | <u>*A*, Γ ⊢ Δ</u><br />Γ ⊢ Δ, ¬*A* |
-| Conjunction       | <u>*A*, *B* Γ ⊢ Δ</u><br />*A* ∧ *B*, Γ ⊢ Δ | Γ ⊢ Δ, *A*<br /><u>Γ ⊢ Δ, *B*</u><br />Γ ⊢ Δ, *A* ∧ *B* |
-| Disjunction       | *A*, Γ ⊢ Δ<br /><u>*B*, Γ ⊢ Δ</u><br />*A* ∨ *B*, Γ ⊢ Δ | <u>Γ ⊢ Δ, *A*, *B*</u><br />Γ ⊢ Δ, *A* ∨ *B* |
-| Implication       | Γ ⊢ Δ, *A*<br /><u>*B*, Γ ⊢ Δ</u><br />*A* ⇒ *B*, Γ ⊢ Δ | <u>*A*, Γ ⊢ Δ, *B*</u><br />Γ ⊢ Δ, *A* ⇒ *B* |
+| Negation          | <u>Γ ⊢ Δ, _A_</u><br />¬_A_, Γ ⊢ Δ  | <u>_A_, Γ ⊢ Δ</u><br />Γ ⊢ Δ, ¬_A_ |
+| Conjunction       | <u>_A_, _B_ Γ ⊢ Δ</u><br />_A_ ∧ _B_, Γ ⊢ Δ | Γ ⊢ Δ, _A_<br /><u>Γ ⊢ Δ, _B_</u><br />Γ ⊢ Δ, _A_ ∧ _B_ |
+| Disjunction       | _A_, Γ ⊢ Δ<br /><u>_B_, Γ ⊢ Δ</u><br />_A_ ∨ _B_, Γ ⊢ Δ | <u>Γ ⊢ Δ, _A_, _B_</u><br />Γ ⊢ Δ, _A_ ∨ _B_ |
+| Implication       | Γ ⊢ Δ, _A_<br /><u>_B_, Γ ⊢ Δ</u><br />_A_ ⇒ _B_, Γ ⊢ Δ | <u>_A_, Γ ⊢ Δ, _B_</u><br />Γ ⊢ Δ, _A_ ⇒ _B_ |
 
 ### Axioms
 
-The only axiom for sequential calculus is *A* ⊢ *A*. For classical
+The only axiom for sequential calculus is _A_ ⊢ _A_. For classical
 logic, that's it. (For intuitionistic logic, that is also the only
 axiom.)
 

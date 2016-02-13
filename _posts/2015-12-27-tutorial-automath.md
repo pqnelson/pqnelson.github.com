@@ -59,8 +59,8 @@ The syntax for a line varies slightly, because the specification was
 mildly free-form. (It was the '60s, after all.) But the basic format
 looks like:
 
-<div class="highlight">
-<pre>
+<div class="highlight-rouge">
+<pre class="highlight">
 <code><span class="c1"># This is a comment</span>
   <span class="kr">*</span> <span class="kt">nat</span> : <span class="kr">TYPE</span> := <span class="nf">PN</span> <span class="c1"># Define a new type called "nat"</span>
   <span class="kr">*</span>   <span class="kt">1</span> : <span class="kr">nat</span>  := <span class="nf">PN</span> <span class="c1"># Define a new constant "1" in nat</span>
@@ -81,8 +81,8 @@ say, we treat the context as a "queue" of parameters, and we specify the
 "endpoint" in the stack to refer to a slice (from the start to the
 endpoint) as the parameters for the given function.
 
-<div class="highlight">
-<pre>
+<div class="highlight-rouge">
+<pre class="highlight">
 <code><span class="c1"># To define a function, we need a variable explicitly in context.</span>
 <span class="c1"># We have introduced "x" as a variable natural number, so we can</span>
 <span class="c1"># use "x"--and all variables defined before it--as the function parameter.</span>
@@ -97,9 +97,8 @@ We can use a more modern approach, and use lambda abstractions to
 specify the parameters for the routine. We can introduce this alternate
 approach, consider the following snippet:
 
-
-<div class="highlight">
-<pre>
+<div class="highlight-rouge">
+<pre class="highlight">
 <code><span class="c1"># The "successor" function is still in context, thanks to asterisk.</span>
 <span class="c1"># Function composition is done by hand, e.g., the following.</span>
 x <span class="kr">*</span> <span class="kt">plustwo</span> : <span class="kr">nat</span> := successor(successor) <span class="c1"># Define a new function called "plustwo"</span>
@@ -116,16 +115,17 @@ become `<x>f`. This is quirky Automath notation. Also observe, for
 The context for a line is the "function parameters" needed for that
 line. Furthermore, if we introduce a variable into context, something like
 
-<div class="highlight">
-<pre>
+<div class="highlight-rouge">
+<pre class="highlight">
 <code>  <span class="kr">*</span>         <span class="kt">x</span> : <span class="kr">nat</span>  := <span class="nf">---</span> <span class="c1"># Define a new variable "x" in nat</span>
 x <span class="kr">*</span> <span class="kt">successor</span> : <span class="kr">nat</span> := <span class="nf">PN</span> <span class="c1"># Define a new function called "successor"</span></code>
 </pre>
 </div>
 
 This is equivalent to the following:
-<div class="highlight">
-<pre>
+
+<div class="highlight-rouge">
+<pre class="highlight">
 <code>  <span class="kr">*</span> [x:nat] <span class="kt">successor</span> : <span class="kr">nat</span> := <span class="nf">PN</span> <span class="c1"># Define a new function called "successor"</span></code>
 </pre>
 </div>
@@ -161,8 +161,8 @@ the [ZFC](https://www.cs.ru.nl/~freek/zfc-etc/zfc.aut) code.
 We have several basic parts for first-order logic: propositions, proofs
 of propositions, and terms. We treat these as primitive notions.
 
-<div class="highlight">
-<pre><code>  <span class="kr">*</span>           <span class="kt">prop</span> : <span class="kr">TYPE</span> := <span class="nf">PRIM</span>
+<div class="highlight-rouge">
+<pre class="highlight"><code>  <span class="kr">*</span>           <span class="kt">prop</span> : <span class="kr">TYPE</span> := <span class="nf">PRIM</span>
   <span class="kr">*</span> [a:prop] <span class="kt">proof</span> : <span class="kr">TYPE</span> := <span class="nf">PRIM</span>
   <span class="kr">*</span>           <span class="kt">term</span> : <span class="kr">TYPE</span> := <span class="nf">PRIM</span></code></pre></div>
 
@@ -174,8 +174,8 @@ quantifiers. The "bare minimum" amounts to a modest 5 definitions, but
 we'll also introduce "luxury goods" like the existential quantifier &
 other connectives.
 
-<div class="highlight">
-<pre><code>  <span class="kr">*</span>                <span class="kt">false</span> : <span class="kr">prop</span> := <span class="nf">PRIM</span>
+<div class="highlight-rouge">
+<pre class="highlight"><code>  <span class="kr">*</span>                <span class="kt">false</span> : <span class="kr">prop</span> := <span class="nf">PRIM</span>
 <a id="definition-imp"></a>a <span class="kr">*</span>         [b:prop] <span class="kt">imp</span> : <span class="kr">prop</span> := <span class="nf">PRIM</span>
   <span id="forall-defn" class="kr">*</span> [p:[z:term]prop] <span class="kt">for</span> : <span class="kr">prop</span> := <span class="nf">PRIM</span>
 </code></pre></div>
@@ -202,8 +202,8 @@ We have the following "luxury connectives" and quantifiers. First, the
 connectives, which are really just abbreviations...in the sense that we
 can rewrite them in terms of `imp` and `false`.
 
-<div class="highlight">
-<pre><code>a <span class="kr">*</span> <span class="kt">not</span> : <span class="kr">prop</span> := imp(a,<span class="kr">false</span>)
+<div class="highlight-rouge">
+<pre class="highlight"><code>a <span class="kr">*</span> <span class="kt">not</span> : <span class="kr">prop</span> := imp(a,<span class="kr">false</span>)
 b <span class="kr">*</span> <span class="kt">and</span> : <span class="kr">prop</span> := not(imp(a,not(b)))
 b <span class="kr">*</span>  <span class="kt">or</span> : <span class="kr">prop</span> := imp(not(a),b)
 b <span class="kr">*</span> <span class="kt">iff</span> : <span class="kr">prop</span> := and(imp(a,b),imp(b,a))
@@ -215,12 +215,12 @@ quantifier, and its variant the uniquen existential quantifier. We can
 implement these using an equality predicate on terms. We implement
 existial quantification via [negating universal quantification](https://en.wikipedia.org/wiki/Universal_quantification#Negation).
 
-<div class="highlight">
-<pre><code>  <span class="kr">*</span> [x:term][y:term] <span class="kt">eq</span> : <span class="kr">prop</span> := <span class="nf">PRIM</span>
+<div class="highlight-rouge">
+<pre class="highlight"><code>  <span class="kr">*</span> [x:term][y:term] <span class="kt">eq</span> : <span class="kr">prop</span> := <span class="nf">PRIM</span>
 <span class="c1"># "p" refers to the parameters used in <a class="c1" href="#forall-defn">"forall"</a></span>
-p <span class="kr">*</span> <span class="kt">ex</span> : <span class="kr">prop</span> := not(for([z:term]not(<z>p)))
+p <span class="kr">*</span> <span class="kt">ex</span> : <span class="kr">prop</span> := not(for([z:term]not(&lt;z&gt;p)))
 p <span class="kr">*</span> <span class="kt">unique</span> : <span class="kr">prop</span> :=
-      for([z:term]imp(<z>p,for([z':term]imp(<z'>p,eq(z,z')))))
+      for([z:term]imp(&lt;z&gt;p,for([z':term]imp(&lt;z'&gt;p,eq(z,z')))))
 p <span class="kr">*</span> <span class="kt">ex_unique</span> : <span class="kr">prop</span> := and(ex,unique)
 </code></pre></div>
 
@@ -232,14 +232,14 @@ quantifier in our logic. We really have just one primitive connective
 (`imp`), and one primitive quantifier (`for`)...and for classical logic,
 one additional rule for the law of the excluded middle.
 
-<div class="highlight">
-<pre><code><span class="c1"># Rules of inference for implication, i.e., <a class="c1" href="https://en.wikipedia.org/wiki/Natural_deduction#Hypothetical_derivations">hypothetical derivations</a></span>
+<div class="highlight-rouge">
+<pre class="highlight"><code><span class="c1"># Rules of inference for implication, i.e., <a class="c1" href="https://en.wikipedia.org/wiki/Natural_deduction#Hypothetical_derivations">hypothetical derivations</a></span>
 b <span class="kr">*</span> [_:[_1,proof(a)]proof(b)] <span class="kt">imp_intro</span> : <span class="kr">proof(imp(a,b))</span> := <span class="nf">PRIM</span>
 b <span class="kr">*</span> [_:proof(imp(a,b))][_1:proof(a)] <span class="kt">imp_elim</span> : <span class="kr">proof(b)</span> := <span class="nf">PRIM</span> <span class="c1"># AKA Modus Ponens</span>
 
 <span class="c1"># Rules of inference for universal quantification</span>
-p <span class="kr">*</span> [_:[z,term]proof(<z>p)] <span class="kt">for_intro</span> : <span class="kr">proof(for(p))</span> := <span class="nf">PRIM</span>
-p <span class="kr">*</span> [_:proof(for(p))][z:term] <span class="kt">for_elim</span> : <span class="kr">proof(<z>p)</span> := <span class="nf">PRIM</span>
+p <span class="kr">*</span> [_:[z,term]proof(&lt;z&gt;p)] <span class="kt">for_intro</span> : <span class="kr">proof(for(p))</span> := <span class="nf">PRIM</span>
+p <span class="kr">*</span> [_:proof(for(p))][z:term] <span class="kt">for_elim</span> : <span class="kr">proof(&lt;z&gt;p)</span> := <span class="nf">PRIM</span>
 
 <span class="c1"># Law of the excluded middle</span>
 a <span class="kr">*</span> [_:proof(not(not(a)))] <span class="kt">classical</span> : <span class="kr">proof(a)</span> := <span class="nf">PRIM</span>
@@ -296,8 +296,8 @@ any proposition `alpha`, from `false` infer `alpha`).
 So, in this form, negation looks like: for `alpha:PROP` we have
 `not(alpha)` defined as `[x:alpha] false`. Or in Automath code:
 
-<div class="highlight">
-<pre><code>      <span class="kr">*</span> <span class="kt">alpha</span> : <span class="kr">PROP</span> := <span class="nf">PRIM</span>
+<div class="highlight-rouge">
+<pre class="highlight"><code>      <span class="kr">*</span> <span class="kt">alpha</span> : <span class="kr">PROP</span> := <span class="nf">PRIM</span>
 alpha <span class="kr">*</span>   <span class="kt">not</span> : <span class="kr">PROP</span> := [x:alpha]<span class="kr">false</span></code></pre></div>
 
 **3.5. Reinterpreting lines: assumptions, axioms, and theorems (oh my).**
@@ -312,7 +312,6 @@ We now have a logical interpretation of all three types of lines.
 3. Definition lines `a * def : sigma := body` are **theorems**. Here the
    `body` "proves" the proposition `sigma` from the assumptions in the
    context `a`.
-
 
 # "Quasi-Expressions"
 
@@ -337,16 +336,16 @@ arbitrary types. Such kinds are called **"Quasi-Expressions"**.
 We can consider, for example, an arbitrary type-valued function on
 `alpha` introduced by the following code snippet:
 
-<div class="highlight">
-<pre><code>a <span class="kr">*</span> <span class="kt">f</span> : <span class="kr">[x:alpha]TYPE</span> := ---</code></pre></div>
+<div class="highlight-rouge">
+<pre class="highlight"><code>a <span class="kr">*</span> <span class="kt">f</span> : <span class="kr">[x:alpha]TYPE</span> := ---</code></pre></div>
 
 **4.2. So What?**
 We can have arbitrary `PROP`-valued functions in AUT-QE. I.e., a
 `PROP`-valued function over `alpha` is nothing but a _predicate_ over
 `alpha`. That's pretty nifty. Further, we could consider the following snippet:
 
-<div class="highlight">
-<pre><code>a <span class="kr">*</span> <span class="kt">relation</span> : <span class="kr">[x:nat][y:nat]PROP</span> := ---</code></pre></div>
+<div class="highlight-rouge">
+<pre class="highlight"><code>a <span class="kr">*</span> <span class="kt">relation</span> : <span class="kr">[x:nat][y:nat]PROP</span> := ---</code></pre></div>
 
 This defines an arbitrary binary predicate (or, as the identifier suggests, a
 _binary relation_) on the natural numbers.

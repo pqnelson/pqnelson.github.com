@@ -152,7 +152,7 @@ The subtle details of this function are not terribly important at the
 moment.
 
 Now, we use `mainCNF` to transform a `Formula` to definitional
-conjunctive normal form, *à la* set based representation. We slightly
+conjunctive normal form, _à la_ set based representation. We slightly
 generalize the procedure to do this to let us pass in an arbitrary
 `(Trip->Trip)` function (why be constrained to one particular choice?).
 
@@ -256,11 +256,11 @@ leave it as an exercise. But one for the author! (End of exercise)
 # Davis-Putnam Algorithm
 
 John Harrison points out (both in his lectures linked below, and his
-*Handbook of Practical Logic*) there are two Davis-Putnam
+_Handbook of Practical Logic_) there are two Davis-Putnam
 algorithms: one from Davis and Putnam's "A Computing Procedure for
-Quantification Theory" (*Journal of the ACM* **7** 3 (1960) 201-215),
+Quantification Theory" (_Journal of the ACM_ **7** 3 (1960) 201-215),
 the other from Davis, Logemann, and Loveland's "A Machine Program for
-Theorem Proving" (*Comm. of the ACM* **5** 7 (1962) 394-397). Following
+Theorem Proving" (_Comm. of the ACM_ **5** 7 (1962) 394-397). Following
 Harrison, we will follow the chronological route, and consider the
 former paper first.
 
@@ -350,9 +350,10 @@ Too easy, right?
 
 ### The Affirmative-Negative Rule
 
-**Algorithm.** If any literal occurs either *only positively* or *only
-negatively*, then it can be removed without affecting
-satisfiability. So eliminate all *clauses* containing such a literal. (End of Algorithm)
+**Algorithm.** If any literal occurs either _only positively_ or 
+_only negatively_, then it can be removed without affecting
+satisfiability. So eliminate all _clauses_ containing such a literal. 
+(End of Algorithm)
 
 The implementation is another "follow your nose" approach
 
@@ -380,17 +381,17 @@ By construction, this will preserve satisfiability.
 The basic scheme actually can be illustrated in a theorem.
 
 **Theorem.** Given a literal `p`, separate a set of clauses `S` into
-  those containing `p` only positively, those containing it only
-  negatively, and those not containing it at all:
+those containing `p` only positively, those containing it only
+negatively, and those not containing it at all:
 
 ```haskell
 S = [Or p C[i] | i <- [1..m]] ++ [Or (Not p) D[j] | j <- [1..n]] ++ S0
 ```
 
-  where none of the `C[i]` or `D[j]` contain `p` or its negation, and if
-  either `p` or `Not p` occurs in any clause in `S0` then they both do.
+where none of the `C[i]` or `D[j]` contain `p` or its negation, and if
+either `p` or `Not p` occurs in any clause in `S0` then they both do.
 
-  Then `S` is satisfiable if and only if `S'` is, where
+Then `S` is satisfiable if and only if `S'` is, where
 
 ```haskell
 S' = [Or C[i] D[j] | i <- [1..m], j <- [1..n]] ++ S0
@@ -398,7 +399,7 @@ S' = [Or C[i] D[j] | i <- [1..m], j <- [1..n]] ++ S0
 
 (End of Theorem)
 
-*Sketch of Proof.* Without loss of generality, we may assume `p` is
+_Sketch of Proof._ Without loss of generality, we may assume `p` is
 positive.
 
 In one direction, we have to show any valuation `v` satisfying `S` must
@@ -562,7 +563,7 @@ splitting. We leave this as an exercise for the reader ;)
 
 #### Lemma: Iterative DPLL
 
-This isn't an optimization *per se*, but it is necessary for many modern
+This isn't an optimization _per se_, but it is necessary for many modern
 optimizations. We could use a trail to keep track of the guesses we make. We
 introduce some data structure to keep track of what we do:
 
@@ -776,7 +777,7 @@ get a formula in conjunctive normal form.
 Then we introduced the Davis-Putnam algorithm, which recursively
 transformed a set of clauses until we ended up with either (i) an empty
 list of clauses, or (ii) a contradictory clause appeared. In the former
-case, it terminated with `True` &mdash; the given set of clauses *are*
+case, it terminated with `True` &mdash; the given set of clauses _are_
 satisfiable; whereas the latter case clearly resulted in `False`, the
 clauses are unsatisfiable.
 
@@ -797,15 +798,15 @@ things work &mdash; only in America!).
 # References
 
 - John Harrison,
-  *Handbook of Practical Logic and Automated Reasoning*.
+  _Handbook of Practical Logic and Automated Reasoning_.
   Cambridge, 2009.
 - Andreas Nonnengart and Christoph Widenbach,
   "Computing Small Clause Normal Form".
-  In *Handbook of Automated Reasoning*
+  In _Handbook of Automated Reasoning_
   (Alan Robinson and Andrei Voronkov, eds.),
   Elsevier Science, 2001, pp 335-367
 - Donald Knuth,
-  *The Art of Computer Programming*.
+  _The Art of Computer Programming_.
   Volume 4, [Fascicles 6A](http://www-cs-faculty.stanford.edu/~uno/fasc6a.ps.gz)
   "A (Partial) Draft of Section 7.2.2.2: Satisfiability". (A "mere" 260 pages!)
   
@@ -815,14 +816,14 @@ things work &mdash; only in America!).
 - Hasan Amjad,
   "LCF-Style Propositional Simplification with BDDs and SAT Solvers".
   Eprint [citeseerx](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.93.6675&rep=rep1&type=pdf),
-  In *Theorem Proving in Higher Order Logics*
+  In _Theorem Proving in Higher Order Logics_
   (Otmane Ait Mohamed, César Munoz, Sofiène Tahar, eds.)
   Lecture Notes in Computer Science, Volume 5170, 2008, pp 55-70 [doi:10.1007/978-3-540-71067-7_9](http://dx.doi.org/10.1007/978-3-540-71067-7_9)
 - G.S. Tseitin
   "On the complexity of derivation in propositional calculus".
   In: (J. Siekmann, G. Wrightson, eds.)
-  *Automation Of Reasoning: Classical Papers On Computational Logic,
-  Vol. II, 1967-1970*, pp. 466–483. Springer, Heidelberg (1983)
+  _Automation Of Reasoning: Classical Papers On Computational Logic, Vol. II, 1967-1970_, 
+  pp. 466–483. Springer, Heidelberg (1983)
 - Barry Watson,
   "Conjunctive Normal Form (CNF)".
   Computational Logic Notes, [webpage](http://barrywatson.se/cl/cl_definitional_cnf.html).
@@ -834,7 +835,7 @@ things work &mdash; only in America!).
   Lecture 1, [22:16](http://youtu.be/Nydg-N83VYc?t=22m16s)
 - H. Zhang and M. Stickel,
   "An efficient algorithm for unit-propagation".
-  In *Proceedings of the Fourth International Symposium on Artificial Intelligence and Mathematics* (1996).
+  In _Proceedings of the Fourth International Symposium on Artificial Intelligence and Mathematics_ (1996).
   [Eprint](http://www.cfdvs.iitb.ac.in/download/Docs/verification/papers/sat/original-papers/aim96.pdf)
 
 ## Changelog

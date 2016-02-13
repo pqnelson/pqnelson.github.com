@@ -44,7 +44,7 @@ two cases listed), or specifying the parameters used in their definition
 
 Consider the following snippet:
 
-<div class="highlight"><pre><span class="o">*</span> <span class="nc">prop</span> <span class="o">:</span> <span class="kp">TYPE</span> <span class="o">:=</span> <span class="nf">PRIM</span>
+<div class="highlight-rouge"><pre class="highlight"><span class="o">*</span> <span class="nc">prop</span> <span class="o">:</span> <span class="kp">TYPE</span> <span class="o">:=</span> <span class="nf">PRIM</span>
 <span class="o">*</span> [a:prop] <span class="nc">proof</span> <span class="o">:</span> <span class="kp">TYPE</span> <span class="o">:=</span> <span class="nf">PRIM</span>
 <span class="o">*</span> <span class="nc">term</span> <span class="o">:</span> <span class="kp">TYPE</span> <span class="o">:=</span> <span class="nf">PRIM</span>
 </pre></div>
@@ -76,7 +76,7 @@ introduction to the text must occur _before_ the end.
 The code snippet we have considered is more complicated than it
 appears. Why? Because it's really equivalent to the following:
 
-<div class="highlight"><pre><span class="cm">{1}</span>   <span class="o">*</span> <span class="nc">prop</span> <span class="o">:</span> <span class="kp">TYPE</span> <span class="o">:=</span> <span class="nf">PRIM</span>
+<div class="highlight-rouge"><pre class="highlight"><span class="cm">{1}</span>   <span class="o">*</span> <span class="nc">prop</span> <span class="o">:</span> <span class="kp">TYPE</span> <span class="o">:=</span> <span class="nf">PRIM</span>
 <span class="cm">{2}</span>   <span class="o">*</span> <span class="nc">a</span> <span class="o">:</span> <span class="kp">prop</span> <span class="o">:=</span> <span class="nf">---</span>
 <span class="cm">{3}</span> <span class="nv">a</span> <span class="o">*</span> <span class="nc">proof</span> <span class="o">:</span> <span class="kp">TYPE</span> <span class="o">:=</span> <span class="nf">PRIM</span>
 <span class="cm">{4}</span>   <span class="o">*</span> <span class="nc">term</span> <span class="o">:</span> <span class="kp">TYPE</span> <span class="o">:=</span> <span class="nf">PRIM</span>
@@ -92,7 +92,7 @@ style="max-width:356px;" />
 To see this stack structure more explicitly, consider the following
 snippet:
 
-<div class="highlight"><pre><span class="c"># &gt;&gt;&gt; * [x:term][y:term] eq : prop := PRIM</span>
+<div class="highlight-rouge"><pre class="highlight"><span class="c"># &gt;&gt;&gt; * [x:term][y:term] eq : prop := PRIM</span>
 <span class="c"># expands to</span>
 <span class="cm">{1}</span>   <span class="o">*</span> <span class="nc">x</span> <span class="o">:</span> <span class="kp">term</span> <span class="o">:=</span> <span class="nf">---</span>
 <span class="cm">{2}</span> <span class="nv">x</span> <span class="o">*</span> <span class="nc">y</span> <span class="o">:</span> <span class="kp">term</span> <span class="o">:=</span> <span class="nf">---</span>
@@ -296,7 +296,7 @@ expect it to behave like a running linear list of lines.
 
 Lets give some examples of how this would look.
 
-<div class="highlight"><pre>  <span class="o">*</span> <span class="nv">l0</span>
+<div class="highlight-rouge"><pre class="highlight">  <span class="o">*</span> <span class="nv">l0</span>
   <span class="o">*</span> <span class="nv">l1</span>
 <span class="o">+</span> <span class="nv">p</span> <span class="c"># open paragraph p</span>
   <span class="o">*</span> <span class="nv">l2</span>
@@ -313,7 +313,7 @@ style="max-width:587px;" />
 But to make things worse, we can re-open paragraphs that have been
 previously closed. For example:
 
-<div class="highlight"><pre>  <span class="o">*</span> <span class="nv">l0</span>
+<div class="highlight-rouge"><pre class="highlight">  <span class="o">*</span> <span class="nv">l0</span>
   <span class="o">*</span> <span class="nv">l1</span>
 <span class="o">+</span> <span class="nv">p</span> <span class="c"># open paragraph p</span>
   <span class="o">*</span> <span class="nv">l2</span>
@@ -338,7 +338,7 @@ style="max-width:1162px;" />
 **Paragraphs themselves form a linear list.**
 When we have multiple paragraphs in a row, something like
 
-<div class="highlight"><pre><span class="o">+</span> <span class="nv">p1</span>
+<div class="highlight-rouge"><pre class="highlight"><span class="o">+</span> <span class="nv">p1</span>
 <span class="c"># ...</span>
 <span class="o">-</span> <span class="nv">p1</span>
 <span class="o">+</span> <span class="nv">p2</span>

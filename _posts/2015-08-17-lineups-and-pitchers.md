@@ -33,16 +33,18 @@ Well, it turns out that the lineup matters significantly.
 Furthermore, when batting, roughly 40% of the outcome is due to the
 pitcher, and 60% due to the batter. Adam Sugano discovered this
 relationship statistically for the 2001-2006 seasons (and confirmed it
-with the 1987 season) in section 3.3.1 *et seq.* of his doctoral
+with the 1987 season) in section 3.3.1 _et seq._ of his doctoral
 thesis. So neglecting the pitcher ignores nearly half the battle.
 
 **Moral:** If the reader has been perusing the previous posts on
 modeling baseball, we hope the moral comes across quite clear: the first
-few models will be terrible. But the point is to figure out *why they're
-wrong*, then improve. *Do not be discouraged with initial failures.*
+few models will be terrible. But the point is to figure out 
+_why they're wrong_, 
+then improve. _Do not be discouraged with initial failures._
 (End of Moral)
 
 <a name="lineup-matters" />
+
 # Lineup Matters
 
 Consider the following 9 players: David DeJesus, Kole Calhoun, Mike
@@ -70,6 +72,7 @@ chain. So we shouldn't be surprised when someone inactive is placed in a
 Markov chain, and the results are garbage.
 
 <a name="determining-lineup" />
+
 ## Determining the Lineup
 
 There is no definitive way to generate the correct lineup, but we may
@@ -84,9 +87,11 @@ proxy for the fresh rookies' statistics (if our job depended on it, we
 could enter the 2015 data into the prediction and use that instead).
 
 <a name="lineup-matters-predictions" />
+
 # Predictions
 
 <a name="cleveland-anaheim-8-3-2015" />
+
 ## Cleveland Indians vs Anaheim Angels (August 3, 2015)
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Prediction for tomorrow&#39;s game: .<a href="https://twitter.com/Indians">@Indians</a> 3.7844 runs VS .<a href="https://twitter.com/Angels">@Angels</a> 4.7573. Angels win with home-team advantage.</p>&mdash; Alex Nelson (@anelson_unfold) <a href="https://twitter.com/anelson_unfold/status/627982753238138880">August 2, 2015</a></blockquote>
@@ -101,6 +106,7 @@ So, the problem was just the lineup. Huzzah, huzzah, I'll just throw
 back my legs and pollute my britches with delight...
 
 <a name="cleveland-minnesota-8-8-2015" />
+
 ## Cleveland Indians vs Minnesota Twins (August 8, 2015)
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Prediction for tomorrow&#39;s game: .<a href="https://twitter.com/Indians">@Indians</a> 3.6933 vs .<a href="https://twitter.com/Twins">@Twins</a> 3.83678, Minnesota will win...if it could be called a victory...</p>&mdash; Alex Nelson (@anelson_unfold) <a href="https://twitter.com/anelson_unfold/status/629859693272264705">August 8, 2015</a></blockquote>
@@ -114,6 +120,7 @@ Santana had a hit probability of 61.5% (his career stats average suggest
 
 
 <a name="baltimore-anaheim-8-8-2015" />
+
 ## Baltimore Orioles vs Anaheim Angels (August 8, 2015)
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Prediction for tomorrow&#39;s game: .<a href="https://twitter.com/Angels">@Angels</a> 4.5614 vs .<a href="https://twitter.com/Orioles">@Orioles</a> 3.7763659</p>&mdash; Alex Nelson (@anelson_unfold) <a href="https://twitter.com/anelson_unfold/status/629868850297765888">August 8, 2015</a></blockquote>
@@ -124,11 +131,12 @@ Jimenez was on fire, his career stats suggest an OBPA of about 26.655%,
 but in the game a mere 7.4% of batters hit the ball.
 
 <a name="include-the-pitcher" />
+
 # Including the Pitcher is Hard, but is it Necessary?
 
 The Markov model has a serious flaw, in that it does not take into
 account the pitcher. (The Cleveland vs Minnesota game should convince us
-how important a factor the pitcher *is* in a game!) Sadly, we cannot
+how important a factor the pitcher _is_ in a game!) Sadly, we cannot
 simply compose the transition matrix with a "pitcher modification"
 matrix under most circumstances because
 [the derivation](/2015/07/05/bernoulli-batters-markov-coaches.html#include-pitcher)
@@ -136,17 +144,19 @@ does not allow for it.
 
 (One trick is to rewrite this in a geometric series, Taylor expand to a
 couple orders, and you get some factor correcting the
-probabilities. Take the denominator *HP/L* + (1 - *H*)(1 - *P*)/(1 - *L*)
-add and subtract by (1 - *H*)*P*/*L*, rewriting it as *P/L* + (1 -
-*H*)((1 - *P*)/(1 - *L*) - *P/L*), divide the top and bottom by *P/L*,
-and *voila!* you have the denominator look like 1 - *X*. Observe *X* is
+probabilities. Take the denominator _HP/L_ + (1 - _H_)(1 - _P_)/(1 - _L_)
+add and subtract by (1 - _H_)_P_/_L_, rewriting it as _P/L_ + (1 -
+_H_)((1 - _P_)/(1 - _L_) - _P/L_), divide the top and bottom by _P/L_,
+and _voila!_ you have the denominator look like 1 - _X_. Observe _X_ is
 of the order 0.01, which means a quadratic approximation is quite
 good. That's one possibility to consider. This may cause problems for
-*P* &gt; 6/7 or *P* &lt; 1/7, only the latter has happened in this
+_P_ &gt; 6/7 or _P_ &lt; 1/7, only the latter has happened in this
 millenium...but there's still time.) 
 
 <a name="case-study-orioles" />
+
 ## Case Study: Orioles Pitcher for August 7, 2015
+
 **Does this even matter?** Well, if we ran the Markov model on the
 August 7th game for Anaheim Angels vs Baltimore Orioles, then we should
 expect the score to be Angels 4.5614 vs Orioles 3.7763659 for the Angels
@@ -156,8 +166,9 @@ Gillaspie, (viii) Johnny Giavotella, (ix) Chris Iannetta﻿. But
 [when this happened](http://mlb.mlb.com/mlb/gameday/index.jsp?gid=2015_08_07_balmlb_anamlb_1&partnerId=LR_box#game=2015_08_07_balmlb_anamlb_1,game_tab=box,game_state=Wrapup)
 the score was Angels 8, Orioles 4.
 
-What happened?! Orioles pitcher Gausman was having an off-day. *Could we
-have predicted this?* Lets see, we'll compare the 2014 league average to
+What happened?! Orioles pitcher Gausman was having an off-day. 
+_Could we have predicted this?_ 
+Lets see, we'll compare the 2014 league average to
 Gausman's career stats:
 	
 |                         |  IP     | Hits  | HR   | BB   | K     |
@@ -208,17 +219,17 @@ The confidence interval tells us, with 95% confidence (or more if
 desired), the "mean" and the margin of error for the sample size.
 
 **When can we use the confidence inteval?**
-The rule of thumb is *np* &gt; 5 and *n*(1 - *p*) &gt; 5. For us, *n* is
-about 920, and *p* is about 23%, we're golden. (More generally, if 15%
-&lt; *p* &lt; 85%, then *n* &gt; 40 is the heuristic...but any *n* &gt; 33
-works as well for such *p*.)
+The rule of thumb is _np_ &gt; 5 and _n_(1 - _p_) &gt; 5. For us, _n_ is
+about 920, and _p_ is about 23%, we're golden. (More generally, if 15%
+&lt; _p_ &lt; 85%, then _n_ &gt; 40 is the heuristic...but any _n_ &gt; 33
+works as well for such _p_.)
 
 **How do we use it?**
 Well, we want to suggest that Gausman sucked with statistical
 significance. How we do this, using confidence intervals, is construct
 one interval for his performance during the game. Then we construct
-another based on his career (or his 2015 stats, whichever). *If the two
-intervals do not overlap*, then we may say "Gausman did indeed suck with
+another based on his career (or his 2015 stats, whichever). _If the two
+intervals do not overlap_, then we may say "Gausman did indeed suck with
 statistical significance specified by the intervals".
 
 If the two intervals overlap, well, then Gausman may or may not suck
@@ -232,17 +243,17 @@ his 2015 data) 23.1255% ± 5.4438486%
 with 95% confidence. To be more precise, when we drop a Gaussian about
 23.1255%, 95% of the Gaussian lies within 5.44% of 23.1255%.
 
-But the Wilson score for the game has *p* = 9/28. It produces an
+But the Wilson score for the game has _p_ = 9/28. It produces an
 interval centered at 34.2972% ± 16.363955%, since the number of trials
 is so small and our confidence is so "large". (The reader should confirm
-that we *can* perform a confidence interval using the data from the game.)
+that we _can_ perform a confidence interval using the data from the game.)
 
 As odd as it sounds, we cannot "reject the null hypothesis", i.e., although
 Gausman did not perform up to par (by our subjective/intuitive
 standards, it "feels" like he sucked), statistically he did not.
 I am not happy about this: I want to flip the table over, and blame one
 person squarely for screwing up my predictions. But that's emotion. The
-cold hard facts indicate the Gausman *really did* just *slightly* below
+cold hard facts indicate the Gausman _really did_ just _slightly_ below
 his usual best.
 
 (Emotionally, there are two ways to respond: (a) reject statistics as
@@ -256,12 +267,12 @@ are responsible for 3 runs.
 **Another Exercise for the Reader.**
 Show my emotional response is invalid, i.e., the other pitchers also did
 adequately given their past performance history. Then find someone who
-we *can* blame for the outcome.
+we _can_ blame for the outcome.
 
 **Moral of the Story.**
 The moral for this particular case study: random variations cause
 serious and observable differences in outcomes. And, in this example,
-the random variations were not surprising (they *were* within a standard
+the random variations were not surprising (they _were_ within a standard
 deviation of past behavior).
 
 **Puzzle.** In these "unsurprising" scenarios, where
@@ -273,6 +284,7 @@ One step towards a solution may be to consider using
 [Fuzzy Markov Chains](https://upcommons.upc.edu/bitstream/handle/2099/3616/buckley.pdf?sequence=1). 
 
 <a name="case-study-minnesota" />
+
 ## Case Study: Minnesota Pitcher for August 8, 2015
 
 We find for [Ervin Santana](http://m.mlb.com/player/429722/ervin-santana)
@@ -294,16 +306,16 @@ faced 17 batters, of which 10 successfully hit the ball. So we have a
 confidence interval 57.197193% ± 21.19175% (using a 95% confidence). But
 look: the lower end point for this interval is 36% (rounding down),
 whereas the upper interval for Santana's entire career is 24% (rounding
-up). Hence we may state *with 95% confidence, Santana sucked at pitching
+up). Hence we may state _with 95% confidence, Santana sucked at pitching
 with statistically significance in this game compared to what his career
-suggests.*
+suggests._
 
 **Compared to this year's performance.**
 We can likewise construct the confidence interval for Santana's
 performance this year. From simple arithmetic, we find it 24.31708% ±
 6.0958176%. This is puzzling: the upper end point is 31% (rounding up),
-which again implies *with 95% confidence, Santana sucked at pitching with
-statistical significance in this game compared to his career this year.*
+which again implies _with 95% confidence, Santana sucked at pitching with
+statistical significance in this game compared to his career this year._
 
 **What should we have expected?**
 Well, if Santana were well rested (etc.), we should have expected about
@@ -318,7 +330,7 @@ and since he has returned his performance has been statistically
 significantly worse (as we have seen). There appears to be some
 correlation, unsurprisingly negative, between these two events.
 
-*We cannot say one caused the other.* It could be lurking factors, like
+_We cannot say one caused the other._ It could be lurking factors, like
 Santa wasn't practicing during the 80-game period, or his wife has cancer
 and he's distracted & worried, or he was in a car accident, etc. Experts
 have some plausible [explanations](http://www.twincities.com/sports/ci_28637088/brian-murphy-twins-ervin-santana-wilting-heat-expectations).
@@ -335,6 +347,7 @@ We could consider using a weighted or exponential
 the more recent performance more than historical performance. 
 
 <a name="references" />
+
 # References
 
 - James Buckley and Esfandiar Eslami,

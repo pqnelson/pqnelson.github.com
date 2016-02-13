@@ -20,6 +20,7 @@ tags: [Java Virtual Machine]
 * [References](#references)
 
 <a name="intro" />
+
 # Introduction
 
 Java 8 has introduced many neat functional features, like lambda
@@ -32,13 +33,14 @@ study a number of [toy models](http://en.wikipedia.org/wiki/Toy_model).
 Each would build off the previous one, elaborating various aspects of the
 JVM's architecture.
 
-*Remark.* It turns out there's a vast literature on the subject of
-*formally modeling* the JVM. I have combed through selected references,
+_Remark._ It turns out there's a vast literature on the subject of
+_formally modeling_ the JVM. I have combed through selected references,
 mostly the works of J. Strother Moore, when examining the inner workings
 of the JVM. Dr Moore has written several "toy models" himself, and has
 taught a course on it. His works have been cited below. (End of Remark)
 
 <a name="first-model" />
+
 # First Model
 
 Our first approximation will be a simple single-threaded interpreter
@@ -52,6 +54,7 @@ single frame for our purposes).
 This will suffice for our first approximation to the JVM.
 
 <a name="stack-machine" />
+
 ## Stack Machine
 
 The JVM is a stack machine, with a reverse-Polish notation instruction
@@ -65,6 +68,7 @@ set. So lets set up a minimal collection of stack functions:
 ```
 
 <a name="instruction-structure" />
+
 ### Structure of an "Instruction"
 
 The Java Virtual Machine "interprets" its own bytecode, which is
@@ -103,6 +107,7 @@ We have helper functions to access various parts of the instruction:
 ```
 
 <a name="frames" />
+
 ## Frames
 
 The call stack is a list of frames treated as a stack. For our immediate
@@ -142,11 +147,12 @@ the frame. We will assume this concept is well-defined.
 The `stack` is the local memory for the frame, not the local variable
 dictionary. The variable dictionary is `locals`. 
 
-*Remark.* We part from the JVM slightly, and our local variables are
+_Remark._ We part from the JVM slightly, and our local variables are
 referenced by symbolic names rather than positions. BUT the beauty of
 clojure allows us to use symbolic names instead as the key. (End of Remark)
 
-<a name="minimal-inst-set" /> 
+<a name="minimal-inst-set" />
+
 ## Minimal Instruction Set
 
 I take a subset of the Java bytecode, for the sake of simplicity. I'll
@@ -194,7 +200,8 @@ or negative. The target address must be in the current program.
 instruction if `val` is 0, and at the next instruction otherwise. It
 also pops the value `val` from the stack.
 
-<a name="generic-instruction" /> 
+<a name="generic-instruction" />
+
 ### Generic Instruction
 
 Given a generic op-code `op`, we have a function `eval-op` which updates
@@ -236,7 +243,8 @@ expands into defining these two functions. In pseudocode:
 
 This allows us to write more elegant interpreter code.
 
-<a name="interpreter"> 
+<a name="interpreter">
+
 ### Interpreter
 
 We interpret one instruction at a time. We have a function `(step ...)`,
@@ -312,6 +320,7 @@ All our source code is available on
 `model-one`. 
 
 <a name="references" />
+
 # References
 
 1. The [Java 8 VM Specifications](http://docs.oracle.com/javase/specs/jvms/se8/html/index.html)
@@ -323,10 +332,10 @@ All our source code is available on
    [Eprint](http://www.lib.utexas.edu/etd/d/2006/liuh22941/liuh22941.pdf),
    332 pages, pdf.
 4. J. Strother Moore and George Porter, "An Executable Formal Java
-   Virtual Machine Thread Model". In *Java Virtual Machine Research and
-   Technology Symposium (JVM '01)*, USENIX, April, 2001. 
+   Virtual Machine Thread Model". In _Java Virtual Machine Research and
+   Technology Symposium (JVM '01)_, USENIX, April, 2001. 
    [Eprint](http://www.cs.utexas.edu/users/moore/publications/m4/model.ps.gz)
 5. J. Strother Moore, Robert Krug, Hanbing Liu, George Porter,
    "Formal Models of Java at the JVM Level: A Survey from the ACL2 Perspective".
-   In *Workshop on Formal Techniques for Java Programs*, 2001.
+   In _Workshop on Formal Techniques for Java Programs_, 2001.
    [Eprint](http://cseweb.ucsd.edu/~gmporter/papers/formaljvm-ecoop01.pdf), 10 pages.
