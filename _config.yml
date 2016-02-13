@@ -1,6 +1,9 @@
 safe: true
 lsi: false
-highlighter: pygments
-markdown: redcarpet
-redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  auto_ids: true
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge

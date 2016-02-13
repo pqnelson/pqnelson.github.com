@@ -38,7 +38,7 @@ main {
     background: white;
     border: 1px solid #ccc;
     line-height: 1.5em;
-    margin: 1.5em auto 1em auto;
+    margin: 1.5em auto;
     max-width: 46em;
     padding: 3em 3em 1.5em 3em;
 }
@@ -97,6 +97,10 @@ footer nav {
     border-bottom: 1px solid black;
 }
 
+main p {
+    margin: 1em auto;
+}
+
 /* tables */
 table {
     border-collapse: collapse;
@@ -140,12 +144,12 @@ table td, table th {
     font-size: 18px;
   }
 
-h5 {
+  h5 {
     display: inline;
     font-family: Georgia,"Times New Roman",Times,serif;
     font-weight:bold;
     font-size: 100%;
-}
+  }
 
   code, pre {
     font-size: 12px;
