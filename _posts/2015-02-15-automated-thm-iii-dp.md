@@ -33,20 +33,28 @@ corresponds to `v0.1.2` of the [code](https://github.com/pqnelson/surak).
 
 The basic idea is to introduce new variables corresponding to
 subformulas. The textbook example is `And (Or p (And q (Not r))) s`
-which is transformed to:
+which transforms via the following steps:
 
 ```haskell
-(And (Iff p1 (And q (Not r)))
-     (And (Iff p2 (Or p p1))
-          (And (Iff p3 (And p2 s))
-               p3)))
+And (Or p
+        (And q (Not r)))
+    s -> And (Iff p1 (And q (Not r))) -- introduce p1
+             (And (Or p p1) s)        -- updated formula
+      -> And (Iff p1 (And q (Not r)))
+             (And (Iff p2 (Or p p1)) -- introduce p2
+                  (And p2 s))        -- updated formula
+      -> And (Iff p1 (And q (Not r)))
+             (And (Iff p2 (Or p p1))
+                  (And (Iff p3 (And p2 s)) -- introduce p3
+                       p3))                -- our running formula is p3!
 ```
 
-This is clearly equisatisfiable, but since we have these extra variables
-`p1`, `p2`, `p3`, we have too much freedom. This extra freedom denies us
-the ability to say these formulas are equivalent (just choose one of
-these new variables in the wrong way). Indeed, if we run it
-through our automated theorem prover, we find:
+This is clearly equisatisfiable (i.e., a choise for `p`, `q`, and `r`
+will solve both formulas), but since we have these extra variables
+`p1`, `p2`, `p3`...we have too much freedom in this transformed
+formula. This extra freedom denies us the ability to say these formulas
+are equivalent (just choose one of these new variables in the wrong
+way). Indeed, if we run it through our automated theorem prover, we find:
 
 ```haskell
 textbookDefCNFTest :: () -> String
@@ -184,8 +192,10 @@ This is the vanilla implementation just "following our nose".
 
 ## Optimization
 
-But look, do we really need to worry if the formula looks like `(And p q)`?
-Why not just go "as far as possible", and transform only when forced?
+But look, do we really need to worry if the formula looks like `(And p
+q)`? Naively, it would transform into `(And (Iff p1 q) (And (Iff p2 (And
+p p1)) p2)`. Why not just go "as far as possible", and transform only
+when forced? 
 
 That is to say, if we consider the formula
 
@@ -204,6 +214,8 @@ We have some "pre-preprocessing" steps to avoid needlessly transforming
 subformulas.
 
 ```haskell
+-- apply a (Trip -> Trip) transformation to the subformulas,
+-- sharing the definitions 
 subCNF :: (Trip -> Trip) -> (Formula -> Formula -> Formula)
           -> (Formula, Formula) -> Trip -> Trip
 subCNF subfn op (p, q) (_, defs, n) =
@@ -279,6 +291,9 @@ As we have already seen how to convert a formula to conjunctive normal
 form, lets consider the simplifying rules. Davis-Putnam uses the
 set-based representation of the conjunctive normal form.
 
+The [resulting algorithm](#davis-putnam-algorithm) resembles the basic
+outline quite a bit.
+
 ## Satisfiability-Preserving Transformations
 
 There are two transformations on the sets of clauses:
@@ -353,6 +368,22 @@ Too easy, right?
 **Algorithm.** If any literal occurs either _only positively_ or 
 _only negatively_, then it can be removed without affecting
 satisfiability. So eliminate all _clauses_ containing such a literal. 
+
+_Step 1._ Find all the literals, partition them into two groups `pos`
+which appear positively, and `neg` which appear negatively.
+
+_Step 2._ For each literal `(not p)` in `neg`, transform this list into
+positive literals `neg = map negate neg`.
+
+_Step 3._ Remove literals from `pos` which also appear in `neg`, and set
+the result to `posOnly`.
+
+_Step 4._ Remove literals from `neg` which also appear in `pos`, and set
+the result to `negOnly`.
+
+_Step 5._ For each clause `C` in the given clauses, remove literals
+which appear in `posOnly` or `negOnly`. The resulting filtered list of
+clauses should be returned, and the algorithm terminates.
 (End of Algorithm)
 
 The implementation is another "follow your nose" approach
@@ -380,46 +411,63 @@ By construction, this will preserve satisfiability.
 
 The basic scheme actually can be illustrated in a theorem.
 
-**Theorem.** Given a literal `p`, separate a set of clauses `S` into
-those containing `p` only positively, those containing it only
-negatively, and those not containing it at all:
+**Theorem.**
+Given a literal $p$, separate a set of clauses $S$ into (i) those containing
+$p$ only positively, (ii) those containing it only negatively, and (iii)
+those not containing it at all:
 
-```haskell
-S = [Or p C[i] | i <- [1..m]] ++ [Or (Not p) D[j] | j <- [1..n]] ++ S0
-```
+$$ S = \{C_{i}\lor p\in S\}^{m}_{i=1}\cup\{D_{j}\lor\neg p\in S\}^{n}_{j=1}\cup S_{0}$$
 
-where none of the `C[i]` or `D[j]` contain `p` or its negation, and if
-either `p` or `Not p` occurs in any clause in `S0` then they both do.
+where none of the $C_{i}$ or $D_{j}$ contain $p$ or its
+negation. (Further, if either $p$ or $\neg p$ occurs in any clause in
+$S_{0}$, then both $p$ and $\neg p$ occur together.)
 
-Then `S` is satisfiable if and only if `S'` is, where
-
-```haskell
-S' = [Or C[i] D[j] | i <- [1..m], j <- [1..n]] ++ S0
-```
-
+THEN $S$ is satisfiable if and only if $S' = \\{C_{i}\lor D_{j}|1\leq
+i\leq m, 1\leq j\leq n\\}$ is satisfiable.
 (End of Theorem)
 
-_Sketch of Proof._ Without loss of generality, we may assume `p` is
+_Sketch of Proof._ Without loss of generality, we may assume $p$ is
 positive.
 
-In one direction, we have to show any valuation `v` satisfying `S` must
-also satisfy `S'`. We break this up into cases:
+In one direction, we have to show any valuation $v$ satisfying $S$ must
+also satisfy $S'$. We break this up into cases:
 
-Case 1: `v(p) = False`. Then in the `Or p C[i]` clauses, we see `v C[i] =
-True` for all `i`. So each `C[i]` is satisfied, and hence `Or C[i] D[j]`
-would be satisfied too, for any `i` and `j`.
+Case 1: $v(p) = \bot$ (= false).
+Then in the $C_{i}\lor p$ clauses, we see
+$v(C_{i}) = \top$ (= true)
+for all $i$. So each $C_{i}$ is satisfied, and hence $C_{i}\lor D_{j}$
+would be satisfied too, for any $i$ and $j$.
 
-Case 2: `v(p) = True`. Then in the `Or (Not p) D[j]` clauses, we see `v D[j]`
-must be `True` for all `j`. So each `D[j]` is satisfied. Hence `Or C[i] D[j]`
-is satisfied by `v` for all `i` and `j`.
+Case 2: $v(p) = \top$ (= True).
+Then in the $D_{j}\lor (\neg p)$ clauses, we see $v(D_{j})$
+must be $\top$ (`True`) for all $j$. So each $D_{j}$ is satisfied.
+Hence $C_{i}\lor D_{j}$
+is satisfied by $v$ for all $i$ and $j$.
 
 This concludes the proof in one direction.
 
 The other direction requires a bit more work. Mostly it's the same
-reasoning in reverse, we have `v` satisfy `S'`. Then it must satisfy all
-`C[i]` or all `D[j]`. In the first case, we extend `v` to be
-`v(p)=False`; and in the latter case, we extend `v` to be `v(p) = True`.
+reasoning in reverse, we have $v$ satisfy $S'$. Then it must satisfy all
+$C_{i}$ or all $D_{j}$. In the first case, we extend $v$ to be
+$v(p)=\bot$ (= False); and in the latter case, we extend $v$ to be
+$v(p) = \top$ (= True).
 This sketches the other direction. (End of proof)
+
+**Resolution Rule Algorithm.**
+Given a set of clauses `S` and a literal `p`, produce a new set of
+clauses `S'` which do not have `p` occuring in any clause.
+
+_Step 1._ Filter out the set `Cs` which has `p` occuring positively, and
+make sure each element `Ci` in `Cs` does not have `p` occuring in it.
+
+_Step 2._ Filter out the set `Ds` which has `not p` occuring, and make
+sure each element `Dj` in `Ds` does not have `not p` occuring in it.
+
+_Step 3._ Assemble the set `S' = [Or Ci Dj | Ci <- Cs, Dj <- Ds]` of all
+pairs of elements of the sets we obtained from the first two
+steps. Return it and terminate the algorithm.
+
+### Implementation
 
 The implementation is a little sloppy but straightforward:
 
@@ -462,6 +510,8 @@ resolutionRule clauses =
       (_, p) = Data.List.minimum $ map (findBlowup clauses) pvs
   in resolveOn p clauses
 ```
+  
+<a name="davis-putnam-algorithm" />
 
 ## The Davis-Putnam Algorithm
 
@@ -837,6 +887,9 @@ things work &mdash; only in America!).
   "An efficient algorithm for unit-propagation".
   In _Proceedings of the Fourth International Symposium on Artificial Intelligence and Mathematics_ (1996).
   [Eprint](http://www.cfdvs.iitb.ac.in/download/Docs/verification/papers/sat/original-papers/aim96.pdf)
+- Tanbir Ahmed,
+  "An Implementation of the DPLL Algorithm".
+  [Master's Thesis](http://users.encs.concordia.ca/~ta_ahmed/ms_thesis.pdf), 2009.
 
 ## Changelog
 Mar  8, 2015: Fixed typos.
@@ -844,3 +897,19 @@ Mar  8, 2015: Fixed typos.
 Feb 27, 2015: Added some more explanation in the comments.
 
 Feb 15, 2015: Initial version.
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
