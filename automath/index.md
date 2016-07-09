@@ -20,7 +20,7 @@ compared to modern theorem provers, but provides zero
 automation. (Another reason why "assembly language" is an apt metaphor.)
 
 <ul>
-{% for post in site.categories.automath %}
+{% for post in site.categories.Automath %}
     <li>
       <a href="{{ post.url }}">{{ post.title }}</a>, posted {{ post.date | date:"%-d %B %Y" }}
     </li>
