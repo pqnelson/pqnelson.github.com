@@ -123,6 +123,18 @@ table th {
     font-weight: normal;
 }
 
+table.inference td.conclusion {
+    border: 0px;
+    text-align: center;
+}
+table.inference tr {
+    border-top: 0px;
+}
+table.inference th {
+    border-width: 0px 0px 1px 0px;
+    border-bottom: 1px solid black;
+}
+
 @media screen and (max-width: 480px) {
   body {
     font-size:16px;

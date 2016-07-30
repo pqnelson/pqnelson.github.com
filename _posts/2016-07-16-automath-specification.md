@@ -362,10 +362,10 @@ derivable according to the following proof system:
 
 <ul>
 <item>
-<table>
+<table class="inference">
 <tbody>
-  <tr style="border-top: 0px;">
-    <th style="border-width: 0px 0px 1px 0px; border-bottom: 1px solid black;">
+  <tr>
+    <th>
       &nbsp;
     </th>
     <th rowspan="2" style="border: 0px;">
@@ -373,7 +373,7 @@ derivable according to the following proof system:
     </th>
   </tr>
   <tr>
-    <td style="border: 0px;">
+    <td class="conclusion">
       ⊢ τ : κ
     </td>
   </tr>
@@ -382,10 +382,10 @@ derivable according to the following proof system:
 </item>
 
 <item>
-<table>
+<table class="inference">
 <tbody>
-  <tr style="border-top: 0px;">
-    <th style="border-width: 0px 0px 1px 0px; border-bottom: 1px solid black;">
+  <tr>
+    <th>
       <i>Γ</i> ⊢ <i>A</i> : <i>B</i>
     </th>
     <th rowspan="2" style="border: 0px;">
@@ -393,16 +393,16 @@ derivable according to the following proof system:
     </th>
   </tr>
   <tr>
-    <td style="border: 0px;"><i>Γ</i>, <i>x</i>:<i>A</i> ⊢ <i>x</i>:<i>A</i></td>
+    <td class="conclusion"><i>Γ</i>, <i>x</i>:<i>A</i> ⊢ <i>x</i>:<i>A</i></td>
   </tr>
 </tbody>
 </table>
 </item>
 <item>
-<table>
+<table class="inference">
 <tbody>
-  <tr style="border-top: 0px;">
-    <th style="border-width: 0px 0px 1px 0px; border-bottom: 1px solid black;">
+  <tr>
+    <th>
       <i>Γ</i>, <i>x</i>:<i>A</i> ⊢ <i>B</i> : <i>C</i>
     </th>
     <th rowspan="2" style="border: 0px;">
@@ -410,7 +410,7 @@ derivable according to the following proof system:
     </th>
   </tr>
   <tr>
-    <td style="border: 0px;">
+    <td class="conclusion">
       <i>Γ</i> ⊢ (λ<i>x</i>:<i>A</i>.<i>B</i>) : (λ<i>x</i>:<i>A</i>.<i>C</i>)
     </td>
   </tr>
@@ -418,10 +418,10 @@ derivable according to the following proof system:
 </table> 
 </item>
 <item>
-<table>
+<table class="inference">
 <tbody>
-  <tr style="border-top: 0px;">
-    <th style="border-width: 0px 0px 1px 0px; border-bottom: 1px solid black;">
+  <tr>
+    <th>
       <i>Γ</i> ⊢ A : (λ<i>x</i>:<i>C</i>.<i>D</i>)
       &nbsp;&nbsp;&nbsp;&nbsp;
       <i>Γ</i> ⊢ <i>B</i>:<i>C</i>
@@ -431,7 +431,7 @@ derivable according to the following proof system:
     </th>
   </tr>
   <tr>
-    <td style="border: 0px;">
+    <td class="conclusion">
       <i>Γ</i> ⊢ (<i>A</i> <i>B</i>) : <i>D</i>[<i>x</i>:=<i>B</i>]
     </td>
   </tr>
@@ -439,10 +439,10 @@ derivable according to the following proof system:
 </table> 
 </item>
 <item>
-<table>
+<table class="inference">
 <tbody>
-  <tr style="border-top: 0px;">
-    <th style="border-width: 0px 0px 1px 0px; border-bottom: 1px solid black;">
+  <tr>
+    <th>
       <i>Γ</i> ⊢ <i>A</i> : <i>B</i>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <i>Γ</i> ⊢ <i>C</i>:<i>D</i>
@@ -452,7 +452,7 @@ derivable according to the following proof system:
     </th>
   </tr>
   <tr>
-    <td style="border: 0px;">
+    <td class="conclusion">
       <i>Γ</i>, <i>x</i>:<i>C</i> ⊢ <i>A</i> : <i>B</i>
     </td>
   </tr>
@@ -460,10 +460,10 @@ derivable according to the following proof system:
 </table> 
 </item>
 <item>
-<table>
+<table class="inference">
 <tbody>
-  <tr style="border-top: 0px;">
-    <th style="border-width: 0px 0px 1px 0px; border-bottom: 1px solid black;">
+  <tr>
+    <th>
       <i>Γ</i> ⊢ <i>A</i> : <i>B</i>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <i>Γ</i> ⊢ <i>C</i>:<i>D</i>
@@ -473,7 +473,7 @@ derivable according to the following proof system:
     </th>
   </tr>
   <tr>
-    <td style="border: 0px;">
+    <td class="conclusion">
       <i>Γ</i> ⊢ <i>A</i> : <i>C</i>
     </td>
   </tr>
