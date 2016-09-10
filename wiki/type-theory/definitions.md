@@ -152,3 +152,9 @@ perform any delta reductions!
 - Herman Geuvers and Robert Nederpelt,
   _Type Theory and Formal Proof_.
   Cambridge University Press, 2014.
+- Paula Severi and Erik Poll,
+  "Pure Type Systems with Definitions".
+  [Eprint](https://www.cs.ru.nl/E.Poll/papers/dpts.pdf)
+- Fairouz Kamareddine, Twan Laan, Rob Nederpelt, 
+  _A Modern Perspective on Type Theory_.
+  Springer, 2005. Specifically Chapter 8 "Pure Type Systems with definitions".
