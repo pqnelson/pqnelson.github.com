@@ -44,9 +44,25 @@ foundations of mathematics, and (2) for programming languages. And when
 one attains supreme perfect enlightenment, one realizes the [non-duality
 of these paths](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence).
 
+In practice, most type checkers and proof assistants have
+[definitions](/wiki/type-theory/definitions), which are seldom discussed
+in the literature. They are very similar to judgments, but introduce
+constants and "macros" (abbreviations depending on parameters).
+
 # References
 
 - Benjamin C. Pierce,
   _Types and Programming Languages_.
   MIT Press (2002). Probably the best introduction to the Lambda Cube,
   oriented towards programmers.
+- Rob Nederpelt and Herman Geuvers,
+  _Type Theory and Formal Proof: An Introduction_.
+  Cambridge University Press (2014).
+  An excellent introduction for mathematicians to the lambda cube, and
+  specifically focuses on how type theory applies to the foundations of
+  mathematics.
+- Herman Geuvers,
+  "Introduction to Type Theory".
+  Lecture notes,
+  [eprint](http://www.cs.ru.nl/~herman/onderwijs/provingwithCA/paper-lncs.pdf)
+  (2008), 57 pages.

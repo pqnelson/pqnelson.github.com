@@ -21,6 +21,9 @@ following:
 <a style="text-decoration:none;" title="Simply Typed Lambda Calculus" href="/wiki/type-theory/lambda-cube/simply-typed-lambda-calculus">λ→</a>-------λΠ
 </pre>
 
+The "floor model" is `λ→`, the simply-typed lambda calculus.
+We have the following different "dimensions" to the lambda cube:
+
 - `λ2`, a.k.a. "System F", allows for polymorphism (c.f., Pierce _TAPL_ ch.23)
 - <code>λ<u>ω</u></code> allows for types depending on types (or "type
   operators" and "kinding", c.f. Pierce's _TAPL_ ch.29), and 

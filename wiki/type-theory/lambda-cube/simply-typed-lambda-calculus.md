@@ -213,3 +213,44 @@ has no terms.
    `Γ ⊢ t : T→R` and `Γ ⊢ t' : T`.
 
 _Proof:_ Immediate from the definition of the typing relation. (End of Proof)
+
+**Progress Theorem.**
+Suppose `t` is a closed, well-typed term (i.e., we have `⊢ t : T` for
+some type `T`).
+Then either `t` is a value, or there is some `t'` with <code>t</code>
+&#10230; <code>t'</code>.
+(End of Theorem)
+
+_Proof._ By induction typing derivations. We see (T-Var) cannot
+contribute to this, nor can (T-Abs) --- both involve terms that cannot
+be closed.
+
+We are left with (T-App) as the only case we need to consider, where
+<code>t = t<sub>1</sub> t<sub>2</sub></code>
+with <code>⊢ t<sub>1</sub> : T<sub>11</sub> &rarr; T<sub>12</sub></code>
+and <code>⊢ t<sub>2</sub> : T<sub>11</sub></code>.
+
+The inductive hypothesis tells us either <code>t<sub>1</sub></code> is a
+value, or <code>t<sub>2</sub></code> is a value (or both are values). We
+must examine these cases each in turn.
+
+- If <code>t<sub>1</sub></code> can take a step, then (E-App1) applies to `t`
+- If <code>t<sub>2</sub></code> can take a step, then (E-App2) applies
+  to `t`.
+- If both <code>t<sub>1</sub></code> and <code>t<sub>2</sub></code> are
+  values, then the inversion lemma tells us <code>t<sub>1</sub></code>
+  takes the form <code>λx:T<sub>11</sub> . t<sub>12</sub></code>, hence
+  (E-AppAbs) applies to `t`.
+
+(End of Proof)
+
+**Preservation Theorem.**
+If `Γ ⊢ t:T` and <code>t</code> &#10230; <code>t'</code>,
+then `Γ ⊢ t':T`.
+(End of Theorem)
+
+_Proof._ Again, by induction on a derivation of `Γ ⊢ t:T`.
+
+- **Case** (T-Var):
+- **Case** (T-Abs):
+- **Case** (T-App):
