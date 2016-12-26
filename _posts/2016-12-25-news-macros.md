@@ -2,8 +2,8 @@
 layout: post
 title: News Macros for Emacs
 published: true
-quote: "Walking on water and developing software from a specification are easy if both are frozen."
-quoteSource: Edward V. Berard, <i>Essays on object-oriented software engineering</i> (1993)
+quote: "One of the greatest threats to freedom in the world is propaganda."
+quoteSource: Douglas S. Freeman, as recounted in David E. Johnson's <i>Douglas Southall Freeman</i> (2002)
 tags: [Emacs]
 ---
 
