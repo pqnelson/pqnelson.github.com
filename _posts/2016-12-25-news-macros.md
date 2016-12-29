@@ -12,7 +12,8 @@ tags: [Emacs]
 ## Problem Statement
 
 Reading the news seems to be a thing of the past: now we have to
-_research_ the news.
+_research_ the news. To jump to the solution, see the section <a
+href="#quickstart">How to use this thing?</a>
 
 ## Outline of a Solution
 
@@ -91,13 +92,14 @@ tag the keywords, so it becomes a matter of parsing the HTML for certain
 tags.
 
 It'd be really nice if I could (in org-mode):
+
 0. write my outline by subject
 0. simply paste in links as I read articles and determine they are useful, then
 0. after I'm done, run a single command that will
    0. look for raw links (i.e., ones that are not org-mode link
       constructs), and for each link 
-   1. download the article, then
-   2. replace the raw link with an org-mode link that schematically looks like
+   0. download the article, then
+   0. replace the raw link with an org-mode link that schematically looks like
       `[[url][article title]]`.
 
 This requires writing some macros to intelligently download articles,
@@ -273,18 +275,31 @@ The methods would vary depending on the news source, e.g.,
 ```elisp
 (defmethod published ((s news--source) dom)
   (og-published dom))
-
-(defmethod published ((s washingtonpost) dom)
-  (dom-attr (dom-elements dom 'itemprop "datePublished")
-            'content))
-
-;; etc.
 ```
   
-Adding a new news source amounted to extending `news--source`, and
-adding a dispatch method to `url->source`, then implementing the desired
-extraction methods -- the `(defmethod published ((s my-source) dom) ...)`
-function, for example.
+## Adding a new News source
+
+You can add a new news-source using the macro `(dsf-defsource host-str
+methods*)`. For example, _The Economist_ is handled with the command:
+
+```elisp
+(dsf-defsource "economist.com"
+  ((:published (dom)
+    (or (dom-attr (dom-by-tag dom 'time) 'datetime) ; published articles
+        (sailthru-date dom))))) ; blog articles
+```
+
+The methods currently accepted are `:published`, `:title`, and `:tags`.
+
+- `:published` is expected to produce an ISO 8601 datetime string
+  representing when the article was published
+- `:title` is expected to produce a string containing the article's
+  title
+- `:tags` is expected to produce a list of acceptable strings suitable
+  to be org-mode tags.
+
+**Caveat for Tags:** If you are implementing a `:tags` method for your
+news source, be sure to call `(mapcar 'string->tags ...)`.
 
 # Org-mode Tags
 
@@ -297,9 +312,10 @@ instead of "Parker, Brett", and `:politics_and_government:` instead of
 "Politics and Government".
 
 ```elisp
-(defun nytimes.com/tags (dom)
-  (mapcar 'meta-tag/content
-          (dom-elements dom 'property "article:tag")))
+(defun nytimes/tags (dom)
+  (mapcar 'nytimes.tag/normalize
+          (mapcar 'meta-tag/content
+                  (dom-elements dom 'property "article:tag"))))
 ```
 
 For the New York Times, in particular, we need to do quite a bit of
@@ -309,6 +325,82 @@ only suffixes they keep track of are "Jr.", "Sr.", and roman numerals.
 The sordid details, thoroughly uninteresting, may be found in the
 [source code](https://github.com/pqnelson/dsf-news/blob/master/dsf-news.el)
 
-Actually implementing this has yet to be done --- extracting the tags
-has been accomplished, but adding them to the org-mode file is quite a
-feat. 
+## Generically transforming strings to tags
+
+To transform a given string, like "Donald J. Trump", to an acceptable
+org-mode tag, I've written a handly function `string->tag`. It removes
+any unacceptable characters (like periods, dashes, etc.), then replaces
+whitespace with underscores. Finally it makes the string lower-case (for
+consistency). Hence `(string->tag "Donald J. Trump")` produces
+`donald_j_trump`.
+
+If you are implementing a `:tags` method for your news source, be sure
+to call `(mapcar 'string->tags ...)`.
+
+# How to use this thing?
+<a id="quickstart"></a>
+
+**Step 1: "Install" `dsf-news`.**
+Simply call `git clone https://github.com/pqnelson/dsf-news` into some
+directory where your local emacs can load it. This may require
+explicitly adding, e.g., `(load-file "~/src/dsf-news/dsf-news.el")` and
+adding a `(require 'dsf-news)` lines in your `~/.emacs` file.
+
+**Step 1.1: Make sure you have dependencies.**
+Ubuntu users will run into problems because Ubuntu doesn't package
+`dom.el` alongside the other elisp files. So you may have to also
+download
+[dom.el](https://raw.githubusercontent.com/emacs-mirror/emacs/master/lisp/dom.el).
+The other dependencies are pre-loaded in GNU-Emacs 24 (or higher).
+
+**Step 2: Create an org file for the notes.**
+I usually keep track of the news in `~/news/news.org`. (Conveniently,
+this is where I download the articles as well.)
+
+**Step 3: Start writing.**
+You can start writing notes on the news. This amounts to creating new
+headlines for each new story, and within a story listing (in
+chronological order) the articles on the story. For example:
+
+```
+* killer flying robots
+- http://www.politico.com/story/2016/12/drones-military-technology-trump-232933
+  - Trump will decide how to handle increasingly intelligent autonomous
+    killing machines
+  - May trigger "killer robot arms race"
+* Cartoons
+- https://www.washingtonpost.com/lifestyle/the-story-behind-the-sudden-cancellation-of-adult-swims-trump-loving-comedy-show/2016/12/23/ed9e2e3a-c3c8-11e6-8422-eac61c0ef74d_story.html?utm_term=.873331ea8217
+  - No new cartoons :(
+```
+
+We then "expand the citations" by calling `expand-citations`. This
+replaces the raw URLs with org-mode links to the articles, whose
+description are the article titles, the source in parenthetics after the
+link, then the publication datetime. For our example:
+
+
+```
+* killer flying robots
+- [[http://www.politico.com/story/2016/12/drones-military-technology-trump-232933][Killer robots await Trump’s verdict]] (politico.com) <2016-12-25T07:38-0500>
+  - Trump will decide how to handle increasingly intelligent autonomous
+    killing machines
+  - May trigger "killer robot arms race"
+* Cartoons
+- [[https://www.washingtonpost.com/lifestyle/the-story-behind-the-sudden-cancellation-of-adult-swims-trump-loving-comedy-show/2016/12/23/ed9e2e3a-c3c8-11e6-8422-eac61c0ef74d_story.html][The story behind the sudden cancellation of Adult Swim’s Trump-loving comedy show]] (washingtonpost.com) <2016-12-23T02:34-500>
+  - No new cartoons :(
+```
+
+**Suggestion 0: Use Wikipedia's Article-Title conventions.**
+Wikipedia has put a lot of thought into
+[article titles](https://en.wikipedia.org/wiki/Wikipedia:Article_titles)
+which seems well-thought, especially regarding [events](https://en.wikipedia.org/wiki/Wikipedia:Naming_conventions_(events)).
+
+**Suggestion 1: Alphabetize the Stories.**
+This is what Dr Freeman did, and I tend to agree. Having established a
+consistent convention for naming the stories, it's easier to jump to the
+location desired.
+
+**Suggestion 2: Inside a story, list the references chronologically.**
+The articles will annotate themselves with their publication date, which
+makes sorting quick. But by ordering them chronologically, you can
+obtain at a glance how the event unfolded.
