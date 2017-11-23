@@ -153,6 +153,15 @@ good. That's one possibility to consider. This may cause problems for
 _P_ &gt; 6/7 or _P_ &lt; 1/7, only the latter has happened in this
 millenium...but there's still time.) 
 
+## Addendum: Bayesian Testing Pitcher Performance
+
+I have written a [post]({% post_url 2017-11-22-bayesian-testing-pitchers %})
+giving a more intuitive approach to testing pitcher performance, using
+Bayesian inference while treating the pitcher's success or failure like
+a "coin flip". Bayesian inference provides a rigorous way to bound the
+"bias" of the coin (or, for us, the successfulness of the pitcher) based
+on previous trials.
+
 <a name="case-study-orioles" />
 
 ## Case Study: Orioles Pitcher for August 7, 2015
