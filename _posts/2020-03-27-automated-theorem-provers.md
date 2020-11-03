@@ -12,6 +12,45 @@ tags: [Automated Theorem Prover]
 This question pops up every month or so, and I thought I'd write an
 answer in one place (because I end up repeating the answer).
 
+The guiding philosophy is to learn the _theory_ and _implementation_
+simultaneously.
+
+We could think of a theorem prover as a sort of "interpreter" based on a
+foundations of mathematics. There are three main camps to the
+foundations of mathematics: first-order logic + set theory, type theory,
+and higher-order logic.
+
+# Terminology
+
+Before we get started, let's just clarify some terminology. Some random
+people on the internet insist "automated theorem provers" differ from
+"proof checkers" by having some "automation". This vague claim lacks any
+basis in reality.
+
+A **"proof assistant"** is a computer program the user interacts with to
+construct or verify a proof.
+
+Many, but not all, proof assistants expect user input in the form of
+**"tactics"** which manipulate the proof obligations (the claims left to
+be proven). Such proof obligations are generically referred to as
+**"goals"**.
+
+The **"proof engine"** interacts with the user via tactics, and informs the
+user of any remaining goals. Then, under the hood, the proof engine uses
+automation to construct a **"proof object"** which is then checked by a
+small **"proof checker"**.
+
+This is the schematic idea underlying automated theorem provers, more or
+less. There are variations on this theme. Sometimes there is no clear
+cut distiction between the proof engine and the checker, they're blurred
+into a giant monolothic program.
+
+I drew these terminological distinctions from:
+
+- H. Geuvers,
+  [Proof assistants: History, ideas and future](https://www.ias.ac.in/article/fulltext/sadh/034/01/0003-0025).
+  _Sadhana_ **34** no.1 (2009) 3--25.
+
 # Getting Started
 
 The first book I recommend reading:
@@ -143,6 +182,14 @@ framework"...a sort of language we can use to describe any logical
 system. This uses a profound connection called the Curry-Howard
 Isomorphism. 
 
+Loosely, the Curry-Howard isomorphism comes in several flavors. For
+logical frameworks, propositions are represented by types. An
+implication connective is represented by a dependents type (a
+generalization of the function type), _modus ponens_ is encoded by
+function application. Other type operators encode other logical
+connectives, and type theory gives us basic rules of inference for free.
+(It turns out logical frameworks can encode _any_ logic we want.)
+
 There are two major logical frameworks I think are worth looking into
 further: LF and Automath.
 
@@ -215,7 +262,10 @@ introduced in:
 ## Calculus of Constructions
 
 The "highest corner" of the lambda cube is called the calculus of
-constructions. Pierce's TAPL is a decent introduction to it. 
+constructions. Pierce's TAPL is a decent introduction to it.
+
+Instead of merely "encoding" a logic (as a logical framework does), the
+calculus of constructions handles a "deep embedding" of logics. 
 
 As for _implementing_ a theorem prover based on it, a good paper:
 
@@ -227,8 +277,35 @@ The famous theorem prover based on the Calculus of Constructions is, of
 course, Coq. For its foundations and usage, see:
 
 - Pierre Castéran and Yves Bertot,
-  _Interactive Theorem Proving and Program Development: Coq’Art: The Calculus of Inductive Constructions_
+  _Interactive Theorem Proving and Program Development: Coq’Art: The Calculus of Inductive Constructions_.
   Springer, 2004.
+
+## Homotopy Type Theory (briefly)
+
+This is the new kid on the block, invented some time around 2006 (though
+its origins can be dated back to the days of yore, i.e., 1998).
+Initially HoTT (as Homotopy Type Theory is called) used Coq as its
+preferred theorem prover, then Lean took over.
+
+The theory underpinning HoTT is rather complicated. The simplest
+version: when we have an equality `t=u`, we have a proposition. The
+Curry-Howard correspondence encodes this as a type. HoTT replaces this
+equality with a slightly weaker equivalence relation. As far as I can
+tell, a type is viewed as a topological space, and the weaker
+equivalence relation is encoded as a claim of homotopic equivalence.
+
+There are still some difficulties with HoTT, and despite the hype I'm
+not certain it's the panacea its advocates claim. (The difficulties
+surrounding HoTT have to do with models of it, cubical set theory, which
+I'm certain will be ironed out in the coming years.) I've yet to see any
+paper discuss explicitly _how_ HoTT simplifies theorem prover
+implementations, or is a boon. There is a _vast_ literature on HoTT, so
+I can't say such a paper doesn't exist: I just haven't found it yet.
+
+The best single book (and the only book) on the topic of HoTT seems to
+be [the HoTT book](https://homotopytypetheory.org/book/). It's best if
+you are familiar with the Calculus of Constructions before reading this
+book.
 
 # Higher Order Logic
 
