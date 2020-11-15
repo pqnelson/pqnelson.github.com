@@ -154,9 +154,12 @@ table.inference th {
 @media screen and (max-width: 480px) {
   body {
     font-size:16px;
+    background: white;
   }
   main {
     background: white;
+    border: none;
+    max-width: 100%;
   }
 
   #downloads {
