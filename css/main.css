@@ -38,31 +38,6 @@ h5 + p {
     display: inline;
 }
 
-main {
-    background: white;
-    border: 1px solid #ccc;
-    line-height: 1.5em;
-    max-width: 46em;
-}
-@media screen and (min-width: 480px) {
-    main {
-        padding: 1em;
-    }
-}
-@media screen and (min-width: 768px) {
-    main {
-        margin: 1.5em auto;
-        padding: 1.5em;
-    }
-}
-@media screen and (min-width: 992px) {
-    main {
-        margin: 1.5em auto;
-        padding: 3em 3em 1.5em 3em;
-    }
-}
-
-
 blockquote {
     margin-left: 10px;
     padding-left: 10px;
@@ -95,33 +70,52 @@ pre code, pre tt {
     background-color: transparent;
     border: medium none;
 }
+main {
+    background: white;
+    border: 1px solid #ccc;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    max-width: 41em;
+}
 
 footer {
     background: white;
+    font-size: 1.1em;
     margin: 0.5em auto 3em auto;
 }
-
 @media screen and (min-width: 480px) {
+    main {
+        padding: 1em;
+    }
     footer {
         border: 1px solid #ccc;
-        max-width: 46em;
+        max-width: 41em;
         padding: 0.25em 1em 0.5em 1em;
     }
 }
 @media screen and (min-width: 768px) {
+    main {
+        margin: 1.5em auto;
+        padding: 1.5em;
+    }
     footer {
         border: 1px solid #ccc;
-        max-width: 46em;
+        max-width: 41em;
         padding: 0.25em 1.5em 0.5em 1.5em;
     }
 }
 @media screen and (min-width: 992px) {
+    main {
+        margin: 1.5em auto;
+        padding: 3em 3em 1.5em 3em;
+    }
     footer {
         border: 1px solid #ccc;
-        max-width: 46em;
+        max-width: 41em;
         padding: 0.25em 3em 0.5em 3em;
     }
 }
+
 @media screen and (max-width: 480px) {
     footer {
         border-top: 1px solid #777;
@@ -179,7 +173,7 @@ table.inference th {
 
 @media screen and (max-width: 480px) {
   body {
-    font-size:16px;
+    font-size: 1.1em;
     background: white;
   }
   main {
@@ -213,9 +207,5 @@ table.inference th {
     font-family: Georgia,"Times New Roman",Times,serif;
     font-weight:bold;
     font-size: 100%;
-  }
-
-  code, pre {
-    font-size: 12px;
   }
 }
