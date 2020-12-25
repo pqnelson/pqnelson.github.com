@@ -16,17 +16,20 @@ supergravity.*
 So, before we begin the proof, we recall that canonical $N=1$
 supergravity has constraints for the supersymmetry. One of them we will
 use, namely
+
 \begin{equation}
 \bar{S}\_{A'} = \epsilon^{abc}e\_{AA'a}\mathcal{D}\_{b}\psi^{A}\_{c} +
 4\pi G\_{N}\hbar\psi^{A}\_{a}\frac{\delta}{\delta e^{AA'}\_{a}}
 \end{equation}
+
 where $\mathcal{D}\_{b}$ is the torsion-free covariant derivative. 
 
 Why not the other constraint for SUSY? Because it's of the form
+
 \begin{equation}
-S\_{A}\sim\mathcal{D}\_{j}\frac{\delta}{\delta\psi\_{jA}}
-+ \frac{\delta}{\delta\psi_{jB}}(\mbox{some mess})^{ABj}.
+S\_{A}\sim\mathcal{D}\_{j}\frac{\delta}{\delta\psi\_{jA}} + \frac{\delta}{\delta\psi_{jB}}(\mbox{some mess})^{ABj}.
 \end{equation}
+
 Observe for a purely bosonic solution, the functional derivatives with
 respect to the gravitino variable will kill the wave functional
 automatically. So it's trivially satisfied.

@@ -42,8 +42,8 @@ small **"proof checker"**.
 
 This is the schematic idea underlying automated theorem provers, more or
 less. There are variations on this theme. Sometimes there is no clear
-cut distiction between the proof engine and the checker, they're blurred
-into a giant monolothic program.
+cut distinction between the proof engine and the checker, they're blurred
+into a giant monolithic program.
 
 I drew these terminological distinctions from:
 
@@ -338,7 +338,7 @@ Harrison has put a lot of his [publications
 online](https://www.cl.cam.ac.uk/~jrh13/papers/index.html), and a good chunk are
 related to his HOL Light prover.
 
-As far as implemention, there is the classic (but out-of-print and
+As far as implementation, there is the classic (but out-of-print and
 horribly expensive) book:
 
 - MJC Gordon and TF Melham (eds.),

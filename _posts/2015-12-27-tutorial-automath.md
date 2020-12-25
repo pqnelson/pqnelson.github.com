@@ -12,9 +12,9 @@ parentURL: /automath/
 
 I've been studying the history of theorem provers (I intend to write a
 post summarizing the amazing history), and I've been stuck on
-Automath. It's a peculiar langauge that closely resembles assembly code,
+Automath. It's a peculiar language that closely resembles assembly code,
 but has idiosyncratic notions. I'll try to unravel the basics of
-Automath in this post, and walkthrough some example code snippets.
+Automath in this post, and walk-through some example code snippets.
 
 # The Basics
 
