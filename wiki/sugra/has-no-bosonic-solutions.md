@@ -22,7 +22,7 @@ use, namely
 4\pi G\_{N}\hbar\psi^{A}\_{a}\frac{\delta}{\delta e^{AA'}\_{a}}
 \end{equation}
 
-where $\mathcal{D}\_{b}$ is the torsion-free covariant derivative. 
+where $\mathcal{D}\_{b}$ is the torsion-free covariant derivative.
 
 Why not the other constraint for SUSY? Because it's of the form
 
