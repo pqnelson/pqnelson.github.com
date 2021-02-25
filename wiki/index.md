@@ -23,3 +23,6 @@ basis for exercises.
   - [Supergravity](./sugra/)
   - [Quantum Field Theory](./qft/)
 - [Type Theory](./type-theory/)
+- [Computer Science](./comp-sci/)
+  - [Hoare Logic](./comp-sci/hoare-logic/)
+  - [Separation Logic](./comp-sci/separation-logic/)
