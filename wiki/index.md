@@ -26,3 +26,4 @@ basis for exercises.
 - [Computer Science](./comp-sci/)
   - [Hoare Logic](./comp-sci/hoare-logic/)
   - [Separation Logic](./comp-sci/separation-logic/)
+  - [C Programming](./comp-sci/c/)

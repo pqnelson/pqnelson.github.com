@@ -10,3 +10,4 @@ The C Programming Language inspired most modern languages still used
 today.
 
 - [Modular Programming](./modular-programming)
+- [Struct Polymorphism](./struct-polymorphism)
