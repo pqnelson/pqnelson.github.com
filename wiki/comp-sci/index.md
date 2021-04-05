@@ -11,3 +11,4 @@ parentURL: /wiki/
   - [Separation Logic](./separation-logic/)
 - Programming Languages
   - [C](./c/)
+  - [Lisp](./lisp/)

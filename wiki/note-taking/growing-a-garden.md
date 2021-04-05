@@ -8,7 +8,9 @@ parentURL: /wiki/note-taking/
 
 Another approach to taking notes, which helps with marshalling resources
 for further reference or future study, is to grow a digital garden. I've
-noticed Emacs's org-mode is quite good at organizing such notes.
+noticed Emacs's org-mode is quite good at organizing such notes. (See,
+e.g., [my org-notes](/org-notes/index.html) for how I've experimented
+with org-mode.)
 
 This approach dates back to 1998, Mark Bernstein introduced the notion
 of a ["hypertext garden"](http://www.eastgate.com/garden/Enter.html).

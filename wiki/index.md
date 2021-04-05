@@ -27,4 +27,5 @@ basis for exercises.
   - [Hoare Logic](./comp-sci/hoare-logic/)
   - [Separation Logic](./comp-sci/separation-logic/)
   - [C Programming](./comp-sci/c/)
+  - [Lisp](./comp-sci/lisp/)
 - [Note Taking](./note-taking/)

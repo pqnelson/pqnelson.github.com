@@ -16,7 +16,7 @@ already parsed the object language into the AST (which may be serialized
 as S-expressions). Lisp's [grammar](./grammar) is quite succinct and
 easily parsed.
 
-# Playground for Compilers
+# Playground for Compiler Writers
 
 For programmers who want to write compilers or interpreters, Lisp serves
 as a well-established object language for experiment. Before we can
