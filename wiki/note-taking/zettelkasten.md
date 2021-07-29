@@ -204,28 +204,16 @@ notes on math. The top-level part (or a fragment of it) looks like
 
 # Patterns
 
-## Thread of Examples for a definition
+## Species of Slip
 
-I've noticed, for math notes, I tend to make a definition part of a
-thread; e.g., `5.2/1 Def. Category` is the definition of a category.
-I tend to make a branch for a sequence of examples, e.g., `5.2/1a1 Set`,
-`5.2/1a2 FinSet`, `5.2/1a3 Vect`, etc.
+There are different "species" of slips in the Zettelkasten, and this
+varies person to person. For example, Luhmann had
+[hubs](https://zettelkasten.de/posts/zettelkasten-hubs/) which served as
+a sort of "table of contents" --- it lists links to relevant ideas/slips.
 
-## Structured Proofs as a Branch off of a theorem
-
-Similarly, theorems are part of a thread, e.g., 
-`5.1.1/7 Fundamental Theorem of Algebra`. Its proof is then written like
-a structured proof (in the sense of Lamport):
-
-- `5.1.1/7a` is the outline/roadmap of the proof
-- `5.1.1/7a1` is the first step (if it requires justification, it is
-  placed in the branch `5.1.1/7a1a` in a recursive manner)
-- `5.1.1/7a2` is the second step
-- `5.1.1/7a3` is the third step
-- ...and so on.
-
-If I think/find a second proof, I place it in a second branch
-`5.1.1/7b`, etc. (Seldom are there 26+ alternate proofs for a proposition.)
+We could easily imagine, for a truly huge Zettelkasten, the usefulness
+of hubs, and _hubs of hubs_. Quite a bit of hubbub may be avoided in
+this manner.
 
 ## Defer writing IDs while working through a text
 
@@ -250,6 +238,29 @@ permanent notes for the Zettelkasten, treat the kasten as if it were an
 need to define some background knowledge (e.g., a high school
 graduate-level understanding of stuff), otherwise you end up in an
 infinite regress (which is bad).
+
+## Thread of Examples for a definition
+
+I've noticed, for math notes, I tend to make a definition part of a
+thread; e.g., `5.2/1 Def. Category` is the definition of a category.
+I tend to make a branch for a sequence of examples, e.g., `5.2/1a1 Set`,
+`5.2/1a2 FinSet`, `5.2/1a3 Vect`, etc.
+
+## Structured Proofs as a Branch off of a theorem
+
+Similarly, theorems are part of a thread, e.g., 
+`5.1.1/7 Fundamental Theorem of Algebra`. Its proof is then written like
+a structured proof (in the sense of Lamport):
+
+- `5.1.1/7a` is the outline/roadmap of the proof
+- `5.1.1/7a1` is the first step (if it requires justification, it is
+  placed in the branch `5.1.1/7a1a` in a recursive manner)
+- `5.1.1/7a2` is the second step
+- `5.1.1/7a3` is the third step
+- ...and so on.
+
+If I think/find a second proof, I place it in a second branch
+`5.1.1/7b`, etc. (Seldom are there 26+ alternate proofs for a proposition.)
 
 # Anti-Patterns
 
