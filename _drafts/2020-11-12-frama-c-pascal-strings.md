@@ -81,6 +81,11 @@ PascalString_new(const char *str) {
 This code already is quite cavalier: what happens if one of the
 `malloc()` calls fails?
 
+**Remark.** Linux can overcommit on memory, making `malloc()` "never fail".
+Really, this just makes the function fail unexpectedly and in surprising
+ways. See, e.g., [`malloc()` never fails, it just...explodes?](https://comp.lang.c.narkive.com/dOyy3O94/malloc-never-fails-it-just-explodes)
+and [`malloc` never fails](https://scvalex.net/posts/6/). (End of Remark)
+
 Since this allocates the buffer for a copy of the string, we need to
 free it upon destruction.
 
