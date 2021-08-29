@@ -32,7 +32,7 @@ naive: ('a, 'b) ~> 'c == 'a ~> ('b ~> 'c)
 ```
 
 But if `f : ('a,'b) ~> 'c` and `curryF` is its curried form, then is
-`curryF val_a` going to trigger any side effects? 
+`curryF val_a` going to trigger any side effects?
 
 No! It's not until a second argument is supplied to `curryF` will impure
 side effects be triggered. This suggests the correct form should be
@@ -64,43 +64,65 @@ side gives us
 
 which gives us an isomorphism of an impure function type on the left,
 with a pure function on the right. We just christen the `unit ~> 'c`
-type as `IO 'c` (or, in Standard ML, it would be 
-`type 'c IO = IO of unit -> 'c`).
+type as `IO 'c` (or, in Standard ML, it would be
+`type 'c IO = IO of unit -> 'c`). Well, `IO` is reserved as a module
+name, so let's call it `JOB` instead.
 
 # We want Monads!
 
 Where are the `>>=` and `return` functions? Where are the monads? Where
 are the snowdens of yesteryear?
 
-We can implement monadic IO in a straightforward manner, using the
-result of Gordon's 1994 PhD thesis (table 9.1). Well, we patch his code
-so it works:
+For simplicity, we'll just try to wrap around `print : string -> unit`
+and `TextIO.inputN : TextIO.instream * int -> TextIO.vector`. These, uh,
+don't look like they match the `unit -> 'c` signature we were hoping
+for...so, what do we do?
+
+The trick: think of `print : string ~> unit` which would have its type
+be isomorphic to `string -> (unit ~> unit) = string -> unit JOB`. Similarly,
+`inputN : TextIO.instream * int ~> TextIO.vector` would have its type be
+isomorphic to (by Currying) `int -> (TextIO.instream ~> TextIO.vector)`.
+We see `TextIO.instream ~> TextIO.vector = TextIO.instream -> (unit ~> TextIO.vector)`.
+Thus `inputN' : int -> TextIO.instream -> TextIO.vector JOB` is an
+isomorphic Curried version; fixing the input stream to be `stdin` gives
+us a `getStr : int -> TextIO.vector JOB` function.
+
+In this manner, we can implement monadic IO in a straightforward manner.
+This is all found in the results of Gordon's 1994 PhD thesis (table
+9.1). Well, we patch his code so it works:
 
 ```sml
-infixr 1 >> >>=
+infix 1 >> >>=
 abstype 'a Job = JOB of unit -> 'a
 with
+    (* exec : 'a Job -> 'a *)
     fun exec (JOB f)  = f ()
+    (* return : 'a -> 'a Job *)
     fun return x      = JOB (fn _ => x)
+    (* (>>=) : 'a Job * ('a -> 'b Job) -> 'b Job *)
     fun (JOB f) >>= q = JOB (fn _ => exec (q (f ())))
+    (* getStr : int -> TextIO.vector Job *)
     fun getStr n      = JOB (fn _ => TextIO.inputN(TextIO.stdIn, n))
+    (* putStr : string -> unit Job *)
     fun putStr s      = JOB (fn _ => print s)
 end
 
+(* (>>) : 'a Job * 'b Job -> 'b Job *)
 fun p >> q  =  p >>= (fn _ => q);
 
+(* gettingLine : string -> string Job *)
 fun gettingLine s =
     getStr 1 >>= (fn c => if c = "\n"
                           then return(s)
                           else gettingLine (s^c));
 
+(* getLine : string Job *)
 val getLine = gettingLine "";
 
-val main =
+val main : unit Job =
     putStr "First name: " >> getLine >>= (fn first =>
     putStr "Second name: " >> getLine >>= (fn second =>
     putStr ("Hello "^first^" "^second^"\n")));
-
 (* exec main; *)
 ```
 
@@ -112,7 +134,7 @@ val main =
 I'm mulling over how to approach monadic coding in Standard ML. One of
 the reasons I'm doing this in Standard ML is, well, there's an austere
 beauty to Standard ML that I find in Lisp: Standard ML is a "bare bones"
-language which allows you to grow around. 
+language which allows you to grow around.
 
 But now that I've coded up monadic I/O (or, more precisely, have
 summarized the work others have done), I'm not sure how profitable it
@@ -149,7 +171,7 @@ similar performance hits.
 
 Together, these papers have been heralded as the alpha and omega on the
 subject of pure functional programming: it is performant only in lazy
-languages. 
+languages.
 
 - N.Pippenger, "Pure versus impure Lisp".
   _ACM Trans. Program. Lang. Syst._ **19**, 2 (1997) pp.223--238;
@@ -174,7 +196,7 @@ languages.
   using Standard ML modules, following Harper's blog post.
 - Stefan Kahrs,
   "First-Class Polymorphism for ML".
-  In: Sannella D. (eds) _Programming Languages and Systems — ESOP '94_. 
+  In: Sannella D. (eds) _Programming Languages and Systems — ESOP '94_.
   ESOP 1994. Lecture Notes in Computer Science, vol 788. Springer,
   Berlin, Heidelberg. https://doi.org/10.1007/3-540-57880-3_22 Eprint.
   - This is particularly interesting, an overlooked article which
