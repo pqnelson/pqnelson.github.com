@@ -79,13 +79,19 @@ don't look like they match the `unit -> 'c` signature we were hoping
 for...so, what do we do?
 
 The trick: think of `print : string ~> unit` which would have its type
-be isomorphic to `string -> (unit ~> unit) = string -> unit JOB`. Similarly,
-`inputN : TextIO.instream * int ~> TextIO.vector` would have its type be
-isomorphic to (by Currying) `int -> (TextIO.instream ~> TextIO.vector)`.
+be isomorphic to `string -> (unit ~> unit) = string -> unit JOB`. So we
+can encode `print` as a monadic function `putStr : string -> unit JOB`.
+
+Similarly, `inputN : TextIO.instream * int ~> TextIO.vector` would
+have its type be isomorphic to (by Currying)
+`int -> (TextIO.instream ~> TextIO.vector)`.
 We see `TextIO.instream ~> TextIO.vector = TextIO.instream -> (unit ~> TextIO.vector)`.
 Thus `inputN' : int -> TextIO.instream -> TextIO.vector JOB` is an
 isomorphic Curried version; fixing the input stream to be `stdin` gives
 us a `getStr : int -> TextIO.vector JOB` function.
+
+Converting these impure functions into monadic counter-parts requires
+similar "massaging" of type signatures to figure out how to implement them.
 
 In this manner, we can implement monadic IO in a straightforward manner.
 This is all found in the results of Gordon's 1994 PhD thesis (table
@@ -126,8 +132,12 @@ val main : unit Job =
 (* exec main; *)
 ```
 
-**Exercise 1.** Implement this monadic IO as a `struct`.
+**Exercise 1.** Prove the `>>=` and `return` functions we just
+implemented actually satisfies the monad laws.
 (End of Exercise 1)
+
+**Exercise 2.** Implement this monadic IO as a `struct`.
+(End of Exercise 2)
 
 # Conclusion: "More Monads! More Monads!"?
 
