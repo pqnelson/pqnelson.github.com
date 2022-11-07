@@ -12,15 +12,15 @@ algoritm underpinning the calculations...
 
 ## Math
 
-- [Notes on An Algebraic Formulation of Tangent Spaces]({{ site.url }}/assets/notebk/germs.pdf), 9 pages, 
+- [Notes on An Algebraic Formulation of Tangent Spaces]({{ site.url }}/assets/notebk/germs.pdf), 9 pages,
   specifically using germs.
-- [Introduction to Category Theory]({{ site.url }}/assets/notebk/introToCategoryTheory.pdf), 34 pages, 
+- [Introduction to Category Theory]({{ site.url }}/assets/notebk/introToCategoryTheory.pdf), 34 pages,
   a never-completed set of notes introducing category theory from the
   perspective of "Stuff, Structure, and Properties" ("neo-Structuralism"?).
 
 ### From Lectures
 
-- [Notes on Lie Groups and Algebra]({{ site.url }}/assets/notebk/lieGroupsAndAlgebras.pdf), 91 pages, 
+- [Notes on Lie Groups and Algebra]({{ site.url }}/assets/notebk/lieGroupsAndAlgebras.pdf), 91 pages,
   I took these notes from Albert Schwarz's lectures, any typos or errors
   are mines.
 - [Homotopy Theory]({{ site.url }}/assets/notebk/homotopyTheory.pdf),
@@ -29,15 +29,18 @@ algoritm underpinning the calculations...
 - [Applied Complex Analysis]({{ site.url }}/assets/notebk/appliedComplexAnalysis.pdf),
   53 pages, notes taken during Dmitry Fuchs's lectures on advanced
   complex analysis; errors are mine.
-  
+- [Differential Geometry of Curves and Surfaces]({{ site.url }}/assets/notebk/dg.pdf),
+  55 pages, notes taken during Derek Wise's lectures on differential
+  geometry of curves and surfaces; errors are mine.
+
 
 ## Physics
 
 - [Notes on Feynman Diagrams]({{ site.url }}/assets/notebk/feynman.pdf),
   32 pages, presents computing amplitudes from Feynman diagrams
-  algorithmically. 
+  algorithmically.
 - [Spontaneous Symmetry Breaking in Conformal Weyl Gravity]({{ site.url }}/assets/notebk/conformal.pdf),
-  9 pages, 
+  9 pages,
   term paper for Steve Carlip's course on general relativity
 - [Relativistic Quantum Mechanics]({{ site.url }}/assets/notebk/rqm.pdf),
   11 pages, how to mix special relativity and quantum mechanics, using
@@ -48,6 +51,15 @@ algoritm underpinning the calculations...
 - [Functional Methods in QFT]({{ site.url }}/assets/notebk/functionalQFT.pdf),
   25 pages, discusses "functional" approach to path integrals, and
   briefly how to determine Feynman rules.
+- [Newtonian Mechanics in a Nutshell]({{ site.url }}/assets/notebk/newton.pdf),
+  9 pages, nontechnical discussion of Newtonian mechanics, specifically
+  Newton's laws of motion.
+
+### From Lectures
 - [Notes on General Relativity]({{ site.url }}/assets/notebk/GR.pdf),
   82 pages, a rather "mathy" physics introduction to the
   subject. (Includes exercises!)
+- [Notes on Quantum Gravity]({{ site.url }}/assets/notebk/qg.pdf),
+  52 pages, discusses canonical approaches (both ADM and Ashtekar
+  variables), string theory, briefly discusses Causal Dynamical
+  Triangulations and Black Hole Thermodynamics; including "exercises".
