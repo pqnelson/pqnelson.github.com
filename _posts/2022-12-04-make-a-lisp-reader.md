@@ -325,6 +325,36 @@ Why ask when we can unit test!
 
 The test succeeds with flying colors.
 
+Want to implement a hashmap delimited by braces (like Clojure)? You can
+do it with reader macros!
+
+**Exercise 1:** Sketch out the code for a `ReaderMacroTransformer` which
+will take a `ReaderMacro`, then transform the output somehow. For
+example, how could we use the `ReaderMacro` instances to produce a hash
+map object?
+(End of Exercise 1)
+
+**Exercise 2:** Prove or find a counter-example, `ReaderMacros` form a
+monad.
+(End of Exercise 2)
+
+**Exercise 3:** How can we modify the design of the `SingleCharReaderMacro`
+class to guarantee it is bound in the Lisp Reader to the supplied character?
+(End of Exercise 3)
+
+**Exercise 4:** If the `AccumulatorReaderMacro` finds the Lisp Reader is
+finished _before_ the closing delimiter is found, then it will return
+the collection of values being accumulated. Is this a good design choice
+or not? If not, what should we do instead? If it is good design, then
+how do we indicate a list is runaway [i.e., not closed with a matching parentheses]?
+(End of Exercise 4)
+
+**Exercise 5:**
+Change the code to use the `LineNumberCounter` with the
+`AccumulatorReaderMacro` to track the starting line of the accumulated
+values, for runaway lists (or maps or vectors or whatever).
+(End of Exercise 5)
+
 # Conclusion
 
 We have sketched out how to implement a Lisp Reader using reader macros.
