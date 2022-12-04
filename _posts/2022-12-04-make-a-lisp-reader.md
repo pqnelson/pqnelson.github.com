@@ -90,7 +90,7 @@ public class NaiveReadTable {
 }
 ```
 
-Of course, Java being Java, the [actual code]() requires a few more
+Of course, Java being Java, the [actual code](https://github.com/pqnelson/LispReader/blob/master/src/main/java/com/github/pqnelson/NaiveReadTable.java) requires a few more
 details, but this is the essential idea of the naive reader algorithm.
 
 # Reader Macros
