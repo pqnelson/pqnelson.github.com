@@ -1,0 +1,18 @@
+digraph {
+    start[shape="box", style="rounded,filled", fillcolor="#0044ff22"];
+    end[shape="box", style="rounded,filled", fillcolor="#eddad5"];
+    eof[shape="diamond", style="", label="Is the Stream\nFinished?"];
+    whitespace[shape="diamond", style="", label="Is the character\n whitespace?"];
+    buildtoken[shape=box, style=rounded, label="Build a token"];
+    input[shape="parallelogram", style="", label="Read in a single character"];
+    macro[shape="diamond", style="", label="Is the character\nbound to a\nreader macro?"];
+    run[shape="box", style="rounded", label="Run the reader macro"];
+    start -> input;
+    input -> eof;
+    eof -> end[label="yes"];
+    eof -> whitespace[label="no"];
+    whitespace -> macro[label="no"];
+    whitespace -> input[label="yes"];
+    macro -> buildtoken[label="no"];
+    macro -> run[label="yes"];
+}
