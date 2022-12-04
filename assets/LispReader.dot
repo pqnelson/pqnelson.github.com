@@ -10,12 +10,12 @@ digraph {
     buildtoken[shape=box, style=rounded, label="Build a token"];
 
 
-    start -> input;
-    input -> eof;
+    start -> eof;
+    input -> macro;
     eof -> end[label="yes"];
-    eof -> macro[label="no"];
+    eof -> input[label="no"];
     macro -> whitespace[label="no"];
     macro -> run[label="yes"];
     whitespace -> buildtoken[label="no"];
-    whitespace -> input[label="yes"];
+    whitespace -> eof[label="yes"];
 }
