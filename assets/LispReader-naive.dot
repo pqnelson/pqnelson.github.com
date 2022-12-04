@@ -5,10 +5,10 @@ digraph {
     whitespace[shape="diamond", style="", label="Is the character\n whitespace?"];
     buildtoken[shape=box, style=rounded, label="Build a token"];
     input[shape="parallelogram", style="", label="Read in a single character"];
-    start -> input;
-    input -> eof;
+    start -> eof;
     eof -> end[label="yes"];
-    eof -> whitespace[label="no"];
+    eof -> input[label="no"];
+    input -> whitespace;
     whitespace -> buildtoken[label="no"];
-    whitespace -> input[label="yes"];
+    whitespace -> eof[label="yes"];
 }
