@@ -329,13 +329,25 @@ Want to implement a hashmap delimited by braces (like Clojure)? You can
 do it with reader macros!
 
 **Exercise 1:** Sketch out the code for a `ReaderMacroTransformer` which
-will take a `ReaderMacro`, then transform the output somehow. For
-example, how could we use the `ReaderMacro` instances to produce a hash
-map object?
+will take a `ReaderMacro`, then transform the output somehow. Arguably,
+we could imagine this summed up in a method
+`ReaderMacro ReaderMacroTransformerFactory(Function<Object,Object> transformOutput, ReaderMacro)`,
+which will compose the functions together producing a `ReaderMacro`
+instance. What properties would we like these `ReaderMacroTransformer`
+gadgets to satisfy?
+
+Dually, could we "precompose" by a function? That is, could we
+"transform" the `(Reader r, ReadTable t)` into another pair `(Reader r', ReadTable r')`
+before it is applied to the `ReaderMacro`? When would this be useful?
 (End of Exercise 1)
 
+**Exercise 1, Part (ii):** Write a `ReaderMacroTransformer` which will
+take an `AccumulatorReaderMacro` and form a `HashMap` from the list,
+interpreting the list as a sequence of `key-value` pairs.
+(End of Exercise 1.ii)
+
 **Exercise 2:** Prove or find a counter-example, `ReaderMacros` form a
-monad.
+functor. Does it form a monad?
 (End of Exercise 2)
 
 **Exercise 3:** How can we modify the design of the `SingleCharReaderMacro`
@@ -363,6 +375,11 @@ increasingly tempting to use the metalanguage [i.e., Java code] for a
 Lisp anonymous function as the Reader Macro. This is a natural "next
 step", but there is also power in preventing the user of the Lisp
 interpreter from writing their own Reader Macros.
+
+Also, we only examined the interesting moving parts of the Lisp Reader.
+If we wanted to use this in an actual Lisp interpreter, we would need to
+change the `read()` function to also encode the result as a Lisp value.
+Right now, we're just returning the lexeme ("string fragment").
 
 All the code is [available on github](https://github.com/pqnelson/LispReader).
 
