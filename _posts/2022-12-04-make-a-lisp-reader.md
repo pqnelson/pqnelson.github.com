@@ -15,7 +15,7 @@ reaction was to write a Scanner to tokenize the input stream, then a
 parser to form the Lisp data.
 
 In fact, [I did this](https://github.com/pqnelson/mal/tree/6b5e968b0d11483aba880d1897d2dfed932558b4/wol).
-Although I tested every flow possible for the Scanner and Parser, it was
+Although I tested every flow possible for the [Scanner](https://github.com/pqnelson/mal/blob/6b5e968b0d11483aba880d1897d2dfed932558b4/wol/src/main/java/com/github/pqnelson/Scanner.java) and [Parser](https://github.com/pqnelson/mal/blob/6b5e968b0d11483aba880d1897d2dfed932558b4/wol/src/main/java/com/github/pqnelson/Reader.java), it was
 an inelegant solution --- a "kludge".
 
 I remember Common Lisp supported some exotic gadget called a "Reader
@@ -53,17 +53,21 @@ for such a thing would look like:
 
 ```java
 public class NaiveReadTable {
-    public(source) {
+    public NaiveReadTable(source) {
         // create a pushback reader with an 8-byte buffer
         this.source = new PushbackReader(source, 8);
         this.finished = false;
     }
 
-    boolean isFinished() {
-        if (!finished && (/* check if nothing is left in this.source */)) {
+    public boolean isFinished() {
+        if (!finished && this.source.hasMore()) {
              this.finished = true;
         }
         return this.finished;
+    }
+
+    void unread(char c) {
+        /* push c back into the top of the stream */
     }
 
     public Object read() {
@@ -74,15 +78,16 @@ public class NaiveReadTable {
             if (Character.isWhitespace(next)) {
                 continue;
             } else {
-                /* push `next` back into the reader, and then */
+                unread(next);
                 return buildToken();
             }
         }
     }
 
-    public Object buildToken() {
+    Object buildToken() {
         StringBuffer buf = new StringBuffer();
-        while(/* there's still some non-whitespace char to read */) {
+        while(!this.isFinished()) {
+            skipWhitespace();
             buf.append(this.source.nextChar());
         }
         return buf.toString();
@@ -131,7 +136,7 @@ In either case, the reader class is modified to schematically look like:
 
 ```java
 public class ReadTable {
-    public(source) {
+    public ReadTable(source) {
         this.source = new PushbackReader(source, 8);
         this.finished = false;
         // New!!!
@@ -142,7 +147,9 @@ public class ReadTable {
         this.macroBindings.put(symbol, macro);
     }
 
-    boolean isFinished() { /* same as before... */ }
+    public boolean isFinished() { /* same as before... */ }
+
+    void unread(char c) { /* same as before... */ }
 
     public Object read() {
         while (true) {
@@ -156,7 +163,7 @@ public class ReadTable {
             } else if (Character.isWhitespace(next)) {
                 continue;
             } else {
-                /* push `next` back into the reader, and then */
+                unread(next);
                 return buildToken();
             }
         }
@@ -164,15 +171,17 @@ public class ReadTable {
 
     Object buildToken() {
         StringBuffer buf = new StringBuffer();
-        while(/* there's still some non-whitespace char to read */) {
-            if (/* the char is bound to a macro */) {
-                this.source.unread(charReadIn);
+        while(!this.isFinished()) {
+            char currentChar = this.source.nextChar();
+            if (isCharBoundToMacro(currentChar)
+                    || isWhitespace(currentChar)) {
+                this.source.unread(currentChar);
                 // Now the top of the stream is the char bound to a
                 // ReaderMacro, which will be invoked next time the
-                // `Reader::read()` method is invoked
+                // `ReadTable::read()` method is invoked
                 break;
             }
-            buf.append(this.source.nextChar());
+            buf.append(currentChar);
         }
         return buf.toString();
     }
@@ -225,15 +234,11 @@ reading!). Let us remedy this:
 
             if (this.macroBindings.contains(next)) {
                 ReaderMacro macro = this.macroBindings.get(next);
-                // BUGFIX
+                /* BUGFIX */
                 Object result = macro.apply(this.source, this);
                 if (null != result) return result;
-            } else if (Character.isWhitespace(next)) {
-                continue;
-            } else {
-                /* push `next` back into the reader, and then */
-                return buildToken();
             }
+            /* the rest as before */
         }
     }
 ```
@@ -244,7 +249,7 @@ And it works as expected. Great!
 
 We have seen one example where Reader Macros are useful. (In fact, we
 could have had the `LineNumberCounter` class register
-[`IntConsumer`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/IntConsumer.html)
+<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/IntConsumer.html">IntConsumer</a></code>
 callbacks, which are invoked when the line number increments, for
 example.)
 

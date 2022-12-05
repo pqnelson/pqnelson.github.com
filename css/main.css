@@ -3,6 +3,8 @@ time {
 }
 
 body {
+    /* A gray that is 87% black is optimal. See: https://uxdesign.cc/designers-should-avoid-pure-black-typography-but-which-dark-gray-should-we-use-2d7faa07083a */
+    color: #221111; /* 86.7% black, good enough */
     font-family: Georgia,"Times New Roman",Times,serif;
     background-color: whitesmoke;
     background-position: center -18em;
@@ -47,9 +49,19 @@ blockquote {
 p img {
     display: block;
     margin: 0 auto;
+    max-width: 100%;
+}
+
+code > a {
+    font: normal 14px/20px "Source Code Pro", Menlo, Consolas, Monaco, monospace;
+    text-decoration: none;
 }
 
 /* code */
+pre, code, tt {
+    font: normal 14px/20px "Source Code Pro", Menlo, Consolas, Monaco, monospace;
+    /* font-weight: 300; */
+}
 code {
     border: 1px solid #ddd;
     background-color: #eef;
@@ -73,9 +85,12 @@ pre code, pre tt {
 main {
     background: white;
     border: 1px solid #ccc;
-    font-size: 1.1em;
-    line-height: 1.5em;
-    max-width: 41em;
+    font-size: 18px;
+    font-variant-ligatures: common-ligatures;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    line-height: 26px;
+    max-width: 38em;
 }
 
 footer {
