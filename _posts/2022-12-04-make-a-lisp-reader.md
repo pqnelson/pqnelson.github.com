@@ -150,11 +150,11 @@ public class ReadTable {
 
             char next = this.source.nextChar();
 
-            if (Character.isWhitespace(next)) {
-                continue;
-            } else if (this.macroBindings.contains(next)) {
+            if (this.macroBindings.contains(next)) {
                 ReaderMacro macro = this.macroBindings.get(next);
                 return macro.apply(this.source, this);
+            } else if (Character.isWhitespace(next)) {
+                continue;
             } else {
                 /* push `next` back into the reader, and then */
                 return buildToken();
@@ -223,13 +223,13 @@ reading!). Let us remedy this:
 
             char next = this.source.nextChar();
 
-            if (Character.isWhitespace(next)) {
-                continue;
-            } else if (this.macroBindings.contains(next)) {
+            if (this.macroBindings.contains(next)) {
                 ReaderMacro macro = this.macroBindings.get(next);
                 // BUGFIX
                 Object result = macro.apply(this.source, this);
                 if (null != result) return result;
+            } else if (Character.isWhitespace(next)) {
+                continue;
             } else {
                 /* push `next` back into the reader, and then */
                 return buildToken();
@@ -267,17 +267,18 @@ class AccumulatorReaderMacro implements ReaderMacro {
 
     @Override
     public Object apply(Reader stream, AbstractReadTable table) {
-        Object entry = null;
-        if (table.isFinished()) return entry;
+        if (table.isFinished()) return null;
 
         ArrayList<Object> coll = new ArrayList<>();
+
         while (!table.isFinished()) {
-            entry = table.read();
+            final Object entry = table.read();
+
             if (this.stopToken.equals(entry)) {
                 break;
-            } else {
-                coll.add(entry);
             }
+
+            coll.add(entry);
         }
 
         return coll;
@@ -298,11 +299,11 @@ Why ask when we can unit test!
 ```java
     @Test
     public void nestedNestedListTest() {
-        ReadTable r = new ReadTable("(foo (eggs (scrambed (stuff) suggests) but) and spam)");
+        String test = "(foo (eggs (scrambed (stuff) suggests) but) and spam)";
+        ReadTable r = new ReadTable(test);
         r.addMacro(')', new SingleCharReaderMacro(")"));
         r.addMacro('(', new AccumulatorReaderMacro(")"));
 
-        ArrayList<Object> expected = new ArrayList<>();
         ArrayList<Object> tmp = new ArrayList<>();
         ArrayList<Object> inner = new ArrayList<>();
         inner.add("stuff");
@@ -314,11 +315,13 @@ Why ask when we can unit test!
         tmp.add("eggs");
         tmp.add(inner);
         tmp.add("but");
-        expected = new ArrayList<>();
+
+        ArrayList<Object> expected = new ArrayList<>();
         expected.add("foo");
         expected.add(tmp);
         expected.add("and");
         expected.add("spam");
+
         assertEquals(expected, r.read());
     }
 ```
