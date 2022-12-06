@@ -1,0 +1,10 @@
+@startuml
+skinparam componentStyle uml1
+
+package "Object Model" {
+  [Cons Cell]
+  [Atomic Values]
+  [String]
+}
+
+@enduml

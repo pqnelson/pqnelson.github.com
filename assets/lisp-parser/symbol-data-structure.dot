@@ -1,0 +1,24 @@
+# dot -Tpng symbol-data-structure.dot -o symbol-data-structure.png
+
+digraph {
+    node [shape=plaintext, fontcolor=black, fontsize=14];
+    "Pointers:" -> "Values:" [color=white];
+
+    node [shape=record, fontcolor=black, fontsize=14, width=4.75, fixedsize=true];
+    pointers [label="<f0> A", color=white];
+    # values [label="<f0> header | <f1> name", color=blue, fillcolor=lightblue, style=filled];
+
+    values
+    [
+        shape = none
+        label = <<table border="0" cellspacing="0" cellpadding="6">
+                    <tr><td port="f0" border="1" bgcolor="lightblue">header</td><td port="f1" border="1" bgcolor="lightblue">name</td></tr>
+                </table>>
+    ]
+
+    { rank=same; "Pointers:"; pointers }
+    { rank=same; "Values:"; values }
+
+    edge [color=blue];
+    pointers:f0 -> values:f0;
+}

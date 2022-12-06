@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="345px" preserveAspectRatio="none" style="width:365px;height:345px;" version="1.1" viewBox="0 0 365 345" width="365px" zoomAndPan="magnify"><defs><filter height="300%" id="fut56l6bm7eah" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[0ab5e50cb7c4d5dbbc1bea50a8b4b262]
+cluster Front End--><polygon fill="#FFFFFF" filter="url(#fut56l6bm7eah)" points="22,24,104,24,111,46.2969,332,46.2969,332,111,22,111,22,24" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="111" y1="46.2969" y2="46.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="76" x="26" y="38.9951">Front End</text><!--MD5=[031e5a67ec4bacb786193cb2c694f89a]
+cluster Middle End--><polygon fill="#FFFFFF" filter="url(#fut56l6bm7eah)" points="225,135,316,135,323,157.2969,343,157.2969,343,222,225,222,225,135" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="225" x2="323" y1="157.2969" y2="157.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="85" x="229" y="149.9951">Middle End</text><!--MD5=[105e245a3a27a3f411b44191febd87d4]
+cluster Back End--><polygon fill="#FFFFFF" filter="url(#fut56l6bm7eah)" points="226,246,303,246,310,268.2969,342,268.2969,342,333,226,333,226,246" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="226" x2="310" y1="268.2969" y2="268.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="71" x="230" y="260.9951">Back End</text><!--MD5=[1013234112893522d1adb0241118833a]
+entity NextToken--><ellipse cx="208" cy="77" fill="#FEFECE" filter="url(#fut56l6bm7eah)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="79" x="168.5" y="106.9951">Next Token</text><!--MD5=[3bfee13b61d63475f3729ce5aae33bec]
+entity Lexical Scanner--><rect fill="#FEFECE" filter="url(#fut56l6bm7eah)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="126" x="38" y="59"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="33" y="64"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="33" y="85.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="106" x="48" y="81.9951">Lexical Scanner</text><!--MD5=[b8966a4a60ec894312d4f55fd40cce21]
+entity Parser--><rect fill="#FEFECE" filter="url(#fut56l6bm7eah)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="64" x="252" y="59"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="247" y="64"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="247" y="85.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="44" x="262" y="81.9951">Parser</text><!--MD5=[f6e74e36a28c3083b6775a07cbbff9ba]
+entity Optimizer--><rect fill="#FEFECE" filter="url(#fut56l6bm7eah)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="86" x="241" y="170"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="236" y="175"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="236" y="196.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="251" y="192.9951">Optimizer</text><!--MD5=[f58808b4bc5a42756653faa9c8e7b92e]
+entity Evaluator--><rect fill="#FEFECE" filter="url(#fut56l6bm7eah)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="83" x="242.5" y="281"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="237.5" y="286"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="237.5" y="307.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="63" x="252.5" y="303.9951">Evaluator</text><!--MD5=[e6117a550044b6e84de023ece7b93e26]
+link Lexical Scanner to NextToken--><path d="M164.11,77 C175.66,77 187.2,77 198.74,77 " fill="none" id="Lexical Scanner-NextToken" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[7b4daa4eeb3853cdd02f9c5cfcfb14d3]
+reverse link NextToken to Parser--><path d="M227.23,77 C235.46,77 243.68,77 251.91,77 " fill="none" id="NextToken&lt;-Parser" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M220.2782,85.4572 A9,9 0 0 0 220.2782 68.5428" fill="none" style="stroke: #A80036; stroke-width: 1.5;"/><!--MD5=[b1d997ac1ed2541680d116ff62ce5fee]
+link Parser to Optimizer--><path d="M284,95.03 C284,113.8 284,144.05 284,164.7 " fill="none" id="Parser-&gt;Optimizer" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="284,169.73,288,160.73,284,164.73,280,160.73,284,169.73" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[69f7ee649c6cd102795682c401d963e9]
+link Optimizer to Evaluator--><path d="M284,206.03 C284,224.8 284,255.05 284,275.7 " fill="none" id="Optimizer-&gt;Evaluator" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="284,280.73,288,271.73,284,275.73,280,271.73,284,280.73" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[1bb43227b5e5f9a29d8e84d4b0a601f4]
+@startuml
+skinparam componentStyle uml1
+
+package "Front End" {
+  interface "Next Token" as NextToken
+  [Lexical Scanner] - NextToken
+  NextToken )- [Parser]
+}
+
+package "Middle End" {
+  [Optimizer]
+}
+
+package "Back End" {
+  [Evaluator]
+}
+
+Parser ..> Optimizer
+Optimizer ..> Evaluator
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 02:22:07 PST 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.10+9-Ubuntu-0ubuntu1.20.10
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

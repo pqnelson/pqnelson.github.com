@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="294px" preserveAspectRatio="none" style="width:362px;height:294px;" version="1.1" viewBox="0 0 362 294" width="362px" zoomAndPan="magnify"><defs><filter height="300%" id="f1tteudl260n16" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[077b62ba5ddeaa97d5130529386e17f8]
+cluster Object Model--><polygon fill="#FFFFFF" filter="url(#f1tteudl260n16)" points="22,24,131,24,138,46.2969,340,46.2969,340,282,22,282,22,24" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="138" y1="46.2969" y2="46.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="103" x="26" y="38.9951">Object Model</text><!--MD5=[7f9c7a9a4ffdc669ea99b57d61959705]
+class SExp--><rect fill="#FEFECE" filter="url(#f1tteudl260n16)" height="60.8047" id="SExp" style="stroke: #A80036; stroke-width: 1.5;" width="125" x="118.5" y="59"/><ellipse cx="161.4" cy="75" fill="#A9DCDF" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M161.5094,70.3438 L160.3531,75.4219 L162.6813,75.4219 L161.5094,70.3438 Z M160.025,68.1094 L163.0094,68.1094 L166.3688,80.5 L163.9156,80.5 L163.15,77.4375 L159.8688,77.4375 L159.1188,80.5 L156.6813,80.5 L160.025,68.1094 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="31" x="181.6" y="79.1543">SExp</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="119.5" x2="242.5" y1="91" y2="91"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="119.5" x2="242.5" y1="99" y2="99"/><ellipse cx="129.5" cy="110" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="99" x="138.5" y="113.2104">toString() : String</text><!--MD5=[e9bf4637ac83eb6af140c7019666e1f6]
+class Cons--><rect fill="#FEFECE" filter="url(#f1tteudl260n16)" height="86.4141" id="Cons" style="stroke: #A80036; stroke-width: 1.5;" width="125" x="38.5" y="180"/><ellipse cx="81.4" cy="196" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M84.3688,201.6406 Q83.7906,201.9375 83.15,202.0781 Q82.5094,202.2344 81.8063,202.2344 Q79.3063,202.2344 77.9781,200.5938 Q76.6656,198.9375 76.6656,195.8125 Q76.6656,192.6875 77.9781,191.0313 Q79.3063,189.375 81.8063,189.375 Q82.5094,189.375 83.15,189.5313 Q83.8063,189.6875 84.3688,189.9844 L84.3688,192.7031 Q83.7438,192.125 83.15,191.8594 Q82.5563,191.5781 81.9313,191.5781 Q80.5875,191.5781 79.9,192.6563 Q79.2125,193.7188 79.2125,195.8125 Q79.2125,197.9063 79.9,198.9844 Q80.5875,200.0469 81.9313,200.0469 Q82.5563,200.0469 83.15,199.7813 Q83.7438,199.5 84.3688,198.9219 L84.3688,201.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="31" x="101.6" y="200.1543">Cons</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="39.5" x2="162.5" y1="212" y2="212"/><ellipse cx="49.5" cy="223" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="58" x="58.5" y="226.2104">car : SExp</text><ellipse cx="49.5" cy="235.8047" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="58" x="58.5" y="239.0151">cdr : SExp</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="39.5" x2="162.5" y1="245.6094" y2="245.6094"/><ellipse cx="49.5" cy="256.6094" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="99" x="58.5" y="259.8198">toString() : String</text><!--MD5=[9ca48261ea57514906883625ea0cbf93]
+class Symbol--><rect fill="#FEFECE" filter="url(#f1tteudl260n16)" height="73.6094" id="Symbol" style="stroke: #A80036; stroke-width: 1.5;" width="125" x="198.5" y="186"/><ellipse cx="235.55" cy="202" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M238.5188,207.6406 Q237.9406,207.9375 237.3,208.0781 Q236.6594,208.2344 235.9563,208.2344 Q233.4563,208.2344 232.1281,206.5938 Q230.8156,204.9375 230.8156,201.8125 Q230.8156,198.6875 232.1281,197.0313 Q233.4563,195.375 235.9563,195.375 Q236.6594,195.375 237.3,195.5313 Q237.9563,195.6875 238.5188,195.9844 L238.5188,198.7031 Q237.8938,198.125 237.3,197.8594 Q236.7063,197.5781 236.0813,197.5781 Q234.7375,197.5781 234.05,198.6563 Q233.3625,199.7188 233.3625,201.8125 Q233.3625,203.9063 234.05,204.9844 Q234.7375,206.0469 236.0813,206.0469 Q236.7063,206.0469 237.3,205.7813 Q237.8938,205.5 238.5188,204.9219 L238.5188,207.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="44" x="254.45" y="206.1543">Symbol</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="199.5" x2="322.5" y1="218" y2="218"/><ellipse cx="209.5" cy="229" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="78" x="218.5" y="232.2104">name : String</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="199.5" x2="322.5" y1="238.8047" y2="238.8047"/><ellipse cx="209.5" cy="249.8047" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="99" x="218.5" y="253.0151">toString() : String</text><!--MD5=[7b65db800aa10b1bc6ffd26e3b785528]
+reverse link SExp to Cons--><path d="M152.52,137.31 C144.08,151.19 134.88,166.31 126.63,179.87 " fill="none" id="SExp&lt;-Cons" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="146.67,133.46,163.05,120.01,158.63,140.74,146.67,133.46" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[f508eb21d2d96994c1ed70df011a7c95]
+reverse link SExp to Symbol--><path d="M209.48,137.32 C219.12,153.17 229.74,170.62 238.82,185.54 " fill="none" id="SExp&lt;-Symbol" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="203.37,140.74,198.95,120.01,215.33,133.46,203.37,140.74" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[38d91e971b95ef5f0e7406328b3e75ae]
+@startuml
+
+package "Object Model" {
+  abstract class SExp {
+    + toString() : String
+  }
+
+  class Cons {
+    + car : SExp
+    + cdr : SExp
+    + toString() : String
+  }
+
+  class Symbol {
+    + name : String
+    + toString() : String
+  }
+
+  SExp <|- - Cons
+  SExp <|- - Symbol
+}
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 02:22:07 PST 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.10+9-Ubuntu-0ubuntu1.20.10
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

@@ -1,0 +1,20 @@
+@startuml
+
+package "Front End" {
+  class Token
+
+  class Scanner {
+  - source : InputStream
+  + hasNext() : bool
+  + nextToken() : Token
+  }
+
+  class Parser {
+  - scanner : Scanner
+  + parse() : SExp
+  }
+
+  Parser *-- Scanner
+}
+
+@enduml

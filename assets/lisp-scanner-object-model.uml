@@ -1,0 +1,23 @@
+@startuml
+
+package "Object Model" {
+  abstract class SExp {
+    + toString() : String
+  }
+
+  class Cons {
+    + car : SExp
+    + cdr : SExp
+    + toString() : String
+  }
+
+  class Symbol {
+    + name : String
+    + toString() : String
+  }
+
+  SExp <|-- Cons
+  SExp <|-- Symbol
+}
+
+@enduml

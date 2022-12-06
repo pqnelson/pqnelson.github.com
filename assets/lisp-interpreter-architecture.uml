@@ -1,0 +1,21 @@
+@startuml
+skinparam componentStyle uml1
+
+package "Front End" {
+  interface "Next Token" as NextToken
+  [Lexical Scanner] - NextToken
+  NextToken )- [Parser]
+}
+
+package "Middle End" {
+  [Optimizer]
+}
+
+package "Back End" {
+  [Evaluator]
+}
+
+Parser ..> Optimizer
+Optimizer ..> Evaluator
+
+@enduml
