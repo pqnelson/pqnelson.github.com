@@ -1,5 +1,6 @@
 safe: true
 lsi: false
+google_analytics: UA-59289414-1
 markdown: kramdown
 highlighter: rouge
 kramdown:

@@ -74,7 +74,7 @@ public class NaiveReadTable {
         while (true) {
             if (this.isFinished()) return null;
 
-            char next = this.source.nextChar();
+            char next = nextChar();
             if (Character.isWhitespace(next)) {
                 continue;
             } else {
@@ -87,8 +87,10 @@ public class NaiveReadTable {
     Object buildToken() {
         StringBuffer buf = new StringBuffer();
         while(!this.isFinished()) {
-            skipWhitespace();
-            buf.append(this.source.nextChar());
+            if (Character.isWhitespace(peek())) {
+                break;
+            }
+            buf.append(nextChar());
         }
         return buf.toString();
     }
@@ -143,7 +145,7 @@ public class ReadTable {
         this.macroBindings = new Map<char, ReaderMacro>();
     }
 
-    public addMacro(char symbol, ReaderMacro macro) {
+    public void addMacro(char symbol, ReaderMacro macro) {
         this.macroBindings.put(symbol, macro);
     }
 
@@ -157,7 +159,7 @@ public class ReadTable {
 
             char next = this.source.nextChar();
 
-            if (this.macroBindings.contains(next)) {
+            if (this.macroBindings.containsKey(next)) {
                 ReaderMacro macro = this.macroBindings.get(next);
                 return macro.apply(this.source, this);
             } else if (Character.isWhitespace(next)) {
@@ -172,10 +174,10 @@ public class ReadTable {
     Object buildToken() {
         StringBuffer buf = new StringBuffer();
         while(!this.isFinished()) {
-            char currentChar = this.source.nextChar();
-            if (isCharBoundToMacro(currentChar)
-                    || isWhitespace(currentChar)) {
-                this.source.unread(currentChar);
+            char currentChar = nextChar();
+            if (this.macroBindings.containsKey(currentChar)
+                    || Character.isWhitespace(currentChar)) {
+                unread(currentChar);
                 // Now the top of the stream is the char bound to a
                 // ReaderMacro, which will be invoked next time the
                 // `ReadTable::read()` method is invoked

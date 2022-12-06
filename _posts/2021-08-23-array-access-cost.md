@@ -55,7 +55,7 @@ For ARM, I decided to use the CPU which Raspberry Pi 4 has: [Cortex-A72](https:/
 (Note to future, forgetful, me: This is ARMv8-A architecture.)
 The assembly code using "hard floats":
 
-```
+```armasm
 @ access.c:10:     result = array[n];
 	.loc 1 10 19
 	ldr	r3, [r7]	@ n.0_1, n
@@ -71,7 +71,7 @@ The assembly code using "hard floats":
 I'm using `arm-linux-gnueabihf-gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0`
 to compile to assembly. The compiler flags `arm-linux-gnueabihf-gcc -O0 -mcpu=cortex-a72 -S -c -g -fverbose-asm -mfloat-abi=hard access.c -o access-arm.s`.
 
-The CPU cycles for the instructions (according to the 
+The CPU cycles for the instructions (according to the
 [software optimization documentation](https://developer.arm.com/documentation/uan0016/a)):
 - `add` costs 1 cycle
 - `ldr` costs 4 cycles without offset, 5 cycles with offset
@@ -213,7 +213,7 @@ floating-point addition operations.
 I have not enabled any optimizations to the compiler. The results are
 drastically different when optimized, for example, using the `-O3` flag:
 - ARM compiles to a single instruction (comparable to a
-  floating-point addition operation); 
+  floating-point addition operation);
 - POWER 9 boils down to a `sldi` instruction (roughly `1/8` the cost of
   a single floating-point addition);
 - SPARC compiles to a single `sllx` and `ldd` operation (2 cycles,
@@ -262,7 +262,7 @@ probably won't carry over to finite-volume methods.
 Memory load operations (usually in the form of array accesses) ought to
 be tracked when evaluating a numerical algorithm, but their cost depends
 on the computer architecture **and** with an eye towards cache costs (at
-least, if caching _could_ be an issue). 
+least, if caching _could_ be an issue).
 
 The current fashion is to suppose there are two levels of memory (fast
 and slow). If `f` is the number of floating-point operations (say, the
