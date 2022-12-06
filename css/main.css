@@ -53,18 +53,13 @@ p img {
 }
 
 code > a {
-    font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
-    font-size: 14px;
-    /* font: normal 14px/20px "Source Code Pro", Menlo, Consolas, Monaco, monospace; */
+    font: 14px/20px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
     text-decoration: none;
 }
 
 /* code */
 pre, code, tt {
-    font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
-    font-size: 14px;
-    /* font: normal 14px/20px "Source Code Pro", Menlo, Consolas, Monaco, monospace; */
-    font-weight: 300; /* */
+    font: 14px/20px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
 }
 code {
     border: 1px solid #ddd;
@@ -74,7 +69,6 @@ code {
 pre {
     background-color: #eef;
     border: 1px solid #ddd;
-    line-height: 19px;
     overflow: auto;
     padding: 6px;
     border-radius: 3px 3px 3px 3px;

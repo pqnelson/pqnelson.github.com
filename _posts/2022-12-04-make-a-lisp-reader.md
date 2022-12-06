@@ -86,7 +86,7 @@ public class NaiveReadTable {
 
     Object buildToken() {
         StringBuffer buf = new StringBuffer();
-        while(!this.isFinished()) {
+        while (!this.isFinished()) {
             if (Character.isWhitespace(peek())) {
                 break;
             }
@@ -173,7 +173,7 @@ public class ReadTable {
 
     Object buildToken() {
         StringBuffer buf = new StringBuffer();
-        while(!this.isFinished()) {
+        while (!this.isFinished()) {
             char currentChar = nextChar();
             if (this.macroBindings.containsKey(currentChar)
                     || Character.isWhitespace(currentChar)) {
