@@ -20,7 +20,8 @@ is I do.
 I also have a [wiki](./wiki/) of random notes on math and
 science, and an [org notebook](./org-notes/) experiment to see if I like
 org-mode. They're mildly polished, but not presentable in papers. More
-polished materials may appear in my [notebook](./notebk/).
+polished materials may appear in my [notebook](./notebk/). I have a few
+publications relating to [Mizar](./mizar/).
 
 Send your angry emails to me at `PQNELSON AT GMAIL DOT REMOVE THIS DOT
 COM`.
