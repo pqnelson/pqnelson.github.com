@@ -15,3 +15,5 @@ My publications in Mizar:
    "Characteristic Subgroups".
    _Formalized Mathematics_ **30**, no.2 (2022) pp.79-91
    [PDF](http://mizar.uwb.edu.pl/fm/fm30-2/group_22.pdf)
+   [10.2478/forma-2022-0007](https://doi.org/10.2478/forma-2022-0007)
+   
