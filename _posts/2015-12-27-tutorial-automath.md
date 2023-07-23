@@ -30,10 +30,16 @@ different in modern languages than in Automath. It is similar to
 but combined with
 [named parameters](https://en.wikipedia.org/wiki/Named_parameter).
 
+Contexts are a directed tree whose root node is the initial empty
+context. Identifiers are unique, so instead of giving the entire context
+(which would repeat a lot of declarations), we can just give the "last entry"
+in the context. This is what Automath does.
+
 Syntactically, each line starts with:
 
-- a `*` (indicating we're continuing to work in the given context/scope),
-- a `<symbol> *` (indicating we're working with specific symbols as named parameters, while continuing to work in the given context), or
+- a `<symbol> *` (indicating we're working with specific symbols as named parameters, while continuing to work in the given context), 
+- a `*` which is a special case of the previous case (indicating we're
+  starting with an empty context), or
 - neither of these (indicating we're starting a new scope/context).
 
 **1.2. Body.**
