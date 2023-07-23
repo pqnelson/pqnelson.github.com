@@ -173,7 +173,9 @@ of propositions, and terms. We treat these as primitive notions.
   <span class="kr">*</span> [a:prop] <span class="kt">proof</span> : <span class="kr">TYPE</span> := <span class="nf">PRIM</span>
   <span class="kr">*</span>           <span class="kt">term</span> : <span class="kr">TYPE</span> := <span class="nf">PRIM</span></code></pre></div>
 
-We have a variable `a:prop` available to our disposal.
+Observe the second line introduces a variable `a:prop`, and this is
+treated as a new branch to the empty context (since the context of the
+second line is `*` --- i.e., the empty context).
 
 **2.2. First-Order Logic, Connectives and Quantifiers.**
 We need to continue introducing relevant connectives and
