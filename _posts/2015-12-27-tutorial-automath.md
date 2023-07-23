@@ -30,17 +30,18 @@ different in modern languages than in Automath. It is similar to
 but combined with
 [named parameters](https://en.wikipedia.org/wiki/Named_parameter).
 
-Contexts are a directed tree whose root node is the initial empty
-context. Identifiers are unique, so instead of giving the entire context
-(which would repeat a lot of declarations), we can just give the "last entry"
-in the context. This is what Automath does.
-
 Syntactically, each line starts with:
 
 - a `<symbol> *` (indicating we're working with specific symbols as named parameters, while continuing to work in the given context), 
 - a `*` which is a special case of the previous case (indicating we're
   starting with an empty context), or
-- neither of these (indicating we're starting a new scope/context).
+- neither of these (indicating we're continuing the previous line's context).
+
+Contexts are a directed tree whose root node is the initial empty
+context. Identifiers are unique, so instead of giving the entire context
+(which would repeat a lot of declarations), we can just give the "last entry"
+in the context. We should then think of this `<symbol>` which appears in
+the context part as the **"Indicator"** of the context.
 
 **1.2. Body.**
 There are three types of lines we can have:
@@ -152,7 +153,7 @@ But we should note, we're not working in the "lambda cube". We don't
 have a dependent product type, `Π x:type . body`, because we have a
 lambda-typed lambda calculus.
 
-# First Order Logic
+# Example: Encoding First Order Logic
 
 **2.**
 First-order logic is probably the next interesting system to look at,
@@ -194,11 +195,13 @@ Some points worth observing here:
 2. The `for` function is the universal quantifier. We call it as
    `for([z:term]<z>predicate)`, which should translate intuitively as
    "for each _z_, the predicate on _z_ holds."
-3. We have two "queues" of parameters, namely `a:prop, b:prop` and
-   `p:[z:term]prop`. When defining functions, we need to specify a
+3. We have two "branches" in the context "tree", namely (i) `a:prop, b:prop` and
+   (ii) `p:[z:term]prop`. When defining functions, we need to specify a
    variable before the `*` asterisk, which will signal to Automath to
    find the queue with the variable, and select the sublist from the
-   head of the queue to the symbol given. (So, `a *` would tell Automath
+   head of the queue to the symbol given. 
+   
+   (For example: the context part `a * ...` would tell Automath
    to look in the `a:prop, b:prop` queue, take the symbols from the head
    of the list until it gets to `a`, and inclusively use that as the
    parameters for the given function.)
@@ -230,6 +233,11 @@ p <span class="kr">*</span> <span class="kt">unique</span> : <span class="kr">pr
 p <span class="kr">*</span> <span class="kt">ex_unique</span> : <span class="kr">prop</span> := and(ex,unique)
 </code></pre></div>
 
+Observe the `unique` definition may be read as: "Given a predicate `p`,
+for any term `z`, if `<z>p`, then for any other term `z'` also
+satisfying `<z'>p` necessarily implies `z = z'`". This amounts to saying
+there exists no more than one term `z` satisfying the supplied predicate `p`.
+
 **2.3. Proof System.**
 We need to actually implement some proof system. The most popular
 version, natural deduction, requires us to define _introduction_ and
@@ -257,7 +265,7 @@ exercise for the reader, who can cheat easily with the links supplied.
 
 # Propositions as Types
 
-**3.1. Curry-Howard Correspondence.**
+**3.1. Curry-Howard Correspondence, `Prop` Kind.**
 We can invoke the [Curry-Howard Correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence) (well, in truth, de
 Bruijn did a lot of work on this independent of Howard, and at about the
 same time). What to do? Well, we had only one kind `TYPE` in our system
@@ -265,7 +273,8 @@ so far. We introduce a second kind `PROP`.
 
 If `foo : PROP`, we can consider `foo` as a proposition. If further, we
 have `bar : foo`, then we interpret `bar` as establishing the truth of
-`foo`. (I.e., `bar` is the "proof" of `foo`.)
+`foo`. (I.e., `bar` is the "proof" of `foo`.) The slogan is:
+_Propositions as Types_ and _Proofs as Terms_.
 
 **3.2. Implication.**
 Let `alpha : PROP` and `beta : PROP`. If we have some construction
@@ -326,9 +335,10 @@ So far we have been working with `AUT-68`, the first version of
 Automath. It has many strengths, but like most alpha-versions it has a
 few shortcomings. We could only have lambda abstractions on terms and
 types, but not kinds. That is to say, we could not have something like
-`[x:foo]TYPE`. We could shrug and say "Who cares?" But it vastly
-simplifies the logical framework we just established if we allow such
-things.
+`[x:foo]TYPE`. 
+
+We could shrug and say "Who cares?" But it vastly simplifies the logical
+framework we just established if we allow such things.
 
 When such things are allowed, we have "quasi-expressions". Thus we get
 the second edition of Automath, `AUT-QE` (where `QE` stands for, yep,
@@ -395,6 +405,12 @@ which has 11 fewer primitive notions in AUT-QE than in AUT-68.
 
 ## Other References
 
+- Herman Geuvers, Rob Nederpelt,
+  "Characteristics of de Bruijn's early proof checker Automath".
+  _Fundamenta Informaticae_ **185** no.4 (2022)
+  [arXiv:2203.01173](https://arxiv.org/abs/2203.01173) for more about
+  Automath from a "modern" type theoretic perspective, from students of
+  de Bruijn.
 - Frank Pfenning,
   "Logical Frameworks".
   Chapter 17 of _Handbook of Automated
