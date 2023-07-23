@@ -1,3 +1,4 @@
+# dot -T svg -o LispReader-cl.svg LispReader-cl.dot
 digraph {
     start[shape="box", style="rounded,filled", fillcolor="#0044ff22"];
     end[shape="box", style="rounded,filled", fillcolor="#eddad5"];

@@ -37,6 +37,9 @@ simple workflow, given an input stream:
 
 (End of Algorithm 1)
 
+Observe the first three steps amount to "skip whitespace until the
+stream is exhausted _or_ we have our first non-whitespace character".
+
 We can sketch this algorithm out using a flowchart:
 
 ![Flowchart describing naive Lisp reader algorithm](/assets/LispReader-naive.svg)
