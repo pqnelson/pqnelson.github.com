@@ -249,6 +249,21 @@ invented. De Bruijn independently discovered the Curry-Howard
 isomorphism, and describes it quite beautifully in a number of articles
 contained in the book.
 
+Freek Wiedijk has implemented Automath in portable C and has some
+examples of foundations formalized in Automath:
+
+- Wiedijk's [Automath page](https://www.cs.ru.nl/F.Wiedijk/aut/index.html)
+- [Automath Restaurant](https://www.cs.ru.nl/~freek/zfc-etc/) associated
+  to the paper [Is ZF a hack?](https://www.cs.ru.nl/~freek/zfc-etc/zfc-etc.pdf)
+
+This can be related to more modern type theories, which is done in the
+article:
+
+- Herman Geuvers, Rob Nederpelt,
+  "Characteristics of de Bruijn's early proof checker Automath".
+  _Fundamenta Informaticae_ **185** no.4 (2022)
+  [arXiv:2203.01173](https://arxiv.org/abs/2203.01173)
+
 One word of caution, though, Automath is based on a lambda-typed lambda
 calculus, which is rather esoteric now. Most of the dependently-typed
 lambda calculi use Pi types. A simple lambda-typed lambda calculus is
