@@ -400,4 +400,5 @@ All the code is [available on github](https://github.com/pqnelson/LispReader).
 
 - _Common Lisp The Language_, specifically [Chapter
   22](https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node186.html#SECTION002600000000000000000)
-  discusses the lisp reader in detail.
+  discusses the lisp reader in detail. See especially 22.1.1 "What the
+  Read Function Accepts".
