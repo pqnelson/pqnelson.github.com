@@ -12,6 +12,11 @@ algoritm underpinning the calculations...
 
 ## Math
 
+- [Elementary Linear Algebra]({{ site.url }}/assets/notebk/elementary-linear-algebra.pdf), 94 pages,
+  a review of linear algebra, motivated by systems of linear equations,
+  then taking a detour into the algebra of matrices, then returning to
+  use matrices to solve linear equations and more broadly discuss vector
+  spaces. This is based on my notes from UC Davis's Math 22A course.
 - [Notes on An Algebraic Formulation of Tangent Spaces]({{ site.url }}/assets/notebk/germs.pdf), 9 pages,
   specifically using germs.
 - [Introduction to Category Theory]({{ site.url }}/assets/notebk/introToCategoryTheory.pdf), 34 pages,
