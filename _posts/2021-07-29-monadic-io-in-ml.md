@@ -170,6 +170,134 @@ There may be further monads worth playing with, or creating a hierarchy
 of monad modules.
 (End of Remark)
 
+# Haskell's Implementation of IO
+
+Under the hood, Haskell follows a remarkably similar strategy. The
+definition of `IO a` may be found in [GHC.Types](https://github.com/ghc/ghc/blob/b73c9c5face16cc8bedf4168ce10770c7cc67f80/libraries/ghc-prim/GHC/Types.hs#L233):
+
+```haskell
+{- |
+A value of type @'IO' a@ is a computation which, when performed,
+does some I\/O before returning a value of type @a@.
+There is really only one way to \"perform\" an I\/O action: bind it to
+@Main.main@ in your program.  When your program is run, the I\/O will
+be performed.  It isn't possible to perform I\/O from an arbitrary
+function, unless that function is itself in the 'IO' monad and called
+at some point, directly or indirectly, from @Main.main@.
+'IO' is a monad, so 'IO' actions can be combined using either the do-notation
+or the 'Prelude.>>' and 'Prelude.>>=' operations from the 'Prelude.Monad'
+class.
+-}
+newtype IO a = IO (State# RealWorld -> (# State# RealWorld, a #))
+```
+
+The `State# RealWorld` is effectively a unit type, but we cannot access
+its values. Both `State#` and `RealWorld` are builtin primitive ops,
+discussed in [primops.txt](https://github.com/ghc/ghc/blob/a7f9670e899bcbc87276446a1aac2304cade2b2f/compiler/GHC/Builtin/primops.txt.pp#L2759-L2769).
+
+**Caution:** There is a lot of subtlety here surrounding `State#` and
+the `RealWorld`. The `State# a` is not implemented at all under the
+hood, it's just used to keep track of types. Arguably, `State# a` is
+empty, but that is for deeply magical reasons and ought not be taken
+_too_ seriously. (End of caution)
+
+Compare this to our implementation in Standard ML, whic roughly looks
+like:
+```sml
+datatype 'a IO = IO of unit -> 'a
+```
+Since `'a` is isomorphic to `unit * 'a`, we could write some code to
+make the connections obvious:
+```sml
+type RealWorld = unit;
+type 'a State' = unit;
+datatype 'a IO = IO of RealWorld -> RealWorld * 'a;
+```
+So far, Haskell and Standard ML have isomorphic types.
+
+The functions describing `IO a` as a monad are defined in [GHC.Base](https://github.com/ghc/ghc/blob/0619fb0fb14a98f04aac5f031f6566419fd27495/libraries/base/GHC/Base.hs#L1575-L1579)
+as:
+
+```haskell
+returnIO :: a -> IO a
+returnIO x = IO (\ s -> (# s, x #))
+
+bindIO :: IO a -> (a -> IO b) -> IO b
+bindIO (IO m) k = IO (\ s -> case m s of (# new_s, a #) -> unIO (k a) new_s)
+```
+
+The Standard ML implementation is similar but far more convoluted than
+the implementation we offered above. This is because we would have to
+imitate the [ST monad](https://github.com/ghc/ghc/blob/541aedcd9023445b8e914d595ae8dcf2e799d618/libraries/base/GHC/ST.hs#L52) `type ST s a = ST (State# s -> (State# s, a))` monad with
+the `RealWorld` thread. The relevant code would look like:
+
+```sml
+fun returnIO x = IO (fn s => (s, x));
+
+fun bindIO (IO m) k =
+    IO (fn s =>
+           case m s of
+               (new_s, a) => (unIO (k a)) new_s);
+
+fun unIO (IO a) = a;
+```
+
+But if we wanted to actually rewrite the `abstype 'a Job` to imitate the
+Haskell implementation, we would have:
+
+```sml
+(* Mock out the "State#" and "RealWorld". We use "State'" as the
+identifier, since "State#" is not a valid SML identifier. *)
+type 'a State' = unit;
+type RealWorld = unit;
+
+infix 1 >> >>=
+abstype 'a Job = JOB of RealWorld State' -> RealWorld State' * 'a
+with
+    (* exec : 'a Job -> 'a *)
+    fun exec (JOB f)  = let val (_, a) = f () in a end;
+
+    (* return : 'a -> 'a Job *)
+    fun return x      = JOB (fn s => (s, x))
+    
+    (* (>>=) : 'a Job * ('a -> 'b Job) -> 'b Job *)
+    local fun unIO (JOB a) = a
+    in fun (JOB m : 'a Job) >>= (k : 'a -> 'b Job)
+           = JOB (fn s => case m s of
+                              (new_s, a) => (unIO (k a)) new_s)
+    end
+    
+    (* getStr : int -> TextIO.vector Job *)
+    fun getStr n      = JOB (fn s => (s, TextIO.inputN(TextIO.stdIn, n)))
+    
+    (* putStr : string -> unit Job *)
+    fun putStr str    = JOB (fn s => (s, print str))
+end;
+```
+
+The rest of the code can be run without any changes.
+
+**Exercise 4.** Prove the two implementations of the `abstype 'a Job`
+are isomorphic.
+
+**Exercise 5.** Implement `hPutStr : TextIO.outstream -> TextIO.vector -> unit Job`.
+
+**Exercise 6.** Implement `hGetLine : TextIO.instream -> TextIO.vector Job`.
+
+**Exercise 7.** Think about Haskell's [handles](https://github.com/ghc/ghc/blob/29bcd9363f2712524f7720377f19cb885adf2825/libraries/base/GHC/IO/Handle/Types.hs#L99-L140)
+implementation, which is roughly the union of a [`Reader`](https://smlfamily.github.io/Basis/prim-io.html#SIG:PRIM_IO.reader:TY:SPEC)
+and [`Writer`](https://smlfamily.github.io/Basis/prim-io.html#SIG:PRIM_IO.writer:TY)
+(or perhaps [`instream`](https://smlfamily.github.io/Basis/stream-io.html#SIG:STREAM_IO.instream:TY)
+and [`outstream`](https://smlfamily.github.io/Basis/stream-io.html#SIG:STREAM_IO.outstream:TY))
+in Standard ML. What's the trade-offs involved in implementing your own
+`handle` datatype in Standard ML?
+
+**Remark.**
+If you're interested in what this could look like using Standard ML
+modules, I've written a [gist](https://gist.github.com/pqnelson/4ff12e27d822766bc0a9a9372a0ca166)
+sketching out the implementation.
+(End of Remark)
+
 # Appendix: Should we be Pure in Standard ML?
 
 There's some folklore suggesting there's performance hits if we try
