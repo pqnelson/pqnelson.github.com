@@ -204,14 +204,16 @@ _too_ seriously. (End of caution)
 Compare this to our implementation in Standard ML, whic roughly looks
 like:
 ```sml
+(* Standard ML *)
 datatype 'a IO = IO of unit -> 'a
 ```
 Since `'a` is isomorphic to `unit * 'a`, we could write some code to
 make the connections obvious:
 ```sml
+(* Standard ML *)
 type RealWorld = unit;
 type 'a State' = unit;
-datatype 'a IO = IO of RealWorld -> RealWorld * 'a;
+datatype 'a IO = IO of RealWorld State' -> RealWorld State' * 'a;
 ```
 So far, Haskell and Standard ML have isomorphic types.
 
@@ -219,6 +221,7 @@ The functions describing `IO a` as a monad are defined in [GHC.Base](https://git
 as:
 
 ```haskell
+-- Haskell
 returnIO :: a -> IO a
 returnIO x = IO (\ s -> (# s, x #))
 
@@ -232,6 +235,8 @@ imitate the [ST monad](https://github.com/ghc/ghc/blob/541aedcd9023445b8e914d595
 the `RealWorld` thread. The relevant code would look like:
 
 ```sml
+(* Standard ML *)
+
 fun returnIO x = IO (fn s => (s, x));
 
 fun bindIO (IO m) k =
