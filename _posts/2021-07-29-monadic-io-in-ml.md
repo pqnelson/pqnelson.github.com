@@ -201,7 +201,7 @@ hood, it's just used to keep track of types. Arguably, `State# a` is
 empty, but that is for deeply magical reasons and ought not be taken
 _too_ seriously. (End of caution)
 
-Compare this to our implementation in Standard ML, whic roughly looks
+Compare this to our implementation in Standard ML, which roughly looks
 like:
 ```sml
 (* Standard ML *)
@@ -213,7 +213,7 @@ make the connections obvious:
 (* Standard ML *)
 type RealWorld = unit;
 type 'a State' = unit;
-datatype 'a IO = IO of RealWorld State' -> RealWorld State' * 'a;
+datatype 'a IO = IO of RealWorld State' -> RealWorld * 'a;
 ```
 So far, Haskell and Standard ML have isomorphic types.
 
