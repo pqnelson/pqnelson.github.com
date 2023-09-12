@@ -331,6 +331,8 @@ languages.
   [Eprint](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.91.3579&rep=rep1&type=pdf)
   - Also see Chi's [answer](https://stackoverflow.com/a/51772273/1296973) on stackoverflow, which inspired the more
     explicit derivation using `~>` impure function types
+- Edward Z. Yang, [Unraveling the mystery of the IO monad](http://blog.ezyang.com/2011/05/unraveling-the-mystery-of-the-io-monad/);
+  blog post dated May 4, 2011.
 
 ## Monads in Standard ML
 
