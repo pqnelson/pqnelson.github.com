@@ -170,7 +170,7 @@ There may be further monads worth playing with, or creating a hierarchy
 of monad modules.
 (End of Remark)
 
-# Haskell's Implementation of IO
+# Appendix 1: Haskell's Implementation of IO
 
 Under the hood, Haskell follows a remarkably similar strategy. The
 definition of `IO a` may be found in [GHC.Types](https://github.com/ghc/ghc/blob/b73c9c5face16cc8bedf4168ce10770c7cc67f80/libraries/ghc-prim/GHC/Types.hs#L233):
@@ -303,7 +303,7 @@ modules, I've written a [gist](https://gist.github.com/pqnelson/4ff12e27d822766b
 sketching out the implementation.
 (End of Remark)
 
-# Appendix: Should we be Pure in Standard ML?
+# Appendix 2: Should we be Pure in Standard ML?
 
 There's some folklore suggesting there's performance hits if we try
 being pure in a call-by-value language. Pippenger first published this
