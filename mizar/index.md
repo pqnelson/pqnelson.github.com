@@ -21,5 +21,7 @@ My publications in Mizar:
 2. Alexander M Nelson,
    "Internal Direct Products and the Universal
    Property of Direct Product Groups".
-   _Formalized Mathematics_ **31**, no.2 (2023) pp.109-130
+   _Formalized Mathematics_ **31**, no.2 (2023) pp.101-120
    [PDF](https://fm.mizar.org/fm31/group_23.pdf)
+   [10.2478/forma-2023-0010](https://doi.org/10.2478/forma-2023-0010).
+    
