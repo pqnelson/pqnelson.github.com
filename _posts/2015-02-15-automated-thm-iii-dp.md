@@ -83,6 +83,13 @@ step for equisatisfiability testing.
 We then plug this into the "vanilla" `toCNF` function (or something
 similar).
 
+**Remark.** The notion of "definitional CNF" appears to originate from
+T. B. de la Tour's "Minimizing the number of clauses by renaming"
+(in Stickel, ed., _10th International Conference on Automated Deduction_,
+volume 449 of Lecture Notes in Computer Science, Springer-Verlag, 1990;
+pages 558--572). But the _term_ "definitional CNF", as far as I can
+tell, seems to be coined by John Harrison. (End of Remark)
+
 ## Implementation
 
 The basic design to convert a formula into definitional conjunctive
