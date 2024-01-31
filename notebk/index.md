@@ -12,6 +12,9 @@ algoritm underpinning the calculations...
 
 ## Math
 
+- [Bourbaki's 1+1=2]({{ site.url }}/assets/notebk/bourbaki-one-plus-one.pdf), 12 pages,
+  a literate program checking the size of "1+1=2" in Bourbaki's
+  foundations of mathematics.
 - [Elementary Linear Algebra]({{ site.url }}/assets/notebk/elementary-linear-algebra.pdf), 94 pages,
   a review of linear algebra, motivated by systems of linear equations,
   then taking a detour into the algebra of matrices, then returning to
