@@ -7,4 +7,5 @@ kramdown:
   auto_ids: true
   input: GFM
   hard_wrap: false
+  math_engine: mathjax
   syntax_highlighter: rouge
