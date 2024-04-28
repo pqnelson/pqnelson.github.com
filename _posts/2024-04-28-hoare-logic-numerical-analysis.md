@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Hoare Logic for Numerical Analysis
-published: true
+published: false
 use_math: true
-draft: false
+draft: true
 quote: "Surely, we compute only when everything else fails, when mathematical theory cannot deliver an answer in a comprehensive, pristine form and thus we are compelled to throw a problem onto a number-crunching computer and produce boring numbers by boring calculations. This, I believe, is nonsense."
 quoteSource: Arieh Iserles, <i>A First Course in the Numerical Analysis of Differential Equations</i> (2009)
 tags: [Numerical Analysis, Hoare Logic]
