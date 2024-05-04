@@ -34,7 +34,7 @@ We can use the
 function 
 to extract the exponent of `x=m2^{n}` where $1\leq m<2$ and
 $n\in\mathbb{Z}$ then use this to approximate $x_{0}=2^{\lfloor n/2\rfloor}$ 
-(or if $n$ is odd $x_{0}=\sqrt{2}2^{\lfloor n/2\rfloor}$ with $\sqrt{2}\approx1.4142135623730950488016887242096980785696$
+(or if $n$ is odd $x_{0}=2^{\lfloor n/2\rfloor}\sqrt{2}$ with $\sqrt{2}\approx1.4142135623730950488016887242096980785696$
 precomputed and stored as a constant)
 to get the correct order-of-magnitude estimate for the squareroot. The
 contract for `frexp` may be given as:
