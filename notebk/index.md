@@ -15,6 +15,10 @@ algoritm underpinning the calculations...
 - [Bourbaki's 1+1=2]({{ site.url }}/assets/notebk/bourbaki-one-plus-one.pdf), 12 pages,
   a literate program checking the size of "1+1=2" in Bourbaki's
   foundations of mathematics.
+  - [Commentary on Bourbaki's Foundations]({{ site.url }}/assets/notebk/bourbaki-commentary.pdf),
+    22 pages, an incomplete commentary on the first chapter of
+    Bourbaki's "Theory of Sets" as a rational reconstruction in a more
+    modern Hilbert system format.
 - [Elementary Linear Algebra]({{ site.url }}/assets/notebk/elementary-linear-algebra.pdf), 94 pages,
   a review of linear algebra, motivated by systems of linear equations,
   then taking a detour into the algebra of matrices, then returning to
