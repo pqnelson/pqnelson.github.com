@@ -316,7 +316,7 @@ experimenting with examples.
 
 As I mentioned with picking your tool, organizing your content is half
 the battle for writing _in general_. Paul Halmost once remarked (as
-dutifully noted in Knuth and friends's _Mathematical Writing_) that the
+dutifully noted in Knuth and friends's [_Mathematical Writing_](https://jmlr.csail.mit.edu/reviewing-papers/knuth_mathematical_writing.pdf)) that the
 two anchors for a writer are:
 1. Do organize your material.
 2. Don't confuse your reader.
