@@ -2,6 +2,7 @@
 layout: post
 title: Verifying Hardware with Isabelle/HOL
 published: true
+use_math: true
 draft: false
 quote: "I have bought this wonderful machine—a computer. Now I am rather an authority on gods, so I identified the machine—it seems to me to be an Old Testament god with a lot of rules and no mercy."
 quoteSource: Joseph Campbell, <i>The Power of Myth</i> (1988)
@@ -20,6 +21,54 @@ I have [formalized](https://github.com/pqnelson/isabelle-nand2tetris)
 the combinational circuitry of a simple ALU in Isabelle/HOL, and these
 are some notes about the basic ideas how we formalize computer hardware.
 
+# Electrical Engineering for Mathematicians in 5 minutes
+
+The basic quantity of interest is voltage. We model boolean functions
+using electronic devices, we use voltage as the physical quantity
+encoding "true" and "false", and wires carry voltage.
+
+**Aside.** Although "high" voltage encodes "true", and "low" voltage
+encodes "false", there is also a "floating" voltage [denoted "Z"] which
+occurs when the voltage level changes, or other similar situations. For
+now, we may ignore "floating" voltage as an idealization similar to
+_massless_ pulleys, or _frictionless_ planes in physics. (End of aside)
+
+The basic building blocks are transistors, which might be idealized as
+switches. A transistor can be connected to three wires called:
+1. the gate (which determines if the switch is "open" or "closed", i.e.,
+   disconnects or connects the other two wires together)
+2. the source
+3. the drain
+
+There are two kinds of transistors, P-type transistors connect the
+source and drain when the gate's voltage is low, and N-type transistors
+connect them when the gate's voltage is high.
+
+The only other basic building blocks are the power source, which
+connects to one wire and supplies "high" voltage; and the ground, which
+connects to one wire, and "supplies" low voltage.
+
+We then can wire together these four building blocks (P-transistors,
+N-transistors, power, and ground) to form an electronic device. Usually
+there is only one source and one ground in most schematics.
+
+For combinational circuits, we can work mentally with voltages and
+ignore time. It's only when we get to sequential circuits that time
+becomes important.
+
+In effect, the mental model should be that wires are functions from time
+(usually $\mathbb{N}_{0}$ the non-negative integers) to voltage $\\{0,1\\}$.
+
+**Aside 2.** We might wonder if these are adequate idealizations, and
+they get us a lot of mileage. We might improve our discussion by
+introducing capacitors, modeling a transistor as a capacitor coupled to
+a switch, and so on. We might expand the description of voltage from
+$\\{0,1\\}$ to $\\{0,1,X,Z\\}$ to include "don't care" $X$ as well as
+"floating/high-impedence" $Z$, or even something more sophisticated. We
+can do all these things, but we hit diminishing returns for exploring
+hardware. If we were hired by, say, Intel, then we would almost
+certainly want to include such a degree of realism. (End of aside 2)
+
 # Logic Gates as Logical Relations
 
 Historically, the first successful approach to formalizing real world
@@ -28,6 +77,14 @@ ingenuity boils down to the slogan: "A logic gate is a logical relation
 of its inputs and outputs". (To be fair, Mike Gordon realized this in
 the 1980s, see the bibliography for references, but Fox was the first to
 formalize an actual CPU.) 
+
+Recall that a function $f\colon X\to Y$ is also a binary relation
+$f\subset X\times Y$ with the property for each $x\in X$ there exists a
+unique $y\in Y$ such that $f(x)=y$...or, if you prefer treating it like
+a relation, $(x,y)\in f$. We can model the basic building blocks as
+functions, or we can model them as relations, it doesn't matter at this
+stage of the game.
+
 For example, the switch model of CMOS has:
 
 ```isabelle
@@ -91,7 +148,8 @@ definition
 ```
 
 We should then prove our NAND gate implementation with CMOS transistors
-works, which is a simple enough proof by cases:
+works, which is a simple enough proof by cases followed by unfolding the
+definitions and brute-force:
 
 ```isabelle
 lemma "NAND a b out <--> (out <--> ¬(a ∧ b))"
@@ -189,6 +247,42 @@ in a clear, pedagogically satisfying manner? Can we make it adhere to
 the IEEE-754 standard? Can we _prove_ it adheres to the IEEE-754
 Standard?
 (End of Puzzle 1)
+
+# Sequential Circuits
+
+The motivating example of a sequential circuit is a diagram like the
+following: we have two inverters, which form a closed circuit.
+We would have something like the following diagram:
+
+![Image](/assets/circuits-1.png)
+
+If $A$ were high voltage, then $B=\overline{A}$ would be its negation
+and necessarily low voltage. If $A$ were low voltage, then $B$ would be
+high voltage.
+
+We effectively have obtained a way to store 1 bit of information, and
+usually this is denoted by the letter $Q$, something like the following diagram:
+
+![Image](/assets/circuits-2.png)
+
+In practice, we have a way to set $Q$ to a specific value, and a way to
+read the current value of $Q$. This gives us effectively a latch or a
+[flip-flop](https://en.wikipedia.org/wiki/Flip-flop_(electronics)). 
+
+Different implementations use different logic gates instead of
+inverters. Some use NOR gates, others use NAND. The basic schematic we
+have sketched underlies the gated D latex using pass transistor logic.
+
+This also demonstrates why the "naive" approach using functions for
+circuits fails. I wouldn't even know where to begin with such an
+approach. The predicate formalization is straightforward:
+
+```isabelle
+definition "D-gate q ≡ ex qBar. ∀t. (qBar (t + 1) = ¬(q t)
+    ∧ q (t + 1) = ¬(qBar t))"
+```
+
+This is reasonable, but if we tried to make it a function?
 
 # References
 
