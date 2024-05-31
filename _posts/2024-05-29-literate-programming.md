@@ -535,7 +535,11 @@ seeped into the mathematical community, before being incorrigible and
 loudly-and-proudly-ignorant became admirable instead of despicable. Now
 it seems pointless to write such a book, since Buzzard's disciples would
 eagerly toss it into the bonfire --- Lean is the alpha and omega for
-them, all else is heresy which must be expunged from memory and record.
+them, all else is heresy which must be expunged from memory and
+record. (This is no exaggeration, Buzzard's acolytes vociferously
+attacked a senior Lean developer for explaining that the dependent type
+theory underlying Lean is not Turing complete by itself, a result as
+shocking as "water is wet".)
 
 But now I have a lot of knowledge I feel compelled to share, and no
 identifiable outlet for sharing it. This is probably why I'm writing
