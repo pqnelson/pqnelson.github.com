@@ -1,8 +1,8 @@
 ---
 layout: post
 title: MYSTIC Challenge
-published: false
-draft: true
+published: true
+draft: false
 use_math: true
 quote: "Stories are much tidier than real life. Stories have neat, happy endings, but all you ever really get is unfinished business."
 quoteSource: Sandy Mitchell, <i>For the Emperor</i> (2003)
@@ -130,9 +130,10 @@ lecture notes are vague. Perhaps there are more lecture notes which are
 not translated (or even yet-to-be-discovered) which outlines more fully
 what Hilbert meant by the term.
 
-I downplayed the heroic efforts of Hilbert's colleagues,
-David Ackermann and Paul Bernays, who played pivotal roles in Hilbert's
-post-WW1 work.
+I downplayed the heroic efforts of Hilbert's colleagues, Wilhelm
+Ackermann and Paul Bernays, who played pivotal roles in Hilbert's
+post-WW1 work. And Hilbert lavishly praises their contribution quite
+explicitly in his papers, lectures, etc.
 
 Despite all this, the "mythology" I presented is not terribly
 unreasonable as a presentation of events. But I want to stress that it
@@ -160,7 +161,7 @@ and programming languages emerged, and that a lot of Hilbert's programme
 could be anachronistically recast using notions from computer
 science. That's what motivated my thinking behind this challenge...
 
-# Isabelle
+# MYSTIC Challenge
 
 > And Now for Something Completely Different...
 > 
@@ -185,6 +186,21 @@ to some aspects of Hilbert's programme:
 Among other reasons, while reading up on Hilbert's programme, I was
 inspired to think about Isabelle as a sort of "Hilbert programme 2:
 Electric Boogaloo", which led me to this MYSTIC challenge.
+
+Well, since Isabelle is an intuitionistic fragment of HOL, I suppose you
+could call this the _HOL-bert program_ ([you're welcome, Stanley!](https://youtu.be/dQw4w9WgXcQ?feature=shared)).
+
+Alternatively, you could look to
+[ACL2](https://www.cs.utexas.edu/~moore/acl2/) as an example of a
+theorem prover based on PRA + induction up to $\varepsilon_{0}$ (making
+it as strong as Peano arithmetic), and use that as the metalanguage for
+implementing a proof assistant for classical mathematics.
+
+There are countless variations to the basic challenge, each interesting
+in their own way. I'm going to outline the basic steps in building an
+LCF proof assistant, point to references in the literature for more
+detail for the reader, and leave most of it up to you. (If I did too
+much, it spoils the fun...)
 
 ## Step 1: Basic structure of Isabelle as Lambda Calculus
 
@@ -227,6 +243,10 @@ To make this a proof assistant, we can use the LCF approach (which
 Isabelle also takes). This defines an abstract type `thm` and provides
 ways to combine them together (inference rules) or construct them from
 terms (axioms).
+
+I am tempted to follow a lot of HOL Light's design decisions, to make
+the kernel as minimal as possible (even if that makes the resulting
+proof assistant a little slow).
 
 There are 14 inference rules for Isabelle's metalogic. You can find them
 in, e.g.,
@@ -274,12 +294,246 @@ thing would be in your chosen programming language).
 
 This "step" can take a weekend to do fully.
 
+For a full tutorial on this step alone, the reader may consult Jon
+Sterling's [LCF Sequent Calculus Example](https://github.com/jonsterling/lcf-sequent-calculus-example/tree/master)
+and Michael Norrish's [slides](https://www.cse.unsw.edu.au/~kleing/teaching/thprv-04/slides/slides-HOL4.pdf)
+about HOL more generally.
+
 Desiderata:
 
-- Make the kernel as small as possible.
+- Make the kernel as small as possible. 
+- Can you prove the kernel is sound? This might be a good fit for
+  literate programming if you're doing it by hand. Alternatively, you
+  could use the code generation feature of Coq (or HOL or...) to make
+  your kernel, and prove in Coq (respectively HOL, or...) that your code
+  is sound.
 - The `thm` is a natural fit for a monad (if your
-  programming language supports monads)
-- Don't worry about tracking definitions for the time being.
+  programming language supports monads).
+- Don't worry about tracking definitions in this step, it's coming up shortly.
+
+## Additional Steps
+
+At this point you have a small LCF prover for an intuitionistic fragment
+of HOL. Here are some further steps you can follow:
+
+**Step 3: Definitions.** You need to be able to add definitions of
+simple constants $c = t$ where $c$ is a new constant term symbol and $t$
+is a closed term. 
+
+HOL Light implements definitions as an
+association list, which is just a global variable. Freek Wiedijk's
+"Stateless HOL" ([arXiv:1103.3322](https://arxiv.org/abs/1103.3322))
+modified the structure of HOL Light to a more purely functional
+approach, passing along the definitions as a parameter.
+
+Things to ponder:
+
+- Can you treat definitions monadically?
+- If you're going to support typeclasses ("ad hoc polymorphism"), how will
+  your implementation of definitions handle it?
+- If you're using ML, can you treat definitions in MYSTIC as a new `val`
+  definition in ML code? How do you link it to a running MYSTIC instance
+  to make the program interactive?
+
+Some references for some backstory:
+- Rob Arthan,
+  "On Definitions of Constants and Types in HOL".
+  _Journal of Automated Reasoning_ **56** (2016) 205–219
+  doi:[10.1007/s10817-016-9366-4](https://doi.org/10.1007/s10817-016-9366-4)
+- Ms. Molly Stewart-Gallus,
+  [Do you need a Hilbert style Epsilon operator for definitions in set theory?](https://proofassistants.stackexchange.com/q/1349/14)
+  Proof Assistants Stackexchange thread, 30 April 2022.
+- Dominic P. Mulligan,
+  "Mosquito: an implementation of higher-order logic (Rough diamond)".
+  [Eprint pdf](https://dominicpm.github.io/publications/mulligan-mosquito-2013.pdf), for more about purely functional implementations of
+  HOL and handling of defintions. I have [backed up the code](https://github.com/pqnelson/mosquito).
+
+**Step 4: Inductive types and definitions.** These are helpful for
+reasoning about object languages. Following Tom Melham's brilliant
+insight to use the Tarski-Knaster theorem, every HOL system follows
+suite. 
+
+Some references may be useful on this subject:
+
+- Thomas F. Mehlam,
+  "Automating recursive type definitions in higher order logic".
+  UCAM-CL-TR-146, September 1988, [Eprint](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-146.html).
+- Thomas F. Melham,
+  "A Package for Inductive Relation Definitions in HOL". _Proceedings Of The 1991 International Workshop On The Hol Theorem Proving System And Its Applications_, 1991, [PDF](https://www.cs.ox.ac.uk/tom.melham/pub/00596299.pdf)
+- Stefan Berghofer and Markus Wenzel,
+  "Inductive datatypes in HOL — lessons learned in Formal-Logic Engineering".
+  In _TPHOLs 1999_.
+  [Eprint PDF](https://files.sketis.net/papers/datatype-TPHOLs99.pdf)
+
+**Step 5. Higher-order resolution.**
+Consider implementing resolution in the metalogic for reasoning about
+the object logic. You could also implement tableaux methods, if you
+want, but higher-order resolution has the advantage of failing faster
+than first-order resolution. Gilles Dowek advocates using it for trying
+to find out if a theory is consistent or not, and now you've built a
+tool which allows you to explore this claim!
+
+- Gilles Dowek,
+  "What do we know when we know that a theory is consistent?".
+  [arXiv:2305.10012](https://arxiv.org/abs/2305.10012), 6 pages. 
+
+## Subsequent projects
+
+There's many ways to develop the toy model we've built together. Here
+are some ways which spring to mind...
+
+**Project 1: Parser and Printer.** So far, you will have been constructing
+everything in the "object logic" by hand manually. This is tedious at
+the best of times. Isabelle implements an Earley parser for the "object
+logic" (see &sect;8.4.5 "Ambiguity of parsed expressions" of the
+Isabelle/Isar manual). If you don't know what an Earley parser is, it's
+roughly 
+\begin{equation}
+\begin{pmatrix}\mbox{Earley}\\\ \mbox{Parser}\end{pmatrix}
+=
+\begin{pmatrix}\mbox{Recursive}\\\ \mbox{Descent}\\\ \mbox{Parser}\end{pmatrix}
++\begin{pmatrix}\mbox{Dynamic}\\\ \mbox{Programming}\end{pmatrix}
+\end{equation}
+
+If you've made it a Lispy-like syntax for the
+"object logic", you might not want to do this step, but it's always fun
+writing parsers and prettyprinters. 
+
+- Freek Wiedijk,
+  "Pollack-Inconsistency".
+  [PDF](https://www.cs.ru.nl/~freek/pubs/rap.pdf), 17 pages.
+  + Discusses the dangers of inconsistency from a faulty printer/parser implementation
+- Mark Adams,
+  "HOL Zero's Solutions for Pollack-Inconsistency". 
+  In _Proceedings of the 7th International Conference on Interactive Theorem Proving_, Volume 9807 of Lecture Notes in Computer Science, pages 20-35. Springer, 2016. 
+  [Eprint](http://proof-technologies.com/papers/hzsyntax_itp2016.html)
+  + HOL Zero takes great pains to parse and print terms to avoid
+    so-called "Pollack-Inconsistency", which may be worth examining if
+    you decide to implement a parser and printer
+
+**Project 2: Declarative Proof Steps.**
+Isabelle has Isar, which is nice for its purposes, but there is really
+little better than Mizar for formalizing mathematics. [Mizar](http://mizar.org/) was designed
+intentionally as a formal language for how _working mathematicians_
+actually do mathematics. Study the design space here for declarative
+proof steps, and experiment with what works and what doesn't.
+
+Some references might be useful:
+
+- Freek Wiedijk, 
+  "Mizar Light for HOL Light".
+  _TPHOLs 2001_, [PDF](https://www.cs.ru.nl/F.Wiedijk/mizar/miz.pdf)
+- Freek Wiedijk, 
+  "A Synthesis of the Procedural and Declarative Styles of Interactive Theorem Proving".
+  _Logical Methods in Computer Science_ **8** no.1 (2012) 1-26,
+  [PDF](https://www.cs.ru.nl/F.Wiedijk/miz3/miz3.pdf);
+  [arXiv:1201.3601](https://arxiv.org/abs/1201.3601).
+- Markus Wenzel, 
+  "Isabelle/Isar — a versatile environment for human-readable formal proof documents". 
+  PhD thesis, Institut für Informatik, TU München, 2002. [Pdf](https://mediatum.ub.tum.de/doc/601724/601724.pdf)
+
+**Project 3: Formalize mathematics.**
+Mathematicians use an amalgam of foundations in practice. It's actually
+approximately a linear combination of 
+a "soft type system" + set theory + a fragment of HOL (for schemes).
+Try different ways to implement this as an "object logic" in your MYSTIC
+assistant. 
+
+Isabelle/Mizar was built to study this design space, and this design space
+is still feels underinvestigated.
+
+A second approach: Kevin Buzzard insists mathematicians _really_ must
+change how they do mathematics, and write _Principia Mathematica_ style
+proofs using Buzzard's preferred foundations. I'm not sure that's the right
+approach (reinventing the Hindenburg seldom works).
+
+A third, better, approach would be to think about inventing a Java-like "input
+language" which can compile to any foundations you like. ("Write once,
+run anywhere" was the motto for Java, it seems like the right approach
+to formalizing mathematics.) What would be a suitable Java-like language
+for formalizing mathematics which resembles how mathematicians _actually work_?
+
+Mario Carneiro has been working on something similar to this third line
+of attack, where he has "compiled" Lean to Metamath Zero (and HOL to
+Metamath Zero). One difference worth drawing attention to: Carneiro has
+been trying to use Metamath as the "JVM" for mathematics, rather than
+looking for a "Java language" of mathematics.
+
+- Freek Wiedijk,
+  "Mizar's Soft Type System".
+  [Eprint pdf](https://www.cs.ru.nl/~freek/mizar/miztype.pdf)
+- Isabelle/Mizar project
+  + Cezary Kaliszyk and Karol Pąk,
+    "Isabelle Import Infrastructure for the Mizar Mathematical Library".
+    CICM 2018, [PDF](https://alioth.uwb.edu.pl/~pakkarol/articles/CKKP-CICMMKM18.pdf)
+  + Cezary Kaliszyk and Karol Pąk,
+    "Semantics of Mizar as an Isabelle Object Logic".
+    _Journal of Automated Reasoning_ **63** no.1 (2019)
+    doi:[10.1007/s10817-018-9479-z](https://doi.org/10.1007/s10817-018-9479-z)
+  + Karol Pąk's [publications page](https://alioth.uwb.edu.pl/~pakkarol/publications.php)
+    has many other papers concerning Isabelle/Mizar
+- Mario Carneiro,
+  "Metamath Zero: The Cartesian Theorem Prover".
+  [arXiv:1910.10703](https://arxiv.org/abs/1910.10703)
+  - "Conversion of HOL Light proofs into Metamath".
+    [arXiv:1412.8091](https://arxiv.org/abs/1412.8091), 14 pages.
+
+**Project 4: Ouroboros-ify it.** 
+Formalize a statically-typed functional programming language using your
+proof assistant, implement it, verify the implementation, and use this
+to re-implement your MYSTIC proof assistant.
+
+This is a bit of a joke, of course, but it is a fascinating project to
+consider. [CakeML](https://cakeml.org/) is working towards realizing such a project, and still
+has a bit of a ways to go.
+
+One step towards this end might suffice: add "code generation" support
+for your proof assistant.
+
+- Florian Haftmann,
+  "Code generation from Isabelle/HOL theories".
+  [PDF](https://isabelle.in.tum.de/doc/codegen.pdf), 54 pages.
+- Lars Richard Hupel,
+  "Verified Code Generation from Isabelle/HOL".
+  PhD thesis, Universität München, [PDF](https://lars.hupel.info/pub/phd-thesis_hupel.pdf)
+- Ramana Kumar,
+  "Self-compilation and self-verification".
+  Tech report UCAM-CL-TR-879, February 2016,
+  [eprint](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-879.html)
+  + Kumar is a member of the CakeML project, which attempts to create a
+    self-compiling and self-verifying proof assistant.
+- [CakeML publications](https://cakeml.org/publications.html)
+  for more about this sort of project.
+
+# Concluding Remarks
+
+There are a lot of different ways to go about this "use computers to
+rationally reconstruct Hilbert's programme in terms of proof assistants"
+series of projects. I've only outlined a few, which seemed to fit the
+Isabelle project like a glove.
+
+Doubtless, there are many other possible variations, approaches,
+constraints, designs, and machinations that I haven't even thought of!
+
+But drop me an email (`pqnelson at gmail`). Did you make it to the end? 
+Were there any steps which were just too big? Did you wish I added more
+information anywhere? Less information? Are you filled with murderous
+rage because of how frustrating the whole endeavor was? Let me know, I'd
+like to iteratively improve this with your help.
+
+> We have come a long way together, dear readers. We have scaled the
+> Himalayas [...]. We have stood on Philosophy's roof. You could see your
+> house from there. No surprise; you could have made Philosophy your
+> home! Your patience, fortitude, and courage are deeply
+> appreciated. You never grumbled or complained. Okay, maybe once or
+> twice, but I didn't hear. [...]
+> 
+> And if, peradventure, you suspect that you were already able to [do
+> this] on your own and didn't need this book...well, then it served its
+> purpose. Dorothy always had the power to go back to Kansas. Toto too?
+> Toto too.
+> 
+> J. M. Fritzman, _Hegel_ (2014)
 
 # References
 
@@ -314,16 +568,3 @@ Desiderata:
   "Isabelle's Metalogic: Formalization and Proof Checker".
   [arXiv:2104.12224](https://arxiv.org/abs/2104.12224), 18 pages. 
   - For all the bells-and-whistles which accumulated over time
-- Lawrence Paulson,
-  "".
-  [arXiv:]()
-  
-## Other proof assistants
-
-- Mark Adams,
-  "HOL Zero's Solutions for Pollack-Inconsistency". 
-  In _Proceedings of the 7th International Conference on Interactive Theorem Proving_, Volume 9807 of Lecture Notes in Computer Science, pages 20-35. Springer, 2016. 
-  [Eprint](http://proof-technologies.com/papers/hzsyntax_itp2016.html)
-- Ramana Kumar,
-  "Self-compilation and self-verification".
-  Tech report UCAM-CL-TR-879, February 2016, [eprint](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-879.html)
