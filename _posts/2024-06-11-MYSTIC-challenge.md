@@ -201,6 +201,11 @@ theorem prover based on PRA + induction up to $\varepsilon_{0}$ (making
 it as strong as Peano arithmetic), and use that as the metalanguage for
 implementing a proof assistant for classical mathematics.
 
+Or you could use the [LOOP programming language](https://en.wikipedia.org/wiki/LOOP_(programming_language))
+which is essentially PRA reconsidered as a programming language. (You
+might actually want to use it as an "assembly language", and write a
+more ML-like language which compiles down to LOOP.)
+
 There are countless variations to the basic challenge, each interesting
 in their own way. I'm going to outline the basic steps in building an
 LCF proof assistant, point to references in the literature for more
