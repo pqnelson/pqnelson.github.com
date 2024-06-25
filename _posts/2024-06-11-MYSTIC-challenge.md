@@ -91,14 +91,18 @@ programme.
 systems.**  Now, there were multiple different philosophical
 perspectives on the crisis in the foundations of mathematics, and they
 all radically disagreed with how to proceed. David Hilbert said (if I
-may paraphrase his argument), "Look, let us take the 'greatest common
-divisor' of all these philosophical perspectives and use it to prove the
-consistency of axiomatic systems. That way, everyone is forced to agree
-with the results of classical mathematics."
+may paraphrase his argument), "Look, it seems that Brouwer's
+intuitionism is just [finitism](https://en.wikipedia.org/wiki/Finitism),
+so let's use that to prove the consistency of the axiomatization of
+'ideal mathematics' from the first step of our programme."
 
-The "greatest common divisor" among all the different approaches to
-the foundations of mathematics was interpreted later on as [finitism](https://en.wikipedia.org/wiki/Finitism),
-but Hilbert spoke of "finitary methods". Towards this end, Hilbert
+(This was later seen as a mistaken understanding of Brouwer's
+intuitionism, as Bernays reported in a letter from Zurich dated October
+25, 1925. Bernays and Weyl met in Zurich and found an example where
+intuitionism could prove a result which finitism could not. But still,
+Hilbert's "finitary methods" could be viewed as a fragment of intuitionism!)
+
+Towards this end, Hilbert
 invented [epsilon calculus](https://plato.stanford.edu/entries/epsilon-calculus/) and used it to prove various results in
 mathematical logic.
 
@@ -107,7 +111,8 @@ The exact implementation details was to use some fragment of arithmetic
 arithmetic](https://en.wikipedia.org/wiki/Primitive_recursive_arithmetic)
 or "PRA" for short)
 and to encode a way to prove results concerning axiomatic systems using
-PRA alone.
+PRA alone. The last lingering item Hilbert was curious about: how to prove the
+consistency of an axiomatic system using these techniques?
 
 Well, there's an old saying about curiosity and murdering felines. And
 the cat-killing-bastard Kurt Godel proved in 1931 that it's impossible
