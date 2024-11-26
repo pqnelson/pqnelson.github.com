@@ -222,3 +222,18 @@ table.inference th {
     font-size: 100%;
   }
 }
+
+dfn {
+    color: green;
+    font-style: normal;
+    text-decoration: underline dotted green 1px;
+}
+dfn::before {
+    content: open-quote;
+}
+dfn::after {
+    content: close-quote;
+}
+dfn:hover {
+    text-decoration: underline wavy green 1px;
+}
