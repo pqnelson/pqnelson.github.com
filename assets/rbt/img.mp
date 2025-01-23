@@ -180,16 +180,32 @@ endfig;
 % left-3-node as equivalent to a Red-Black subtree
 beginfig(3)
   path node[];
-  pair subtrees[];
+  path subtree[];
   path tree[];
-  numeric i, pw;
+  numeric i, pw, dx, level;
   pw := 2;
+  dx = 1.5u;
+  level = 2u;
   z[0] = (0,0);
+  subtree0 = (0,0) -- (-u,-2u) -- (u,-2u) -- cycle;
   for i=1 upto 2:
     z[i] = z[i-1] + (u + pw,0);
   endfor;
   for i=0 upto 2:
     node[i] = unitsquare scaled u shifted (z[i] - 0.5*(u+pw,u+pw));
+  endfor;
+  subtree1 = subtree0 shifted (z0 + (-1.5dx,-level));
+  subtree2 = subtree0 shifted (z0 + (-dx/16,-level));
+  subtree3 = subtree0 shifted (z2 + (dx/16,-level));
+  subtree4 = subtree0 shifted (z2 + (1.5dx,-level));
+  % draw edges
+  draw (point 0 of node0) -- (point 0 of subtree1); % a -- t1
+  draw (point (0.2*length(node0)) of node0) -- (point 0 of subtree2); % a -- t2
+  draw (point (0.05*length(node2)) of node2) -- (point 0 of subtree3); % c -- t3
+  draw (point (0.25*length(node2)) of node2) -- (point 0 of subtree4); % c -- t4
+  % draw nodes
+  for i=1 upto 4:
+    draw subtree[i];
   endfor;
   draw node0 withpen pensquare scaled pw withcolor red;
   draw node1 withpen pensquare scaled pw;
@@ -197,6 +213,10 @@ beginfig(3)
   label(btex $a$ etex, z0 - (0.5pw, 0.5pw + 1));
   label(btex $b$ etex, z1 - (0.5pw, 0.5pw));
   label(btex $c$ etex, z2 - (0.5pw, 0.5pw + 1));
+  label(btex $t_{1}$ etex, (point 0 of subtree1) + (pw,-0.6667level));
+  label(btex $t_{2}$ etex, (point 0 of subtree2) + (pw,-0.6667level));
+  label(btex $t_{3}$ etex, (point 0 of subtree3) + (pw,-0.6667level));
+  label(btex $t_{4}$ etex, (point 0 of subtree4) + (pw,-0.6667level));
 endfig;
 
 % motivating example of baldL
@@ -756,6 +776,163 @@ beginfig(5)
   draw (point 0 of node1)--(point 0.5*length(node1) of node1);
   draw (point 0.25*length(node1) of node1)--(point 0.75*length(node1) of node1);
   draw node1;
+endfig;
+
+outputtemplate:="balancel-%c.%o";
+beginfig(0)
+  path node[];
+  path subtree[];
+  path p[];
+  numeric i, pw, level, dx;
+  pair delta;
+  pw := 2;
+  level = 2u;
+  dx := 1.5u;
+  subtree0 = (0,0) -- (-u,-level) -- (u, -level) -- cycle;
+  z0 = (0,0); % c
+  z1 = z0 + (-dx,-level); % b
+  z2 = z1 + (-dx,-level); % a
+  subtree3 = subtree0 shifted (z1 + (dx,-level)); % t3
+  subtree1 = subtree0 shifted (z2 + (-dx,-level)); % t1
+  subtree2 = subtree0 shifted (z2 + (dx,-level)); % t2
+  subtree4 = subtree0 shifted (z0 + (dx,-level)); % t4
+  for i=0 upto 2:
+    node[i] = unitsquare scaled u shifted (z[i] - 0.5*(u+pw,u+pw));
+  endfor;
+  % draw the edges connecting nodes to their children
+  draw (point 0 of node2)--(point 0 of subtree1); % a--t1
+  draw (point (0.25*length(node2)) of node2)--(point 0 of subtree2); %a--t2
+  draw (point 0 of node1)--(point (0.625*length(node2)) of node2); % b--a
+  draw (point (0.25*length(node1)) of node1)--(point 0 of subtree3); %b--t3
+  draw (point 0 of node0)--(point (0.625*length(node1)) of node1); % c--b
+  draw (point (0.25*length(node0)) of node0)--(point 0 of subtree4); % c--t4
+  % draw the nodes and subtrees now
+  draw node0 dashed evenly scaled 0.5; % c
+  draw node1 withcolor red;
+  draw node2 withcolor red;
+  for i=1 upto 4:
+    draw subtree[i];
+  endfor;
+  label(btex $c$ etex, z0 - 0.5*(pw,pw));
+  label(btex $b$ etex, z1 - 0.5*(pw,pw)) withcolor red;
+  label(btex $a$ etex, z2 - 0.5*(pw,pw)) withcolor red;
+  label(btex $t_{1}$ etex, (point 0 of subtree1) + (pw,-0.6667level));
+  label(btex $t_{2}$ etex, (point 0 of subtree2) + (pw,-0.6667level));
+  label(btex $t_{3}$ etex, (point 0 of subtree3) + (pw,-0.6667level));
+  label(btex $t_{4}$ etex, (point 0 of subtree4) + (pw,-0.6667level));
+
+  label(btex $\Longrightarrow$ etex, (point 0 of subtree4) + (1.75dx,-0.6667level));
+  
+  delta = (7dx,0);
+  z3 = delta + (0,0); % b
+  z4 = delta + (-2dx,-level); % a
+  z5 = delta + (2dx, -level); % c
+  for i=3 upto 5:
+    node[i] = unitsquare scaled u shifted (z[i] - 0.5*(u+pw,u+pw));
+  endfor;
+  subtree5 = subtree0 shifted (z4 + (-dx,-level)); % t1
+  subtree6 = subtree0 shifted (z4 + (dx,-level)); % t2
+  subtree7 = subtree0 shifted (z5 + (-dx,-level)); % t3
+  subtree8 = subtree0 shifted (z5 + (dx,-level)); % t4
+  % edges connecting the rotated nodes
+  draw (point 0 of node3)--(point (0.625*length(node4)) of node4); % b--a
+  draw (point 0 of node4)--(point 0 of subtree5); % a--t1
+  draw (point (0.25*length(node4)) of node4)--(point 0 of subtree6); % a--t2
+  draw (point (0.25*length(node3)) of node3)--(point (0.625*length(node5)) of node5); % b--c
+  draw (point 0 of node5)--(point 0 of subtree7); % c--t3
+  draw (point (0.25*length(node5)) of node5)--(point 0 of subtree8); % c--t4
+  % draw the children, etc.
+  draw node3 withcolor red;
+  draw node4;
+  draw node5;
+  for i=5 upto 8:
+    draw subtree[i];
+  endfor;
+  label(btex $c$ etex, z5 - 0.5*(pw,pw));
+  label(btex $b$ etex, z3 - 0.5*(pw,pw)) withcolor red;
+  label(btex $a$ etex, z4 - 0.5*(pw,pw));
+  label(btex $t_{1}$ etex, (point 0 of subtree5) + (pw,-0.6667level));
+  label(btex $t_{2}$ etex, (point 0 of subtree6) + (pw,-0.6667level));
+  label(btex $t_{3}$ etex, (point 0 of subtree7) + (pw,-0.6667level));
+  label(btex $t_{4}$ etex, (point 0 of subtree8) + (pw,-0.6667level));
+endfig;
+
+beginfig(1)
+  path node[];
+  path subtree[];
+  path p[];
+  numeric i, pw, level, dx;
+  pair delta;
+  pw := 2;
+  level = 2u;
+  dx := 1.5u;
+  subtree0 = (0,0) -- (-u,-level) -- (u, -level) -- cycle;
+  z0 = (0,0); % c
+  z2 = z0 + (-dx,-level); % a
+  z1 = z2 + (dx,-level); % b
+  subtree1 = subtree0 shifted (z2 + (-dx,-level)); % t1
+  subtree2 = subtree0 shifted (z1 + (-dx,-level)); % t2
+  subtree3 = subtree0 shifted (z1 + (dx,-level)); % t3
+  subtree4 = subtree0 shifted (z0 + (1.25dx,-level)); % t4
+  for i=0 upto 2:
+    node[i] = unitsquare scaled u shifted (z[i] - 0.5*(u+pw,u+pw));
+  endfor;
+  % draw the edges connecting nodes to their children
+  draw (point 0 of node2)--(point 0 of subtree1); % a--t1
+  draw (point (0.25*length(node2)) of node2)--(point (0.625*length(node1)) of node1); % a -- b
+  draw (point 0 of node1)--(point 0 of subtree2); % b--t2
+  draw (point (0.25*length(node1)) of node1)--(point 0 of subtree3); % b--t3
+  draw (point (0.25*length(node0)) of node0)--(point 0 of subtree4); % c--t4
+  draw (point 0 of node0)--(point (0.625*length(node2)) of node2); % c--a
+  % draw the nodes and subtrees now
+  draw node0 dashed evenly scaled 0.5; % c
+  draw node1 withcolor red;
+  draw node2 withcolor red;
+  for i=1 upto 4:
+    draw subtree[i];
+  endfor;
+  label(btex $c$ etex, z0 - 0.5*(pw,pw));
+  label(btex $b$ etex, z1 - 0.5*(pw,pw)) withcolor red;
+  label(btex $a$ etex, z2 - 0.5*(pw,pw)) withcolor red;
+  label(btex $t_{1}$ etex, (point 0 of subtree1) + (pw,-0.6667level));
+  label(btex $t_{2}$ etex, (point 0 of subtree2) + (pw,-0.6667level));
+  label(btex $t_{3}$ etex, (point 0 of subtree3) + (pw,-0.6667level));
+  label(btex $t_{4}$ etex, (point 0 of subtree4) + (pw,-0.6667level));
+
+  label(btex $\Longrightarrow$ etex, (point 0 of subtree4) + (1.75dx,-0.6667level));
+  
+  delta = (7dx,0);
+  z3 = delta + (0,0); % b
+  z4 = delta + (-2dx,-level); % a
+  z5 = delta + (2dx, -level); % c
+  for i=3 upto 5:
+    node[i] = unitsquare scaled u shifted (z[i] - 0.5*(u+pw,u+pw));
+  endfor;
+  subtree5 = subtree0 shifted (z4 + (-dx,-level)); % t1
+  subtree6 = subtree0 shifted (z4 + (dx,-level)); % t2
+  subtree7 = subtree0 shifted (z5 + (-dx,-level)); % t3
+  subtree8 = subtree0 shifted (z5 + (dx,-level)); % t4
+  % edges connecting the rotated nodes
+  draw (point 0 of node3)--(point (0.625*length(node4)) of node4); % b--a
+  draw (point 0 of node4)--(point 0 of subtree5); % a--t1
+  draw (point (0.25*length(node4)) of node4)--(point 0 of subtree6); % a--t2
+  draw (point (0.25*length(node3)) of node3)--(point (0.625*length(node5)) of node5); % b--c
+  draw (point 0 of node5)--(point 0 of subtree7); % c--t3
+  draw (point (0.25*length(node5)) of node5)--(point 0 of subtree8); % c--t4
+  % draw the children, etc.
+  draw node3 withcolor red;
+  draw node4;
+  draw node5;
+  for i=5 upto 8:
+    draw subtree[i];
+  endfor;
+  label(btex $c$ etex, z5 - 0.5*(pw,pw));
+  label(btex $b$ etex, z3 - 0.5*(pw,pw)) withcolor red;
+  label(btex $a$ etex, z4 - 0.5*(pw,pw));
+  label(btex $t_{1}$ etex, (point 0 of subtree5) + (pw,-0.6667level));
+  label(btex $t_{2}$ etex, (point 0 of subtree6) + (pw,-0.6667level));
+  label(btex $t_{3}$ etex, (point 0 of subtree7) + (pw,-0.6667level));
+  label(btex $t_{4}$ etex, (point 0 of subtree8) + (pw,-0.6667level));
 endfig;
 
 
