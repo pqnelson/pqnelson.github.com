@@ -69,6 +69,22 @@ literate programming,
 (Note: I have added link to Marneffe's paper and DOI link to Towster's
 paper for ease of reference.)
 
+<div style="padding-left:0.5em;margin-left:0.5em;border-left:1px dotted; font-size:smaller">
+
+**Addendum** <time datetime="2025-02-11T08:32:58-0800">Feb 11, 2025 (8:32:58 AM)</time>.
+After reading Marneffe's thesis, it appears that he took a rather
+fascinating approach. If you think of a literate program as a tree
+(with the code chunks as nodes), then only in the "leaf" chunks can
+there be assignment operations.
+
+The "node" chunks describe the control flow (if-statements, loops, etc.).
+But no assignment may occur in a "node".
+
+Of course, Marneffe was trying to build a language atop any given
+programming language to facilitate structured programming.
+
+</div>
+
 This reveals more than it may seem:
 
 1. Literate programming focuses on top-down exposition (whatever that means);
