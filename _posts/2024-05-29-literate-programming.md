@@ -16,6 +16,59 @@ useful? How do I do "literate programming"?
 I try to answer these questions with what I've learned about 
 "literate programming" (in Knuth's sense) over the past few years.
 
+
+**Addendum.** This blog post has been [discussed on hackernews](https://news.ycombinator.com/item?id=46125963), and
+there was some strange misconceptions about "What Knuth means by 'literate
+programming'". I thought I would address this first and
+explicitly. The rest of the post, after the first section, is more or
+less the same.
+
+# Addressing common misconceptions
+
+This particular blog post was shared on hackernews early in December
+2025, and someone claimed:
+
+> This essay seems to be missing the main primary references for literate programming:
+> 
+> https://www.cs.tufts.edu/~nr/cs257/archive/literate-programming/01-knuth-lp.pdf
+> 
+> https://www-cs-faculty.stanford.edu/~knuth/lp.html
+> 
+> Knuths intention seems clear enough in his own writing:
+> 
+>> Literate programming is a methodology that combines a programming language with a documentation language, thereby making programs more robust, more portable, more easily maintained, and arguably more fun to write than programs that are written only in a high-level language. The main idea is to treat a program as a piece of literature, addressed to human beings rather than to a computer.
+> 
+> and
+> 
+>> Let us change our traditional attitude to the construction of programs: Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do.
+
+Let us stipulate these quotes summarize the essence of literate
+programming for Knuth. Why do you think what
+Knuth means by a "documentation language" means the same thing _you_
+mean by it? (Hint: according to the creators of Javadoc, no, Knuth
+means something entirely different.)
+
+Despite Knuth's assertion, he doesn't really describe his methodology,
+even confessing as much when he writes, "Programming is a very
+personal activity, so I can't be certain that what has worked for me
+will work for everybody." (In fact, Knuth describes Pascal-specific
+and WEB-specific techniques in a lot of his writings about literate
+programming.)
+
+Look at Knuth's _TeX: The Program_ and _Metafont: The Program_, and
+these books are not "documentation" in the sense people would use the
+term. Are they "literature"? No, not really. Do they tell humans what
+we want a computer to do? Kind of... So are they _not_ literate programs?
+
+This is one reason why I wrote this blog post. The rest of the post is unchanged.
+
+<div style="padding-left:0.5em;margin-left:0.5em;border-left:1px dotted; font-size:smaller">
+<strong>Aside:</strong> After thinking about it for a <em>long</em> time, I suspect the
+reason Knuth is so bullish about literate programming is because it
+was an integral part of the bootstrapping process of the TeX
+system…which is why Knuth is so excited about literate programming.
+</div>
+
 # Knuth's Original Intent?
 
 I contend that Knuth originally intended literate programming to be used
@@ -71,7 +124,7 @@ paper for ease of reference.)
 
 <div style="padding-left:0.5em;margin-left:0.5em;border-left:1px dotted; font-size:smaller">
 
-**Addendum** <time datetime="2025-02-11T08:32:58-0800">Feb 11, 2025 (8:32:58 AM)</time>.
+<strong>Addendum</strong> <time datetime="2025-02-11T08:32:58-0800">Feb 11, 2025 (8:32:58 AM)</time>.
 After reading Marneffe's thesis, it appears that he took a rather
 fascinating approach. If you think of a literate program as a tree
 (with the code chunks as nodes), then only in the "leaf" chunks can
@@ -305,7 +358,7 @@ It depends on your programming language.
 - For C, use CWEB
 - For anything else, I suppose use NOWEB.
 
-The difficult that crops up is there are so few tools for literate
+The difficult that crops up is there are so few _well thought out_ tools for literate
 programming that you may have to roll your own. (Dare I say, you could
 write a _literate program_ for literate programming?)
 
