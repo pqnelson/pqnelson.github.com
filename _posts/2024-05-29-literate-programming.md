@@ -245,6 +245,35 @@ with me. The recommendations:
 Again, I never would have guessed this in a million years if I just read
 Donald Knuth's articles alone.
 
+
+<div style="padding-left:0.5em;margin-left:0.5em;border-left:1px dotted; font-size:smaller">
+
+<p>
+<strong>Addendum</strong> <time datetime="2026-07-02T13:45:59-0700">Jul  2, 2026 (1:45:59 PM)</time>.
+There are some Knuth-style literate programs I omitted:<br />
+(0) METAFONT, the companion to TeX, implemented by Knuth<br />
+(1) MMIXware, also by Knuth<br />
+(2) “C Interfaces and Implementations” by David R. Hanson <br />
+(3) <a href="https://pbr-book.org/">“Physically Based Rendering”</a> by Pharr and Humphreys <br />
+(4) The Stanford GraphBase
+</p>
+<p>
+I also learned about: <br />
+(5) <a href="https://principia-softwarica.org/">Principia Softwarica</a>, an effort to
+transform <a href="https://en.wikipedia.org/wiki/Plan_9_from_Bell_Labs">Plan 9</a> from Bell Labs into a literate program
+using Noweb; and<br />
+(6) <a href="http://ulixos.org/">Ulix</a>, a literate
+program implementing a Unix-like operating system.<br />
+I don't know how I feel about these efforts. 
+</p>
+<p>
+Oh, and (7) <a href="https://en.wikipedia.org/wiki/Axiom_(computer_algebra_system)">Axiom</a>
+which even has an <a href="https://www.nongnu.org/axiom/axiom-website/litprog.html">example of literate programming in HTML</a>.
+I don't know how I feel about Axiom, either.
+</p>
+
+</div>
+
 # When do you want "literate programming"?
 
 Tl;dr: if you want to preserve knowledge, then literate programming is a
@@ -298,13 +327,35 @@ you see this in _Crafting Interpreters_ where Nystrom refactors portions
 of code into new functions. This is impossible to adequately do in
 Knuth's WEB (or CWEB) approach.
 
-Unit testing is not supported one bit in WEB, but you can cobble
-something together in CWEB. I have a hard time imagining writing a
-program without any unit tests at all, but it "goes against the grain"
-of literate programming. This is probably something more to do with
-Knuth's personal philosophy than literate programming as a whole. We
-could easily imagine a situation where TDD is used in literate
-programming, the tests are written before the function, and so on.
+Unit testing is not supported one bit in WEB (since WEB predates unit
+testing by about a decade), but you can cobble something together in
+CWEB. I have a hard time imagining writing a program without any unit
+tests at all, but it "goes against the grain" of literate
+programming. This is probably something more to do with Knuth's
+personal philosophy than literate programming as a whole. We could
+easily imagine a situation where TDD is used in literate programming,
+the tests are written before the function, and so on.
+
+<div style="padding-left:0.5em;margin-left:0.5em;border-left:1px dotted; font-size:smaller">
+<p>
+<strong>Addendum</strong> <time datetime="2026-07-02T13:22:02-0700">Jul  2, 2026 (1:22:02 PM)</time>.
+Apparently these remarks about unit testing confuse some people. Let
+me give a more precise statement: if you are in the middle of a "flow"
+implementing some function (or some part of a function), then you have
+competing concerns. <strong>As a programmer</strong>, you should want
+to implement unit tests <em>first</em> to do "test-driven development"
+(or "behaviour driven development", or whatever they're calling it
+these days). However, <strong>as a writer</strong>, you don't want
+this to interrupt the narrative. There is no "obvious" resolution to
+this dilemma, not to me anyways.
+</p><p>
+Perhaps we could just omit the unit tests from the literate program?
+Then its omission prevents the manuscript from being a <em>literate program</em>.
+If you are comfortable with omitting the specification for the
+functions (in the form of unit tests), then you really need to ask
+yourself what you are doing with your life?
+</p>
+</div>
 
 Explaining what you're doing is hard, in general. Asking programmers to
 explain what they're doing is hard (because _giving explanations_ is hard). 
@@ -380,6 +431,19 @@ lines of an extension to mathematics (so variables would be italicized,
 for example, as in mathematics). But you need to dedicate serious time
 to pondering it, and the only way to really make progress is by
 experimenting with examples.
+
+<div style="padding-left:0.5em;margin-left:0.5em;border-left:1px dotted; font-size:smaller">
+
+<strong>Addendum</strong> <time datetime="2026-07-02T14:06:13-0700">Jul  2, 2026 (2:06:13 PM)</time>.
+What about "notebooks" as used in R or Julia or Python (Jupyter)? I
+would argue these are not tools for literate programming in the sense
+I am investigating. They are fine tools for reproducible research, but
+I am interested in writing a manuscript communicating ideas about a
+particular subject (implementing proof assistants). Notebooks will
+not adequately work.
+
+</div>
+
 
 ## Organizing your content
 
@@ -628,3 +692,20 @@ to drastically different outcomes (compare Hanson & Fraser with Nystrom).
 Perhaps there is no royal road to literate programming, you just need to
 be honest enough to identify when your writing fails, and the courage to
 start over with a clean rewrite.
+
+
+<div style="padding-left:0.5em;margin-left:0.5em;border-left:1px dotted; font-size:smaller">
+
+<strong>Addendum</strong> <time datetime="2026-07-02T13:34:59-0700">Jul  2, 2026 (1:34:59 PM)</time>.
+Now that we are in the era of decline with AI slop and “vibecoding”, this
+essay feels particularly quaint. I wish I could say, “And looking
+back, two years later, we see how wrong I was to dismiss literate
+programming as difficult to do.” I also wish I could say people have
+not outsourced their prefrontal cortex to a plagiarism machine. It's
+difficult not to ask the question, “Is there any point in trying to
+preserve <em>any</em> knowledge?” The only thing I can say now is to
+quote something from my Grandfather: you don't write for other people,
+you write for yourself because “you have a book in yourself you need
+to get out”.
+
+</div>
