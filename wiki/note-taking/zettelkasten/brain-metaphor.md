@@ -6,6 +6,17 @@ date: 2026-07-05
 parentURL: /wiki/note-taking/zettelkasten/
 ---
 
+**tl;dr** Linking slips seems to have some relation to the structure of memory
+in the brain. Just as memories are "spread out" in the brain (as opposed to
+"localized" in some particular cluster of neurons), it's OK for slips
+to be "spread out", too. In fact, creative insights are generated this
+way. Some examples are given.
+
+And, no, I didn't use AI to write this. As any [TeX](https://en.wikipedia.org/wiki/TeX) user will tell you,
+we Mathematicians just use em-dashes a lot.
+
+## What did Luhmann say?
+
 Luhmann writes on slip
 [9/8b](https://niklas-luhmann-archiv.de/bestand/zettelkasten/zettel/ZK_2_NB_9-8b_V)
 (translation is mine, as mediocre as it is):
@@ -40,17 +51,23 @@ neurons associated with remembering that location could be "reused" as
 you form new memories in the location.
 
 Importantly, the "multiple trace theory" contends that re-indexing
-occurs when a memory trace gets re-activated.
+occurs when a memory trace gets re-activated. (I only mention this
+because it seems the 'keyword index' Luhmann uses is analogous to
+Hippocampal index neurons.)
 
 ## How did Luhmann use this?
 
 Johannes Schmidt writes in [Niklas Luhmann’s Card Index: The Fabrication of Serendipity](https://pub.uni-bielefeld.de/download/2942471/2942472/jschmidt_niklas%20luhmann%27s%20card%20index_%20sociologica_2018_12-1.pdf)
-(§6) pages 58--59 (footnotes removed):
+(§6) pages 58--59 (footnotes removed)
+about specifically how this slip 9/8b relates to the keyword index in
+Luhmann's Zettelkasten:
 
 > Whereas the index to the first collection was still of fairly manageable size with its 1,250 entries, the continuous updates of the index --- as another part of the data base maintenance --- to the second collection ultimately resulted in 3,200 entries. Contrary to the subject index of a book, the file’s keyword index makes no claim to providing a complete list of all cards in the collection that refer to a specific term. Rather, Luhmann typically listed only one to four places where the term could be found in the file, the idea being that all other relevant entries in the collection could be quickly identified via the internal system of references described above. As Luhmann noted, this concept goes back to the general structure of the brain modeled by W.R. Ashby: the capacity of the brain does not derive from a huge number of point-to-point-accesses but on the relations between the nodes (i.e. notes). Therefore, by contrast, the large number of words listed in the keyword index indicates that this list itself was at least intended to meet the standard of (thematic) completeness, i.e. complexity of the index file.
 
-Johannes Schmidt writes in [Niklas Luhmann’s Card Index: Thinking Tool,  Communication Partner, Publication Machine](https://pub.uni-bielefeld.de/download/2942475/2942530/jschmidt_2016_niklas%20luhmanns%20card%20index.pdf)
-(pg 17, most footnotes removed):
+Elsewhere, Johannes Schmidt writes in [Niklas Luhmann’s Card Index: Thinking Tool,  Communication Partner, Publication Machine](https://pub.uni-bielefeld.de/download/2942475/2942530/jschmidt_2016_niklas%20luhmanns%20card%20index.pdf)
+(pg 17, most footnotes removed) about how the links on slips of paper
+were intended to facilitate exploration and connecting ideas in
+surprising ways:
 
 > Luhmann himself called his system of references a “web-like system” (_spinnenartiges System_). This metaphor suggests interpreting it along network-theoretical lines. A key feature explaining the productivity of this filing system is its potential for enabling ‘short cuts’, i.e., the fact that a reference may lead to a completely different (both in terms of subject and location), distant region in the network (file). Luhmann himself considered this feature, which counteracted the collection’s primary system of organization, to be of crucial significance: “The references must not capture collective concepts that aggregate key aspects but must selectively lead away from the material subsumed under them”[35] so that they facilitate interpretations and contextualizations of his notes that differed from those intended when creating and initially integrating the notes in the file system.
 > 
@@ -65,10 +82,10 @@ Zettelkasten. The notion of "time" appears frequently, because
 Marginalist economics works with static models. So I have some slips
 in my Zettelkasten from reading Termini's [Logical, mechanical and historical time in economics](https://mpra.ub.uni-muenchen.de/24491/1/MPRA_paper_24491.pdf)
 talking about the various distinctions of time in Economics: as a
-"slide show" of static models (logical time), as a exogeneous
+"slide show" of static models (logical time), as an exogeneous
 parameter for models analogous to time in classical mechanics in
 physics (mechanical time), and as determined by the entropic arrow of
-time (historical time). I can link to my slip on "entropy" in physics.
+time (historical time). I can link to my slip `Entropy (physics)` on "entropy" in physics.
 
 At the same time, I am now trying to understand [Brouwer](https://en.wikipedia.org/wiki/L._E._J._Brouwer)'s
 [Intuitionism](https://en.wikipedia.org/wiki/Intuitionism) in the
@@ -86,15 +103,15 @@ fruitful.
 
 **Example 2.** I am writing notes from Dan Ingalls's [Design Principles Behind Smalltalk](https://www.cs.virginia.edu/~evans/cs655/readings/smalltalk.html),
 because [Smalltalk](https://en.wikipedia.org/wiki/Smalltalk) is not "just" a programming language but an entire "system" 
-which you "live in". That's weird and unique. The only other similar
-"system" you "live in" is the Lisp programming language.
+which you "live in". That's weird and unique, it's shared by only one
+other programming language (Lisp).
 
 Ingalls describes Smalltalk by introducing a "toy model" of humans
 consisting of a physical, tangible 'body' and some intangible
 'mind'. When humans communicate with each other, it is through the
-physical channels via "explicit communication" (through spoken word, written word, etc.) along
-with some "implicit communication" through shared culture and
-experience. 
+physical channels via "explicit communication" (through spoken word,
+written word, etc.) along with some "implicit communication" through
+shared culture and experience.
 
 What's clever about Ingalls's model is that we can describe a
 _computer_ as consisting of a 'body' (its hardware) and 'mind' (its
@@ -116,7 +133,8 @@ the form of communication. This allows me to relate programming in
 `Autopoiesis`. I honestly do not know if anyone has ever related "the
 act of programming" with "Autopoiesis" before, but it is new to me.
 
-Why does it matter? Because I am writing about [Proof Assistants](https://en.wikipedia.org/wiki/Proof_assistant),
+**Example 3 (double whammy).** 
+Why do these examples matter? Because I am writing about [Proof Assistants](https://en.wikipedia.org/wiki/Proof_assistant),
 something like an interpreter which double checks your proofs. I am
 trying to present a "digital [Hilbert's programme](https://plato.stanford.edu/entries/hilbert-program/)"
 where the proof assistant gives the user essentially Hilbert's
@@ -130,6 +148,16 @@ Mathematics. Using my Zettelkasten, I can tie all these loose ends
 together, relating Autopoiesis to the practice of "doing Mathematics"
 to modeling user-interaction with a proof assistant to...well, you get
 the idea.
+
+Connecting the "practice of using a proof assistant" to Ingalls's
+`Dialogue with computer` to Brouwer's Intuitionism transforms
+Intuitionism from a _solipsistic_ description of Mathematics (as a solo
+activity executed by a single Mathematician) to a _communal_ activity
+(as executed by a single Mathematician and a computer, which leads to
+communication with other Mathematicians _over_ the computer).
+
+None of these elements are particular innovative _on their own_. But
+when combined together, it presents a perspective no one discusses.
 
 **Remark.** These examples are _actually from my Zettelkasten_. As you
 can see, the links are not "obscure" or "un-obvious"
