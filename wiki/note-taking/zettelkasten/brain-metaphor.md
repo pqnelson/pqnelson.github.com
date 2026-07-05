@@ -38,24 +38,39 @@ of engrams.
 The best review I could find (which I could appreciate and understand) is 
 Felipe De Brigard's "The Nature of Memory Traces" ([Google Scholar](https://scholar.google.com/citations?view_op=view_citation&hl=en&citation_for_view=l9gS2joAAAAJ:mVmsd5A6BfQC)).
 
-One model for memory formation and recall is the "multiple trace
+There has been a fairly "standard" model of "memory traces", which has
+been patched over time to address inadequacieis and shortcomings.
+
+The current model for memory formation and recall is the "multiple trace
 theory" (page 410 of de Brigard's paper). Basically a bunch of neurons
-scattered throughout the brain store small fragments of the same
+scattered throughout the brain store very small fragments of the same
 memory, and one "hippocampal index" neuron binds them all together
 into a single "memory". 
 
 As I understand it, the "same" neurons can be "reused" --- for
 example, if you have multiple memories in the same geographical
-location or place (like the same coffeeshop or restaurant), then the
-neurons associated with remembering that location could be "reused" as
-you form new memories in the location.
+location or place (for example: the same coffeeshop I proposed
+to my wife is the same coffeeshop I worked my first job), then the
+neurons associated with remembering that location ("the coffeeshop"
+itself) could be "reused" as you form new memories in the location.
 
-Importantly, the "multiple trace theory" contends that re-indexing
+(Thus far, the theory seems relevant for addressing the issue of
+"where do I place a note?"---like neurons, notes can be scattered
+throughout the Zettelkasten---and link-formation.)
+
+Importantly, the part which is unique to the "multiple trace theory"
+addressing the inadequacies of the
+"standard model", the "multiple trace theory" contends that re-indexing
 occurs when a memory trace gets re-activated. (I only mention this
 because it seems the 'keyword index' Luhmann uses is analogous to
 Hippocampal index neurons.)
 
 ## How did Luhmann use this?
+
+Luhmann appears to use the model of "memory traces" in two obvious ways: (1)
+in the form of the 'keyword index' or 'register' (which is analogous
+to the Hippocampal index neurons), (2) links between the slips of
+cards.
 
 Johannes Schmidt writes in [Niklas Luhmann’s Card Index: The Fabrication of Serendipity](https://pub.uni-bielefeld.de/download/2942471/2942472/jschmidt_niklas%20luhmann%27s%20card%20index_%20sociologica_2018_12-1.pdf)
 (§6) pages 58--59 (footnotes removed)
@@ -74,6 +89,9 @@ surprising ways:
 > Footnote: [35] Luhmann, Zettelkasten II, index card no. [9/8b1](https://niklas-luhmann-archiv.de/bestand/zettelkasten/zettel/ZK_2_NB_9-8b1_V)
 
 ## How does this help?
+
+For me, this helps with the issue of when to form links and not to
+worry where to place things in the Zettelkasten.
 
 Perhaps the best way to understand how this is useful is by examples.
 
