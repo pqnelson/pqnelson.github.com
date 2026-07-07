@@ -27,9 +27,9 @@ Luhmann writes on slip
 
 <div style="padding-left:0.5em;margin-left:0.5em;border-left:1px dotted; font-size:smaller">
 <strong>Addendum</strong><time datetime="2026-07-07T14:47:41-0700">Jul  7, 2026 (2:47:41 PM)</time>.
-After discussing it with Sebastian Koch, he pointed out _Suchimpuls_
+After discussing it with Sebastian Koch, he pointed out <i>Suchimpuls</i>
 can also describe the situation where "I need to look something up but
-I don't feel like it." Also _Gedankenfixierung_ is weird German but
+I don't feel like it." Also <i>Gedankenfixierung</i> is weird German but
 has the connotation of "fastening down an idea". But both of these
 terms seem to have a clear neurological inflection to them.
 </div>
