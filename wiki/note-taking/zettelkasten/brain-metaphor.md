@@ -25,6 +25,15 @@ Luhmann writes on slip
 > 
 > It is therefore important that one is not dependent on a numerous point-by-point [Ger.: _Punkt für Punkt_, more like "list of bullet points"] accesses, but rather on <u>relations</u> between notes, i.e., on <u>references</u>, which make more available at once than one might expect during an exploration [lit., "search impulse", Ger.: _Suchimpuls_, _Suchen_ for "search", _impuls_ for momentum, impulse, impetus, stimulus, incentive] or even a fixation of thought [Ger.: _Gedanken-fixierung_, presumably meaning "looking up a particular thing"?].
 
+<div style="padding-left:0.5em;margin-left:0.5em;border-left:1px dotted; font-size:smaller">
+<strong>Addendum</strong><time datetime="2026-07-07T14:47:41-0700">Jul  7, 2026 (2:47:41 PM)</time>.
+After discussing it with Sebastian Koch, he pointed out _Suchimpuls_
+can also describe the situation where "I need to look something up but
+I don't feel like it." Also _Gedankenfixierung_ is weird German but
+has the connotation of "fastening down an idea". But both of these
+terms seem to have a clear neurological inflection to them.
+</div>
+
 The relevant passage from Ashby's article speaks about "memory traces"
 and [Karl Lashley's](https://en.wikipedia.org/wiki/Karl_Lashley) work showing that a memory is "dispersed" in the brain
 (as opposed to being localized to some specific neuron or cluster of
