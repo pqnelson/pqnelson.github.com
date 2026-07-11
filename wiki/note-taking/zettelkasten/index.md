@@ -13,3 +13,6 @@ parentURL: /wiki/note-taking/
   writings I found useful when thinking about Zettelkastens
 - [Links](links.md)
 - [Brain as metaphor](brain-metaphor.md) for the Zettelkasten?
+- [Manfref Kuehn on notes](kuehn-on-notes.md)
+- [Categories, Sections, Tags](categories-sections-tags.md) --- some
+  common misconceptions about organization and a Zettelkasten

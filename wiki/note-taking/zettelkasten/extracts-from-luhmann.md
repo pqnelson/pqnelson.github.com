@@ -8,6 +8,19 @@ parentURL: /wiki/note-taking/zettelkasten/
 
 There are some passages from Luhmann which I wanted to make noted.
 
+
+<div style="padding-left:0.5em;margin-left:0.5em;border-left:1px dotted; font-size:smaller">
+<strong>Addendum</strong> <time datetime="2026-07-09T16:39:20-0700">Jul  9, 2026 (4:39:20 PM)</time>.
+
+I initially collected these passages hoping to write about the
+Autopoietic nature of the Zettelkasten. After thinking about it for a
+while, I realize this may be a "red herring". Nevertheless,
+Luhmann's abstraction of autopoiesis is rather interesting in its own
+right. Luhmann's slips on autopoiesis seem to be rooted at <a href="https://niklas-luhmann-archiv.de/bestand/zettelkasten/zettel/ZK_2_NB_21-3d26g1i_V">21/3d26g1i</a>
+but has not been transcribed.
+
+</div>
+
 ## About Autopoiesis
 
 Luhmann developed a "systems theoretic" approach to thinking about his
@@ -486,8 +499,47 @@ English translation published by Stanford:
 > 
 > Communication is also genuinely social in that a “common” (collective) consciousness can by no means and in no sense be produced, and that consensus in the full sense of complete agreement is hence also unattainable; communication operates in its place. It is the smallest possible unit of a social system, namely, the unit to which communication can still react through communication. In another version of the same argument, communication may be said to be autopoietic in that it can be produced only in recursive relation to other communications, thus every single communication contributes to reproducing only in a network. A unit of communication is completed with understanding or misunderstanding regardless of the essentially infinite possibilities for clarifying what has been understood. But this completion takes the form of a transition to further communication that can pursue this clarification or turn to other topics. The production of elements is autopoiesis. Communicating acceptance or rejection of the proposed meaning of a communication is already another communication, and, regardless of all thematic ties, does not arise of itself from the preceding communication. An essential precondition for the autopoiesis of society and its structure formation is that communication does not of itself contain its own acceptance; this has to be decided through further, independent communication.
 
+In the Introduction to _Social Systems_, Luhmann defines some criteria
+for autopoiesis as (p.11):
+
+> The theory of self-producing, autopoietic systems can be transferred to the domain of action systems only if one begins with the fact that the elements composing the system can have no duration, and thus must be constantly reproduced by the system these elements comprise. This goes far beyond merely replacing defunct parts, and it is not adequately explained by referring to environmental relationships. It is not a matter of adaptation, nor is it a matter of metabolism; rather, it is a matter of a peculiar constraint on autonomy arising from the fact that the system would simply cease to exist in any, even the m"t>st favorable, environment if it did not equip the momentary elements that compose it with the capacity for connection, that is , with meaning, and thus reproduce them. Different structures may exist to accomplish this, but only ones that can withstand the radical trend toward immediate (and not merely gradual, entropic) dissolution of the elements. 
+
+In _Social Systems_, Luhmann writes (p.169 of the English translation
+published by Stanford University Press):
+
+> Autopoietic reproduction does not mean that a specific action is repeated in every appropriate case (e. g. , every time a person wants to light a cigarette he reaches for his lighter). Repeatability must also be secured by the formation of structures. Reproduction means only production out of what has been produced; for autopoietic systems this means that the system does not end through its actual activity, but goes on. This going on depends, however, on the fact that actions (whether intentionally or not) have communicative value. 
+
+Later, Luhmann writes in _Social Systems_ (p.360):
+
+> It would be a crass reification to reduce this state of affairs to a distinction between life and science (or something similar). The difference between autopoiesis and observation is a very elementary one, and both occur in all autopoietic systems, even in those that-like science-specialize in observation and in predictions and explanations that depend on it. Correspondingly, contradiction has a double function in all self-referential systems, namely, to block and to trigger, stopping observation that encounters contradiction and triggering connective operations that cope with contradictions and owe their meaningfulness exactly to this coping. Thus one comes to the conclusion that contradiction is a semantic form that coordinates autopoiesis and observation, mediating both types of operation, and separating and combining them. Contradictions achieve this because switching off operations that connect with observation means simultaneously switching on operations that precisely then are still possible. 
+
+...and (p.402):
+
+> Thus what holds for all autopoietic systems also holds here: observation (operative distinction) is only possible on the level of elements and only so that the observer is provided with a description that at once accomplishes the self-reference of the elements and thereby reveals that they belong to the system and not to the environment. Even self-observation is bound to this precondition. 
+
+Luhmann writes (p.434):
+
+> The unity of autopoiesis is nothing more than its on-going self-renewal. 
+
+...and (pp.443--444):
+
+> 1.  We will speak of _basal self-reference_ when the basic distinction is between _element_ and _relation_. In basal self-reference, the self that refers itself is also an element, for example, an event or, in social systems, a communication. Basal self-reference is the minimal form of self-reference, without which autopoietic reproduction of temporalized systems would be impossible. We showed this above in the discussion of Whitehead's concept of event. Basal self-reference is a constitutive requirement for forming self-referential systems, but it is not a system reference, since the indicated self is intended as an element, not as a system, and since the guiding distinction is element/ relation and not system I environment. This of course does not deny that the concept of element presupposes a system and vice versa. But that does not negate the distinction between different forms of self reference; it merely grounds the expectation that they correlate to each other. [...]
+> 
+> [...]
+> 
+> [3.] [...] 
+> 
+> Systems formed and unified by basal self-reference (autopoietic systems) are always _closed systems_. But this concept acquires a new meaning in comparison with earlier systems theory. It no longer indicates systems that exist (almost) without environments, that is, that can determine themselves (almost) completely. Instead, it means that such systems create everything that they use as an element and thereby use recursively the elements that are already constituted in the system. How is this to be understood for meaning systems, especially social systems? 
+
+
 
 ### What this means
 
 Communication as an autopoiesitic system means _communication is in
 response to earlier communications_. 
+
+A dissenting opinion would point out that Luhmann did not really
+adequately incorporate Autopoiesis into his thinking until the early
+1980s, which is about 20 years after starting his second Zettelkasten.
+
+21/3d26g1i
