@@ -302,60 +302,60 @@ where he observes:
 >       (in an organization, for example, members bound by
 >       instructions), so that under normal circumstances it can
 >       ensure its own reproduction.
->   2. The concept stresses not the regular – let alone unconditional
->      – certainty of production but _reproduction_, that is to say,
->      production from own products. With Heinz von Foerster we can
->      also speak of a “historical machine,” in other words, a system
->      that produces further operations from the state in which it has
->      put itself.
->   3. Autopoiesis is accordingly formally defined. As concept, it
->      therefore leaves completely open what material operations it
->      performs. They can be biochemical or neurophysiological
->      operations, but also conscious disposal over attention or
->      communications. Neither analogy nor metaphor enters the
->      argument. What is involved are various applications of a
->      general theory.
->   4. The simple concept of autopoiesis serves to distinguish and
->      indicate a state of affairs. It has no empirical explanatory
->      value as concept.  What it does, above all, is to oblige other
->      concepts to adapt – for example, the concept of evolution or
->      the understanding of the relationship between system and
->      environment. Everything else depends on what operations
->      materialize autopoiesis, and through what structures produced
->      by evolution and learning.
->   5. The autopoiesis of the system is realized at the level of
->      _operations_.  It is therefore compatible with all structures
->      that permit operation to connect with operation. In this
->      context the concept of structure correlates with autopoiesis,
->      and not as it usually does with the division of work. Through
->      operations, structures are generated and reproduced and
->      possibly varied or simply forgotten for use in operations. We
->      can therefore not infer structural conservatism from the
->      concept of autopoiesis. On the contrary, it is the very closure
->      of the system against the environment that gives it
->      opportunities for structural variation that direct ties would
->      not afford.  Autopoietic modes of operation are typically
->      one-off inventions of evolution, which in the course of history
->      tend toward structural diversification. “Autopoiesis” thus
->      refers only to a limit to possible structural variation. But as
->      evolution over long periods and domains teaches us, it is
->      precisely the difference between inside and outside that
->      accelerates change. However, it naturally also teaches us that
->      change does not obey the wishes of particular observers, so
->      that to the observer the systems involved may appear rigid and
->      immobile.
->   6. The recursive interconnection of operations follows neither
->      logical nor rational rules. It merely produces connections and
->      the prospect of connectivity. Sales figures, for example, can
->      be treated as proof of the success and quality of the given
->      organizational structures. Information can thus arouse
->      suspicion of interest-specific distortions and encourage
->      further efforts to confirm this suspicion. In international
->      relations between organizations, for instance, ecological
->      criteria for products may be interpreted as trade
->      barriers. Recursions, therefore, ensure the maintenance and
->      reproduction of suppressed paradoxes. Anything particular is
->      always something else at the same time.
+>    2. The concept stresses not the regular – let alone unconditional
+>       – certainty of production but _reproduction_, that is to say,
+>       production from own products. With Heinz von Foerster we can
+>       also speak of a “historical machine,” in other words, a system
+>       that produces further operations from the state in which it has
+>       put itself.
+>    3. Autopoiesis is accordingly formally defined. As concept, it
+>       therefore leaves completely open what material operations it
+>       performs. They can be biochemical or neurophysiological
+>       operations, but also conscious disposal over attention or
+>       communications. Neither analogy nor metaphor enters the
+>       argument. What is involved are various applications of a
+>       general theory.
+>    4. The simple concept of autopoiesis serves to distinguish and
+>       indicate a state of affairs. It has no empirical explanatory
+>       value as concept.  What it does, above all, is to oblige other
+>       concepts to adapt – for example, the concept of evolution or
+>       the understanding of the relationship between system and
+>       environment. Everything else depends on what operations
+>       materialize autopoiesis, and through what structures produced
+>       by evolution and learning.
+>    5. The autopoiesis of the system is realized at the level of
+>       _operations_.  It is therefore compatible with all structures
+>       that permit operation to connect with operation. In this
+>       context the concept of structure correlates with autopoiesis,
+>       and not as it usually does with the division of work. Through
+>       operations, structures are generated and reproduced and
+>       possibly varied or simply forgotten for use in operations. We
+>       can therefore not infer structural conservatism from the
+>       concept of autopoiesis. On the contrary, it is the very closure
+>       of the system against the environment that gives it
+>       opportunities for structural variation that direct ties would
+>       not afford.  Autopoietic modes of operation are typically
+>       one-off inventions of evolution, which in the course of history
+>       tend toward structural diversification. “Autopoiesis” thus
+>       refers only to a limit to possible structural variation. But as
+>       evolution over long periods and domains teaches us, it is
+>       precisely the difference between inside and outside that
+>       accelerates change. However, it naturally also teaches us that
+>       change does not obey the wishes of particular observers, so
+>       that to the observer the systems involved may appear rigid and
+>       immobile.
+>    6. The recursive interconnection of operations follows neither
+>       logical nor rational rules. It merely produces connections and
+>       the prospect of connectivity. Sales figures, for example, can
+>       be treated as proof of the success and quality of the given
+>       organizational structures. Information can thus arouse
+>       suspicion of interest-specific distortions and encourage
+>       further efforts to confirm this suspicion. In international
+>       relations between organizations, for instance, ecological
+>       criteria for products may be interpreted as trade
+>       barriers. Recursions, therefore, ensure the maintenance and
+>       reproduction of suppressed paradoxes. Anything particular is
+>       always something else at the same time.
 > 9. Autopoietic systems are operationally closed, and for this very
 >    reason they are autonomous systems. The concept of operational
 >    closure allows for no gradualization; in other words, it does not
@@ -502,7 +502,7 @@ English translation published by Stanford:
 In the Introduction to _Social Systems_, Luhmann defines some criteria
 for autopoiesis as (p.11):
 
-> The theory of self-producing, autopoietic systems can be transferred to the domain of action systems only if one begins with the fact that the elements composing the system can have no duration, and thus must be constantly reproduced by the system these elements comprise. This goes far beyond merely replacing defunct parts, and it is not adequately explained by referring to environmental relationships. It is not a matter of adaptation, nor is it a matter of metabolism; rather, it is a matter of a peculiar constraint on autonomy arising from the fact that the system would simply cease to exist in any, even the m"t>st favorable, environment if it did not equip the momentary elements that compose it with the capacity for connection, that is , with meaning, and thus reproduce them. Different structures may exist to accomplish this, but only ones that can withstand the radical trend toward immediate (and not merely gradual, entropic) dissolution of the elements. 
+> The theory of self-producing, autopoietic systems can be transferred to the domain of action systems only if one begins with the fact that the elements composing the system can have no duration, and thus must be constantly reproduced by the system these elements comprise. This goes far beyond merely replacing defunct parts, and it is not adequately explained by referring to environmental relationships. It is not a matter of adaptation, nor is it a matter of metabolism; rather, it is a matter of a peculiar constraint on autonomy arising from the fact that the system would simply cease to exist in any, even the most favorable, environment if it did not equip the momentary elements that compose it with the capacity for connection, that is , with meaning, and thus reproduce them. Different structures may exist to accomplish this, but only ones that can withstand the radical trend toward immediate (and not merely gradual, entropic) dissolution of the elements. 
 
 In _Social Systems_, Luhmann writes (p.169 of the English translation
 published by Stanford University Press):
@@ -523,15 +523,13 @@ Luhmann writes (p.434):
 
 ...and (pp.443--444):
 
-> 1.  We will speak of _basal self-reference_ when the basic distinction is between _element_ and _relation_. In basal self-reference, the self that refers itself is also an element, for example, an event or, in social systems, a communication. Basal self-reference is the minimal form of self-reference, without which autopoietic reproduction of temporalized systems would be impossible. We showed this above in the discussion of Whitehead's concept of event. Basal self-reference is a constitutive requirement for forming self-referential systems, but it is not a system reference, since the indicated self is intended as an element, not as a system, and since the guiding distinction is element/ relation and not system I environment. This of course does not deny that the concept of element presupposes a system and vice versa. But that does not negate the distinction between different forms of self reference; it merely grounds the expectation that they correlate to each other. [...]
+> 1.  We will speak of _basal self-reference_ when the basic distinction is between _element_ and _relation_. In basal self-reference, the self that refers itself is also an element, for example, an event or, in social systems, a communication. Basal self-reference is the minimal form of self-reference, without which autopoietic reproduction of temporalized systems would be impossible. We showed this above in the discussion of Whitehead's concept of event. Basal self-reference is a constitutive requirement for forming self-referential systems, but it is not a system reference, since the indicated self is intended as an element, not as a system, and since the guiding distinction is element/relation and not system/environment. This of course does not deny that the concept of element presupposes a system and vice versa. But that does not negate the distinction between different forms of self reference; it merely grounds the expectation that they correlate to each other. [...]
 > 
 > [...]
 > 
 > [3.] [...] 
 > 
 > Systems formed and unified by basal self-reference (autopoietic systems) are always _closed systems_. But this concept acquires a new meaning in comparison with earlier systems theory. It no longer indicates systems that exist (almost) without environments, that is, that can determine themselves (almost) completely. Instead, it means that such systems create everything that they use as an element and thereby use recursively the elements that are already constituted in the system. How is this to be understood for meaning systems, especially social systems? 
-
-
 
 ### What this means
 
@@ -542,4 +540,3 @@ A dissenting opinion would point out that Luhmann did not really
 adequately incorporate Autopoiesis into his thinking until the early
 1980s, which is about 20 years after starting his second Zettelkasten.
 
-21/3d26g1i
