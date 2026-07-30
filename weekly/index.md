@@ -5,7 +5,9 @@ published: true
 date: 2026-05-10
 ---
 
-- [2026 July 19](2026-07-19.html)
+- [2026 July 26](2026-07-26.html)
+- [2026 July 19](2026-07-19.html) --- includes protracted aside about curriculum
+of Computer Science at universities
 - [2026 July 12](2026-07-12.md)
 - [2026 July 5](2026-07-05.md)
 - [2026 June 28](2026-06-28.md)
